@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Monaco&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+nav.scrolled {
+position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+
+body {
+    
+    margin: 0;
+    padding: 0;
+    font-family: 'onaco', 'Menlo', 'Courier New', monospace;
+    color: #CCCCC1;
+    overflow-x: hidden; /* Ajout de cette propriété */
+}
+
+/* Vos autres styles restent inchangés */
+
+
+nav {
+
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #181818;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #39A8F2;
+    font-family: 'Poppins', sans-serif;
+}
+
+ul {
+    list-style: none; /* Enlève les puces devant les éléments de la liste */
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    margin-right: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: #CCCCC1;
+    transition: color 0.3s ease-in-out;
+}
+
+a:hover {
+    color: #39A8F2;
+}
+

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Police d'écriture... -->
+    <link href="https://www.dafontfree.net/embed/YWxsZXItYm9sZCZkYXRhLzE2L2EvNzc3MzkvQWxsZXJfU3RkX0JkLnR0Zg" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.cdnfonts.com/css/godofwar" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/poppins" rel="stylesheet">
+    <!-- Lien vers AWESOME FONT... -->
+    <script src="https://kit.fontawesome.com/0c87a70838.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matthieu IZAC</title>
+
+    <!-- Lier avec le fichier CSS -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles.css" />
+    
+    <!-- Style CSS pour les boutons et la grille -->
+    <style>
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .btn-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 4 colonnes, ajustez au besoin */
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .btn {
+            background-color: #39A8F2;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Mon Portfolio</div>
+        <ul>
+            <li><a href="index.html">Accueuil</a></li>
+            <li><a href="#">Projet 1</a></li>
+            <li><a href="#">Projet 2</a></li>
+            <li><a href="pdf.html">Ressources</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+
+
+        <!--section numero 1-->
+        <section class="sec1">
+            <div class="container">
+                <!--- partie de gauche avec le titre le paragraphe et le bouton-->
+                <div class="left">
+                    <!--- titre-->
+                    <h1>    RESSOURCES/ARCHIVES</h1>
+                </div>
+            </div>
+        </section>
+
+
+    <!-- Mise en forme -->
+    <div class="container">
+        <!-- Grille pour les boutons menant à des pages compte_rendu1.html, compte_rendu2.html, etc. -->
+        <div class="btn-grid">
+            <a class="btn" href="compte_rendu/compte_rendu_cobian_backup.pdf" onclick="loadPDF('compte_rendu/compte_rendu_cobian_backup.pdf')">Cobian Backup</a>
+            <a class="btn" href="compte_rendu/compte_rendu_cryptographie.pdf" onclick="loadPDF('compte_rendu/compte_rendu_cryptographie.pdf')">Cryptographie</a>
+            <a class="btn" href="compte_rendu/compte_rendu_firewall.pdf" onclick="loadPDF('compte_rendu/compte_rendu_firewall.pdff')">Firewall</a>
+            <a class="btn" href="compte_rendu/compte_rendu_gestion_config.pdf" onclick="loadPDF('compte_rendu/compte_rendu_gestion_config.pdf')">Gestion de Configuration</a>
+            <a class="btn" href="compte_rendu/compte_rendu_gestsup_glpi.pdf" onclick="loadPDF('compte_rendu/compte_rendu_gestsup_glpi.pdf')">Gestion Support LP</a>
+            <a class="btn" href="compte_rendu/compte_rendu_permission_user.pdf" onclick="loadPDF('compte_rendu/compte_rendu_permission_user.pdf')">Permission Utilisateur</a>
+            <a class="btn" href="compte_rendu/compte_rendu_phishing.pdf" onclick="loadPDF('compte_rendu/compte_rendu_phishing.pdf')">Phishing</a>
+            <a class="btn" href="compte_rendu/compte_rendu_protocole_FTP.pdf" onclick="loadPDF('compte_rendu/compte_rendu_protocole_FTP.pdf')">Protocole FTP</a>
+            <a class="btn" href="compte_rendu/compte_rendu_sauvegarde.pdf" onclick="loadPDF('compte_rendu/compte_rendu_sauvegarde.pdf')">Sauvegarde</a>
+            <a class="btn" href="compte_rendu/compte_rendu_securite.pdf" onclick="loadPDF('compte_rendu/compte_rendu_securite.pdf')">Sécurité</a>
+            <a class="btn" href="compte_rendu/compte_rendu_serveur_client_FTP.pdf" onclick="loadPDF('compte_rendu/compte_rendu_serveur_client_FTP.pdf')">Serveur Client FTP</a>
+            <a class="btn" href="compte_rendu/compte_rendu_stenographie.pdf" onclick="loadPDF('compte_rendu/compte_rendu_stenographie.pdf')">Sténographie</a>
+            <a class="btn" href="compte_rendu/compte_rendu_Wireshark.pdf" onclick="loadPDF('compte_rendu/compte_rendu_Wireshark.pdf')">Wireshark</a>
+            <a class="btn" href="compte_rendu/compte_rendu_14.pdf" onclick="loadPDF('compte_rendu/compte_rendu_15.pdf')">14</a>
+            <a class="btn" href="compte_rendu/compte_rendu_15.pdf" onclick="loadPDF('compte_rendu/compte_rendu_15.pdf')">15</a>
+            <a class="btn" href="compte_rendu/compte_rendu_16.pdf" onclick="loadPDF('compte_rendu/compte_rendu_16.pdf')">16</a>
+            <a class="btn" href="compte_rendu/compte_rendu_17.pdf" onclick="loadPDF('compte_rendu/compte_rendu_17.pdf')">17</a>
+            <a class="btn" href="compte_rendu/compte_rendu_18.pdf" onclick="loadPDF('compte_rendu/compte_rendu_18.pdf')">18</a>
+            <a class="btn" href="compte_rendu/compte_rendu_19.pdf" onclick="loadPDF('compte_rendu/compte_rendu_19.pdf')">19</a>
+            <a class="btn" href="compte_rendu/compte_rendu_20.pdf" onclick="loadPDF('compte_rendu/compte_rendu_20.pdf')">20</a>
+
+
+            <!-- Ajoutez d'autres boutons ici avec les noms de  correspondants -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+
+            <div class="left">
+                <h1>MENU</h1>
+                <a href="index.html">ACCEUIL</a>
+            </div>
+
+            <div class="right">
+                <h1>A propos de moi</h1>
+                <p>jsp</p>
+                <h1>SITE DU LYCEE</h1>
+                <a href="https://www.lycee-saint-sauveur-redon.eu/">Cliquer ici :</a>
+            </div>
+
+
+        </div>
+
+     </footer>
+</body>
+</html>

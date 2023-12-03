@@ -1,0 +1,1190 @@
+/*enleve les marges par defaut*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+/* modifie les titres*/
+h1,
+h2, 
+h3, 
+h4, 
+h5, 
+h6 {
+    /* mettre en majuscule*/
+    text-transform: uppercase;
+    /* on donne la police d'ecriture */
+    font-family: "Poppins";
+}
+/* on donne la police d'ecriture au paragraphe et au bouton*/
+p, 
+button, 
+a {
+    font-family: "Poppins";
+}
+
+
+/* couleur du fond*/
+body {
+    background-color: #2C2C2C;
+
+}
+
+.portfolio-text {
+    width: 10%; /* Ajustez la taille de police selon vos préférences */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*SECTION NUMERO 1 CSS */
+
+/* aligner*/
+
+.sec1 {
+    margin-top: 50px;
+}
+.sec1 .container {
+    display: flex;
+    align-items: center;
+    max-width: 1500px;
+    margin: 100px auto;
+}
+/* couleur du titre h1*/
+.sec1 .container .left h1 {
+    font-size: 8em;
+    color: white;
+    text-shadow: 0px 0px 10px #fff;
+}
+/* couleur du paragraphe*/
+.sec1 .container .left p {
+    color: #888888;
+    max-width: 600px;
+    font-weight: bold;
+    margin: 40px 0;
+}
+/* styliser le bouton*/
+.sec1 .container .left button {
+    width: 300px;
+    height: 65px;
+    border-radius: 15px ;
+    border: none;
+    color: #2c2534;
+    font-size: 1em;
+    font-weight: 900;
+    background-color: #3498db;
+    box-shadow: 0px 0px 10px #3498db;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.sec1 .container .right{
+    position: relative;
+}
+.sec1 .container .right img {
+    position: relative;
+    width: 80%;
+    z-index: -999;
+}
+
+.sec1 .container .right::before {
+    content: url(img/css_logo.png);
+    position: absolute;
+    top: 90%;
+    left: 90%;
+    animation: bounce 5s infinite ease-in-out;
+    animation-delay: 1.5s;
+    width: 100px; /* Divisez la taille originale par 20 en utilisant une valeur en pixels */
+}
+
+
+
+.sec1 .container .right::after {
+    content: url(img/html_logo.png);
+    position: absolute;
+    bottom: 90%;
+    right: 107%;
+    animation: bounce 5s infinite ease-in-out;
+}
+
+
+
+@keyframes bounce {
+0%{
+    transform: translateY(0px);
+}
+50% {
+    transform: translateY(-20px);
+}
+100% {
+    transform: translateY(0px);
+}
+
+}
+
+/* RESPONSIVE DE LA SECTION 1*/
+@media (max-width: 1500px) {
+    .sec1 .container .left h1 {
+        font-size: 6em;
+    }
+
+}
+
+@media (max-width: 1300px) {
+    .sec1 .container {
+        flex-direction: column;
+        text-align: center;
+
+    }
+
+    .left {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+    
+    .sec1 .right img {
+        margin-top: 51px;
+        width: 90%;
+
+    }
+   
+    .sec1 .right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+}
+
+@media (max-width: 650px) {
+    .sec1 .container .left h1 {
+        font-size: 4em;
+    }
+
+    .sec1 .container .left p {
+        margin: 40px 35px;
+    }
+}
+
+
+/* FIN DES INSTRUCTIONS POUR LE RESPONSIVE DE LA SECTION 1*/
+
+
+
+
+
+
+
+
+
+
+
+/*SECTION NUMERO 2 CSS */
+
+.sec2 {
+    margin: 90px 0px;
+}
+
+.sec2 .container {
+    display: flex;
+    align-items: center;
+    max-width: 1500px;
+    margin: 0px auto;
+
+}
+
+.sec2 .card {
+    position: relative;
+    width: 95%;
+    background-color: #1F1F1F;
+    height: 100%;
+    margin: 0 auto;
+    border-radius: 10px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 20px 10px #3498db;
+    margin-top:200px;
+    animation: shadow 3s infinite ease-in-out;
+}
+
+@keyframes shadow {
+    0% { box-shadow: 0px 0px 20px 20px #3498db;
+
+    }
+    50% { box-shadow: 0px 0px 20px 10px #3498db;
+
+    }
+    100% { box-shadow: 0px 0px 20px 20px #3498db;
+
+    }
+}
+
+.sec2 .card .left figcaption {
+    color: #fff;
+    margin-bottom: 10px;
+    font-family: "poppins";
+    max-width: 300px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+     margin-top:200px;
+}
+
+.sec2 .card .arrow::before {
+    content:"\f107";
+    font-family: "FontAwesome";
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    left: 50%;
+    background-color: #3498db;
+    border-radius: 50px;
+    transform: translate(-50%, 50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5em;
+    color: black;
+    bottom: 0;
+}
+
+
+.sec2 .card .left {
+    margin-right: 100px;
+}
+
+.sec2 .card h4 {
+    color: #3498db;
+    letter-spacing: 2px;
+}
+
+.sec2 .card .left img {
+    position: relative;
+    top: -50px;
+}
+
+.sec2 .card h1 {
+    color: white;
+    font-size: 5em;
+    margin-bottom: 30px;
+}
+
+.sec2 .card .right {
+    max-width: 500px;
+}
+
+.sec2 .card p {
+    color: #888888;
+    line-break: anywhere;
+}
+
+/* RESPONSIVE DE LA SECTION 2*/
+
+@media (max-width:600px) {
+    .sec2 .card .right {
+        text-align: center;
+        margin-bottom: 50px;
+
+    }
+
+    .sec2 .card .right h1 {
+        font-size: 4em;
+    }
+
+    .sec2 .card .right p {
+        margin: 30px;
+    }
+
+
+}
+
+@media (max-width:1300px) {
+    .sec2 .card .right {
+        text-align: center;
+        margin-bottom: 50px;
+
+    }
+}
+/* FIN DES INSTRUCTIONS POUR LE RESPONSIVE DE LA SECTION 2*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* SECTION 3 */
+
+.sec3 {
+    z-index: 99;
+    overflow: hidden;
+    background-color:#2C2C2C;
+    background-position:center ;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top:200px;
+
+}
+
+
+.sec3 .title h4 {
+   
+    color: #3498db;
+    font-size: 1,5em;
+}
+
+.sec3 .title h1 {
+    color: white;
+    font-size: 4em;
+}
+
+.sec3 .container {
+    display: flex;
+    flex-direction: row;
+    max-width: 1500px;
+    margin: 0 auto;
+
+}
+
+.sec3 .container .left {
+    text-align: right;
+    max-width: 320px;
+}
+
+.sec3 .container .right {
+    max-width: 320px;
+}
+
+.sec3 .container .right,
+.sec3 .container .left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.sec3 .container h2 {
+    color: #3498db;
+    margin-bottom: 20px;
+}
+
+.sec3 .container p {
+    color:white;
+}
+
+
+/* RESPONSIVE DE LA SECTION 3*/
+
+@media (max-width: 1050px) {
+    .sec3 .mid {
+        display: none;
+    }
+
+    .sec3 .container {
+    flex-direction: column;
+    }
+
+
+    .sec3 .container .right,
+    .sec3 .container .left  {
+    max-width: 600px;
+    margin: 0 30px;
+    }
+
+    .sec3 .title {
+        text-align: center;
+    }
+
+    .sec3 .container h2,
+    .sec3 .container p,
+    .sec3 .title {
+        text-align: center;
+    }
+
+    .sec3 .top,
+    .sec3 .bottom {
+        margin: 30px 0;
+    }
+}
+
+@media (max-width: 550px) {
+
+    .sec3 .title h1 {
+        font-size: 3em;
+    }
+
+}
+
+
+/* FIN DES INSTRUCTIONS POUR LE RESPONSIVE DE LA SECTION 3*/
+
+
+
+
+
+
+
+
+
+
+/* SECTION 4 */
+
+.sec4 .center {
+   display: flex;
+   justify-content: center;
+   margin-bottom: 60px;
+}
+
+.sec4 .title h4 {
+    margin-top:200px;
+    color: #3498db;
+    font-size: 1,5em;
+}
+
+.sec4 .title h1 {
+    color: white;
+    font-size: 4em;
+}
+
+
+.sec4 .card {
+    height: 550px;
+    width: 400px;
+    background-color: #1F1F1F;
+    border-radius: 15px;
+    margin: 20px;
+    overflow: hidden;
+
+}
+
+.sec4 .container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.sec4 .card .top {
+    background: linear-gradient(to top, #3498db, #4E5066);
+    position: relative;
+    height: 275px ;
+}
+
+.sec4 .card:nth-child(1) .top {
+    transform: skew(0deg, -25deg);
+    top: -100px;
+}
+
+.sec4 .card:nth-child(2) .top {
+    height: 75px;
+    display: flex;
+    justify-content: center ;
+    align-items: baseline;
+}
+
+.sec4 .card:nth-child(3) .top {
+    transform: skew(0deg, 25deg);
+    top: -100px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: baseline;
+}
+
+.sec4 .card:nth-child(1) img {
+    transform: skew(0deg, 25deg);
+    width: 30%;
+    top: 50px;
+    position: relative;
+    right: -8px;
+}
+
+.sec4 .card:nth-child(2) img {
+    position: relative;
+    top: 10px;
+    width: 30%;
+}
+
+.sec4 .card:nth-child(3) img {
+    transform: skew(0deg, -25deg);
+    width: 30%;
+    top: 50px;
+    position: relative;
+    left: -8px;
+}
+
+.sec4 .card .bottom {
+    margin: 0 20px;
+}
+
+.sec4 .card .description {
+    line-break: anywhere;
+    text-align: center;
+    margin-top: 50px;
+    font-family: "Poppins";
+    color: #888888;
+}
+
+.sec4 .card h1{
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.sec4 .card h4{
+    color: #3498db;
+    font-size: 2em;
+}
+
+.sec4 .card:nth-child(1) .bottom{
+    position: relative;
+    top: -70px;
+}
+
+.sec4 .card:nth-child(2) .bottom{
+    text-align: center;
+    position: relative;
+    top: 130px;
+}
+
+.sec4 .card:nth-child(3) .bottom{
+    position: relative;
+    top: -70px;
+}
+
+.sec4 .card:nth-child(1) h1,
+.sec4 .card:nth-child(1) h4 {
+    text-align: right;
+}
+
+/* PAS DE RESPONSIVE A FAIRE */
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* SECTION 5 (video)*/
+
+.sec5 {
+    z-index: 99;
+    overflow: hidden;
+    background-image: url(img/bg.png);
+    background-position:center ;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.sec5 img.pique1 {
+    filter: drop-shadow(0px 15px 5px rgba(171, 21, 71, 0.75)); /* Utilise #3498db */
+}
+
+.sec5 img.pique {
+    filter: drop-shadow(0px -15px 5px rgba(171, 21, 71, 0.75)); /* Utilise #3498db */
+}
+
+
+.sec5 .title h4 {
+    color: #3498db;
+    font-size: 1,5em;
+}
+
+.sec5 .title h1 {
+    color: white;
+    font-size: 4em;
+    margin-bottom: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* FOOTER CSS */
+
+footer {
+    margin-top: 200px;
+    height: 400px;
+    background-color: #1F1F1F;
+    display: flex;
+    align-items: center;
+}
+
+footer .container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    width: 1500px;
+    margin: 0 auto;
+}
+
+footer .container .left h2{
+    color: #3498db;
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+
+footer .container .left h1,
+footer .container .right h1{
+    color: #3498db;
+    margin-bottom: 20px;
+}
+
+footer .container .left h1,
+footer .container .right h1{
+    color: #3498db;
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+
+footer .container .left p,
+footer .container .right p{
+    color: white;
+    text-decoration: none;
+    margin-bottom: 50px;
+}
+
+footer .container .left a,
+footer .container .right a{
+    color: white;
+    text-decoration: none;
+}
+
+footer .container .left {
+    display: flex;
+    flex-direction: column;
+}
+
+footer .container .right {
+    max-width: 550px;
+    margin: 30px 20px;
+}
+
+footer .container .left {
+    margin: 30px 0;
+}
+
+/* RESPONSIVE DU FOOTER*/
+@media (max-width: 1300px) {
+    footer {
+        height: 500px;
+    }
+
+}
+
+@media (max-width: 500px) {
+    footer {
+        height: 800px;
+    }
+
+}
+
+/* FIN RESPONSIVE FOOTER */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* CSS DU INDEX NUMERO 2*/
+
+
+
+
+/*SECTION LISTE */
+
+.liste {
+    margin: 90px 0px;
+}
+
+.liste .container {
+    display: flex;
+    align-items: center;
+    max-width: 1500px;
+    margin: 0px auto;
+
+}
+
+.liste .card {
+    position: relative;
+    width: 95%;
+    background-color: #1F1F1F;
+    height: 100%;
+    margin: 0 auto;
+    border-radius: 10px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 20px 10px #3498db;
+    animation: shadow 3s infinite ease-in-out;
+}
+
+@keyframes shadow {
+    0% { box-shadow: 0px 0px 20px 20px #3498db;
+
+    }
+    50% { box-shadow: 0px 0px 20px 10px #3498db;
+
+    }
+    100% { box-shadow: 0px 0px 20px 20px #3498db;
+
+    }
+}
+
+.liste .card .left figcaption {
+    color: #fff;
+    margin-bottom: 10px;
+    font-family: "poppins";
+    max-width: 300px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.liste .card .left {
+    margin-right: 100px;
+}
+
+.liste .card h4 {
+    color: #3498db;
+    letter-spacing: 2px;
+}
+
+.liste .card .left img {
+    position: relative;
+    top: 20px;
+    width: 80%;
+    left: 150px;
+}
+
+.liste .card .right li {
+    color: white;
+    margin-bottom: 40px;
+    font-family: "poppins";
+}
+
+.liste .card h1 {
+    color: white;
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+.liste .card .right {
+    max-width: 500px;
+}
+
+.liste .card p {
+    color: #888888;
+    line-break: anywhere;
+}
+
+/* RESPONSIVE DE LA LISTE*/
+
+@media (max-width:600px) {
+    .liste .card .right {
+        text-align: center;
+        margin-bottom: 50px;
+
+    }
+
+    .liste .card .right h1 {
+        font-size: 1em;
+    }
+
+    .liste .card .right p {
+        margin: 30px;
+    }
+
+
+}
+
+@media (max-width:1300px) {
+    .liste .card .right {
+        text-align: center;
+        margin-bottom: 50px;
+
+    }
+}
+
+@media (max-width:1300px) {
+    .liste .card .left img {
+        left: 0;
+
+    }
+}
+
+/* FIN DES INSTRUCTIONS POUR LE RESPONSIVE DE LA LISTE*/
+
+
+
+
+
+
+
+
+
+
+
+
+/*DIAPORAMA*/
+
+.sec6 html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.sec6 img {
+    max-width: 100%;
+}
+.sec6 .slider-container {
+    max-width: 550px;
+    position: relative;
+    margin: auto;
+    height: 350px;
+    overflow: hidden;
+}
+.sec6 .menu {
+    position: absolute;
+    left: 0;
+    z-index: 11;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+}
+.sec6 .menu label {
+    cursor: pointer;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: #ccc;
+    border-radius: 50px;
+    margin: 0 0.2em 1em;
+}
+.sec6 .menu label:hover,.menu label:focus {
+    background: #1c87c9;
+}
+.sec6 .slide-input{
+    opacity: 0;
+}
+.sec6 .slide-img {
+    width: 100%;
+    height: 300px;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    z-index: 10;
+    transition: left 0s 0.75s;
+}
+[id^="slide"]:checked + .slide-img {
+    left: 0;
+    z-index: 100;
+    transition: left 0.65s ease-out;
+}
+
+/*FIN SECTION 6*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* TABLEAU*/
+
+
+.tableau {
+    z-index: 99;
+    overflow: hidden;
+    background-image: url(img/bg.png);
+    background-position:center ;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.tableau img.pique1 {
+    filter: drop-shadow(0px 15px 5px rgba(206, 108, 206, 0.75));
+}
+
+.tableau img.pique {
+    filter: drop-shadow(0px -15px 5px rgba(206, 108, 206, 0.75));
+}
+
+.tableau .title h4 {
+    color: #3498db;
+    font-size: 1,5em;
+}
+
+.tableau .title h1 {
+    color: white;
+    font-size: 4em;
+    margin-bottom: 50px;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
+
+.tableau body {
+  font-family: "Roboto", helvetica, arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+}
+
+.tableau div.table-title {
+   display: block;
+  margin: auto;
+  max-width: 600px;
+  padding:5px;
+  width: 100%;
+}
+
+.tableau .table-title h3 {
+   color: #fafafa;
+   font-size: 30px;
+   font-weight: 400;
+   font-style:normal;
+   font-family: "Roboto", helvetica, arial, sans-serif;
+   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+   text-transform:uppercase;
+}
+
+
+.tableau .table-fill {
+  background: #3498db;
+  border-radius:3px;
+  border-collapse: collapse;
+  height: 320px;
+  margin: auto;
+  max-width: 600px;
+  padding:5px;
+  width: 100%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  animation: float 5s infinite;
+}
+ 
+.tableau th {
+  color:#D5DDE5;;
+  background:#3498db;
+  border-bottom:4px solid #9ea7af;
+  border-right: 1px solid #343a45;
+  font-size:23px;
+  font-weight: 100;
+  padding:24px;
+  text-align:left;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  vertical-align:middle;
+}
+
+.tableau th:first-child {
+  border-top-left-radius:3px;
+}
+ 
+.tableau th:last-child {
+  border-top-right-radius:3px;
+  border-right:none;
+}
+  
+.tableau tr {
+  border-top: 1px solid #C1C3D1;
+  border-bottom: 1px solid #C1C3D1;
+  color:#666B85;
+  font-size:16px;
+  font-weight:normal;
+  text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+}
+ 
+.tableau tr:hover td {
+  background:#4E5066;
+  color:#FFFFFF;
+  border-top: 1px solid #22262e;
+}
+ 
+.tableau tr:first-child {
+  border-top:none;
+}
+
+.tableau tr:last-child {
+  border-bottom:none;
+}
+ 
+.tableau tr:nth-child(odd) td {
+  background:#EBEBEB;
+}
+ 
+.tableau tr:nth-child(odd):hover td {
+  background:#4E5066;
+}
+
+.tableau tr:last-child td:first-child {
+  border-bottom-left-radius:3px;
+}
+ 
+.tableau tr:last-child td:last-child {
+  border-bottom-right-radius:3px;
+}
+ 
+.tableau td {
+  background:#FFFFFF;
+  padding:20px;
+  text-align:left;
+  vertical-align:middle;
+  font-weight:300;
+  font-size:18px;
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid #C1C3D1;
+}
+
+.tableau td:last-child {
+  border-right: 0px;
+}
+
+.tableau th.text-left {
+  text-align: left;
+}
+
+.tableau th.text-center {
+  text-align: center;
+}
+
+t.tableau h.text-right {
+  text-align: right;
+}
+
+.tableau td.text-left {
+  text-align: left;
+}
+
+.tableau td.text-center {
+  text-align: center;
+}
+
+.tableau td.text-right {
+  text-align: right;
+}
+
+
+/* FIN DES INSTRUCTIONS DE LA SECTION TABLEAU*/
+
+
+
+
+
+
+
+
+/* IMAGE INTERACTIVE CSS*/
+
+
+.image {
+    z-index: 99;
+    overflow: hidden;
+    background-image: url(img/bg.png);
+    background-position:center ;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+rgba
+.image img.pique1 {
+    filter: drop-shadow(0px 15px 5px #4E5066(206, 108, 206, 0.75));
+}
+
+.image img.pique {
+    filter: drop-shadow(0px -15px 5px #4E5066(206, 108, 206, 0.75));
+}
+
+.image .title h4 {
+    color: #3498db;
+    font-size: 1,5em;
+}
+
+.image .title h1 {
+    color: white;
+    font-size: 4em;
+    margin-bottom: 100px;
+}
+
+
+
+
+
+
+
+
