@@ -117,6 +117,7 @@ a[href] { cursor: var(--pointer); }
 
 /* Thème : le nouveau thème s'étend en cercle depuis le bouton (View Transitions) */
 ::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+.theme-switching *, .theme-switching *::before, .theme-switching *::after { transition: none !important; }
 
 /* Relief 3D des captures au survol */
 [data-tilt] { transition: transform 0.5s var(--ease-expo); will-change: transform; }

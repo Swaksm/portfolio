@@ -59,16 +59,22 @@
       root.dataset.theme = isDark ? 'light' : 'dark';
       try { localStorage.setItem('swaks-theme', root.dataset.theme); } catch (e) {}
     };
-    if (reduce || !document.startViewTransition) { apply(); return; }
+    // Transitions de couleur (survols) coupées pendant le changement : le nouveau thème
+    // apparaît d'un coup dans le cercle au lieu de s'estomper élément par élément
+    root.classList.add('theme-switching');
+    const done = () => root.classList.remove('theme-switching');
+    if (reduce || !document.startViewTransition) { apply(); getComputedStyle(root).color; done(); return; }
     const r = (origin || themeBtn || root).getBoundingClientRect();
     const x = r.left + r.width / 2, y = r.top + r.height / 2;
     const end = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
-    document.startViewTransition(apply).ready.then(() => {
+    const vt = document.startViewTransition(apply);
+    vt.ready.then(() => {
       root.animate(
         { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${end}px at ${x}px ${y}px)`] },
         { duration: 700, easing: 'cubic-bezier(0.16, 1, 0.3, 1)', pseudoElement: '::view-transition-new(root)' }
       );
     });
+    vt.finished.finally(done);
   }
   if (themeBtn) themeBtn.addEventListener('click', () => toggleTheme(themeBtn));
 
