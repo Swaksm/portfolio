@@ -29,7 +29,15 @@ Portfolio de Matthieu Izac (swaks). Site **100 % statique** : on dépose les fic
 - Palette « Parchment Mist » : crème `#F1EEE7`, parchemin `#EDE5D0`, taupe `#C7C0A8`, accent mauve `#C88ABB`, texte `#3a3530`.
 - Mode sombre : suit le système, bouton soleil/lune en haut à droite ; choix mémorisé (`localStorage: swaks-theme`).
 - Polices : Roboto Condensed 900 (titres), Outfit 400/700 (texte).
-- Mouvement : révélations en cascade, transition expo entre sections, désactivé si `prefers-reduced-motion`.
+- Mouvement : révélations en cascade, transition expo entre sections. Tout est désactivé si `prefers-reduced-motion`.
+- Effets :
+  - thème qui s'étend en cercle depuis le bouton (View Transitions API, repli instantané sinon) ;
+  - curseur personnalisé (point + anneau qui grossit sur les éléments cliquables), souris uniquement ;
+  - « décodage » des lettres de SWAKS au survol ;
+  - numéro de section en filigrane (`data-num` sur les titres) ;
+  - vague de courbes qui traverse l'écran à chaque changement de section (canvas `#sweep`) ;
+  - barre de progression mauve en haut (`#progress`) ;
+  - relief 3D des captures de projets au survol (souris uniquement).
 
 ## Langues
 

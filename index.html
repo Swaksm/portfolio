@@ -296,7 +296,63 @@
       border-radius: 4px;
     }
 
-    #wrapper { will-change: transform; }
+    #wrapper { position: relative; z-index: 1; will-change: transform; }
+
+    /* ---- Effets : barre de progression, vague de transition, curseur ---- */
+    #progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      width: 0;
+      background: var(--mauve);
+      z-index: 150;
+      pointer-events: none;
+      transition: width var(--dur-section) var(--ease-expo);
+    }
+    #sweep {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    #cursor-dot, #cursor-ring {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s var(--ease-smooth);
+    }
+    .has-cursor #cursor-dot, .has-cursor #cursor-ring { display: block; }
+    #cursor-dot { width: 6px; height: 6px; margin: -3px 0 0 -3px; background: var(--mauve); }
+    #cursor-ring {
+      width: 30px;
+      height: 30px;
+      margin: -15px 0 0 -15px;
+      border: 1px solid var(--mauve);
+      transition: opacity 0.2s var(--ease-smooth), width 0.35s var(--ease-expo), height 0.35s var(--ease-expo),
+                  margin 0.35s var(--ease-expo), background-color 0.35s var(--ease-smooth);
+    }
+    .cursor-visible #cursor-dot, .cursor-visible #cursor-ring { opacity: 1; }
+    .cursor-hover #cursor-ring {
+      width: 48px;
+      height: 48px;
+      margin: -24px 0 0 -24px;
+      background-color: color-mix(in srgb, var(--mauve) 14%, transparent);
+    }
+    .cursor-hover #cursor-dot { opacity: 0; }
+    .cursor-text #cursor-dot, .cursor-text #cursor-ring { opacity: 0; }
+    .has-cursor, .has-cursor * { cursor: none !important; }
+    .has-cursor input, .has-cursor textarea { cursor: text !important; }
+
+    /* Thème : le nouveau thème s'étend en cercle depuis le bouton (View Transitions) */
+    ::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
 
     /* ---- Reveals (fallback no-JS sûr : visibles par défaut) ---- */
     .js [data-reveal] {
@@ -387,6 +443,25 @@
       letter-spacing: -0.01em;
     }
     .hs { color: var(--mauve); }
+
+    /* Numéro de section en filigrane derrière le titre */
+    .section-title { position: relative; }
+    .section-title::before {
+      content: attr(data-num);
+      position: absolute;
+      left: -0.04em;
+      top: 50%;
+      z-index: -1;
+      font-size: clamp(90px, 12vw, 160px);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      opacity: 0;
+      transform: translate(-36px, -50%);
+      transition: opacity 1s var(--ease-expo) 0.15s, transform 1.2s var(--ease-expo) 0.15s;
+      pointer-events: none;
+    }
+    section.is-active .section-title::before { opacity: 0.05; transform: translate(0, -50%); }
 
     /* ---- Sections plein écran : centrées, défilables si le contenu dépasse ---- */
     #home, #skills, #contact {
@@ -592,6 +667,9 @@
       border: 1px solid var(--border);
       background: var(--parchment);
     }
+    /* Relief au survol (souris) ; la marge de rognage laisse déborder l'inclinaison */
+    .card.open .card-body-inner { overflow: clip; overflow-clip-margin: 16px; }
+    .card-shot { transition: transform 0.5s var(--ease-expo); will-change: transform; }
     .card-body-inner p {
       font-size: clamp(13px, 1.3vw, 15px);
       color: var(--muted);
@@ -966,7 +1044,10 @@
       #projects { padding: 3rem 2.4rem 3rem 1.4rem; }
 
       #socials { top: 1rem; right: 1.2rem; }
-      #footer { left: 1.2rem; right: auto; }
+      #footer { left: 1.2rem; right: auto; transition: opacity var(--dur-micro) var(--ease-smooth); }
+      /* Sur mobile, le pied de page ne s'affiche qu'à l'accueil et au contact (sinon il recouvre le texte) */
+      body:not([data-section="0"]):not([data-section="4"]) #footer { opacity: 0; pointer-events: none; }
+      body:not([data-section="0"]):not([data-section="4"]) #footer a { pointer-events: none; }
     }
 
     /* ---- Accessibilité : mouvement réduit ---- */
@@ -979,6 +1060,10 @@
   <script defer src="https://cloud.umami.is/script.js" data-website-id="50c62680-6fe2-4654-82fd-813896edce5e"></script>
 </head>
 <body>
+  <div id="progress" aria-hidden="true"></div>
+  <canvas id="sweep" aria-hidden="true"></canvas>
+  <div id="cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
 
   <div id="wrapper">
   <section id="landing">
@@ -991,7 +1076,7 @@
   </section>
 
   <section id="home" aria-label="About" data-i18n-attr="aria-label:nav.about">
-    <h2 class="section-title" data-reveal style="--i:0" data-i18n="about.title">ABOUT ME<span class="hs">.</span></h2>
+    <h2 class="section-title" data-num="01" data-reveal style="--i:0" data-i18n="about.title">ABOUT ME<span class="hs">.</span></h2>
     <p data-reveal style="--i:1" data-i18n="about.p1">Welcome.</p>
     <p data-reveal style="--i:2" data-i18n="about.p2">Let me introduce myself — I'm <span class="accent">Matthieu</span>, <span class="age"></span> years old. I'm a software developer, currently doing a Master's degree in work-study until 2028, after a Bachelor's specialising in development and <span class="accent">artificial intelligence</span>.</p>
     <p data-reveal style="--i:3" data-i18n="about.p3">I build concrete tools: bots running in production, Python APIs, desktop software and language-model integrations. What drives me is making AI <span class="accent">useful</span> — automating, extracting, summarising — without complicating what should stay simple.</p>
@@ -1006,7 +1091,7 @@
   </section>
 
   <section id="skills" aria-label="Skills" data-i18n-attr="aria-label:nav.skills">
-    <h2 class="section-title" data-reveal style="--i:0" data-i18n="skills.title">SKILL<span class="hs">S</span></h2>
+    <h2 class="section-title" data-num="02" data-reveal style="--i:0" data-i18n="skills.title">SKILL<span class="hs">S</span></h2>
 
     <div class="skills-grid">
       <div class="skills-group" data-reveal style="--i:1">
@@ -1039,7 +1124,7 @@
   </section>
 
   <section id="projects" aria-label="Projects" data-i18n-attr="aria-label:nav.projects">
-    <h2 class="section-title" data-reveal style="--i:0" data-i18n="projects.title">PROJECT<span class="hs">S</span></h2>
+    <h2 class="section-title" data-num="03" data-reveal style="--i:0" data-i18n="projects.title">PROJECT<span class="hs">S</span></h2>
 
     <div class="card" data-reveal style="--i:1">
       <button class="card-header" type="button" aria-expanded="false">
@@ -1139,7 +1224,7 @@
   </section>
 
   <section id="contact" aria-label="Contact">
-    <h2 class="section-title" data-reveal style="--i:0">CONTACT<span class="hs">S</span></h2>
+    <h2 class="section-title" data-num="04" data-reveal style="--i:0">CONTACT<span class="hs">S</span></h2>
     <div class="contact-item" data-reveal style="--i:1">
       <span class="contact-label">Email</span>
       <span class="contact-value"><a href="mailto:swks.pro@gmail.com">swks.pro@gmail.com</a></span>
@@ -1359,6 +1444,57 @@
         return !!o && o.classList.contains('open');
       };
 
+      const progress = document.getElementById('progress');
+
+      /* ---------- Vague de transition entre sections ---------- */
+      const sweep = (() => {
+        const cv = document.getElementById('sweep');
+        const ctx = cv.getContext('2d');
+        let raf = null;
+        function size() {
+          const dpr = Math.min(window.devicePixelRatio || 1, 2);
+          cv.width = innerWidth * dpr; cv.height = innerHeight * dpr;
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+        size();
+        window.addEventListener('resize', size);
+        return (dir) => {
+          if (reduce) return;
+          cancelAnimationFrame(raf);
+          const cs = getComputedStyle(document.documentElement);
+          const mauve = cs.getPropertyValue('--mauve').trim(), taupe = cs.getPropertyValue('--taupe').trim();
+          const waves = [
+            { off: -50, amp: 34, freq: 1.6, col: mauve, w: 1.4 },
+            { off:   0, amp: 48, freq: 1.1, col: taupe, w: 1.6 },
+            { off:  55, amp: 28, freq: 2.2, col: mauve, w: 1.1 },
+          ];
+          const t0 = performance.now(), D = 1000;
+          const frame = (now) => {
+            const p = Math.min((now - t0) / D, 1);
+            const e = 1 - Math.pow(1 - p, 3);
+            const w = innerWidth, h = innerHeight;
+            // La vague traverse l'écran dans le sens du déplacement
+            const base = dir > 0 ? h * 1.15 - e * h * 1.3 : -h * 0.15 + e * h * 1.3;
+            ctx.clearRect(0, 0, w, h);
+            ctx.globalAlpha = Math.sin(p * Math.PI) * 0.55;
+            waves.forEach((wv, k) => {
+              ctx.beginPath();
+              ctx.lineWidth = wv.w;
+              ctx.strokeStyle = wv.col;
+              for (let x = 0; x <= w; x += 8) {
+                const y = base + wv.off + Math.sin((x / w) * Math.PI * wv.freq + p * 3 + k) * wv.amp;
+                x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+              }
+              ctx.stroke();
+            });
+            ctx.globalAlpha = 1;
+            if (p < 1) raf = requestAnimationFrame(frame);
+            else ctx.clearRect(0, 0, w, h);
+          };
+          raf = requestAnimationFrame(frame);
+        };
+      })();
+
       let offsets = [];
       let current = 0;
       let animating = false;
@@ -1384,6 +1520,8 @@
         arrowUp.disabled = idx === 0;
         arrowDown.disabled = idx === sections.length - 1;
         curves.toggle(idx === 0);
+        progress.style.width = (idx / (sections.length - 1)) * 100 + '%';
+        document.body.dataset.section = idx;
       }
 
       function syncHash(idx, push) {
@@ -1402,6 +1540,7 @@
 
         const from = -offsets[current];
         const to = -offsets[idx];
+        sweep(idx > current ? 1 : -1);
         current = idx;
         setActive(idx);
         syncHash(idx, push);
@@ -1430,11 +1569,25 @@
 
       /* ---------- Thème clair / sombre ---------- */
       const darkMq = window.matchMedia('(prefers-color-scheme: dark)');
-      document.getElementById('theme-toggle').addEventListener('click', () => {
+      const themeBtn = document.getElementById('theme-toggle');
+      themeBtn.addEventListener('click', () => {
         const root = document.documentElement;
         const isDark = root.dataset.theme ? root.dataset.theme === 'dark' : darkMq.matches;
-        root.dataset.theme = isDark ? 'light' : 'dark';
-        try { localStorage.setItem('swaks-theme', root.dataset.theme); } catch (e) {}
+        const apply = () => {
+          root.dataset.theme = isDark ? 'light' : 'dark';
+          try { localStorage.setItem('swaks-theme', root.dataset.theme); } catch (e) {}
+        };
+        if (reduce || !document.startViewTransition) { apply(); return; }
+        // Le nouveau thème s'étend en cercle depuis le bouton
+        const r = themeBtn.getBoundingClientRect();
+        const x = r.left + r.width / 2, y = r.top + r.height / 2;
+        const end = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+        document.startViewTransition(apply).ready.then(() => {
+          root.animate(
+            { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${end}px at ${x}px ${y}px)`] },
+            { duration: 700, easing: 'cubic-bezier(0.16, 1, 0.3, 1)', pseudoElement: '::view-transition-new(root)' }
+          );
+        });
       });
 
       /* ---------- Cartes projets (bouton accessible, sans interférer avec les liens) ---------- */
@@ -1527,6 +1680,79 @@
           acc.style.transform = `translate(${mx * 0.25}px, ${my * 0.35}px)`;
         });
         acc.addEventListener('pointerleave', () => { acc.style.transform = ''; });
+      }
+
+      const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+      /* ---------- Curseur personnalisé (souris uniquement) ---------- */
+      if (!reduce && finePointer) {
+        const root = document.documentElement;
+        const dot = document.getElementById('cursor-dot');
+        const ring = document.getElementById('cursor-ring');
+        root.classList.add('has-cursor');
+        let mx = -100, my = -100, rx = -100, ry = -100, following = false;
+        const follow = () => {
+          rx += (mx - rx) * 0.2;
+          ry += (my - ry) * 0.2;
+          ring.style.transform = `translate3d(${rx}px, ${ry}px, 0)`;
+          if (Math.abs(mx - rx) + Math.abs(my - ry) > 0.1) requestAnimationFrame(follow);
+          else following = false;
+        };
+        window.addEventListener('pointermove', (e) => {
+          if (e.pointerType !== 'mouse') return;
+          mx = e.clientX; my = e.clientY;
+          dot.style.transform = `translate3d(${mx}px, ${my}px, 0)`;
+          root.classList.add('cursor-visible');
+          const t = e.target instanceof Element ? e.target : null;
+          // #game-btn exclu : le curseur ne doit pas trahir l'easter egg
+          root.classList.toggle('cursor-hover', !!(t && t.closest('a, button:not(#game-btn), .card-header')));
+          root.classList.toggle('cursor-text', !!(t && t.closest('input, textarea')));
+          if (!following) { following = true; requestAnimationFrame(follow); }
+        });
+        root.addEventListener('mouseleave', () => root.classList.remove('cursor-visible'));
+      }
+
+      /* ---------- SWAKS : effet « décodage » au survol ---------- */
+      const bigTitle = document.querySelector('#landing h1');
+      if (!reduce && bigTitle) {
+        const letters = Array.from(bigTitle.querySelectorAll('span'));
+        const glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#%&*+=<>/';
+        let decoding = false;
+        bigTitle.addEventListener('pointerenter', () => {
+          if (decoding) return;
+          decoding = true;
+          const finals = letters.map((l) => l.textContent);
+          // Largeur figée pendant l'effet : pas de saut de mise en page
+          letters.forEach((l) => { l.style.width = l.getBoundingClientRect().width + 'px'; l.style.textAlign = 'center'; });
+          const start = performance.now();
+          const frame = () => {
+            const t = performance.now() - start;
+            let done = true;
+            letters.forEach((l, i) => {
+              if (t < 260 + i * 90) { done = false; l.textContent = glyphs[(Math.random() * glyphs.length) | 0]; }
+              else l.textContent = finals[i];
+            });
+            if (!done) setTimeout(frame, 45);
+            else {
+              letters.forEach((l) => { l.style.width = ''; l.style.textAlign = ''; });
+              decoding = false;
+            }
+          };
+          frame();
+        });
+      }
+
+      /* ---------- Captures de projets : relief 3D au survol ---------- */
+      if (!reduce && finePointer) {
+        document.querySelectorAll('.card-shot').forEach((img) => {
+          img.addEventListener('pointermove', (e) => {
+            const r = img.getBoundingClientRect();
+            const px = (e.clientX - r.left) / r.width - 0.5;
+            const py = (e.clientY - r.top) / r.height - 0.5;
+            img.style.transform = `perspective(1100px) rotateX(${(-py * 5).toFixed(2)}deg) rotateY(${(px * 7).toFixed(2)}deg)`;
+          });
+          img.addEventListener('pointerleave', () => { img.style.transform = ''; });
+        });
       }
 
       /* ---------- Focus clavier (Tab) : amène la section de l'élément focalisé ---------- */
