@@ -16,7 +16,8 @@ Portfolio de Matthieu Izac (swaks). Site **100 % statique** : on dépose les fic
 | `404.html` | Page d'erreur |
 | `.htaccess` | Config Apache (OVH) : page 404, redirection vers `https://swaks.org` (sans www), compression, cache, en-têtes de sécurité |
 | `mentions-legales.html` | Mentions légales (FR/EN, même détection de langue que le site) |
-| `favicon.svg` | Icône |
+| `favicon.svg` | Icône (navigateurs) |
+| `icons/`, `site.webmanifest` | Icônes PNG (32, 180 iPhone, 192/512 Android) et manifeste pour l'écran d'accueil |
 | `og-image.png` | Image d'aperçu des liens partagés (1200×630), générée depuis `og.html` |
 | `og.html` | Source de `og-image.png` (régénérer : `chrome --headless=new --hide-scrollbars --window-size=1200,630 --screenshot=og-image.png og.html`) |
 | `fonts/` | Outfit (variable) et Roboto Condensed 900, sous-ensemble latin, en woff2 |
@@ -50,7 +51,7 @@ Sections en plein écran. Molette, flèches, PageUp/PageDown, Home/End, touches 
 - **Présentation** : texte, frise de parcours (Master en alternance → 2028, Bachelor, BTS SIO, bac 2022), langues.
 - **Compétences** : 6 colonnes typographiques, sans icônes.
 - **Projets** : Kleaner, Lion Meme, CordeSortie, Video Grabber. Une carte = titre, tags, capture (optionnelle, `img/`), description, chips techno, liens. Cartes repliables (bouton accessible, `aria-expanded`).
-- **Contact** : email + formulaire Formspree (`mojzlrke`), validation côté client, gestion des erreurs réseau.
+- **Contact** : email + formulaire Formspree (`mojzlrke`), validation côté client, gestion des erreurs réseau, champ piège anti-spam `_gotcha`.
 - **Easter egg** : bouton invisible coin haut-gauche → mini-jeu « Flux » (meilleur score en `localStorage`).
 
 ## SEO

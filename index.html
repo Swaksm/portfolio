@@ -33,6 +33,9 @@
   <meta name="twitter:description" content="Software developer specialising in development and artificial intelligence." />
 
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" />
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
 
   <script type="application/ld+json">
   {
@@ -1159,6 +1162,8 @@
         <textarea name="message" placeholder="Message" aria-label="Message"></textarea>
         <span class="field-error"></span>
       </div>
+      <!-- Piège anti-spam : invisible pour les humains, rempli par les robots (rejeté par Formspree) -->
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
       <button type="submit" id="submit-btn" data-i18n="form.send">Send →</button>
     </form>
 

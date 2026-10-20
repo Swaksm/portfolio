@@ -16,6 +16,7 @@ ErrorDocument 404 /404.html
 # Types de fichiers
 AddType font/woff2 .woff2
 AddType image/webp .webp
+AddType application/manifest+json .webmanifest
 
 # Compression
 <IfModule mod_deflate.c>
