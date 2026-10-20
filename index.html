@@ -1602,6 +1602,9 @@
 
       /* ---------- Resize / historique ---------- */
       window.addEventListener('resize', measure);
+      // Retour bfcache (ex: navigateur mobile après un lien externe) : pas de 'resize' ni 'load',
+      // donc les tailles de canvas et offsets de section restent périmés sans ce relais.
+      window.addEventListener('pageshow', (e) => { if (e.persisted) window.dispatchEvent(new Event('resize')); });
       window.addEventListener('popstate', (e) => {
         const idx = (e.state && typeof e.state.idx === 'number')
           ? e.state.idx

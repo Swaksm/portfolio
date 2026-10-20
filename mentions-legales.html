@@ -7,12 +7,13 @@
   <meta name="robots" content="noindex" />
   <meta name="color-scheme" content="light dark" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <script src="/assets/lang.js"></script>
   <script>
     // Même règle que le site : choix mémorisé, sinon langue du navigateur
     (function () {
-      let lang = '', theme = '';
-      try { lang = localStorage.getItem('swaks-lang') || ''; theme = localStorage.getItem('swaks-theme') || ''; } catch (e) {}
-      if (!lang) lang = /^fr\b/i.test((navigator.languages && navigator.languages[0]) || navigator.language || '') ? 'fr' : 'en';
+      const lang = window.swaksLang();
+      let theme = '';
+      try { theme = localStorage.getItem('swaks-theme') || ''; } catch (e) {}
       document.documentElement.lang = lang;
       if (theme) document.documentElement.dataset.theme = theme;
       if (lang === 'fr') document.title = 'Mentions légales — swaks.org';
