@@ -64,6 +64,22 @@ def fr_url(url: str) -> str:
     return url
 
 
+# Largeur affichée des captures (voir le CSS) : cartes de l'accueil, capture principale et galerie des pages projets
+SIZES = {
+    'card': '(max-width: 600px) calc(100vw - 3.8rem), (max-width: 720px) calc(100vw - 4rem), 656px',
+    'hero': '(max-width: 600px) calc(100vw - 2.4rem), (max-width: 760px) calc(100vw - 3.2rem), 709px',
+    'half': '(max-width: 600px) calc(100vw - 2.4rem), (max-width: 760px) calc(50vw - 2.1rem), 346px',
+}
+
+
+def srcset(src: str, sizes: str) -> str:
+    """srcset 640w / 1280w quand la version réduite <nom>-640.webp existe (voir spec.md)."""
+    small = re.sub(r'\.webp$', '-640.webp', src)
+    if small == src or not (ROOT / small.lstrip('/')).exists():
+        return ''
+    return f' srcset="{small} 640w, {src} 1280w" sizes="{SIZES[sizes]}"'
+
+
 def i18n_of(page: str) -> dict:
     m = re.search(r'<script id="i18n" type="application/json">(.*?)</script>', page, flags=re.S)
     return json.loads(m.group(1).replace('<\\/', '</'))
@@ -145,6 +161,8 @@ def build_home() -> dict:
     page = read(src)
     # Âge à jour dans le HTML (le JS le recalcule aussi au chargement)
     page = re.sub(r'<span class="age">\d*</span>', f'<span class="age">{age()}</span>', page)
+    # Captures des cartes : version 640 px proposée au navigateur quand elle existe
+    page = re.sub(r'<img class="card-shot" src="([^"]+)"(?! srcset)', lambda m: m.group(0) + srcset(m.group(1), 'card'), page)
     write(src, page)
     d = i18n_of(page)
     fr = localize(page, d['fr'])
@@ -207,11 +225,14 @@ def project_page(p: dict, lang: str, nxt: dict, home_page: str, head_snippet: st
     gallery = ''
     if shots:
         s0 = shots[0]
-        hero = (f'\n    <figure class="shot" style="--i:{next(i)}"><img src="{s0["src"]}" alt="{attr(s0["alt"][lang])}" '
+        hero = (f'\n    <figure class="shot" style="--i:{next(i)}"><img src="{s0["src"]}"{srcset(s0["src"], "hero")} alt="{attr(s0["alt"][lang])}" '
                 f'width="1280" height="800" data-tilt /></figure>')
     if len(shots) > 1:
-        imgs = '\n      '.join(f'<img src="{s["src"]}" alt="{attr(s["alt"][lang])}" width="1280" height="800" loading="lazy" decoding="async" data-tilt />'
-                               for s in shots[1:])
+        rest = shots[1:]
+        # Galerie sur 2 colonnes ; en nombre impair, la dernière prend toute la largeur
+        size = lambda n: 'hero' if len(rest) % 2 and n == len(rest) - 1 else 'half'
+        imgs = '\n      '.join(f'<img src="{s["src"]}"{srcset(s["src"], size(n))} alt="{attr(s["alt"][lang])}" width="1280" height="800" loading="lazy" decoding="async" data-tilt />'
+                               for n, s in enumerate(rest))
         gallery = f'\n    <div class="gallery" style="--i:{next(i)}">\n      {imgs}\n    </div>'
 
     sections = ''

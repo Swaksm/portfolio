@@ -23,7 +23,7 @@ Portfolio de Matthieu Izac (swaks). Site **100 % statique** : on dépose les fic
 | `.htaccess` | Config Apache (OVH) : 404, redirection vers `https://swaks.org` (sans www), compression, cache, en-têtes de sécurité, blocage de `_build/` |
 | `favicon.svg`, `icons/`, `site.webmanifest` | Icônes (navigateur, iPhone, Android) |
 | `og-image.png`, `img/og/*.png` | Images d'aperçu des liens partagés (1200×630) — générées |
-| `img/`, `img/projects/` | Captures des projets (WebP 1280×800, 16:10) |
+| `img/`, `img/projects/` | Captures des projets (WebP 1280×800, 16:10), chacune avec sa version `<nom>-640.webp` (640×400) que le build propose au navigateur (`srcset`) |
 | `fonts/` | Outfit (variable) et Roboto Condensed 900, sous-ensemble latin, woff2 |
 | `robots.txt`, `sitemap.xml` | Référencement (`sitemap.xml` généré, avec les alternatives hreflang) |
 
@@ -73,7 +73,9 @@ python _build/build.py --og     # + images d'aperçu (Chrome ou Edge requis)
 1. Ajouter l'entrée dans `_build/projects.json` (slug, textes EN/FR, chips, liens, captures).
 2. Ajouter la carte dans `#projects` de `index.html` (copier une carte existante : clés `data-i18n` + entrées du dictionnaire, `data-gh`, lien « Voir plus » vers `/projects/<slug>.html`).
 3. Ajouter le projet à la liste `PROJECTS` de `assets/site.js` (palette).
-4. `python _build/build.py --og`.
+4. Pour chaque nouvelle capture, créer sa version 640 px (Pillow) :
+   `python -c "from PIL import Image; im = Image.open('img/projects/x.webp'); im.resize((640, 400), Image.LANCZOS).save('img/projects/x-640.webp', quality=80, method=6)"`
+5. `python _build/build.py --og`.
 
 ## Déploiement
 
