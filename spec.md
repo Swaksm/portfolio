@@ -13,7 +13,8 @@ Portfolio de Matthieu Izac (swaks). Site **100 % statique** : on dépose les fic
 | Fichier | Rôle |
 |---|---|
 | `index.html` | Le site (5 sections plein écran : accueil, présentation, compétences, projets, contact) |
-| `404.html` | Page d'erreur (à déclarer côté serveur, ex. `ErrorDocument 404 /404.html` ou `error_page 404 /404.html`) |
+| `404.html` | Page d'erreur |
+| `.htaccess` | Config Apache (OVH) : branche `404.html` sur les pages introuvables |
 | `favicon.svg` | Icône |
 | `robots.txt`, `sitemap.xml` | Référencement |
 | `design-tokens.css`, `style.css` | Anciennes feuilles de style, non chargées par `index.html` (référence palette) |
