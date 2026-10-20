@@ -6,7 +6,7 @@ Portfolio de Matthieu Izac (swaks). Site **100 % statique** : on dépose les fic
 
 - Minimaliste, lisible, soigné. Pas de surcharge.
 - Aucune dépendance à installer ; Python 3 seulement pour le build local.
-- Services externes uniquement côté navigateur : Formspree (formulaire), Umami (stats), API GitHub (stats des projets). Les polices sont hébergées localement (`fonts/`).
+- Services externes uniquement côté navigateur : Formspree (formulaire), Umami (stats, clics mesurés par `data-umami-event` : `copy-email`, `contact-submit`, `github` / `download` / `visit` avec le projet, `social-*`), API GitHub (stats des projets). Les polices sont hébergées localement (`fonts/`).
 - Chemins absolus (`/fonts/…`, `/img/…`) : le site doit être servi à la racine du domaine.
 
 ## Fichiers
@@ -34,7 +34,7 @@ python _build/build.py          # fr/index.html, pages projets, sitemap.xml
 python _build/build.py --og     # + images d'aperçu (Chrome ou Edge requis)
 ```
 
-À relancer après toute modification de `index.html`, de `_build/projects.json` ou de `_build/head.html`, puis committer le résultat.
+À relancer après toute modification de `index.html`, de `_build/projects.json`, de `_build/head.html`, d'un fichier de `assets/` ou d'un script écrit dans une page, puis committer le résultat. Le build ajoute aussi `?v=<empreinte>` aux fichiers `/assets/*.css|js` de toutes les pages (gardés 1 an en cache) et recalcule dans `.htaccess` l'empreinte sha256 de chaque script écrit dans une page (CSP sans `'unsafe-inline'` pour les scripts). La GitHub Action échoue si le résultat n'a pas été committé.
 
 ## Langues
 
@@ -46,7 +46,7 @@ python _build/build.py --og     # + images d'aperçu (Chrome ou Edge requis)
 
 ## Design
 
-- Palette « Parchment Mist » : crème `#F1EEE7`, parchemin `#EDE5D0`, taupe `#C7C0A8`, accent mauve `#C88ABB`, texte `#3a3530`. Mode sombre : suit le système, bouton soleil/lune, choix mémorisé (`localStorage: swaks-theme`).
+- Palette « Parchment Mist » : crème `#F1EEE7`, parchemin `#EDE5D0`, taupe `#C7C0A8`, accent mauve `#C88ABB`, texte `#3a3530`. Pour du texte, utiliser `--taupe-text` et `--mauve-text` (contraste ≥ 4.5:1) ; `--taupe` et `--mauve` restent pour le décor, les titres et les survols. Mode sombre : suit le système, bouton soleil/lune, choix mémorisé (`localStorage: swaks-theme`).
 - Polices : Roboto Condensed 900 (titres), Outfit (texte).
 - Tout le mouvement est désactivé si `prefers-reduced-motion`.
 - Effets de l'accueil : vague de courbes au changement de section (`#sweep`), barre de progression (`#progress`), « décodage » de SWAKS au survol, numéros de section en filigrane (`data-num`).
@@ -63,9 +63,9 @@ python _build/build.py --og     # + images d'aperçu (Chrome ou Edge requis)
 - **Accueil** : SWAKS + accroche « Developer · Tools · Nantes ».
 - **Présentation** : texte, frise de parcours (Master EISI à l'EPSI en alternance chez DGSYS → 2028, Bachelor, BTS SIO, bac 2022), langues, centres d'intérêt. L'IA reste en retrait : le vibecoding (Claude Code) est présenté comme une méthode parmi d'autres.
 - **Compétences** : 5 colonnes typographiques, sans icônes.
-- **Projets** : cartes repliables (aperçu : capture, description, chips, liens) avec un lien « Voir plus » vers la page du projet. Stats GitHub en direct (`data-gh="owner/repo"`, `data-gh-releases` pour les téléchargements ; cache 1 h).
+- **Projets** : carte DGSYS (alternance, sans page projet) en tête, puis cartes repliables (aperçu : capture, description, chips, liens) avec un lien « Voir plus » vers la page du projet. Stats GitHub en direct (`data-gh="owner/repo"`, `data-gh-releases` pour les téléchargements ; cache 1 h).
 - **Pages projets** : accroche, chips, stats GitHub, boutons, capture, sections détaillées, galerie, projet suivant. JSON-LD (`SoftwareApplication`, `WebApplication` ou `SoftwareSourceCode`).
-- **Contact** : email copiable en un clic (`data-copy`), formulaire Formspree (`mojzlrke`) avec validation, gestion des erreurs réseau et champ piège anti-spam `_gotcha`.
+- **Contact** : appel « Ouvert aux projets et petites missions » en tête, email copiable en un clic (`data-copy`), formulaire Formspree (`mojzlrke`) avec validation, gestion des erreurs réseau et champ piège anti-spam `_gotcha`.
 - **Easter egg** : bouton invisible coin haut-gauche → mini-jeu « Flux ».
 
 ## Ajouter un projet

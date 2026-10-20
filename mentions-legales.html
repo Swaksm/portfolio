@@ -7,7 +7,7 @@
   <meta name="robots" content="noindex" />
   <meta name="color-scheme" content="light dark" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <script src="/assets/lang.js"></script>
+  <script src="/assets/lang.js?v=ee29fd9060"></script>
   <script>
     // Même règle que le site : choix mémorisé, sinon langue du navigateur
     (function () {
@@ -26,18 +26,18 @@
   <style>
     @font-face { font-family: 'Outfit'; font-weight: 100 900; font-display: swap; src: url(fonts/outfit-latin.woff2) format('woff2'); }
     @font-face { font-family: 'Roboto Condensed'; font-weight: 900; font-display: swap; src: url(fonts/roboto-condensed-900-latin.woff2) format('woff2'); }
-    :root { --bg: #F1EEE7; --text: #3a3530; --muted: #8a7f73; --taupe: #C7C0A8; --mauve: #C88ABB; --border: #DDD6C8; }
+    :root { --bg: #F1EEE7; --text: #3a3530; --muted: #6f6557; --taupe: #C7C0A8; --taupe-text: #756b5d; --mauve: #C88ABB; --mauve-text: #935683; --border: #DDD6C8; }
     @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) { --bg: #1c1917; --text: #ece6dc; --muted: #a89d8f; --taupe: #7f7668; --mauve: #D49DC8; --border: #36302b; }
+      :root:not([data-theme="light"]) { --bg: #1c1917; --text: #ece6dc; --muted: #a89d8f; --taupe: #7f7668; --taupe-text: #a39888; --mauve: #D49DC8; --mauve-text: #D49DC8; --border: #36302b; }
     }
-    :root[data-theme="dark"] { --bg: #1c1917; --text: #ece6dc; --muted: #a89d8f; --taupe: #7f7668; --mauve: #D49DC8; --border: #36302b; }
+    :root[data-theme="dark"] { --bg: #1c1917; --text: #ece6dc; --muted: #a89d8f; --taupe: #7f7668; --taupe-text: #a39888; --mauve: #D49DC8; --mauve-text: #D49DC8; --border: #36302b; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; line-height: 1.75; }
     main { max-width: 720px; margin: 0 auto; padding: 5rem 1.4rem 4rem; }
     h1 { font-family: 'Roboto Condensed', sans-serif; font-weight: 900; font-size: clamp(28px, 4vw, 48px); line-height: 1.1; margin-bottom: 3rem; }
     h1 span { color: var(--mauve); }
     h2 {
-      font-size: 0.68rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--taupe);
+      font-size: 0.68rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--taupe-text);
       padding-bottom: 0.6rem; margin: 2.4rem 0 0.9rem; border-bottom: 1px solid var(--border);
     }
     p, li { font-size: clamp(14px, 1.35vw, 16px); color: var(--muted); }
@@ -46,11 +46,11 @@
     li + li { margin-top: 0.6rem; }
     ul + p { margin-top: 1.2rem; }
     strong { color: var(--text); font-weight: 400; }
-    a { color: var(--mauve); text-decoration: none; }
+    a { color: var(--mauve-text); text-decoration: none; }
     a:hover { text-decoration: underline; }
     .back {
       display: inline-block; margin-top: 3.5rem; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--taupe);
+      text-transform: uppercase; color: var(--taupe-text);
     }
     .back:hover { color: var(--mauve); text-decoration: none; }
     html:not([lang="fr"]) [lang="fr"], html[lang="fr"] [lang="en"] { display: none; }

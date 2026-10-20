@@ -238,5 +238,91 @@
         ] }
       ]
     }
+  },
+  {
+    "slug": "swaks-org",
+    "name": "swaks.org",
+    "repo": "Swaksm/portfolio",
+    "releases": false,
+    "chips": [
+      "HTML / CSS",
+      "JavaScript",
+      "Python",
+      "GitHub Actions"
+    ],
+    "links": [
+      {
+        "href": "https://github.com/Swaksm/portfolio",
+        "label": {
+          "en": "GitHub",
+          "fr": "GitHub"
+        },
+        "primary": true
+      }
+    ],
+    "shots": [
+      {
+        "src": "/img/projects/swaks-org.webp",
+        "alt": {
+          "en": "swaks.org — the home screen",
+          "fr": "swaks.org — l'écran d'accueil"
+        }
+      }
+    ],
+    "schema": {
+      "@type": "SoftwareSourceCode",
+      "programmingLanguage": "JavaScript",
+      "codeRepository": "https://github.com/Swaksm/portfolio"
+    },
+    "en": {
+      "title": "swaks.org — this portfolio, built in vibecoding",
+      "description": "How this portfolio is built: vibecoding with Claude Code under my supervision, a static bilingual site with no framework, a Python build script and automatic deployment.",
+      "kicker": "This site · Vibecoding · Static",
+      "lead": "The site you are reading. Built in vibecoding with Claude Code: I supervise everything and decide the stacks and methods, the AI writes the code under my direction.",
+      "sections": [
+        {
+          "h": "The method",
+          "ul": [
+            "I set the direction: the stack, the structure, the design and the constraints — static, bilingual, accessible, fast.",
+            "Claude Code writes the code under my direction; I decide what is kept, changed or dropped.",
+            "Every change goes through GitHub, so the whole history is public."
+          ]
+        },
+        {
+          "h": "Under the hood",
+          "ul": [
+            "Plain HTML, CSS and JavaScript: no framework, nothing to install.",
+            "Bilingual EN / FR with hreflang: a dependency-free Python script generates the French pages, the project pages and the sitemap.",
+            "GitHub Actions checks that the generated pages are up to date, then deploys every push to OVH.",
+            "Content-Security-Policy, HSTS, self-hosted fonts, and every animation turned off when the system asks for less motion."
+          ]
+        }
+      ]
+    },
+    "fr": {
+      "title": "swaks.org — ce portfolio, fait en vibecoding",
+      "description": "Comment ce portfolio est construit : vibecoding avec Claude Code sous ma supervision, un site statique bilingue sans framework, un script de build Python et une mise en ligne automatique.",
+      "kicker": "Ce site · Vibecoding · Statique",
+      "lead": "Le site que tu lis. Fait en vibecoding avec Claude Code : je supervise tout et je décide des stacks et des méthodes, l'IA écrit le code sous ma direction.",
+      "sections": [
+        {
+          "h": "La méthode",
+          "ul": [
+            "Je fixe le cap : la stack, la structure, le design et les contraintes — statique, bilingue, accessible, rapide.",
+            "Claude Code écrit le code sous ma direction ; je décide de ce qu'on garde, change ou abandonne.",
+            "Chaque changement passe par GitHub : tout l'historique est public."
+          ]
+        },
+        {
+          "h": "Sous le capot",
+          "ul": [
+            "HTML, CSS et JavaScript, sans framework ni rien à installer.",
+            "Bilingue EN / FR avec hreflang : un script Python sans dépendance génère les pages françaises, les pages projets et le sitemap.",
+            "GitHub Actions vérifie que les pages générées sont à jour, puis met en ligne chaque push sur OVH.",
+            "Content-Security-Policy, HSTS, polices hébergées sur le site, et toutes les animations coupées quand le système demande moins de mouvement."
+          ]
+        }
+      ]
+    }
   }
 ]

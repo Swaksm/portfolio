@@ -14,11 +14,11 @@
   <style>
     @font-face { font-family: 'Outfit'; font-weight: 100 900; font-display: swap; src: url(/fonts/outfit-latin.woff2) format('woff2'); }
     @font-face { font-family: 'Roboto Condensed'; font-weight: 900; font-display: swap; src: url(/fonts/roboto-condensed-900-latin.woff2) format('woff2'); }
-    :root { --bg: #F1EEE7; --text: #3a3530; --taupe: #C7C0A8; --mauve: #C88ABB; }
+    :root { --bg: #F1EEE7; --text: #3a3530; --taupe: #C7C0A8; --taupe-text: #756b5d; --mauve: #C88ABB; }
     @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) { --bg: #1c1917; --text: #ece6dc; --taupe: #7f7668; --mauve: #D49DC8; }
+      :root:not([data-theme="light"]) { --bg: #1c1917; --text: #ece6dc; --taupe: #7f7668; --taupe-text: #a39888; --mauve: #D49DC8; }
     }
-    :root[data-theme="dark"] { --bg: #1c1917; --text: #ece6dc; --taupe: #7f7668; --mauve: #D49DC8; }
+    :root[data-theme="dark"] { --bg: #1c1917; --text: #ece6dc; --taupe: #7f7668; --taupe-text: #a39888; --mauve: #D49DC8; }
     * { margin: 0; box-sizing: border-box; }
     body {
       min-height: 100vh; min-height: 100dvh;
@@ -29,7 +29,7 @@
     h1 span { color: var(--mauve); }
     a {
       font-weight: 700; font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--taupe); text-decoration: none; transition: color 220ms;
+      color: var(--taupe-text); text-decoration: none; transition: color 220ms;
     }
     a:hover, a:focus-visible { color: var(--mauve); }
   </style>
@@ -38,7 +38,7 @@
   <h1>4<span>0</span>4</h1>
   <p id="msg">This page doesn't exist.</p>
   <a id="back" href="/">Back to home</a>
-  <script src="/assets/lang.js"></script>
+  <script src="/assets/lang.js?v=ee29fd9060"></script>
   <script>
     const lang = window.swaksLang();
     if (lang === 'fr') {

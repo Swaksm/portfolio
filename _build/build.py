@@ -12,8 +12,12 @@ Sorties :
   - projects/<slug>.html, fr/projects/...   pages projets EN / FR
   - sitemap.xml                             avec les alternatives hreflang
   - og-image.png, img/og/<slug>.png         images d'aperçu (--og)
+  - ?v=<empreinte> sur /assets/*.css|js     dans toutes les pages (cache long sans vieille version)
+  - .htaccess                               empreintes sha256 des scripts écrits dans les pages (CSP)
 """
+import base64
 import datetime
+import hashlib
 import html
 import json
 import re
@@ -133,7 +137,7 @@ def localize(page: str, fr: dict) -> str:
 def lang_toggle(target_lang: str, href: str) -> str:
     label = 'Passer en français' if target_lang == 'fr' else 'Switch to English'
     return (f'<a id="lang-toggle" href="{href}" lang="{target_lang}" hreflang="{target_lang}" '
-            f'aria-label="{label}">{target_lang.upper()}</a>')
+            f'aria-label="{target_lang.upper()} — {label}">{target_lang.upper()}</a>')
 
 
 def build_home() -> dict:
@@ -191,8 +195,11 @@ def project_page(p: dict, lang: str, nxt: dict, home_page: str, head_snippet: st
     i = iter(range(3, 60))  # ordre d'apparition (animation en cascade)
     chips = ''.join(f'<span class="chip">{text(x)}</span>' for x in p['chips'])
     stats = (f'<span class="gh-stats" data-gh="{p["repo"]}"' + (' data-gh-releases' if p['releases'] else '') + '></span>')
+    def event(href):  # clic mesuré par Umami, mêmes noms que sur les cartes de l'accueil
+        ev = 'download' if href.endswith('/releases') else 'github' if 'github.com' in href else 'visit'
+        return f' data-umami-event="{ev}" data-umami-event-project="{slug}"'
     links = '\n      '.join(
-        f'<a class="btn{" primary" if l.get("primary") else ""}" href="{attr(l["href"])}" target="_blank" rel="noopener">'
+        f'<a class="btn{" primary" if l.get("primary") else ""}" href="{attr(l["href"])}"{event(l["href"])} target="_blank" rel="noopener">'
         f'{text(l["label"][lang])} ↗</a>' for l in p['links'])
 
     shots = p['shots']
@@ -251,6 +258,8 @@ def project_page(p: dict, lang: str, nxt: dict, home_page: str, head_snippet: st
   <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
   <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
+  <link rel="preconnect" href="https://api.github.com" crossorigin />
+  <link rel="preconnect" href="https://gateway.umami.is" crossorigin />
   <link rel="preload" href="/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/roboto-condensed-900-latin.woff2" as="font" type="font/woff2" crossorigin />
 
@@ -326,6 +335,52 @@ def build_sitemap(projects: list) -> None:
           + '\n'.join(urls) + '\n</urlset>\n')
 
 
+# ---------------------------------------------------------------------------
+#  Cache (versions des fichiers) et CSP (empreintes des scripts)
+# ---------------------------------------------------------------------------
+ASSETS = ('site.css', 'site.js', 'project.css', 'lang.js')
+
+
+def served_pages() -> list:
+    return [ROOT / 'index.html', ROOT / 'fr' / 'index.html', ROOT / '404.html', ROOT / 'mentions-legales.html',
+            *sorted((ROOT / 'projects').glob('*.html')), *sorted((ROOT / 'fr' / 'projects').glob('*.html'))]
+
+
+def lf(b: bytes) -> bytes:
+    # Mêmes empreintes sous Windows (CRLF) et dans GitHub Actions (LF)
+    return b.replace(b'\r\n', b'\n').replace(b'\r', b'\n')
+
+
+def version_assets() -> None:
+    """/assets/x.css -> /assets/x.css?v=<empreinte> : le navigateur peut garder ces fichiers 1 an en cache,
+    l'adresse change dès que le contenu change."""
+    v = {a: hashlib.sha256(lf((ROOT / 'assets' / a).read_bytes())).hexdigest()[:10] for a in ASSETS}
+    pat = re.compile(r'(/assets/(' + '|'.join(map(re.escape, ASSETS)) + r'))(?:\?v=[0-9a-f]*)?"')
+    for p in served_pages():
+        s = read(p)
+        s2 = pat.sub(lambda m: f'{m.group(1)}?v={v[m.group(2)]}"', s)
+        if s2 != s:
+            write(p, s2)
+
+
+def csp_script_hashes() -> None:
+    """Remplace 'unsafe-inline' par l'empreinte de chaque script écrit dans les pages (hors JSON)."""
+    hashes = set()
+    for p in served_pages():
+        for m in re.finditer(r'<script\b(?![^>]*\bsrc=)(?![^>]*type="application/(?:ld\+)?json")[^>]*>(.*?)</script>',
+                             read(p), flags=re.S):
+            digest = hashlib.sha256(lf(m.group(1).encode('utf-8'))).digest()
+            hashes.add("'sha256-" + base64.b64encode(digest).decode() + "'")
+    ht = ROOT / '.htaccess'
+    s = read(ht)
+    s2, n = re.subn(r'(Content-Security-Policy "[^"]*?script-src )[^;]*;',
+                    lambda m: m.group(1) + "'self' " + ' '.join(sorted(hashes)) + ' https://cloud.umami.is;', s)
+    assert n == 1, 'ligne Content-Security-Policy introuvable dans .htaccess'
+    if s2 != s:
+        write(ht, s2)
+    print(f'  {len(hashes)} scripts autorisés par empreinte')
+
+
 def find_chrome():
     for c in (r'C:\Program Files\Google\Chrome\Application\chrome.exe',
               r'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe',
@@ -357,5 +412,6 @@ if __name__ == '__main__':
     print('Accueil FR'); home_dict = build_home()
     print('Pages projets'); projects = build_projects(home_dict)
     print('Sitemap'); build_sitemap(projects)
+    print('Cache et CSP'); version_assets(); csp_script_hashes()
     if '--og' in sys.argv:
         print('Images d\'aperçu'); build_og(projects)

@@ -34,6 +34,10 @@ AddType application/manifest+json .webmanifest
   ExpiresDefault "access plus 1 hour"
   ExpiresByType text/html "access plus 0 seconds"
   ExpiresByType font/woff2 "access plus 1 year"
+  # CSS et JS : adresse versionnée par le build (?v=…), donc gardés 1 an sans risque de vieille version
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
   ExpiresByType image/webp "access plus 1 month"
   ExpiresByType image/png "access plus 1 month"
   ExpiresByType image/svg+xml "access plus 1 month"
@@ -46,6 +50,8 @@ AddType application/manifest+json .webmanifest
   # HTTPS imposé par le navigateur pendant 1 an (sous-domaines non inclus)
   Header always set Strict-Transport-Security "max-age=31536000"
   # Sources autorisées : le site, Umami (stats), API GitHub (stats projets), Formspree (formulaire).
-  # shortcut: 'unsafe-inline' car scripts et styles sont écrits dans les pages ; passer à des hashes calculés par build.py pour durcir.
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cloud.umami.is; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'self' https://api.github.com https://formspree.io https://gateway.umami.is; form-action 'self' https://formspree.io; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"
+  # Scripts écrits dans les pages : autorisés un par un par leur empreinte sha256, que _build/build.py
+  # recalcule. Après toute modification d'un de ces scripts, relancer le build, sinon le navigateur le bloque.
+  # shortcut: 'unsafe-inline' reste pour les styles (attributs style="--i:…") ; passer à des classes pour durcir.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-C5JiiLH5+BT0c5v8ZsjXlqr7fUqJDY6GMGCP0w6RN4I=' 'sha256-DvLGkHTkLSaJIdz1fd58NTwgaaW76PImGNod+DV+l0c=' 'sha256-GpDAa2vyIuLgmGZFXTcgIIIkJ3kYUDg0jwpIQ00qiXw=' 'sha256-NbbQqsyztcAAf0ywgdbavVczdwQyPsS5OpN5yucbw+Y=' 'sha256-XN777FnpxDb06zN+SyqhVLdY+PZD71L0NFS3wrVgkEs=' 'sha256-j+ttDnTfb2UknelireklVbQiG/CEQ8pnc78vTqvzjdo=' 'sha256-lkSj3GWqc0XQSXJLNrkkheCQEfybTXLP6SGl5OSTZqo=' https://cloud.umami.is; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'self' https://api.github.com https://formspree.io https://gateway.umami.is; form-action 'self' https://formspree.io; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"
 </IfModule>

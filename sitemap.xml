@@ -70,4 +70,18 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://swaks.org/fr/projects/video-grabber.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/projects/video-grabber.html" />
   </url>
+  <url>
+    <loc>https://swaks.org/projects/swaks-org.html</loc>
+    <lastmod>2026-10-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/projects/swaks-org.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://swaks.org/fr/projects/swaks-org.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/projects/swaks-org.html" />
+  </url>
+  <url>
+    <loc>https://swaks.org/fr/projects/swaks-org.html</loc>
+    <lastmod>2026-10-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/projects/swaks-org.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://swaks.org/fr/projects/swaks-org.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/projects/swaks-org.html" />
+  </url>
 </urlset>

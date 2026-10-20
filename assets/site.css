@@ -19,10 +19,12 @@
   --parchment:  #EDE5D0;
   --mist:       #F7F3E6;
   --taupe:      #C7C0A8;
+  --taupe-text: #756b5d;  /* taupe et mauve assez foncés pour du texte (contraste >= 4.5:1 sur la crème) */
+  --mauve-text: #935683;
   --mauve:      #C88ABB;
   --mauve-soft: #E5C8DC;
   --text:       #3a3530;
-  --muted:      #8a7f73;
+  --muted:      #6f6557;
   --faint:      #A89E88;
   --border:     #DDD6C8;
 
@@ -43,12 +45,14 @@
   :root:not([data-theme="light"]) {
     --cream: #1c1917; --parchment: #2a2521; --mist: #23201c; --taupe: #7f7668;
     --mauve: #D49DC8; --mauve-soft: #5b4056; --text: #ece6dc; --muted: #a89d8f;
+    --taupe-text: #a39888; --mauve-text: #D49DC8;
     --faint: #6f665b; --border: #36302b; --field-focus: #332d28; --overlay: rgba(28,25,23,0.9);
   }
 }
 :root[data-theme="dark"] {
   --cream: #1c1917; --parchment: #2a2521; --mist: #23201c; --taupe: #7f7668;
   --mauve: #D49DC8; --mauve-soft: #5b4056; --text: #ece6dc; --muted: #a89d8f;
+  --taupe-text: #a39888; --mauve-text: #D49DC8;
   --faint: #6f665b; --border: #36302b; --field-focus: #332d28; --overlay: rgba(28,25,23,0.9);
 }
 
@@ -79,7 +83,7 @@
   border: none;
   padding: 0;
   cursor: var(--pointer);
-  color: var(--taupe);
+  color: var(--taupe-text);
   text-decoration: none;
   transition: color var(--dur-micro) var(--ease-smooth),
               transform var(--dur-micro) var(--ease-smooth);
@@ -179,7 +183,7 @@ a[href] { cursor: var(--pointer); }
   font-size: 0.64rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--taupe);
+  color: var(--taupe-text);
 }
 .palette li[aria-selected="true"] { background: var(--parchment); color: var(--mauve); }
 .palette .palette-empty { padding: 0.9rem 0.8rem; font-size: 0.9rem; color: var(--muted); cursor: default; }
@@ -190,7 +194,7 @@ a[href] { cursor: var(--pointer); }
   border-top: 1px solid var(--border);
   font-size: 0.66rem;
   letter-spacing: 0.04em;
-  color: var(--taupe);
+  color: var(--taupe-text);
 }
 kbd {
   font-family: inherit;
@@ -227,11 +231,11 @@ kbd {
   margin-top: 0.35rem;
   font-size: 0.68rem;
   letter-spacing: 0.06em;
-  color: var(--taupe);
+  color: var(--taupe-text);
   font-variant-numeric: tabular-nums;
 }
 .gh-stats:empty { display: none; }
-.gh-stats b { font-weight: 400; color: var(--mauve); }
+.gh-stats b { font-weight: 400; color: var(--mauve-text); }
 
 /* ---- Copier l'email ---- */
 .copy-email {
@@ -250,7 +254,7 @@ kbd {
   font-size: 0.64rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--taupe);
+  color: var(--taupe-text);
   opacity: 0;
   transition: opacity var(--dur-micro) var(--ease-smooth);
 }

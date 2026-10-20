@@ -18,6 +18,7 @@
     ['lion-meme', 'Lion Meme'],
     ['cordesortie', 'CordeSortie'],
     ['video-grabber', 'Video Grabber'],
+    ['swaks-org', 'swaks.org'],
   ];
 
   /* ---------- URLs localisées : /x -> /fr/x ---------- */
