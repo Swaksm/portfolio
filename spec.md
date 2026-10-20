@@ -26,6 +26,13 @@ Portfolio de Matthieu Izac (swaks). Site **100 % statique** : on dépose les fic
 - Polices : Roboto Condensed 900 (titres), Outfit 400/700 (texte).
 - Mouvement : révélations en cascade, transition expo entre sections, désactivé si `prefers-reduced-motion`.
 
+## Langues
+
+- Anglais par défaut ; français si la langue principale du navigateur commence par `fr`.
+- Bouton `FR` / `EN` en haut à droite (affiche la langue cible), choix mémorisé (`localStorage: swaks-lang`).
+- Le HTML source est en anglais. Les textes traduisibles portent `data-i18n="clé"` (contenu) ou `data-i18n-attr="attribut:clé;…"`. Les deux langues sont dans l'objet `I18N` du `<head>` ; `t('clé')` sert aux textes JS (formulaire, jeu).
+- Ajouter un texte : mettre la clé sur l'élément, puis l'entrée dans `I18N.en` et `I18N.fr`.
+
 ## Navigation
 
 Sections en plein écran. Molette, flèches, PageUp/PageDown, Home/End, touches 1–5, swipe, points latéraux. URL synchronisée (`#presentation`, `#competences`, `#projets`, `#contact`).
