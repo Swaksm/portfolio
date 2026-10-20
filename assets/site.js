@@ -92,38 +92,6 @@
     el.addEventListener('click', () => copyText(el.dataset.copy));
   });
 
-  /* ---------- Curseur personnalisé (souris uniquement) ---------- */
-  if (!reduce && finePointer) {
-    const dot = document.createElement('div');
-    const ring = document.createElement('div');
-    dot.id = 'cursor-dot';
-    ring.id = 'cursor-ring';
-    dot.setAttribute('aria-hidden', 'true');
-    ring.setAttribute('aria-hidden', 'true');
-    document.body.append(dot, ring);
-    root.classList.add('has-cursor');
-    let mx = -100, my = -100, rx = -100, ry = -100, following = false;
-    const follow = () => {
-      rx += (mx - rx) * 0.2;
-      ry += (my - ry) * 0.2;
-      ring.style.transform = `translate3d(${rx}px, ${ry}px, 0)`;
-      if (Math.abs(mx - rx) + Math.abs(my - ry) > 0.1) requestAnimationFrame(follow);
-      else following = false;
-    };
-    window.addEventListener('pointermove', (e) => {
-      if (e.pointerType !== 'mouse') return;
-      mx = e.clientX; my = e.clientY;
-      dot.style.transform = `translate3d(${mx}px, ${my}px, 0)`;
-      root.classList.add('cursor-visible');
-      const el = e.target instanceof Element ? e.target : null;
-      // #game-btn exclu : le curseur ne doit pas trahir l'easter egg
-      root.classList.toggle('cursor-hover', !!(el && el.closest('a, button:not(#game-btn), .card-header, [data-copy], .palette li')));
-      root.classList.toggle('cursor-text', !!(el && el.closest('input, textarea')));
-      if (!following) { following = true; requestAnimationFrame(follow); }
-    });
-    root.addEventListener('mouseleave', () => root.classList.remove('cursor-visible'));
-  }
-
   /* ---------- Relief 3D des captures au survol ---------- */
   if (!reduce && finePointer) {
     document.querySelectorAll('[data-tilt]').forEach((img) => {

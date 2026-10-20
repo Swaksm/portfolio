@@ -50,7 +50,8 @@ python _build/build.py --og     # + images d'aperçu (Chrome ou Edge requis)
 - Polices : Roboto Condensed 900 (titres), Outfit (texte).
 - Tout le mouvement est désactivé si `prefers-reduced-motion`.
 - Effets de l'accueil : vague de courbes au changement de section (`#sweep`), barre de progression (`#progress`), « décodage » de SWAKS au survol, numéros de section en filigrane (`data-num`).
-- Effets communs (`site.js`) : thème qui s'étend en cercle (View Transitions API), curseur personnalisé (souris uniquement), relief 3D des captures (`data-tilt`).
+- Effets communs (`site.js`) : thème qui s'étend en cercle (View Transitions API), relief 3D des captures (`data-tilt`).
+- Curseur : point mauve natif (`assets/cursor.svg`, souris uniquement), anneau (`assets/cursor-hover.svg`) sur ce qui est cliquable : écrire `cursor: var(--pointer)` au lieu de `cursor: pointer`. Défini dans `site.css`.
 
 ## Navigation
 

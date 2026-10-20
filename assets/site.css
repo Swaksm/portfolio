@@ -78,7 +78,7 @@
   background: none;
   border: none;
   padding: 0;
-  cursor: pointer;
+  cursor: var(--pointer);
   color: var(--taupe);
   text-decoration: none;
   transition: color var(--dur-micro) var(--ease-smooth),
@@ -105,37 +105,15 @@
   #socials { top: 1rem; right: 1.2rem; gap: 0.9rem; }
 }
 
-/* ---- Curseur personnalisé (souris uniquement, créé par site.js) ---- */
-#cursor-dot, #cursor-ring {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  border-radius: 50%;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.2s var(--ease-smooth);
+/* ---- Curseur : point mauve natif (souris uniquement), suit la souris sans décalage ;
+        anneau mauve sur ce qui est cliquable (règles « cursor: var(--pointer) ») ---- */
+:root { --pointer: pointer; }
+a[href] { cursor: var(--pointer); }
+@media (pointer: fine) {
+  :root { --pointer: url(/assets/cursor-hover.svg) 14 14, pointer; }
+  html { cursor: url(/assets/cursor.svg) 6 6, auto; }
+  input, textarea { cursor: text; }
 }
-#cursor-dot { width: 6px; height: 6px; margin: -3px 0 0 -3px; background: var(--mauve); }
-#cursor-ring {
-  width: 30px;
-  height: 30px;
-  margin: -15px 0 0 -15px;
-  border: 1px solid var(--mauve);
-  transition: opacity 0.2s var(--ease-smooth), width 0.35s var(--ease-expo), height 0.35s var(--ease-expo),
-              margin 0.35s var(--ease-expo), background-color 0.35s var(--ease-smooth);
-}
-.cursor-visible #cursor-dot, .cursor-visible #cursor-ring { opacity: 1; }
-.cursor-hover #cursor-ring {
-  width: 48px;
-  height: 48px;
-  margin: -24px 0 0 -24px;
-  background-color: color-mix(in srgb, var(--mauve) 14%, transparent);
-}
-.cursor-hover #cursor-dot { opacity: 0; }
-.cursor-text #cursor-dot, .cursor-text #cursor-ring { opacity: 0; }
-.has-cursor, .has-cursor * { cursor: none !important; }
-.has-cursor input, .has-cursor textarea { cursor: text !important; }
 
 /* Thème : le nouveau thème s'étend en cercle depuis le bouton (View Transitions) */
 ::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
@@ -193,7 +171,7 @@
   border-radius: 8px;
   font-size: 0.92rem;
   color: var(--text);
-  cursor: pointer;
+  cursor: var(--pointer);
 }
 .palette li small {
   flex-shrink: 0;
@@ -261,7 +239,7 @@ kbd {
   padding: 0;
   font: inherit;
   color: inherit;
-  cursor: pointer;
+  cursor: var(--pointer);
   text-align: left;
   transition: color var(--dur-micro) var(--ease-smooth);
 }

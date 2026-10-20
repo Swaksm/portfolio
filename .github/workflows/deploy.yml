@@ -1,0 +1,46 @@
+name: Déploiement
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      FTP_SERVER: ${{ secrets.FTP_SERVER }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Vérifier que les pages générées sont à jour
+        run: |
+          python3 _build/build.py
+          # <lastmod> du sitemap ignoré : il prend la date du jour à chaque build
+          if ! git diff --exit-code -I '<lastmod>'; then
+            echo "::error::Pages générées pas à jour : lancer python _build/build.py puis committer"
+            exit 1
+          fi
+
+      # Ignoré tant que les secrets FTP ne sont pas configurés dans GitHub
+      - name: Envoyer sur OVH (FTP)
+        if: env.FTP_SERVER != ''
+        uses: SamKirkland/FTP-Deploy-Action@3a9c65ae0fc12ac924ccef8afc26941cc43aad0b # v4.4.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # FTP chiffré (TLS) ; si OVH refuse la connexion, remplacer par ftp (mot de passe alors envoyé en clair)
+          protocol: ftps
+          # Dossier racine du site sur l'hébergement (www/ par défaut chez OVH)
+          server-dir: www/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .github/**
+            _build/**
+            README.md
+            spec.md

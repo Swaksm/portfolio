@@ -7,13 +7,18 @@
   <meta name="robots" content="noindex" />
   <meta name="color-scheme" content="light dark" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <script>
+    // Thème mémorisé (bouton soleil/lune), sinon celui du système
+    try { const theme = localStorage.getItem('swaks-theme'); if (theme) document.documentElement.dataset.theme = theme; } catch (e) {}
+  </script>
   <style>
     @font-face { font-family: 'Outfit'; font-weight: 100 900; font-display: swap; src: url(/fonts/outfit-latin.woff2) format('woff2'); }
     @font-face { font-family: 'Roboto Condensed'; font-weight: 900; font-display: swap; src: url(/fonts/roboto-condensed-900-latin.woff2) format('woff2'); }
     :root { --bg: #F1EEE7; --text: #3a3530; --taupe: #C7C0A8; --mauve: #C88ABB; }
     @media (prefers-color-scheme: dark) {
-      :root { --bg: #1c1917; --text: #ece6dc; --taupe: #7f7668; --mauve: #D49DC8; }
+      :root:not([data-theme="light"]) { --bg: #1c1917; --text: #ece6dc; --taupe: #7f7668; --mauve: #D49DC8; }
     }
+    :root[data-theme="dark"] { --bg: #1c1917; --text: #ece6dc; --taupe: #7f7668; --mauve: #D49DC8; }
     * { margin: 0; box-sizing: border-box; }
     body {
       min-height: 100vh; min-height: 100dvh;
