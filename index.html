@@ -39,7 +39,7 @@
     "url": "https://swaks.org",
     "jobTitle": "Software developer — development & AI",
     "address": { "@type": "PostalAddress", "addressLocality": "Nantes", "addressCountry": "FR" },
-    "knowsAbout": ["Python", "FastAPI", "Flask", "PostgreSQL", "Intelligence artificielle", "NLP", "LLM", "WinDev", "Docker"],
+    "knowsAbout": ["Python", "Rust", "TypeScript", "Tauri", "Playwright", "FastAPI", "Flask", "PostgreSQL", "Intelligence artificielle", "NLP", "LLM", "WinDev", "Docker"],
     "sameAs": ["https://github.com/Swaksm", "https://www.linkedin.com/in/matthieu-izac-257758292/"]
   }
   </script>
@@ -64,9 +64,7 @@
   "about.p2": "Let me introduce myself — I'm <span class=\"accent\">Matthieu</span>, <span class=\"age\"></span> years old. I'm a software developer, currently in the third year of a Bachelor's degree specialising in development and <span class=\"accent\">artificial intelligence</span>.",
   "nav.skills": "Skills",
   "skills.title": "SKILL<span class=\"hs\">S</span>",
-  "skills.db": "Databases",
-  "skills.ai": "Python &amp; AI",
-  "skills.tools": "Tools",
+  "skills.ai": "AI",
   "nav.projects": "Projects",
   "projects.title": "PROJECT<span class=\"hs\">S</span>",
   "kl.tag": "Windows software · Rust · Open source",
@@ -100,7 +98,12 @@
   "game.hold": "HOLD (click / space) to glide",
   "game.hint": "stay in the stream · catch the motes",
   "game.over": "GAME OVER",
-  "game.retry": "click / space to play again"
+  "game.retry": "click / space to play again",
+  "skills.lang": "Languages",
+  "skills.back": "Backend",
+  "skills.data": "Data",
+  "skills.desk": "Desktop &amp; tools",
+  "skills.pcsoft": "PC Soft"
  },
  "fr": {
   "meta.title": "swaks.org — Matthieu, développeur & IA",
@@ -112,9 +115,7 @@
   "about.p2": "Je me présente — je suis <span class=\"accent\">Matthieu</span>, <span class=\"age\"></span> ans. Je suis développeur informatique, actuellement en Bachelor 3ème année spécialisé en développement et <span class=\"accent\">intelligence artificielle</span>.",
   "nav.skills": "Compétences",
   "skills.title": "COMPÉTENCE<span class=\"hs\">S</span>",
-  "skills.db": "Base de données",
-  "skills.ai": "Python &amp; IA",
-  "skills.tools": "Outils",
+  "skills.ai": "IA",
   "nav.projects": "Projets",
   "projects.title": "PROJET<span class=\"hs\">S</span>",
   "kl.tag": "Logiciel Windows · Rust · Open source",
@@ -148,7 +149,12 @@
   "game.hold": "MAINTENIR (clic / espace) pour planer",
   "game.hint": "reste dans le courant · attrape les motes",
   "game.over": "PERDU",
-  "game.retry": "clic / espace pour rejouer"
+  "game.retry": "clic / espace pour rejouer",
+  "skills.lang": "Langages",
+  "skills.back": "Back-end",
+  "skills.data": "Données",
+  "skills.desk": "Desktop &amp; outils",
+  "skills.pcsoft": "PC Soft"
  }
 };
     let LANG = 'en';
@@ -364,44 +370,57 @@
       max-width: 720px;
       margin: 0 auto;
     }
-    .skills-group { margin-bottom: 2rem; }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.6rem 2.2rem;
+    }
     .skills-group-label {
       font-size: 0.68rem;
+      font-weight: 400;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--taupe);
-      margin-bottom: 1rem;
+      padding-bottom: 0.7rem;
+      margin-bottom: 0.9rem;
+      border-bottom: 1px solid var(--border);
+      transition: color var(--dur-micro) var(--ease-smooth),
+                  border-color var(--dur-micro) var(--ease-smooth);
     }
-    .skills-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-
-    .skill {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.55rem 1rem;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      color: var(--muted);
-      font-size: 0.82rem;
-      letter-spacing: 0.03em;
-      transition: border-color var(--dur-micro) var(--ease-smooth),
-                  color var(--dur-micro) var(--ease-smooth),
-                  transform var(--dur-micro) var(--ease-smooth);
-      cursor: default;
-    }
-    .skill:hover {
-      border-color: var(--mauve);
+    .skills-group:hover .skills-group-label {
       color: var(--mauve);
-      transform: translateY(-2px);
+      border-bottom-color: var(--mauve-soft);
     }
-    .skill svg { width: 15px; height: 15px; fill: currentColor; flex-shrink: 0; }
-    .skill-init {
-      font-family: 'Roboto Condensed', sans-serif;
-      font-weight: 900;
-      font-size: 0.78rem;
-      line-height: 1;
-      letter-spacing: 0.02em;
-      flex-shrink: 0;
+    .skills-list { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .skills-list li {
+      position: relative;
+      width: fit-content;
+      font-size: clamp(14px, 1.35vw, 16px);
+      color: var(--text);
+      cursor: default;
+      transition: color var(--dur-micro) var(--ease-smooth),
+                  transform var(--dur-micro) var(--ease-smooth);
+    }
+    /* Point mauve au survol, en écho à la navigation latérale */
+    .skills-list li::before {
+      content: '';
+      position: absolute;
+      left: -12px;
+      top: 50%;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--mauve);
+      opacity: 0;
+      transform: translateY(-50%) scale(0.4);
+      transition: opacity var(--dur-micro) var(--ease-smooth),
+                  transform var(--dur-micro) var(--ease-smooth);
+    }
+    .skills-list li:hover { color: var(--mauve); transform: translateX(6px); }
+    .skills-list li:hover::before { opacity: 1; transform: translateY(-50%) scale(1); }
+
+    @media (max-width: 760px) {
+      .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem 1.6rem; }
     }
 
     /* ---- SECTION 4 : projets ---- */
@@ -869,95 +888,33 @@
   <section id="skills" aria-label="Skills" data-i18n-attr="aria-label:nav.skills">
     <h2 class="section-title" data-reveal style="--i:0" data-i18n="skills.title">SKILL<span class="hs">S</span></h2>
 
-    <div class="skills-group" data-reveal style="--i:1">
-      <div class="skills-group-label">PC Soft</div>
-      <div class="skills-row">
-        <div class="skill"><span class="skill-init">W</span>WinDev</div>
-        <div class="skill"><span class="skill-init">WD</span>WebDev</div>
-        <div class="skill"><span class="skill-init">HF</span>HFSQL</div>
+    <div class="skills-grid">
+      <div class="skills-group" data-reveal style="--i:1">
+        <h3 class="skills-group-label" data-i18n="skills.lang">Languages</h3>
+        <ul class="skills-list"><li>Python</li><li>Rust</li><li>TypeScript</li><li>JavaScript</li><li>HTML / CSS</li></ul>
+      </div>
+      <div class="skills-group" data-reveal style="--i:2">
+        <h3 class="skills-group-label" data-i18n="skills.back">Backend</h3>
+        <ul class="skills-list"><li>FastAPI</li><li>Flask</li><li>Playwright</li><li>discord.py</li><li>yt-dlp</li></ul>
+      </div>
+      <div class="skills-group" data-reveal style="--i:3">
+        <h3 class="skills-group-label" data-i18n="skills.ai">AI</h3>
+        <ul class="skills-list"><li>Claude</li><li>ChatGPT</li><li>Gemini</li><li>spaCy</li></ul>
+      </div>
+      <div class="skills-group" data-reveal style="--i:4">
+        <h3 class="skills-group-label" data-i18n="skills.data">Data</h3>
+        <ul class="skills-list"><li>PostgreSQL</li><li>MySQL</li><li>HFSQL</li></ul>
+      </div>
+      <div class="skills-group" data-reveal style="--i:5">
+        <h3 class="skills-group-label" data-i18n="skills.desk">Desktop &amp; tools</h3>
+        <ul class="skills-list"><li>Tauri</li><li>Git</li><li>Docker</li><li>Linux</li></ul>
+      </div>
+      <div class="skills-group" data-reveal style="--i:6">
+        <h3 class="skills-group-label" data-i18n="skills.pcsoft">PC Soft</h3>
+        <ul class="skills-list"><li>WinDev</li><li>WebDev</li></ul>
       </div>
     </div>
 
-    <div class="skills-group" data-reveal style="--i:2">
-      <div class="skills-group-label" data-i18n="skills.db">Databases</div>
-      <div class="skills-row">
-        <div class="skill">
-          <svg viewBox="0 0 24 24"><path d="M17.128 0a10.134 10.134 0 0 1 2.755 1.104A3.269 3.269 0 0 1 21.4 2.933c.319.95.473 2.296.432 3.813-.029 1.017-.17 2.07-.513 3.09a9.507 9.507 0 0 1-.32.754l.178.05c.68.187 1.305.47 1.76.907.641.62.707 1.296.707 2.456 0 .468-.066.997-.2 1.606-.207.926-.58 1.718-1.085 2.282-.524.584-1.158.913-1.845 1.056-.43.09-.895.127-1.378.15a18.95 18.95 0 0 1-1.36.038c-.95 0-1.94-.06-2.875-.194-.934-.133-1.81-.35-2.498-.706-.7-.363-1.2-.865-1.508-1.565-.296-.671-.43-1.497-.43-2.477v-.142h3.24v.142c0 .582.072 1.013.213 1.327.127.287.31.472.602.624.317.164.763.28 1.378.354.615.074 1.378.112 2.26.112.67 0 1.286-.03 1.785-.115.474-.082.808-.22 1.04-.415.224-.19.388-.47.502-.88.12-.43.18-.991.18-1.693 0-.557-.033-.895-.136-1.104-.086-.174-.234-.31-.537-.43-.339-.13-.871-.234-1.658-.296l-.738-.059c-.69-.055-1.369-.123-2.01-.238-.64-.114-1.237-.29-1.745-.577-.534-.305-.924-.733-1.155-1.31-.228-.573-.31-1.284-.244-2.139.05-.65.2-1.317.507-1.952.306-.634.764-1.207 1.42-1.65.641-.433 1.459-.718 2.456-.84A16.216 16.216 0 0 1 18 0h-.872zm0 1.36a14.853 14.853 0 0 0-1.703.1c-.82.108-1.432.34-1.874.64-.436.294-.726.66-.925 1.077a4.457 4.457 0 0 0-.369 1.424c-.05.64.014 1.143.154 1.493.14.35.37.592.726.786.38.208.888.35 1.49.453.6.102 1.27.167 1.955.22l.742.06c.797.063 1.46.175 1.987.38.56.215.963.544 1.2 1.026.232.474.298.981.298 1.62 0 .779-.067 1.414-.216 1.929-.158.546-.42.99-.852 1.348-.42.348-.988.564-1.69.69-.68.12-1.452.154-2.271.154-.932 0-1.76-.041-2.459-.129-.712-.09-1.305-.237-1.786-.49-.509-.264-.88-.641-1.08-1.123-.097-.225-.162-.476-.203-.755H5.656c.035.84.18 1.55.433 2.133.379.86 1.008 1.522 1.888 1.978.855.445 1.882.687 3 .833.518.073 1.06.117 1.616.144a21.475 21.475 0 0 0 1.63.039c.506 0 1.017-.015 1.515-.046.872-.053 1.527-.14 2.023-.244.793-.162 1.586-.527 2.194-1.216.447-.498.772-1.16.982-2.013a9.1 9.1 0 0 0 .187-1.512c0-1.007-.049-1.825-.506-2.256-.33-.32-.828-.533-1.453-.7l-.211-.059c.077-.2.152-.41.218-.625.313-.964.445-1.952.472-2.903.038-1.42-.108-2.63-.378-3.464a2.1 2.1 0 0 0-.852-1.122A8.754 8.754 0 0 0 17.994 1.4a9.167 9.167 0 0 0-.866-.04zM4.499 3.793h4.28c.58 0 1.102.074 1.55.232.448.158.82.395 1.103.71.283.314.476.699.577 1.141.097.426.112.911.042 1.444-.065.483-.202.912-.41 1.28a3.237 3.237 0 0 1-.749.906 3.067 3.067 0 0 1-1.027.53 4.653 4.653 0 0 1-1.288.164H5.933v3.68H4.5V3.793zm1.434 1.28v3.848h2.657c.369 0 .69-.043.953-.136.263-.093.479-.226.646-.396.166-.17.288-.375.365-.61.076-.236.108-.497.094-.779-.013-.275-.063-.516-.152-.717a1.427 1.427 0 0 0-.37-.508 1.577 1.577 0 0 0-.59-.3 2.83 2.83 0 0 0-.79-.101H5.933z"/></svg>
-          PostgreSQL
-        </div>
-        <div class="skill">
-          <svg viewBox="0 0 24 24"><path d="M16.405 5.501c-.115 0-.193.014-.274.033v.013h.014c.054.104.146.18.214.274.054.107.1.214.154.32l.014-.015c.094-.066.14-.172.14-.333-.04-.047-.046-.094-.08-.14-.04-.067-.126-.1-.18-.153zM5.77 18.695h-.927a50.854 50.854 0 0 0-.27-4.41h-.008l-1.41 4.41H2.45l-1.4-4.41h-.01a72.892 72.892 0 0 0-.195 4.41H0c.055-1.966.192-3.81.41-5.53h1.15l1.335 4.064h.008l1.347-4.064h1.095c.242 2.015.384 3.86.428 5.53zm4.017-4.08h-2.52v1.142h2.336v.926H7.268v1.846h2.591v.97H6.252v-5.498h3.535v.614zm4.329 4.08h-1.016l-2.035-3.67h-.011a89.876 89.876 0 0 1 .033 1.828v1.842H10.09v-5.498h1.107l1.99 3.587h.015c-.022-.614-.033-1.22-.033-1.817v-1.77h.947v5.498zm4.54 0h-3.22v-5.498h.994v4.574h2.226v.924zm3.99 0h-1.016l-2.035-3.67h-.011a89.876 89.876 0 0 1 .033 1.828v1.842h-.997v-5.498h1.107l1.99 3.587h.015c-.022-.614-.033-1.22-.033-1.817v-1.77h.947v5.498zm1.947-4.555c-.547 0-.973.178-1.284.535-.312.357-.467.843-.467 1.46 0 .584.156 1.05.468 1.4.312.347.735.52 1.268.52.332 0 .682-.063 1.047-.192v.908c-.342.13-.72.194-1.136.194-.785 0-1.395-.245-1.832-.735-.437-.49-.655-1.185-.655-2.087 0-.567.104-1.063.313-1.489.208-.426.51-.754.905-.985.395-.23.855-.346 1.38-.346.545 0 1.08.132 1.605.395l-.348.883c-.202-.094-.405-.178-.608-.253-.202-.073-.4-.11-.597-.11z"/></svg>
-          MySQL
-        </div>
-      </div>
-    </div>
-
-    <div class="skills-group" data-reveal style="--i:3">
-      <div class="skills-group-label">Web &amp; API</div>
-      <div class="skills-row">
-        <div class="skill">
-          <svg viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"/></svg>
-          HTML
-        </div>
-        <div class="skill">
-          <svg viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523-2.91.804-2.956-.81-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414z"/></svg>
-          CSS
-        </div>
-        <div class="skill">
-          <svg viewBox="0 0 24 24"><path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"/></svg>
-          JavaScript
-        </div>
-        <div class="skill">
-          <svg viewBox="0 0 24 24"><path d="M12 0C5.375 0 0 5.375 0 12s5.375 12 12 12 12-5.375 12-12S18.625 0 12 0zm-.624 21.92v-7.27H8.818L13.5 2.08v7.27h2.568L11.376 21.92z"/></svg>
-          FastAPI
-        </div>
-        <div class="skill">
-          <svg viewBox="0 0 24 24"><path d="M14.579.2a.939.939 0 0 0-.939.932v5.787c-.002.25.098.492.277.67l3.965 3.965a.932.932 0 0 1 0 1.32l-3.965 3.965a.936.936 0 0 0-.277.67v4.557c0 .517.42.934.939.934h4.56a.94.94 0 0 0 .94-.934V2.065A1.864 1.864 0 0 0 18.217.2zm-5.159 0H4.86A1.864 1.864 0 0 0 3 2.065v19.801c.002 1.024.836 1.854 1.86 1.854h4.56a.94.94 0 0 0 .94-.934V17.23a.936.936 0 0 0-.277-.67l-3.965-3.965a.932.932 0 0 1 0-1.32l3.965-3.965a.936.936 0 0 0 .277-.67V1.134A.939.939 0 0 0 9.42.2z"/></svg>
-          Flask
-        </div>
-      </div>
-    </div>
-
-    <div class="skills-group" data-reveal style="--i:4">
-      <div class="skills-group-label" data-i18n="skills.ai">Python &amp; AI</div>
-      <div class="skills-row">
-        <div class="skill">
-          <svg viewBox="0 0 24 24"><path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05L0 11.97l.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05 1.07.13zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09-.33.22zM21.1 6.11l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.04zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08-.33.23z"/></svg>
-          Python
-        </div>
-        <div class="skill"><span class="skill-init">NLP</span>spaCy</div>
-        <div class="skill">
-          <svg viewBox="0 0 24 24"><g><rect x="11" y="1.5" width="2" height="21" rx="1"/><rect x="11" y="1.5" width="2" height="21" rx="1" transform="rotate(45 12 12)"/><rect x="11" y="1.5" width="2" height="21" rx="1" transform="rotate(90 12 12)"/><rect x="11" y="1.5" width="2" height="21" rx="1" transform="rotate(135 12 12)"/></g></svg>
-          Claude
-        </div>
-        <div class="skill">
-          <svg viewBox="0 0 24 24"><path d="M12 24A14.3 14.3 0 0 0 0 12 14.3 14.3 0 0 0 12 0a14.3 14.3 0 0 0 12 12 14.3 14.3 0 0 0-12 12Z"/></svg>
-          Gemini
-        </div>
-        <div class="skill">
-          <svg viewBox="0 0 24 24"><path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855l-5.833-3.387 2.02-1.168a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.412-.663zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.23V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L8.704 5.46a.795.795 0 0 0-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z"/></svg>
-          ChatGPT
-        </div>
-      </div>
-    </div>
-
-    <div class="skills-group" data-reveal style="--i:5">
-      <div class="skills-group-label" data-i18n="skills.tools">Tools</div>
-      <div class="skills-row">
-        <div class="skill">
-          <svg viewBox="0 0 24 24"><path d="M23.546 10.93L13.067.452c-.604-.603-1.582-.603-2.188 0L8.708 2.627l2.76 2.76c.645-.215 1.379-.07 1.889.441.516.515.658 1.258.438 1.9l2.658 2.66c.645-.223 1.387-.078 1.9.435.721.72.721 1.884 0 2.604-.719.719-1.881.719-2.6 0-.539-.541-.674-1.337-.404-1.996L12.86 8.955v6.525c.176.086.342.203.488.348.713.721.713 1.883 0 2.6-.719.721-1.889.721-2.609 0-.719-.719-.719-1.879 0-2.598.182-.18.387-.316.605-.406V8.835c-.217-.091-.424-.222-.6-.401-.545-.545-.676-1.342-.396-2.009L7.636 3.7.45 10.881c-.6.605-.6 1.584 0 2.189l10.48 10.477c.604.604 1.582.604 2.186 0l10.43-10.43c.605-.603.605-1.582 0-2.187"/></svg>
-          Git
-        </div>
-        <div class="skill">
-          <svg viewBox="0 0 24 24"><path d="M13.983 11.078h2.119a.186.186 0 0 0 .186-.185V9.006a.186.186 0 0 0-.186-.186h-2.119a.185.185 0 0 0-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 0 0 .186-.186V3.574a.186.186 0 0 0-.186-.185h-2.118a.185.185 0 0 0-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 0 0 .186-.186V6.29a.186.186 0 0 0-.186-.185h-2.118a.185.185 0 0 0-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 0 0 .184-.186V6.29a.185.185 0 0 0-.185-.185H8.1a.185.185 0 0 0-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 0 0 .185-.186V6.29a.185.185 0 0 0-.185-.185H5.136a.186.186 0 0 0-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 0 0 .186-.185V9.006a.186.186 0 0 0-.186-.186h-2.118a.185.185 0 0 0-.185.185v1.888c0 .102.082.185.185.185m2.93 0h2.12a.186.186 0 0 0 .184-.185V9.006a.186.186 0 0 0-.186-.186h-2.118a.185.185 0 0 0-.185.185v1.888c0 .102.083.185.185.185m-2.93 2.716h2.118a.187.187 0 0 0 .186-.186v-1.887a.186.186 0 0 0-.186-.186h-2.118a.185.185 0 0 0-.185.185v1.888c0 .102.082.185.185.185m-2.964 0h2.119a.186.186 0 0 0 .185-.186v-1.887a.185.185 0 0 0-.185-.186H8.1a.185.185 0 0 0-.185.185v1.888c0 .102.083.185.185.185m-2.93 0h2.12a.186.186 0 0 0 .184-.186v-1.887a.185.185 0 0 0-.185-.186H5.136a.186.186 0 0 0-.186.185v1.888c0 .102.084.185.186.185m11.857 2.151H2.057a.186.186 0 0 0-.186.185v1.888c0 .102.084.185.186.185h19.886a.186.186 0 0 0 .186-.185v-1.888a.186.186 0 0 0-.186-.185M5.136 8.347h2.119a.185.185 0 0 0 .185-.185V6.274a.185.185 0 0 0-.185-.185H5.136a.186.186 0 0 0-.186.185v1.888c0 .102.084.185.186.185"/></svg>
-          Docker
-        </div>
-        <div class="skill">
-          <svg viewBox="0 0 24 24"><path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 0 0 .11.135 9.405 9.405 0 0 0-.026 3.488c.104.606.256 1.198.49 1.765.384.921 1.007 1.735 1.986 2.132.408.163.834.232 1.262.232.626 0 1.25-.17 1.79-.508.963-.588 1.59-1.574 1.99-2.575.437-1.098.643-2.282.643-3.462v-.116c-.025-.81-.16-1.62-.424-2.396a10.48 10.48 0 0 0-.612-1.428c.513-1.043.85-2.161.992-3.317.168-1.37.016-2.762-.506-3.965A4.643 4.643 0 0 0 12.504 0zm.359 2.07c.074.003.146.01.214.02a2.74 2.74 0 0 1 1.697 1.033c.327.44.516.977.603 1.544.12.795.057 1.626-.147 2.42a9.086 9.086 0 0 1-.69 1.87 8.61 8.61 0 0 0-.83-1.11c-.61-.703-1.365-1.254-2.185-1.57.04-1.097.157-2.87 1.338-4.207zm-1.677 5.1c.753.28 1.44.783 1.99 1.433.55.648.9 1.434 1.017 2.26a10.7 10.7 0 0 1-.254 4.017 6.487 6.487 0 0 1-.99 2.317 3.12 3.12 0 0 1-1.117.974 2.57 2.57 0 0 1-1.128.27 2.23 2.23 0 0 1-.844-.157c-.547-.22-.947-.672-1.207-1.24a7.1 7.1 0 0 1-.39-1.363 7.963 7.963 0 0 1 .017-2.922c.2-.927.6-1.783 1.243-2.458.45-.477.995-.862 1.663-1.13zM7.297 9.47a7.28 7.28 0 0 0-.73 2.116c-.167.865-.182 1.76-.04 2.638a8.75 8.75 0 0 0 .494 1.717c-.23-.172-.44-.372-.627-.598-.523-.643-.782-1.46-.855-2.295-.073-.833.037-1.682.314-2.467.202-.574.49-1.115.846-1.604l-.002.493z"/></svg>
-          Linux
-        </div>
-      </div>
-    </div>
 
   </section>
 
