@@ -1,0 +1,22 @@
+  <!-- Au plus tôt (avant l'affichage) : thème mémorisé, textes window.t et version de langue -->
+  <script>
+    (function () {
+      var root = document.documentElement, theme = '', pref = '';
+      root.classList.add('js');
+      try { theme = localStorage.getItem('swaks-theme') || ''; pref = localStorage.getItem('swaks-lang') || ''; } catch (e) {}
+      if (theme) root.dataset.theme = theme;
+      var lang = root.lang === 'fr' ? 'fr' : 'en';
+      var I18N = {};
+      try { I18N = JSON.parse(document.getElementById('i18n').textContent); } catch (e) {}
+      window.t = function (k) {
+        var d = I18N[lang] || {};
+        return k in d ? d[k] : ((I18N.en || {})[k] || k);
+      };
+      // Anglais par défaut, français si choisi ou si le navigateur est en français (robots exclus)
+      if (!pref) pref = /^fr\b/i.test((navigator.languages && navigator.languages[0]) || navigator.language || '') ? 'fr' : 'en';
+      if (pref !== lang && !/bot|crawl|spider|slurp|lighthouse/i.test(navigator.userAgent)) {
+        var p = location.pathname;
+        location.replace((lang === 'fr' ? p.replace(/^\/fr(\/|$)/, '/') : '/fr' + p) + location.search + location.hash);
+      }
+    })();
+  </script>

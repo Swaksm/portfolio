@@ -1,78 +1,79 @@
 # swaks.org — spec
 
-Portfolio de Matthieu Izac (swaks). Site **100 % statique** : on dépose les fichiers sur le serveur, rien à compiler, aucun back-end.
+Portfolio de Matthieu Izac (swaks). Site **100 % statique** : on dépose les fichiers sur le serveur, aucun back-end. Un petit script Python (`_build/build.py`, sans dépendance) génère en local les pages françaises, les pages projets et le sitemap.
 
 ## Principes
 
 - Minimaliste, lisible, soigné. Pas de surcharge.
-- Un seul fichier principal (`index.html`) : CSS et JS inline, zéro dépendance à installer.
-- Services externes uniquement côté navigateur : Formspree (formulaire), Umami (stats). Les polices sont hébergées localement (`fonts/`).
+- Aucune dépendance à installer ; Python 3 seulement pour le build local.
+- Services externes uniquement côté navigateur : Formspree (formulaire), Umami (stats), API GitHub (stats des projets). Les polices sont hébergées localement (`fonts/`).
+- Chemins absolus (`/fonts/…`, `/img/…`) : le site doit être servi à la racine du domaine.
 
 ## Fichiers
 
 | Fichier | Rôle |
 |---|---|
-| `index.html` | Le site (5 sections plein écran : accueil, présentation, compétences, projets, contact) |
-| `404.html` | Page d'erreur |
-| `.htaccess` | Config Apache (OVH) : page 404, redirection vers `https://swaks.org` (sans www), compression, cache, en-têtes de sécurité |
-| `mentions-legales.html` | Mentions légales (FR/EN, même détection de langue que le site) |
-| `favicon.svg` | Icône (navigateurs) |
-| `icons/`, `site.webmanifest` | Icônes PNG (32, 180 iPhone, 192/512 Android) et manifeste pour l'écran d'accueil |
-| `og-image.png` | Image d'aperçu des liens partagés (1200×630), générée depuis `og.html` |
-| `og.html` | Source de `og-image.png` (régénérer : `chrome --headless=new --hide-scrollbars --window-size=1200,630 --screenshot=og-image.png og.html`) |
-| `fonts/` | Outfit (variable) et Roboto Condensed 900, sous-ensemble latin, en woff2 |
-| `img/` | Captures des projets (WebP 1280×800, 16:10) |
-| `robots.txt`, `sitemap.xml` | Référencement |
+| `index.html` | Accueil anglais **et source** de l'accueil (5 sections plein écran). Contient le dictionnaire FR/EN (`<script id="i18n">`) |
+| `fr/index.html` | Accueil français — **généré**, ne pas modifier à la main |
+| `projects/*.html`, `fr/projects/*.html` | Pages projets EN / FR — **générées** depuis `_build/projects.json` |
+| `assets/site.css`, `assets/site.js` | Commun à toutes les pages : palette, polices, thème, langue, curseur, palette de commandes, copie d'email, stats GitHub |
+| `assets/project.css` | Style des pages projets |
+| `_build/` | `build.py`, `projects.json` (contenu des pages projets), `head.html` (script d'en-tête commun), `og.html` (modèle des images d'aperçu). Bloqué en ligne par `.htaccess` |
+| `404.html`, `mentions-legales.html` | Page d'erreur, mentions légales (FR/EN dans la même page) |
+| `.htaccess` | Config Apache (OVH) : 404, redirection vers `https://swaks.org` (sans www), compression, cache, en-têtes de sécurité, blocage de `_build/` |
+| `favicon.svg`, `icons/`, `site.webmanifest` | Icônes (navigateur, iPhone, Android) |
+| `og-image.png`, `img/og/*.png` | Images d'aperçu des liens partagés (1200×630) — générées |
+| `img/`, `img/projects/` | Captures des projets (WebP 1280×800, 16:10) |
+| `fonts/` | Outfit (variable) et Roboto Condensed 900, sous-ensemble latin, woff2 |
+| `robots.txt`, `sitemap.xml` | Référencement (`sitemap.xml` généré, avec les alternatives hreflang) |
 
-## Design
+## Build
 
-- Palette « Parchment Mist » : crème `#F1EEE7`, parchemin `#EDE5D0`, taupe `#C7C0A8`, accent mauve `#C88ABB`, texte `#3a3530`.
-- Mode sombre : suit le système, bouton soleil/lune en haut à droite ; choix mémorisé (`localStorage: swaks-theme`).
-- Polices : Roboto Condensed 900 (titres), Outfit 400/700 (texte).
-- Mouvement : révélations en cascade, transition expo entre sections. Tout est désactivé si `prefers-reduced-motion`.
-- Effets :
-  - thème qui s'étend en cercle depuis le bouton (View Transitions API, repli instantané sinon) ;
-  - curseur personnalisé (point + anneau qui grossit sur les éléments cliquables), souris uniquement ;
-  - « décodage » des lettres de SWAKS au survol ;
-  - numéro de section en filigrane (`data-num` sur les titres) ;
-  - vague de courbes qui traverse l'écran à chaque changement de section (canvas `#sweep`) ;
-  - barre de progression mauve en haut (`#progress`) ;
-  - relief 3D des captures de projets au survol (souris uniquement).
+```
+python _build/build.py          # fr/index.html, pages projets, sitemap.xml
+python _build/build.py --og     # + images d'aperçu (Chrome ou Edge requis)
+```
+
+À relancer après toute modification de `index.html`, de `_build/projects.json` ou de `_build/head.html`, puis committer le résultat.
 
 ## Langues
 
-- Anglais par défaut ; français si la langue principale du navigateur commence par `fr`.
-- Bouton `FR` / `EN` en haut à droite (affiche la langue cible), choix mémorisé (`localStorage: swaks-lang`).
-- Le HTML source est en anglais. Les textes traduisibles portent `data-i18n="clé"` (contenu) ou `data-i18n-attr="attribut:clé;…"`. Les deux langues sont dans l'objet `I18N` du `<head>` ; `t('clé')` sert aux textes JS (formulaire, jeu).
-- Ajouter un texte : mettre la clé sur l'élément, puis l'entrée dans `I18N.en` et `I18N.fr`.
+- Deux versions par page : anglaise (`/…`) et française (`/fr/…`), liées par `hreflang` ; chacune a sa propre URL canonique, donc Google indexe les deux.
+- Script d'en-tête commun (`_build/head.html`) : au chargement, redirige vers la bonne version — choix mémorisé (`localStorage: swaks-lang`), sinon français si le navigateur est en français, sinon anglais. Les robots ne sont pas redirigés.
+- Bouton `FR` / `EN` en haut à droite : va vers l'autre version et mémorise le choix.
+- Accueil : le HTML source est en anglais ; les textes traduisibles portent `data-i18n="clé"` (contenu) ou `data-i18n-attr="attribut:clé;…"`, les liens internes `data-localize="href"`. Le build applique les valeurs `fr` du dictionnaire pour produire `fr/index.html`.
+- `window.t('clé')` (défini dans l'en-tête) donne les textes utilisés par le JavaScript (formulaire, jeu, palette…).
+
+## Design
+
+- Palette « Parchment Mist » : crème `#F1EEE7`, parchemin `#EDE5D0`, taupe `#C7C0A8`, accent mauve `#C88ABB`, texte `#3a3530`. Mode sombre : suit le système, bouton soleil/lune, choix mémorisé (`localStorage: swaks-theme`).
+- Polices : Roboto Condensed 900 (titres), Outfit (texte).
+- Tout le mouvement est désactivé si `prefers-reduced-motion`.
+- Effets de l'accueil : vague de courbes au changement de section (`#sweep`), barre de progression (`#progress`), « décodage » de SWAKS au survol, numéros de section en filigrane (`data-num`).
+- Effets communs (`site.js`) : thème qui s'étend en cercle (View Transitions API), curseur personnalisé (souris uniquement), relief 3D des captures (`data-tilt`).
 
 ## Navigation
 
-Sections en plein écran. Molette, flèches, PageUp/PageDown, Home/End, touches 1–5, swipe, points latéraux (à droite sur mobile). URL synchronisée (`#presentation`, `#competences`, `#projets`, `#contact`).
-
-- Une section dont le contenu dépasse l'écran défile d'abord, puis passe à la suivante (molette et swipe).
-- Navigation au clavier (Tab) : la section de l'élément focalisé s'affiche automatiquement.
+- Accueil en sections plein écran : molette, flèches, PageUp/PageDown, Home/End, touches 1–5, swipe, points latéraux (à droite sur mobile). URL synchronisée (`#presentation`, `#competences`, `#projets`, `#contact`). Une section trop haute défile d'abord, puis passe à la suivante. Tab amène la section de l'élément focalisé.
+- **Palette de commandes** : `Ctrl+K` / `⌘K` ou l'icône loupe. Aller à une section, ouvrir un projet, copier l'email, changer de thème ou de langue, liens.
 
 ## Contenu
 
 - **Accueil** : SWAKS + accroche « Developer · AI · Nantes ».
 - **Présentation** : texte, frise de parcours (Master en alternance → 2028, Bachelor, BTS SIO, bac 2022), langues.
 - **Compétences** : 6 colonnes typographiques, sans icônes.
-- **Projets** : Kleaner, Lion Meme, CordeSortie, Video Grabber. Une carte = titre, tags, capture (optionnelle, `img/`), description, chips techno, liens. Cartes repliables (bouton accessible, `aria-expanded`).
-- **Contact** : email + formulaire Formspree (`mojzlrke`), validation côté client, gestion des erreurs réseau, champ piège anti-spam `_gotcha`.
-- **Easter egg** : bouton invisible coin haut-gauche → mini-jeu « Flux » (meilleur score en `localStorage`).
-
-## SEO
-
-- `title`, `description`, `canonical`, Open Graph, Twitter Card.
-- JSON-LD `Person` (nom, poste, ville, compétences, profils GitHub/LinkedIn).
-- `robots.txt` + `sitemap.xml` (mettre à jour `lastmod` à chaque changement important).
-- Tout le contenu est dans le HTML (indexable sans JS).
+- **Projets** : cartes repliables (aperçu : capture, description, chips, liens) avec un lien « Voir plus » vers la page du projet. Stats GitHub en direct (`data-gh="owner/repo"`, `data-gh-releases` pour les téléchargements ; cache 1 h).
+- **Pages projets** : accroche, chips, stats GitHub, boutons, capture, sections détaillées, galerie, projet suivant. JSON-LD (`SoftwareApplication`, `WebApplication` ou `SoftwareSourceCode`).
+- **Contact** : email copiable en un clic (`data-copy`), formulaire Formspree (`mojzlrke`) avec validation, gestion des erreurs réseau et champ piège anti-spam `_gotcha`.
+- **Easter egg** : bouton invisible coin haut-gauche → mini-jeu « Flux ».
 
 ## Ajouter un projet
 
-Copier un bloc `<div class="card">…</div>` dans `#projects`, ajuster le `--i` (ordre d'apparition), le texte, les chips et les liens.
+1. Ajouter l'entrée dans `_build/projects.json` (slug, textes EN/FR, chips, liens, captures).
+2. Ajouter la carte dans `#projects` de `index.html` (copier une carte existante : clés `data-i18n` + entrées du dictionnaire, `data-gh`, lien « Voir plus » vers `/projects/<slug>.html`).
+3. Ajouter le projet à la liste `PROJECTS` de `assets/site.js` (palette).
+4. `python _build/build.py --og`.
 
 ## Déploiement
 
-Copier tous les fichiers à la racine du serveur web de `swaks.org`. Le dépôt GitHub `Swaksm/portfolio` sert de source.
+Copier tout le contenu à la racine du serveur web de `swaks.org` (le dossier `_build/` peut être omis). Le dépôt GitHub `Swaksm/portfolio` sert de source.

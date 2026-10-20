@@ -1,0 +1,242 @@
+[
+  {
+    "slug": "kleaner",
+    "name": "Kleaner",
+    "repo": "Swaksm/Kleaner",
+    "releases": true,
+    "chips": ["Rust", "Tauri", "Windows 10 / 11", "MIT"],
+    "links": [
+      { "href": "https://github.com/Swaksm/Kleaner/releases", "label": { "en": "Download", "fr": "Télécharger" }, "primary": true },
+      { "href": "https://github.com/Swaksm/Kleaner", "label": { "en": "GitHub", "fr": "GitHub" } }
+    ],
+    "shots": [
+      { "src": "/img/kleaner.webp", "alt": { "en": "Kleaner — largest files, each with its verdict", "fr": "Kleaner — les plus gros fichiers, chacun avec son verdict" } },
+      { "src": "/img/projects/kleaner-home.webp", "alt": { "en": "Kleaner — home: your drives and what you can free", "fr": "Kleaner — accueil : vos disques et l'espace libérable" } },
+      { "src": "/img/projects/kleaner-cleanup.webp", "alt": { "en": "Kleaner — cleanup, nothing ticked in advance", "fr": "Kleaner — nettoyage, rien n'est coché d'avance" } },
+      { "src": "/img/projects/kleaner-health.webp", "alt": { "en": "Kleaner — read-only health & security check-up", "fr": "Kleaner — bilan santé & sécurité en lecture seule" } }
+    ],
+    "schema": { "@type": "SoftwareApplication", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Windows 10, Windows 11", "license": "https://opensource.org/licenses/MIT", "downloadUrl": "https://github.com/Swaksm/Kleaner/releases" },
+    "en": {
+      "title": "Kleaner — free, open-source Windows disk cleaner",
+      "description": "Kleaner is a free, open-source Windows disk cleaner: it scans your drives, explains every large file and tells you what breaks if you delete it. Rust + Tauri.",
+      "kicker": "Windows software · Rust · Open source",
+      "lead": "A free Windows cleaner that tells you what you can delete — and what breaks if you do.",
+      "sections": [
+        { "h": "Why", "p": [
+          "Most cleaners either delete blindly or show a list of sizes without saying what is safe. Kleaner explains first: every large file and folder gets a verdict — safe, clean with its tool, uninstall, breaks something, your files, system or unknown — with what it is, what happens if you delete it and how to free the space properly.",
+          "The verdicts come from 108 hand-written rules. With no rule, the verdict is “unknown”: Kleaner never guesses."
+        ] },
+        { "h": "What it does", "ul": [
+          "Scans the drives you choose: free space, largest files and folders, breakdown by type, disk map. In administrator mode on NTFS it reads the file table directly — about 4 to 10 times faster (2 s instead of 8 to 21 s on a 420 GB disk).",
+          "Cleanup: 45 built-in items plus about 1,100 from the community catalog, each saying what it removes and what changes for you.",
+          "Knows developer, gamer and AI machines: old node_modules, .venv or target folders (with the command that rebuilds them), Docker and WSL disks, Ollama, LM Studio and Hugging Face models, game launchers.",
+          "Programs: real size on disk, last launch date, leftovers of uninstalled programs. Startup items and boot times, duplicates, a photo & video browser.",
+          "A read-only health & security check-up, and an offline AI report — a Markdown summary to paste into the AI of your choice. 6 languages, light and dark themes."
+        ] },
+        { "h": "Safe by design", "ul": [
+          "Your files only go to the Recycle Bin, and the log can restore them.",
+          "Permanent deletion is limited to a public list of caches, enforced in Rust and covered by tests.",
+          "Nothing is ticked in advance, and “Preview the exact list” shows every file before anything is deleted.",
+          "No network, no telemetry, no account. It never touches passwords, cookies, sessions or history — and never “cleans” the registry."
+        ] },
+        { "h": "Under the hood", "p": [
+          "A Rust backend with a Tauri interface, and a knowledge base in JSON (rules, cleaners and a filtered community catalog). Shipped as a portable exe built by GitHub Actions, with a SHA-256 hash to check the download — also installable with Scoop."
+        ] }
+      ]
+    },
+    "fr": {
+      "title": "Kleaner — nettoyeur de disque Windows gratuit et open source",
+      "description": "Kleaner est un nettoyeur de disque Windows gratuit et open source : il analyse vos disques, explique chaque gros fichier et ce qui casse si on le supprime. Rust + Tauri.",
+      "kicker": "Logiciel Windows · Rust · Open source",
+      "lead": "Un nettoyeur Windows gratuit qui dit ce qu'on peut supprimer — et ce qui casse si on le fait.",
+      "sections": [
+        { "h": "Pourquoi", "p": [
+          "La plupart des nettoyeurs suppriment à l'aveugle, ou affichent une liste de tailles sans dire ce qui est sûr. Kleaner explique d'abord : chaque gros fichier et dossier reçoit un verdict — sûr, à nettoyer avec son outil, à désinstaller, casse quelque chose, vos fichiers, système ou inconnu — avec ce que c'est, ce qui se passe si on le supprime et comment libérer la place proprement.",
+          "Les verdicts viennent de 108 règles écrites à la main. Sans règle, le verdict est « inconnu » : Kleaner ne devine jamais."
+        ] },
+        { "h": "Ce qu'il fait", "ul": [
+          "Analyse les disques choisis : espace libre, plus gros fichiers et dossiers, répartition par type, carte du disque. En mode administrateur sur NTFS, il lit directement la table des fichiers — environ 4 à 10 fois plus vite (2 s au lieu de 8 à 21 s sur un disque de 420 Go).",
+          "Nettoyage : 45 éléments intégrés et environ 1 100 issus du catalogue communautaire, chacun expliquant ce qu'il supprime et ce qui change pour vous.",
+          "Connaît les machines de dev, de jeu et d'IA : vieux dossiers node_modules, .venv ou target (avec la commande qui les recrée), disques Docker et WSL, modèles Ollama, LM Studio et Hugging Face, lanceurs de jeux.",
+          "Programmes : taille réelle sur le disque, date du dernier lancement, restes de programmes désinstallés. Démarrage et durée des derniers boots, doublons, visionneuse de photos et vidéos.",
+          "Un bilan santé & sécurité en lecture seule, et un rapport IA hors ligne — un résumé Markdown à coller dans l'IA de votre choix. 6 langues, thèmes clair et sombre."
+        ] },
+        { "h": "Sûr par conception", "ul": [
+          "Vos fichiers vont uniquement à la Corbeille, et le journal peut les restaurer.",
+          "La suppression définitive est limitée à une liste publique de caches, vérifiée en Rust et couverte par des tests.",
+          "Rien n'est coché d'avance, et « Voir la liste exacte » montre chaque fichier avant toute suppression.",
+          "Pas de réseau, pas de télémétrie, pas de compte. Il ne touche jamais aux mots de passe, cookies, sessions ou historique — et ne « nettoie » jamais le registre."
+        ] },
+        { "h": "Sous le capot", "p": [
+          "Un cœur en Rust avec une interface Tauri, et une base de connaissances en JSON (règles, nettoyeurs et catalogue communautaire filtré). Distribué en exe portable compilé par GitHub Actions, avec une empreinte SHA-256 pour vérifier le téléchargement — aussi installable avec Scoop."
+        ] }
+      ]
+    }
+  },
+  {
+    "slug": "lion-meme",
+    "name": "Lion Meme",
+    "repo": "Swaksm/tucroisquetesunlion",
+    "releases": false,
+    "chips": ["React", "TypeScript", "Vite", "Canvas"],
+    "links": [
+      { "href": "https://lion-meme.com", "label": { "en": "Visit site", "fr": "Voir le site" }, "primary": true },
+      { "href": "https://github.com/Swaksm/tucroisquetesunlion", "label": { "en": "GitHub", "fr": "GitHub" } }
+    ],
+    "shots": [
+      { "src": "/img/lion.webp", "alt": { "en": "Lion Meme — the meme generator", "fr": "Lion Meme — le générateur de memes" } }
+    ],
+    "schema": { "@type": "WebApplication", "applicationCategory": "EntertainmentApplication", "operatingSystem": "Web", "url": "https://lion-meme.com" },
+    "en": {
+      "title": "Lion Meme — free “you think you're a lion” meme generator",
+      "description": "Lion Meme is a free meme generator: a majestic lion on top, your “real nature” underneath. Pick a format and a lion, add your photo, then download or share.",
+      "kicker": "Web app · Humor · Generator",
+      "lead": "“You think you're a lion… but you're actually this.” A meme generator built on the gap between the image we project and reality.",
+      "sections": [
+        { "h": "How it works", "ul": [
+          "Pick a format: square or rectangle.",
+          "Choose your lion — two majestic presets, or your own picture.",
+          "Add your “real nature”: the far less glorious photo.",
+          "Preview the meme live, then download it or share it in one click."
+        ] },
+        { "h": "Under the hood", "p": [
+          "A single-page app in React 19 and TypeScript, built with Vite. The meme is composed directly in the browser on a canvas, so the pictures stay on your device. Hosted on Netlify."
+        ] }
+      ]
+    },
+    "fr": {
+      "title": "Lion Meme — générateur de memes « tu crois que t'es un lion » gratuit",
+      "description": "Lion Meme est un générateur de memes gratuit : un lion majestueux en haut, ta « vraie nature » en dessous. Choisis le format et le lion, ajoute ta photo, puis télécharge ou partage.",
+      "kicker": "Application web · Humour · Générateur",
+      "lead": "« Tu crois que t'es un lion… mais t'es ça. » Un générateur de memes qui joue sur l'écart entre l'image qu'on veut renvoyer et la réalité.",
+      "sections": [
+        { "h": "Comment ça marche", "ul": [
+          "Choisis le format : carré ou rectangle.",
+          "Choisis ton lion — deux lions majestueux, ou ta propre image.",
+          "Ajoute ta « vraie nature » : la photo nettement moins glorieuse.",
+          "Le meme s'affiche en direct, puis se télécharge ou se partage en un clic."
+        ] },
+        { "h": "Sous le capot", "p": [
+          "Une application monopage en React 19 et TypeScript, construite avec Vite. Le meme est composé directement dans le navigateur, sur un canvas : les images restent sur ton appareil. Hébergé sur Netlify."
+        ] }
+      ]
+    }
+  },
+  {
+    "slug": "cordesortie",
+    "name": "CordeSortie",
+    "repo": "Swaksm/CordeSortie",
+    "releases": false,
+    "chips": ["Python", "discord.py", "Playwright", "SQLite", "Docker"],
+    "links": [
+      { "href": "https://github.com/Swaksm/CordeSortie", "label": { "en": "GitHub", "fr": "GitHub" }, "primary": true }
+    ],
+    "shots": [],
+    "schema": { "@type": "SoftwareSourceCode", "programmingLanguage": "Python", "codeRepository": "https://github.com/Swaksm/CordeSortie" },
+    "en": {
+      "title": "CordeSortie — Discord bot that tracks Pokémon items in stock",
+      "description": "CordeSortie is a Discord bot that watches 9 French retail sites for Pokémon items in stock, with guided filters and near real-time alerts. Python, Playwright.",
+      "kicker": "Discord bot · Scraping · Playwright",
+      "lead": "The rope that gets you out of checking shop websites yourself: a Discord bot that watches 9 French retailers and pings you as soon as a Pokémon item is in stock.",
+      "sections": [
+        { "h": "What it does", "ul": [
+          "Watches 9 sites: Carrefour, JouéClub, Leclerc, Auchan, Cultura, Ludifolie, Micromania, La Taverne de Dream and Dracaustore.",
+          "Guided filters: tick the sites, then fill a form — “must contain all these words”, “at least one of these”, “must not contain”. The bot writes the expression for you, and the search ignores case and accents.",
+          "One dedicated channel per filter, created and removed automatically, optionally private. Each alert pings the filter's owner without cluttering the channel with mentions.",
+          "Dashboard, help and log channels kept up to date automatically. The log groups identical errors with a counter instead of flooding.",
+          "/stats, /pause and /resume commands, globally or per filter."
+        ] },
+        { "h": "Polite scraping", "ul": [
+          "Jittered scrape interval with a hard one-minute floor that cannot be bypassed.",
+          "Exponential backoff on errors, and CAPTCHA / challenge detection.",
+          "Sites protected by an anti-bot (Datadome, Cloudflare) are left out rather than forced."
+        ] },
+        { "h": "Under the hood", "p": [
+          "Python 3.12, discord.py, Playwright (Chromium), SQLite through aiosqlite, and Pydantic. Runs in production on a Raspberry Pi 3 as a systemd service — or anywhere with Docker Compose."
+        ] }
+      ]
+    },
+    "fr": {
+      "title": "CordeSortie — bot Discord de veille des stocks Pokémon",
+      "description": "CordeSortie est un bot Discord qui surveille 9 sites marchands français pour repérer les produits Pokémon en stock, avec filtres guidés et alertes quasi en temps réel.",
+      "kicker": "Bot Discord · Scraping · Playwright",
+      "lead": "La corde qui te sort de la galère de surveiller les sites toi-même : un bot Discord qui surveille 9 enseignes françaises et te prévient dès qu'un produit Pokémon est en stock.",
+      "sections": [
+        { "h": "Ce qu'il fait", "ul": [
+          "Surveille 9 sites : Carrefour, JouéClub, Leclerc, Auchan, Cultura, Ludifolie, Micromania, La Taverne de Dream et Dracaustore.",
+          "Filtres guidés : on coche les sites, puis on remplit un formulaire — « doit contenir tous ces mots », « au moins un de ces mots », « ne doit pas contenir ». Le bot compose l'expression tout seul, et la recherche ignore la casse et les accents.",
+          "Un salon dédié par filtre, créé et supprimé automatiquement, éventuellement privé. Chaque alerte notifie le créateur du filtre sans encombrer le salon de mentions.",
+          "Salons tableau de bord, aide et log tenus à jour automatiquement. Le log regroupe les erreurs identiques avec un compteur au lieu d'inonder le salon.",
+          "Commandes /stats, /pause et /resume, globalement ou par filtre."
+        ] },
+        { "h": "Un scraping respectueux", "ul": [
+          "Intervalle de scraping aléatoire, avec un plancher d'une minute impossible à contourner.",
+          "Ralentissement exponentiel en cas d'erreur, et détection des CAPTCHA.",
+          "Les sites protégés par un antibot (Datadome, Cloudflare) sont écartés plutôt que forcés."
+        ] },
+        { "h": "Sous le capot", "p": [
+          "Python 3.12, discord.py, Playwright (Chromium), SQLite via aiosqlite, et Pydantic. Tourne en production sur un Raspberry Pi 3 en service systemd — ou n'importe où avec Docker Compose."
+        ] }
+      ]
+    }
+  },
+  {
+    "slug": "video-grabber",
+    "name": "Video Grabber",
+    "repo": "Swaksm/Video-DWNLDR",
+    "releases": true,
+    "chips": ["Python", "Playwright", "yt-dlp", "ffmpeg", "MIT"],
+    "links": [
+      { "href": "https://github.com/Swaksm/Video-DWNLDR/releases", "label": { "en": "Download", "fr": "Télécharger" }, "primary": true },
+      { "href": "https://github.com/Swaksm/Video-DWNLDR", "label": { "en": "GitHub", "fr": "GitHub" } }
+    ],
+    "shots": [],
+    "schema": { "@type": "SoftwareApplication", "applicationCategory": "MultimediaApplication", "operatingSystem": "Windows, macOS, Linux", "license": "https://opensource.org/licenses/MIT", "downloadUrl": "https://github.com/Swaksm/Video-DWNLDR/releases" },
+    "en": {
+      "title": "Video Grabber — download the videos of any web page",
+      "description": "Video Grabber detects the videos on a web page and downloads them, even behind cookies, Referer checks or temporary tokens. Desktop app, CLI and Chrome extension.",
+      "kicker": "Tool · Downloader · Playwright",
+      "lead": "Paste a page URL: it detects the videos, you pick, it downloads.",
+      "sections": [
+        { "h": "Why it works where others fail", "p": [
+          "Many sites protect their videos with cookies, a Referer check or short-lived tokens. Video Grabber downloads from inside a real browser session, so each request looks exactly like the page's own."
+        ] },
+        { "h": "Three ways to use it", "ul": [
+          "Desktop app: paste, scan, tick the videos, download. An installer that needs no admin rights, English / French, light / dark theme.",
+          "Command line: interactive, or fully scripted with --pick, --wait and --out.",
+          "Chrome / Edge extension: spots videos while you browse, shows their count on its icon and downloads them in one click with your cookies."
+        ] },
+        { "h": "Formats", "p": [
+          "mp4, webm, mkv, mov, avi, flv, mp3, m4a… plus HLS (.m3u8) and DASH (.mpd) streams through ffmpeg. If Cloudflare blocks the scan, it can attach to your own Chrome.",
+          "Only for content you are allowed to download."
+        ] },
+        { "h": "Under the hood", "p": [
+          "Python, Playwright and yt-dlp, on Windows, macOS and Linux. Tests run on GitHub Actions (Linux and Windows), which also builds the Windows executables. MIT license."
+        ] }
+      ]
+    },
+    "fr": {
+      "title": "Video Grabber — télécharger les vidéos d'une page web",
+      "description": "Video Grabber détecte les vidéos d'une page web et les télécharge, même protégées par cookies, Referer ou jetons temporaires. Application, ligne de commande et extension Chrome.",
+      "kicker": "Outil · Téléchargement · Playwright",
+      "lead": "Colle l'URL d'une page : il détecte les vidéos, tu choisis, il télécharge.",
+      "sections": [
+        { "h": "Pourquoi il marche là où d'autres échouent", "p": [
+          "Beaucoup de sites protègent leurs vidéos avec des cookies, une vérification du Referer ou des jetons à durée limitée. Video Grabber télécharge depuis une vraie session de navigateur : chaque requête ressemble exactement à celles de la page."
+        ] },
+        { "h": "Trois façons de l'utiliser", "ul": [
+          "Application : on colle l'URL, on lance l'analyse, on coche les vidéos, on télécharge. Installation sans droits administrateur, français / anglais, thème clair / sombre.",
+          "Ligne de commande : interactive, ou entièrement automatisée avec --pick, --wait et --out.",
+          "Extension Chrome / Edge : repère les vidéos pendant la navigation, affiche leur nombre sur son icône et les télécharge en un clic avec vos cookies."
+        ] },
+        { "h": "Formats", "p": [
+          "mp4, webm, mkv, mov, avi, flv, mp3, m4a… et les flux HLS (.m3u8) et DASH (.mpd) via ffmpeg. Si Cloudflare bloque l'analyse, l'outil peut se brancher sur votre propre Chrome.",
+          "À utiliser uniquement pour du contenu que vous avez le droit de télécharger."
+        ] },
+        { "h": "Sous le capot", "p": [
+          "Python, Playwright et yt-dlp, sur Windows, macOS et Linux. Les tests tournent sur GitHub Actions (Linux et Windows), qui compile aussi les exécutables Windows. Licence MIT."
+        ] }
+      ]
+    }
+  }
+]

@@ -3,13 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>swaks.org — Matthieu, developer & AI</title>
+  <title data-i18n="meta.title">swaks.org — Matthieu, developer & AI</title>
 
   <!-- SEO -->
-  <meta name="description" content="Matthieu Izac (swaks) — developer based in Nantes, Master's student in work-study, focused on software development &amp; artificial intelligence. Python, Rust, APIs, bots, LLMs: projects, skills and contact." />
+  <meta name="description" data-i18n-attr="content:meta.desc" content="Matthieu Izac (swaks) — developer based in Nantes, Master's student in work-study, focused on software development &amp; artificial intelligence. Python, Rust, APIs, bots, LLMs: projects, skills and contact." />
   <meta name="author" content="Matthieu Izac" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://swaks.org/" />
+  <link rel="canonical" href="https://swaks.org/" data-localize="href" />
+  <link rel="alternate" hreflang="en" href="https://swaks.org/" />
+  <link rel="alternate" hreflang="fr" href="https://swaks.org/fr/" />
+  <link rel="alternate" hreflang="x-default" href="https://swaks.org/" />
   <meta name="theme-color" content="#F1EEE7" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
   <meta name="color-scheme" content="light dark" />
@@ -17,8 +20,8 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="swaks.org" />
-  <meta property="og:description" content="Software developer specialising in development and artificial intelligence." />
-  <meta property="og:url" content="https://swaks.org" />
+  <meta property="og:description" data-i18n-attr="content:og.desc" content="Software developer specialising in development and artificial intelligence." />
+  <meta property="og:url" content="https://swaks.org/" data-localize="content" />
   <meta property="og:image" content="https://swaks.org/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -30,12 +33,12 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://swaks.org/og-image.png" />
   <meta name="twitter:title" content="swaks.org" />
-  <meta name="twitter:description" content="Software developer specialising in development and artificial intelligence." />
+  <meta name="twitter:description" data-i18n-attr="content:og.desc" content="Software developer specialising in development and artificial intelligence." />
 
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" />
-  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
-  <link rel="manifest" href="site.webmanifest" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
 
   <script type="application/ld+json">
   {
@@ -43,36 +46,31 @@
     "@type": "Person",
     "name": "Matthieu Izac",
     "alternateName": "swaks",
-    "url": "https://swaks.org",
+    "url": "https://swaks.org/",
     "jobTitle": "Software developer — development & AI",
     "address": { "@type": "PostalAddress", "addressLocality": "Nantes", "addressCountry": "FR" },
     "knowsAbout": ["Python", "Rust", "TypeScript", "Tauri", "Playwright", "FastAPI", "Flask", "PostgreSQL", "Intelligence artificielle", "NLP", "LLM", "WinDev", "Docker"],
     "sameAs": ["https://github.com/Swaksm", "https://www.linkedin.com/in/matthieu-izac-257758292/"]
   }
   </script>
-  <link rel="preload" href="fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="fonts/roboto-condensed-900-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/roboto-condensed-900-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-  <!-- Active le mode JS le plus tôt possible : évite tout flash des éléments à révéler -->
-  <script>
-    document.documentElement.classList.add('js');
-    try { const t = localStorage.getItem('swaks-theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
-
-    /* ---- Langue : anglais par défaut, français si le navigateur est en français ---- */
-    const I18N = {
+  <!-- Textes FR/EN (lus par window.t et par le script de build) -->
+  <script id="i18n" type="application/json">{
  "en": {
   "meta.title": "swaks.org — Matthieu, developer & AI",
   "meta.desc": "Matthieu Izac (swaks) — developer based in Nantes, Master's student in work-study, focused on software development & artificial intelligence. Python, Rust, APIs, bots, LLMs: projects, skills and contact.",
   "enter": "Enter",
   "nav.about": "About",
-  "about.title": "ABOUT ME<span class=\"hs\">.</span>",
+  "about.title": "ABOUT ME<span class=\"hs\">.<\/span>",
   "about.p1": "Welcome.",
-  "about.p2": "Let me introduce myself — I'm <span class=\"accent\">Matthieu</span>, <span class=\"age\"></span> years old. I'm a software developer, currently doing a Master's degree in work-study until 2028, after a Bachelor's specialising in development and <span class=\"accent\">artificial intelligence</span>.",
+  "about.p2": "Let me introduce myself — I'm <span class=\"accent\">Matthieu<\/span>, <span class=\"age\"><\/span> years old. I'm a software developer, currently doing a Master's degree in work-study until 2028, after a Bachelor's specialising in development and <span class=\"accent\">artificial intelligence<\/span>.",
   "nav.skills": "Skills",
-  "skills.title": "SKILL<span class=\"hs\">S</span>",
+  "skills.title": "SKILL<span class=\"hs\">S<\/span>",
   "skills.ai": "AI",
   "nav.projects": "Projects",
-  "projects.title": "PROJECT<span class=\"hs\">S</span>",
+  "projects.title": "PROJECT<span class=\"hs\">S<\/span>",
   "kl.tag": "Windows software · Rust · Open source",
   "kl.desc": "A free Windows disk cleaner that explains before it deletes: every large file gets a verdict (safe, uninstall, breaks something, unknown…) based on 108 hand-written rules — it never guesses. Permanent deletion is limited to a public list of caches, enforced in Rust and tested. Knows developer, gaming and AI machines (node_modules, .venv, Docker, Ollama / Hugging Face models). No telemetry, portable exe.",
   "kl.dl": "Download ↗",
@@ -111,7 +109,7 @@
   "skills.desk": "Desktop &amp; tools",
   "skills.pcsoft": "PC Soft",
   "tagline": "Developer · AI · Nantes",
-  "about.p3": "I build concrete tools: bots running in production, Python APIs, desktop software and language-model integrations. What drives me is making AI <span class=\"accent\">useful</span> — automating, extracting, summarising — without complicating what should stay simple.",
+  "about.p3": "I build concrete tools: bots running in production, Python APIs, desktop software and language-model integrations. What drives me is making AI <span class=\"accent\">useful<\/span> — automating, extracting, summarising — without complicating what should stay simple.",
   "tl.master": "Master's degree — work-study",
   "tl.master.d": "until 2028",
   "tl.bachelor": "Bachelor — development &amp; AI",
@@ -121,21 +119,44 @@
   "about.langs": "English B2 · Spanish B1",
   "kl.alt": "Kleaner — largest files, each with its verdict",
   "lm.alt": "Lion Meme — the meme generator",
-  "legal": "Legal notice"
+  "legal": "Legal notice",
+  "og.desc": "Software developer specialising in development and artificial intelligence.",
+  "cs.tag": "Discord bot · Scraping · Playwright",
+  "nav.contact": "Contact",
+  "ui.more": "Details →",
+  "ui.copy": "copy",
+  "ui.copied": "Email copied ✓",
+  "ui.downloads": "downloads",
+  "ui.updated": "updated",
+  "ui.goto": "Go to",
+  "ui.project": "Project",
+  "ui.action": "Action",
+  "ui.link": "Link",
+  "ui.copyEmail": "Copy email address",
+  "ui.theme": "Toggle light / dark theme",
+  "ui.lang": "Afficher en français",
+  "ui.home": "Home",
+  "ui.palette": "Command palette",
+  "ui.paletteHint": "Search (Ctrl+K)",
+  "ui.search": "Type a command or a page…",
+  "ui.navigate": "navigate",
+  "ui.open": "open",
+  "ui.close": "close",
+  "ui.noResult": "No result"
  },
  "fr": {
   "meta.title": "swaks.org — Matthieu, développeur & IA",
   "meta.desc": "Matthieu Izac (swaks) — développeur à Nantes, en Master en alternance, orienté développement & intelligence artificielle. Python, Rust, API, bots, LLM : projets, compétences et contact.",
   "enter": "Accéder",
   "nav.about": "Présentation",
-  "about.title": "PRÉ<span class=\"hs\">S</span>ENTATION",
+  "about.title": "PRÉ<span class=\"hs\">S<\/span>ENTATION",
   "about.p1": "Bienvenue.",
-  "about.p2": "Je me présente — je suis <span class=\"accent\">Matthieu</span>, <span class=\"age\"></span> ans. Développeur informatique, je suis en Master en alternance jusqu'en 2028, après un Bachelor spécialisé en développement et <span class=\"accent\">intelligence artificielle</span>.",
+  "about.p2": "Je me présente — je suis <span class=\"accent\">Matthieu<\/span>, <span class=\"age\"><\/span> ans. Développeur informatique, je suis en Master en alternance jusqu'en 2028, après un Bachelor spécialisé en développement et <span class=\"accent\">intelligence artificielle<\/span>.",
   "nav.skills": "Compétences",
-  "skills.title": "COMPÉTENCE<span class=\"hs\">S</span>",
+  "skills.title": "COMPÉTENCE<span class=\"hs\">S<\/span>",
   "skills.ai": "IA",
   "nav.projects": "Projets",
-  "projects.title": "PROJET<span class=\"hs\">S</span>",
+  "projects.title": "PROJET<span class=\"hs\">S<\/span>",
   "kl.tag": "Logiciel Windows · Rust · Open source",
   "kl.desc": "Nettoyeur de disque Windows gratuit qui explique avant de supprimer : chaque gros fichier reçoit un verdict (sûr, à désinstaller, casse quelque chose, inconnu…) basé sur 108 règles écrites à la main — jamais de devinette. Suppression définitive limitée à une liste publique de caches, vérifiée en Rust et testée. Connaît les machines de dev, de jeu et d'IA (node_modules, .venv, Docker, modèles Ollama / Hugging Face). Aucune télémétrie, exe portable.",
   "kl.dl": "Télécharger ↗",
@@ -174,7 +195,7 @@
   "skills.desk": "Desktop &amp; outils",
   "skills.pcsoft": "PC Soft",
   "tagline": "Développeur · IA · Nantes",
-  "about.p3": "Je construis des outils concrets : des bots qui tournent en production, des API Python, des logiciels desktop et des intégrations de modèles de langage. Ce qui m'intéresse, c'est rendre l'IA <span class=\"accent\">utile</span> — automatiser, extraire, résumer — sans compliquer ce qui doit rester simple.",
+  "about.p3": "Je construis des outils concrets : des bots qui tournent en production, des API Python, des logiciels desktop et des intégrations de modèles de langage. Ce qui m'intéresse, c'est rendre l'IA <span class=\"accent\">utile<\/span> — automatiser, extraire, résumer — sans compliquer ce qui doit rester simple.",
   "tl.master": "Master — en alternance",
   "tl.master.d": "jusqu'en 2028",
   "tl.bachelor": "Bachelor — développement &amp; IA",
@@ -184,101 +205,58 @@
   "about.langs": "Anglais B2 · Espagnol B1",
   "kl.alt": "Kleaner — les plus gros fichiers, chacun avec son verdict",
   "lm.alt": "Lion Meme — le générateur de memes",
-  "legal": "Mentions légales"
+  "legal": "Mentions légales",
+  "og.desc": "Développeur informatique spécialisé en développement et intelligence artificielle.",
+  "cs.tag": "Bot Discord · Scraping · Playwright",
+  "nav.contact": "Contact",
+  "ui.more": "Voir plus →",
+  "ui.copy": "copier",
+  "ui.copied": "Email copié ✓",
+  "ui.downloads": "téléchargements",
+  "ui.updated": "mis à jour",
+  "ui.goto": "Aller à",
+  "ui.project": "Projet",
+  "ui.action": "Action",
+  "ui.link": "Lien",
+  "ui.copyEmail": "Copier l'adresse email",
+  "ui.theme": "Changer de thème (clair / sombre)",
+  "ui.lang": "Switch to English",
+  "ui.home": "Accueil",
+  "ui.palette": "Palette de commandes",
+  "ui.paletteHint": "Rechercher (Ctrl+K)",
+  "ui.search": "Tape une commande ou une page…",
+  "ui.navigate": "naviguer",
+  "ui.open": "ouvrir",
+  "ui.close": "fermer",
+  "ui.noResult": "Aucun résultat"
  }
-};
-    let LANG = 'en';
-    try { LANG = localStorage.getItem('swaks-lang') || ''; } catch (e) {}
-    if (!I18N[LANG]) {
-      const pref = (navigator.languages && navigator.languages[0]) || navigator.language || 'en';
-      LANG = /^fr\b/i.test(pref) ? 'fr' : 'en';
-    }
-    document.documentElement.lang = LANG;
-    const t = (k) => I18N[LANG][k] ?? I18N.en[k] ?? k;
-
-    function applyLang(lang) {
-      LANG = lang;
-      const root = document.documentElement;
-      root.lang = lang;
-      document.title = t('meta.title');
-      document.querySelector('meta[name="description"]').content = t('meta.desc');
-      document.querySelectorAll('[data-i18n]').forEach((el) => { el.innerHTML = t(el.dataset.i18n); });
-      document.querySelectorAll('[data-i18n-attr]').forEach((el) => {
-        el.dataset.i18nAttr.split(';').forEach((pair) => {
-          const [name, key] = pair.split(':');
-          el.setAttribute(name, t(key));
-        });
-      });
-      // Âge calculé (2 avril 2004)
-      const birth = new Date(2004, 3, 2), now = new Date();
-      let age = now.getFullYear() - birth.getFullYear();
-      if (now < new Date(now.getFullYear(), birth.getMonth(), birth.getDate())) age--;
-      document.querySelectorAll('.age').forEach((el) => { el.textContent = age; });
-      // Le bouton propose l'autre langue
-      const btn = document.getElementById('lang-toggle');
-      if (btn) {
-        const other = lang === 'fr' ? 'en' : 'fr';
-        btn.textContent = other.toUpperCase();
-        btn.lang = other;
-        btn.setAttribute('aria-label', other === 'fr' ? 'Passer en français' : 'Switch to English');
+}</script>
+  <!-- Au plus tôt (avant l'affichage) : thème mémorisé, textes window.t et version de langue -->
+  <script>
+    (function () {
+      var root = document.documentElement, theme = '', pref = '';
+      root.classList.add('js');
+      try { theme = localStorage.getItem('swaks-theme') || ''; pref = localStorage.getItem('swaks-lang') || ''; } catch (e) {}
+      if (theme) root.dataset.theme = theme;
+      var lang = root.lang === 'fr' ? 'fr' : 'en';
+      var I18N = {};
+      try { I18N = JSON.parse(document.getElementById('i18n').textContent); } catch (e) {}
+      window.t = function (k) {
+        var d = I18N[lang] || {};
+        return k in d ? d[k] : ((I18N.en || {})[k] || k);
+      };
+      // Anglais par défaut, français si choisi ou si le navigateur est en français (robots exclus)
+      if (!pref) pref = /^fr\b/i.test((navigator.languages && navigator.languages[0]) || navigator.language || '') ? 'fr' : 'en';
+      if (pref !== lang && !/bot|crawl|spider|slurp|lighthouse/i.test(navigator.userAgent)) {
+        var p = location.pathname;
+        location.replace((lang === 'fr' ? p.replace(/^\/fr(\/|$)/, '/') : '/fr' + p) + location.search + location.hash);
       }
-    }
+    })();
   </script>
 
+  <link rel="stylesheet" href="/assets/site.css" />
+
   <style>
-    /* Polices hébergées localement (pas d'appel à Google) */
-    @font-face {
-      font-family: 'Outfit'; font-style: normal; font-weight: 100 900; font-display: swap;
-      src: url(fonts/outfit-latin.woff2) format('woff2');
-    }
-    @font-face {
-      font-family: 'Roboto Condensed'; font-style: normal; font-weight: 900; font-display: swap;
-      src: url(fonts/roboto-condensed-900-latin.woff2) format('woff2');
-    }
-    /* =========================================================
-     *  swaks.org — palette « Parchment Mist »
-     * ========================================================= */
-    :root {
-      /* Couleurs (inchangées) */
-      --cream:      #F1EEE7;
-      --parchment:  #EDE5D0;
-      --mist:       #F7F3E6;
-      --taupe:      #C7C0A8;
-      --mauve:      #C88ABB;
-      --mauve-soft: #E5C8DC;
-      --text:       #3a3530;
-      --muted:      #8a7f73;
-      --faint:      #A89E88;
-      --border:     #DDD6C8;
-
-      /* Mouvement — centralisé pour la cohérence */
-      --ease-expo:   cubic-bezier(0.16, 1, 0.3, 1);
-      --ease-smooth: cubic-bezier(0.45, 0, 0.15, 1);
-      --dur-section: 850ms;
-      --dur-reveal:  700ms;
-      --dur-micro:   220ms;
-      --stagger:     70ms;
-
-      --field-focus: #E6DCCB;
-      --overlay:     rgba(241,238,231,0.88);
-    }
-
-    /* ---- Mode sombre : même ambiance, valeurs inversées ---- */
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) {
-        --cream: #1c1917; --parchment: #2a2521; --mist: #23201c; --taupe: #7f7668;
-        --mauve: #D49DC8; --mauve-soft: #5b4056; --text: #ece6dc; --muted: #a89d8f;
-        --faint: #6f665b; --border: #36302b; --field-focus: #332d28; --overlay: rgba(28,25,23,0.9);
-      }
-    }
-    :root[data-theme="dark"] {
-        --cream: #1c1917; --parchment: #2a2521; --mist: #23201c; --taupe: #7f7668;
-        --mauve: #D49DC8; --mauve-soft: #5b4056; --text: #ece6dc; --muted: #a89d8f;
-        --faint: #6f665b; --border: #36302b; --field-focus: #332d28; --overlay: rgba(28,25,23,0.9);
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html, body {
       height: 100%;
       overflow: hidden;
@@ -288,17 +266,9 @@
       user-select: none;
     }
 
-    ::selection { background: var(--mauve-soft); color: var(--text); }
-
-    :focus-visible {
-      outline: 2px solid var(--mauve);
-      outline-offset: 3px;
-      border-radius: 4px;
-    }
-
     #wrapper { position: relative; z-index: 1; will-change: transform; }
 
-    /* ---- Effets : barre de progression, vague de transition, curseur ---- */
+    /* ---- Effets : barre de progression, vague de transition ---- */
     #progress {
       position: fixed;
       top: 0;
@@ -318,42 +288,6 @@
       z-index: 0;
       pointer-events: none;
     }
-    #cursor-dot, #cursor-ring {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 1000;
-      border-radius: 50%;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.2s var(--ease-smooth);
-    }
-    .has-cursor #cursor-dot, .has-cursor #cursor-ring { display: block; }
-    #cursor-dot { width: 6px; height: 6px; margin: -3px 0 0 -3px; background: var(--mauve); }
-    #cursor-ring {
-      width: 30px;
-      height: 30px;
-      margin: -15px 0 0 -15px;
-      border: 1px solid var(--mauve);
-      transition: opacity 0.2s var(--ease-smooth), width 0.35s var(--ease-expo), height 0.35s var(--ease-expo),
-                  margin 0.35s var(--ease-expo), background-color 0.35s var(--ease-smooth);
-    }
-    .cursor-visible #cursor-dot, .cursor-visible #cursor-ring { opacity: 1; }
-    .cursor-hover #cursor-ring {
-      width: 48px;
-      height: 48px;
-      margin: -24px 0 0 -24px;
-      background-color: color-mix(in srgb, var(--mauve) 14%, transparent);
-    }
-    .cursor-hover #cursor-dot { opacity: 0; }
-    .cursor-text #cursor-dot, .cursor-text #cursor-ring { opacity: 0; }
-    .has-cursor, .has-cursor * { cursor: none !important; }
-    .has-cursor input, .has-cursor textarea { cursor: text !important; }
-
-    /* Thème : le nouveau thème s'étend en cercle depuis le bouton (View Transitions) */
-    ::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
-
     /* ---- Reveals (fallback no-JS sûr : visibles par défaut) ---- */
     .js [data-reveal] {
       opacity: 0;
@@ -669,7 +603,6 @@
     }
     /* Relief au survol (souris) ; la marge de rognage laisse déborder l'inclinaison */
     .card.open .card-body-inner { overflow: clip; overflow-clip-margin: 16px; }
-    .card-shot { transition: transform 0.5s var(--ease-expo); will-change: transform; }
     .card-body-inner p {
       font-size: clamp(13px, 1.3vw, 15px);
       color: var(--muted);
@@ -889,46 +822,6 @@
     .arrow-btn:disabled { opacity: 0.2; cursor: default; }
     .arrow-btn:disabled:hover { color: var(--taupe); transform: none; }
 
-    /* ---- Socials ---- */
-    #socials {
-      position: fixed;
-      top: 1.5rem;
-      right: 1.8rem;
-      display: flex;
-      gap: 1rem;
-      z-index: 100;
-    }
-    #socials a {
-      color: var(--taupe);
-      transition: color var(--dur-micro) var(--ease-smooth),
-                  transform var(--dur-micro) var(--ease-smooth);
-      display: flex;
-      align-items: center;
-    }
-    #socials a:hover { color: var(--mauve); transform: translateY(-2px); }
-    #socials svg { width: 18px; height: 18px; fill: currentColor; }
-    #theme-toggle {
-      background: none; border: none; cursor: pointer; padding: 0;
-      color: var(--taupe); display: flex; align-items: center;
-      transition: color var(--dur-micro) var(--ease-smooth), transform var(--dur-micro) var(--ease-smooth);
-    }
-    #lang-toggle {
-      background: none; border: none; cursor: pointer; padding: 0;
-      font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.1em;
-      color: var(--taupe); line-height: 18px;
-      transition: color var(--dur-micro) var(--ease-smooth), transform var(--dur-micro) var(--ease-smooth);
-    }
-    #lang-toggle:hover { color: var(--mauve); transform: translateY(-2px); }
-    #theme-toggle:hover { color: var(--mauve); transform: translateY(-2px); }
-    #socials #theme-toggle svg { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
-    #theme-toggle .moon { display: none; }
-    :root[data-theme="dark"] #theme-toggle .sun { display: none; }
-    :root[data-theme="dark"] #theme-toggle .moon { display: block; }
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) #theme-toggle .sun { display: none; }
-      :root:not([data-theme="light"]) #theme-toggle .moon { display: block; }
-    }
-
     /* ---- Footer ---- */
     #footer {
       position: fixed;
@@ -1043,7 +936,6 @@
 
       #projects { padding: 3rem 2.4rem 3rem 1.4rem; }
 
-      #socials { top: 1rem; right: 1.2rem; }
       #footer { left: 1.2rem; right: auto; transition: opacity var(--dur-micro) var(--ease-smooth); }
       /* Sur mobile, le pied de page ne s'affiche qu'à l'accueil et au contact (sinon il recouvre le texte) */
       body:not([data-section="0"]):not([data-section="4"]) #footer { opacity: 0; pointer-events: none; }
@@ -1053,17 +945,15 @@
     /* ---- Accessibilité : mouvement réduit ---- */
     @media (prefers-reduced-motion: reduce) {
       .js [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
-      *, *::before, *::after { transition-duration: 0.001ms !important; animation-duration: 0.001ms !important; }
     }
   </style>
 
+  <script defer src="/assets/site.js"></script>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="50c62680-6fe2-4654-82fd-813896edce5e"></script>
 </head>
 <body>
   <div id="progress" aria-hidden="true"></div>
   <canvas id="sweep" aria-hidden="true"></canvas>
-  <div id="cursor-dot" aria-hidden="true"></div>
-  <div id="cursor-ring" aria-hidden="true"></div>
 
   <div id="wrapper">
   <section id="landing">
@@ -1078,7 +968,7 @@
   <section id="home" aria-label="About" data-i18n-attr="aria-label:nav.about">
     <h2 class="section-title" data-num="01" data-reveal style="--i:0" data-i18n="about.title">ABOUT ME<span class="hs">.</span></h2>
     <p data-reveal style="--i:1" data-i18n="about.p1">Welcome.</p>
-    <p data-reveal style="--i:2" data-i18n="about.p2">Let me introduce myself — I'm <span class="accent">Matthieu</span>, <span class="age"></span> years old. I'm a software developer, currently doing a Master's degree in work-study until 2028, after a Bachelor's specialising in development and <span class="accent">artificial intelligence</span>.</p>
+    <p data-reveal style="--i:2" data-i18n="about.p2">Let me introduce myself — I'm <span class="accent">Matthieu</span>, <span class="age">22</span> years old. I'm a software developer, currently doing a Master's degree in work-study until 2028, after a Bachelor's specialising in development and <span class="accent">artificial intelligence</span>.</p>
     <p data-reveal style="--i:3" data-i18n="about.p3">I build concrete tools: bots running in production, Python APIs, desktop software and language-model integrations. What drives me is making AI <span class="accent">useful</span> — automating, extracting, summarising — without complicating what should stay simple.</p>
 
     <ol class="timeline" data-reveal style="--i:4">
@@ -1131,12 +1021,13 @@
         <div>
           <div class="card-title">Kleaner</div>
           <div class="card-tag" data-i18n="kl.tag">Windows software · Rust · Open source</div>
+          <span class="gh-stats" data-gh="Swaksm/Kleaner" data-gh-releases></span>
         </div>
         <span class="card-arrow" aria-hidden="true">+</span>
       </button>
       <div class="card-body">
         <div class="card-body-inner">
-          <img class="card-shot" src="img/kleaner.webp" alt="Kleaner — largest files, each with its verdict" data-i18n-attr="alt:kl.alt" width="1280" height="800" loading="lazy" decoding="async" />
+          <img class="card-shot" src="/img/kleaner.webp" data-tilt alt="Kleaner — largest files, each with its verdict" data-i18n-attr="alt:kl.alt" width="1280" height="800" loading="lazy" decoding="async" />
           <p data-i18n="kl.desc">A free Windows disk cleaner that explains before it deletes: every large file gets a verdict (safe, uninstall, breaks something, unknown…) based on 108 hand-written rules — it never guesses. Permanent deletion is limited to a public list of caches, enforced in Rust and tested. Knows developer, gaming and AI machines (node_modules, .venv, Docker, Ollama / Hugging Face models). No telemetry, portable exe.</p>
           <div class="card-meta">
             <span class="card-chip">Rust</span>
@@ -1144,7 +1035,8 @@
             <span class="card-chip">MIT</span>
           </div>
           <div class="card-links">
-            <a class="primary" href="https://github.com/Swaksm/Kleaner/releases" target="_blank" rel="noopener" data-i18n="kl.dl">Download ↗</a>
+            <a class="primary" href="/projects/kleaner.html" data-localize="href" data-i18n="ui.more">Details →</a>
+            <a class="secondary" href="https://github.com/Swaksm/Kleaner/releases" target="_blank" rel="noopener" data-i18n="kl.dl">Download ↗</a>
             <a class="secondary" href="https://github.com/Swaksm/Kleaner" target="_blank" rel="noopener">GitHub ↗</a>
           </div>
         </div>
@@ -1156,18 +1048,20 @@
         <div>
           <div class="card-title">Lion Meme</div>
           <div class="card-tag" data-i18n="lm.tag">Web · Humor · Generator</div>
+          <span class="gh-stats" data-gh="Swaksm/tucroisquetesunlion"></span>
         </div>
         <span class="card-arrow" aria-hidden="true">+</span>
       </button>
       <div class="card-body">
         <div class="card-body-inner">
-          <img class="card-shot" src="img/lion.webp" alt="Lion Meme — the meme generator" data-i18n-attr="alt:lm.alt" width="1280" height="800" loading="lazy" decoding="async" />
+          <img class="card-shot" src="/img/lion.webp" data-tilt alt="Lion Meme — the meme generator" data-i18n-attr="alt:lm.alt" width="1280" height="800" loading="lazy" decoding="async" />
           <p data-i18n="lm.desc">A free lion meme generator. It plays on the gap between the image we want to project and reality — a majestic lion photo, and underneath, a far more comical reality. Made in a few clicks.</p>
           <div class="card-meta">
             <span class="card-chip">TypeScript</span>
           </div>
           <div class="card-links">
-            <a class="primary" href="https://lion-meme.com" target="_blank" rel="noopener" data-i18n="lm.visit">Visit site ↗</a>
+            <a class="primary" href="/projects/lion-meme.html" data-localize="href" data-i18n="ui.more">Details →</a>
+            <a class="secondary" href="https://lion-meme.com" target="_blank" rel="noopener" data-i18n="lm.visit">Visit site ↗</a>
             <a class="secondary" href="https://github.com/Swaksm/tucroisquetesunlion" target="_blank" rel="noopener">GitHub ↗</a>
           </div>
         </div>
@@ -1178,7 +1072,8 @@
       <button class="card-header" type="button" aria-expanded="false">
         <div>
           <div class="card-title">CordeSortie</div>
-          <div class="card-tag">Bot Discord · Scraping · Playwright</div>
+          <div class="card-tag" data-i18n="cs.tag">Discord bot · Scraping · Playwright</div>
+          <span class="gh-stats" data-gh="Swaksm/CordeSortie"></span>
         </div>
         <span class="card-arrow" aria-hidden="true">+</span>
       </button>
@@ -1191,7 +1086,8 @@
             <span class="card-chip">discord.py</span>
           </div>
           <div class="card-links">
-            <a class="primary" href="https://github.com/Swaksm/CordeSortie" target="_blank" rel="noopener">GitHub ↗</a>
+            <a class="primary" href="/projects/cordesortie.html" data-localize="href" data-i18n="ui.more">Details →</a>
+            <a class="secondary" href="https://github.com/Swaksm/CordeSortie" target="_blank" rel="noopener">GitHub ↗</a>
           </div>
         </div>
       </div>
@@ -1202,6 +1098,7 @@
         <div>
           <div class="card-title">Video Grabber</div>
           <div class="card-tag" data-i18n="vg.tag">Tool · Downloader · Playwright</div>
+          <span class="gh-stats" data-gh="Swaksm/Video-DWNLDR" data-gh-releases></span>
         </div>
         <span class="card-arrow" aria-hidden="true">+</span>
       </button>
@@ -1214,7 +1111,8 @@
             <span class="card-chip">yt-dlp</span>
           </div>
           <div class="card-links">
-            <a class="primary" href="https://github.com/Swaksm/Video-DWNLDR/releases" target="_blank" rel="noopener" data-i18n="vg.dl">Download ↗</a>
+            <a class="primary" href="/projects/video-grabber.html" data-localize="href" data-i18n="ui.more">Details →</a>
+            <a class="secondary" href="https://github.com/Swaksm/Video-DWNLDR/releases" target="_blank" rel="noopener" data-i18n="vg.dl">Download ↗</a>
             <a class="secondary" href="https://github.com/Swaksm/Video-DWNLDR" target="_blank" rel="noopener">GitHub ↗</a>
           </div>
         </div>
@@ -1227,7 +1125,7 @@
     <h2 class="section-title" data-num="04" data-reveal style="--i:0">CONTACT<span class="hs">S</span></h2>
     <div class="contact-item" data-reveal style="--i:1">
       <span class="contact-label">Email</span>
-      <span class="contact-value"><a href="mailto:swks.pro@gmail.com">swks.pro@gmail.com</a></span>
+      <span class="contact-value"><button class="copy-email" type="button" data-copy="swks.pro@gmail.com">swks.pro@gmail.com<span class="copy-hint" data-i18n="ui.copy">copy</span></button></span>
     </div>
     <div class="contact-item" data-reveal style="--i:2">
       <span class="contact-label" data-i18n="contact.loc">Location</span>
@@ -1236,7 +1134,7 @@
 
     <form id="contact-form" data-reveal style="--i:3" novalidate>
       <div class="field">
-        <input type="text" name="name" placeholder="Name" aria-label="Name" autocomplete="name" / data-i18n-attr="aria-label:form.name;placeholder:form.name">
+        <input type="text" name="name" placeholder="Name" aria-label="Name" autocomplete="name" data-i18n-attr="aria-label:form.name;placeholder:form.name" />
         <span class="field-error"></span>
       </div>
       <div class="field">
@@ -1315,10 +1213,13 @@
   </div>
 
 <div id="socials">
-  <button id="lang-toggle" type="button" lang="fr" aria-label="Passer en français">FR</button>
-  <button id="theme-toggle" type="button" aria-label="Toggle theme" title="Theme" data-i18n-attr="title:theme.title;aria-label:theme">
+  <a id="lang-toggle" href="/fr/" lang="fr" hreflang="fr" aria-label="Passer en français">FR</a>
+  <button id="theme-toggle" class="stroke" type="button" aria-label="Toggle theme" title="Theme" data-i18n-attr="title:theme.title;aria-label:theme">
     <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
     <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  </button>
+  <button id="palette-btn" class="stroke" type="button" aria-label="Command palette" title="Search (Ctrl+K)" data-i18n-attr="aria-label:ui.palette;title:ui.paletteHint">
+    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
   </button>
   <a href="https://github.com/Swaksm" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
@@ -1343,15 +1244,7 @@
   <a class="nav-item" data-index="4" href="#contact"><span class="nav-dot"></span><span class="nav-label">Contact</span></a>
 </nav>
 
-<div id="footer"><span data-i18n="footer">© swaks — All rights reserved</span> · <a href="mentions-legales.html" data-i18n="legal">Legal notice</a></div>
-
-  <script>
-    applyLang(LANG);
-    document.getElementById('lang-toggle').addEventListener('click', () => {
-      applyLang(LANG === 'fr' ? 'en' : 'fr');
-      try { localStorage.setItem('swaks-lang', LANG); } catch (e) {}
-    });
-  </script>
+<div id="footer"><span data-i18n="footer">© swaks — All rights reserved</span> · <a href="/mentions-legales.html" data-i18n="legal">Legal notice</a></div>
 
   <script>
     /* =========================================================
@@ -1441,7 +1334,7 @@
       // on interroge donc son état paresseusement, au moment de l'événement.
       const isGameOpen = () => {
         const o = document.getElementById('game-overlay');
-        return !!o && o.classList.contains('open');
+        return (!!o && o.classList.contains('open')) || document.documentElement.classList.contains('palette-open');
       };
 
       const progress = document.getElementById('progress');
@@ -1567,29 +1460,6 @@
         requestAnimationFrame(step);
       }
 
-      /* ---------- Thème clair / sombre ---------- */
-      const darkMq = window.matchMedia('(prefers-color-scheme: dark)');
-      const themeBtn = document.getElementById('theme-toggle');
-      themeBtn.addEventListener('click', () => {
-        const root = document.documentElement;
-        const isDark = root.dataset.theme ? root.dataset.theme === 'dark' : darkMq.matches;
-        const apply = () => {
-          root.dataset.theme = isDark ? 'light' : 'dark';
-          try { localStorage.setItem('swaks-theme', root.dataset.theme); } catch (e) {}
-        };
-        if (reduce || !document.startViewTransition) { apply(); return; }
-        // Le nouveau thème s'étend en cercle depuis le bouton
-        const r = themeBtn.getBoundingClientRect();
-        const x = r.left + r.width / 2, y = r.top + r.height / 2;
-        const end = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
-        document.startViewTransition(apply).ready.then(() => {
-          root.animate(
-            { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${end}px at ${x}px ${y}px)`] },
-            { duration: 700, easing: 'cubic-bezier(0.16, 1, 0.3, 1)', pseudoElement: '::view-transition-new(root)' }
-          );
-        });
-      });
-
       /* ---------- Cartes projets (bouton accessible, sans interférer avec les liens) ---------- */
       document.querySelectorAll('.card').forEach((card) => {
         const head = card.querySelector('.card-header');
@@ -1682,36 +1552,6 @@
         acc.addEventListener('pointerleave', () => { acc.style.transform = ''; });
       }
 
-      const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-
-      /* ---------- Curseur personnalisé (souris uniquement) ---------- */
-      if (!reduce && finePointer) {
-        const root = document.documentElement;
-        const dot = document.getElementById('cursor-dot');
-        const ring = document.getElementById('cursor-ring');
-        root.classList.add('has-cursor');
-        let mx = -100, my = -100, rx = -100, ry = -100, following = false;
-        const follow = () => {
-          rx += (mx - rx) * 0.2;
-          ry += (my - ry) * 0.2;
-          ring.style.transform = `translate3d(${rx}px, ${ry}px, 0)`;
-          if (Math.abs(mx - rx) + Math.abs(my - ry) > 0.1) requestAnimationFrame(follow);
-          else following = false;
-        };
-        window.addEventListener('pointermove', (e) => {
-          if (e.pointerType !== 'mouse') return;
-          mx = e.clientX; my = e.clientY;
-          dot.style.transform = `translate3d(${mx}px, ${my}px, 0)`;
-          root.classList.add('cursor-visible');
-          const t = e.target instanceof Element ? e.target : null;
-          // #game-btn exclu : le curseur ne doit pas trahir l'easter egg
-          root.classList.toggle('cursor-hover', !!(t && t.closest('a, button:not(#game-btn), .card-header')));
-          root.classList.toggle('cursor-text', !!(t && t.closest('input, textarea')));
-          if (!following) { following = true; requestAnimationFrame(follow); }
-        });
-        root.addEventListener('mouseleave', () => root.classList.remove('cursor-visible'));
-      }
-
       /* ---------- SWAKS : effet « décodage » au survol ---------- */
       const bigTitle = document.querySelector('#landing h1');
       if (!reduce && bigTitle) {
@@ -1742,19 +1582,6 @@
         });
       }
 
-      /* ---------- Captures de projets : relief 3D au survol ---------- */
-      if (!reduce && finePointer) {
-        document.querySelectorAll('.card-shot').forEach((img) => {
-          img.addEventListener('pointermove', (e) => {
-            const r = img.getBoundingClientRect();
-            const px = (e.clientX - r.left) / r.width - 0.5;
-            const py = (e.clientY - r.top) / r.height - 0.5;
-            img.style.transform = `perspective(1100px) rotateX(${(-py * 5).toFixed(2)}deg) rotateY(${(px * 7).toFixed(2)}deg)`;
-          });
-          img.addEventListener('pointerleave', () => { img.style.transform = ''; });
-        });
-      }
-
       /* ---------- Focus clavier (Tab) : amène la section de l'élément focalisé ---------- */
       // Le navigateur tente de faire défiler la page vers l'élément : on l'annule,
       // c'est le moteur de sections qui gère la position.
@@ -1781,6 +1608,15 @@
           : hashes.indexOf(location.hash.replace('#', ''));
         if (idx >= 0 && idx !== current) goTo(idx, false);
       });
+
+      // Utilisé par la palette de commandes (assets/site.js)
+      window.swaksGoTo = goTo;
+
+      // Âge à jour (le HTML contient l'âge au moment du build)
+      const birth = new Date(2004, 3, 2), today = new Date();
+      let age = today.getFullYear() - birth.getFullYear();
+      if (today < new Date(today.getFullYear(), birth.getMonth(), birth.getDate())) age--;
+      document.querySelectorAll('.age').forEach((el) => { el.textContent = age; });
 
       /* ---------- Init (lien profond + premier reveal) ---------- */
       const startIdx = Math.max(0, hashes.indexOf(location.hash.replace('#', '')));

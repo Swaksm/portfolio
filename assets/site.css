@@ -1,0 +1,284 @@
+/* =========================================================
+ *  swaks.org — styles partagés (accueil + pages projets)
+ *  Palette « Parchment Mist », thème sombre, barre d'icônes,
+ *  curseur, palette de commandes, notifications, stats GitHub.
+ * ========================================================= */
+
+/* Polices hébergées localement (pas d'appel à Google) */
+@font-face {
+  font-family: 'Outfit'; font-style: normal; font-weight: 100 900; font-display: swap;
+  src: url(/fonts/outfit-latin.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Roboto Condensed'; font-style: normal; font-weight: 900; font-display: swap;
+  src: url(/fonts/roboto-condensed-900-latin.woff2) format('woff2');
+}
+
+:root {
+  --cream:      #F1EEE7;
+  --parchment:  #EDE5D0;
+  --mist:       #F7F3E6;
+  --taupe:      #C7C0A8;
+  --mauve:      #C88ABB;
+  --mauve-soft: #E5C8DC;
+  --text:       #3a3530;
+  --muted:      #8a7f73;
+  --faint:      #A89E88;
+  --border:     #DDD6C8;
+
+  /* Mouvement — centralisé pour la cohérence */
+  --ease-expo:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.45, 0, 0.15, 1);
+  --dur-section: 850ms;
+  --dur-reveal:  700ms;
+  --dur-micro:   220ms;
+  --stagger:     70ms;
+
+  --field-focus: #E6DCCB;
+  --overlay:     rgba(241,238,231,0.88);
+}
+
+/* ---- Mode sombre : même ambiance, valeurs inversées ---- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --cream: #1c1917; --parchment: #2a2521; --mist: #23201c; --taupe: #7f7668;
+    --mauve: #D49DC8; --mauve-soft: #5b4056; --text: #ece6dc; --muted: #a89d8f;
+    --faint: #6f665b; --border: #36302b; --field-focus: #332d28; --overlay: rgba(28,25,23,0.9);
+  }
+}
+:root[data-theme="dark"] {
+  --cream: #1c1917; --parchment: #2a2521; --mist: #23201c; --taupe: #7f7668;
+  --mauve: #D49DC8; --mauve-soft: #5b4056; --text: #ece6dc; --muted: #a89d8f;
+  --faint: #6f665b; --border: #36302b; --field-focus: #332d28; --overlay: rgba(28,25,23,0.9);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+::selection { background: var(--mauve-soft); color: var(--text); }
+
+:focus-visible {
+  outline: 2px solid var(--mauve);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---- Barre d'icônes (langue, thème, palette, réseaux) ---- */
+#socials {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 100;
+}
+#socials a, #socials button {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--taupe);
+  text-decoration: none;
+  transition: color var(--dur-micro) var(--ease-smooth),
+              transform var(--dur-micro) var(--ease-smooth);
+}
+#socials a:hover, #socials button:hover { color: var(--mauve); transform: translateY(-2px); }
+#socials svg { width: 18px; height: 18px; fill: currentColor; }
+#socials .stroke svg, #socials svg.stroke { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+#lang-toggle {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  line-height: 18px;
+}
+#theme-toggle .moon { display: none; }
+:root[data-theme="dark"] #theme-toggle .sun { display: none; }
+:root[data-theme="dark"] #theme-toggle .moon { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) #theme-toggle .sun { display: none; }
+  :root:not([data-theme="light"]) #theme-toggle .moon { display: block; }
+}
+@media (max-width: 600px) {
+  #socials { top: 1rem; right: 1.2rem; gap: 0.9rem; }
+}
+
+/* ---- Curseur personnalisé (souris uniquement, créé par site.js) ---- */
+#cursor-dot, #cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s var(--ease-smooth);
+}
+#cursor-dot { width: 6px; height: 6px; margin: -3px 0 0 -3px; background: var(--mauve); }
+#cursor-ring {
+  width: 30px;
+  height: 30px;
+  margin: -15px 0 0 -15px;
+  border: 1px solid var(--mauve);
+  transition: opacity 0.2s var(--ease-smooth), width 0.35s var(--ease-expo), height 0.35s var(--ease-expo),
+              margin 0.35s var(--ease-expo), background-color 0.35s var(--ease-smooth);
+}
+.cursor-visible #cursor-dot, .cursor-visible #cursor-ring { opacity: 1; }
+.cursor-hover #cursor-ring {
+  width: 48px;
+  height: 48px;
+  margin: -24px 0 0 -24px;
+  background-color: color-mix(in srgb, var(--mauve) 14%, transparent);
+}
+.cursor-hover #cursor-dot { opacity: 0; }
+.cursor-text #cursor-dot, .cursor-text #cursor-ring { opacity: 0; }
+.has-cursor, .has-cursor * { cursor: none !important; }
+.has-cursor input, .has-cursor textarea { cursor: text !important; }
+
+/* Thème : le nouveau thème s'étend en cercle depuis le bouton (View Transitions) */
+::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+
+/* Relief 3D des captures au survol */
+[data-tilt] { transition: transform 0.5s var(--ease-expo); will-change: transform; }
+
+/* ---- Palette de commandes (Ctrl+K) ---- */
+.palette-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 14vh 1rem 1rem;
+  background: var(--overlay);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s var(--ease-smooth), visibility 0s linear 0.2s;
+}
+.palette-open .palette-backdrop { opacity: 1; visibility: visible; transition-delay: 0s; }
+.palette {
+  width: min(560px, 100%);
+  background: var(--mist);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 24px 60px -20px rgba(28, 25, 23, 0.35);
+  overflow: hidden;
+  font-family: 'Outfit', sans-serif;
+  transform: translateY(-8px) scale(0.98);
+  transition: transform 0.35s var(--ease-expo);
+}
+.palette-open .palette { transform: none; }
+.palette input {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  background: transparent;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--text);
+  outline: none;
+}
+.palette input::placeholder { color: var(--faint); }
+.palette ul { list-style: none; max-height: min(50vh, 360px); overflow-y: auto; padding: 0.4rem; }
+.palette li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  color: var(--text);
+  cursor: pointer;
+}
+.palette li small {
+  flex-shrink: 0;
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+.palette li[aria-selected="true"] { background: var(--parchment); color: var(--mauve); }
+.palette .palette-empty { padding: 0.9rem 0.8rem; font-size: 0.9rem; color: var(--muted); cursor: default; }
+.palette-foot {
+  display: flex;
+  gap: 1.2rem;
+  padding: 0.55rem 1.2rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  color: var(--taupe);
+}
+kbd {
+  font-family: inherit;
+  font-size: 0.66rem;
+  padding: 0.05rem 0.35rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+@media (hover: none) { .palette-foot { display: none; } }
+
+/* ---- Notification courte (« copié ✓ ») ---- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 2rem;
+  z-index: 500;
+  padding: 0.55rem 1.1rem;
+  border-radius: 99px;
+  background: var(--text);
+  color: var(--cream);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, 12px);
+  transition: opacity 0.25s var(--ease-smooth), transform 0.35s var(--ease-expo);
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---- Stats GitHub (remplies par site.js) ---- */
+.gh-stats {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--taupe);
+  font-variant-numeric: tabular-nums;
+}
+.gh-stats:empty { display: none; }
+.gh-stats b { font-weight: 400; color: var(--mauve); }
+
+/* ---- Copier l'email ---- */
+.copy-email {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  transition: color var(--dur-micro) var(--ease-smooth);
+}
+.copy-email:hover { color: var(--mauve); }
+.copy-hint {
+  margin-left: 0.7rem;
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  opacity: 0;
+  transition: opacity var(--dur-micro) var(--ease-smooth);
+}
+.copy-email:hover .copy-hint, .copy-email:focus-visible .copy-hint { opacity: 1; }
+@media (hover: none) { .copy-hint { opacity: 1; } }
+
+/* ---- Accessibilité : mouvement réduit ---- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.001ms !important; animation-duration: 0.001ms !important; }
+}

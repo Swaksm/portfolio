@@ -16,6 +16,10 @@
       document.documentElement.lang = lang;
       if (theme) document.documentElement.dataset.theme = theme;
       if (lang === 'fr') document.title = 'Mentions légales — swaks.org';
+      // Retour vers l'accueil dans la bonne langue
+      document.addEventListener('DOMContentLoaded', function () {
+        if (lang === 'fr') document.querySelectorAll('a.back').forEach(function (b) { b.href = '/fr/'; });
+      });
     })();
   </script>
   <style>

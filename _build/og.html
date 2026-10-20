@@ -4,17 +4,18 @@
 <meta charset="UTF-8" />
 <title>OG image source</title>
 <meta name="robots" content="noindex" />
-<!-- Source de og-image.png (1200×630). Régénérer :
-     chrome --headless=new --hide-scrollbars --window-size=1200,630 --screenshot=og-image.png og.html -->
+<!-- Modèle des images d'aperçu (1200×630), utilisé par build.py --og.
+     Sans paramètre : og-image.png (accueil). ?t=Titre&s=Sous-titre : image d'un projet. -->
 <style>
-  @font-face { font-family: 'Outfit'; font-weight: 100 900; src: url(fonts/outfit-latin.woff2) format('woff2'); }
-  @font-face { font-family: 'Roboto Condensed'; font-weight: 900; src: url(fonts/roboto-condensed-900-latin.woff2) format('woff2'); }
+  @font-face { font-family: 'Outfit'; font-weight: 100 900; src: url(../fonts/outfit-latin.woff2) format('woff2'); }
+  @font-face { font-family: 'Roboto Condensed'; font-weight: 900; src: url(../fonts/roboto-condensed-900-latin.woff2) format('woff2'); }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { width: 1200px; height: 630px; overflow: hidden; background: #F1EEE7; }
   body { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 34px; font-family: 'Outfit', sans-serif; color: #3a3530; }
   svg { position: absolute; inset: 0; }
   h1 { position: relative; font-family: 'Roboto Condensed', sans-serif; font-weight: 900; font-size: 168px; line-height: 1; letter-spacing: 0.2em; margin-right: -0.2em; }
   h1 .s { color: #C88ABB; }
+  h1.project { font-size: 128px; letter-spacing: 0.02em; margin-right: 0; }
   p { position: relative; font-size: 30px; letter-spacing: 0.06em; color: #8a7f73; }
   p b { font-weight: 700; color: #3a3530; }
   .url { position: absolute; bottom: 40px; font-size: 20px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #C7C0A8; }
@@ -26,8 +27,22 @@
     <path d="M0 330 C 240 400, 420 250, 640 320 S 980 410, 1200 330" stroke="rgba(199,192,168,0.45)" stroke-width="2"/>
     <path d="M0 400 C 180 350, 360 450, 600 390 S 1020 330, 1200 410" stroke="rgba(200,138,187,0.18)" stroke-width="1.5"/>
   </svg>
-  <h1><span class="s">S</span>WAK<span class="s">S</span></h1>
-  <p><b>Matthieu Izac</b> — Developer · AI · Nantes</p>
+  <h1 id="title"><span class="s">S</span>WAK<span class="s">S</span></h1>
+  <p id="sub"><b>Matthieu Izac</b> — Developer · AI · Nantes</p>
+  <script>
+    // Image d'un projet : titre + sous-titre passés dans l'URL
+    const q = new URLSearchParams(location.search);
+    if (q.get('t')) {
+      const h = document.getElementById('title');
+      h.textContent = q.get('t');
+      h.classList.add('project');
+      const end = document.createElement('span');
+      end.className = 's';
+      end.textContent = '.';
+      h.appendChild(end);
+      document.getElementById('sub').textContent = q.get('s') || '';
+    }
+  </script>
   <div class="url">swaks.org</div>
 </body>
 </html>

@@ -13,6 +13,9 @@ ErrorDocument 404 /404.html
   RewriteRule ^(.*)$ https://swaks.org/$1 [R=301,L]
 </IfModule>
 
+# Sources du build (script, contenus) : pas servies en ligne
+RedirectMatch 404 ^/_build(/|$)
+
 # Types de fichiers
 AddType font/woff2 .woff2
 AddType image/webp .webp

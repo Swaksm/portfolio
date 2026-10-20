@@ -1,0 +1,1928 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="meta.title">swaks.org — Matthieu, développeur & IA</title>
+
+  <!-- SEO -->
+  <meta name="description" data-i18n-attr="content:meta.desc" content="Matthieu Izac (swaks) — développeur à Nantes, en Master en alternance, orienté développement &amp; intelligence artificielle. Python, Rust, API, bots, LLM : projets, compétences et contact." />
+  <meta name="author" content="Matthieu Izac" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://swaks.org/fr/" data-localize="href" />
+  <link rel="alternate" hreflang="en" href="https://swaks.org/" />
+  <link rel="alternate" hreflang="fr" href="https://swaks.org/fr/" />
+  <link rel="alternate" hreflang="x-default" href="https://swaks.org/" />
+  <meta name="theme-color" content="#F1EEE7" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="swaks.org" />
+  <meta property="og:description" data-i18n-attr="content:og.desc" content="Développeur informatique spécialisé en développement et intelligence artificielle." />
+  <meta property="og:url" content="https://swaks.org/fr/" data-localize="content" />
+  <meta property="og:image" content="https://swaks.org/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="SWAKS — Matthieu Izac, developer · AI · Nantes" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:locale:alternate" content="en_US" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://swaks.org/og-image.png" />
+  <meta name="twitter:title" content="swaks.org" />
+  <meta name="twitter:description" data-i18n-attr="content:og.desc" content="Développeur informatique spécialisé en développement et intelligence artificielle." />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Matthieu Izac",
+    "alternateName": "swaks",
+    "url": "https://swaks.org/",
+    "jobTitle": "Software developer — development & AI",
+    "address": { "@type": "PostalAddress", "addressLocality": "Nantes", "addressCountry": "FR" },
+    "knowsAbout": ["Python", "Rust", "TypeScript", "Tauri", "Playwright", "FastAPI", "Flask", "PostgreSQL", "Intelligence artificielle", "NLP", "LLM", "WinDev", "Docker"],
+    "sameAs": ["https://github.com/Swaksm", "https://www.linkedin.com/in/matthieu-izac-257758292/"]
+  }
+  </script>
+  <link rel="preload" href="/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/roboto-condensed-900-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+  <!-- Textes FR/EN (lus par window.t et par le script de build) -->
+  <script id="i18n" type="application/json">{
+ "en": {
+  "meta.title": "swaks.org — Matthieu, developer & AI",
+  "meta.desc": "Matthieu Izac (swaks) — developer based in Nantes, Master's student in work-study, focused on software development & artificial intelligence. Python, Rust, APIs, bots, LLMs: projects, skills and contact.",
+  "enter": "Enter",
+  "nav.about": "About",
+  "about.title": "ABOUT ME<span class=\"hs\">.<\/span>",
+  "about.p1": "Welcome.",
+  "about.p2": "Let me introduce myself — I'm <span class=\"accent\">Matthieu<\/span>, <span class=\"age\"><\/span> years old. I'm a software developer, currently doing a Master's degree in work-study until 2028, after a Bachelor's specialising in development and <span class=\"accent\">artificial intelligence<\/span>.",
+  "nav.skills": "Skills",
+  "skills.title": "SKILL<span class=\"hs\">S<\/span>",
+  "skills.ai": "AI",
+  "nav.projects": "Projects",
+  "projects.title": "PROJECT<span class=\"hs\">S<\/span>",
+  "kl.tag": "Windows software · Rust · Open source",
+  "kl.desc": "A free Windows disk cleaner that explains before it deletes: every large file gets a verdict (safe, uninstall, breaks something, unknown…) based on 108 hand-written rules — it never guesses. Permanent deletion is limited to a public list of caches, enforced in Rust and tested. Knows developer, gaming and AI machines (node_modules, .venv, Docker, Ollama / Hugging Face models). No telemetry, portable exe.",
+  "kl.dl": "Download ↗",
+  "lm.tag": "Web · Humor · Generator",
+  "lm.desc": "A free lion meme generator. It plays on the gap between the image we want to project and reality — a majestic lion photo, and underneath, a far more comical reality. Made in a few clicks.",
+  "lm.visit": "Visit site ↗",
+  "cs.desc": "A Discord bot that monitors 9 French retail sites (Carrefour, Auchan, Leclerc, JouéClub...) to spot Pokémon items in stock. Filters are built through an interactive form (no syntax to type), near real-time alerts in dedicated channels, anti-detection (jittered interval, backoff, hard floor). Runs in production on a Raspberry Pi.",
+  "vg.tag": "Tool · Downloader · Playwright",
+  "vg.desc": "Paste a page URL: the tool detects its videos, you pick, it downloads. Handles cookies, Referer and temporary tokens by downloading from inside the browser session. Regular formats plus HLS / DASH streams. Available as a desktop app, a command-line tool and a Chrome extension.",
+  "vg.dl": "Download ↗",
+  "contact.loc": "Location",
+  "form.name": "Name",
+  "form.send": "Send →",
+  "err.name": "Your name is required",
+  "err.email": "Your email is required",
+  "err.emailInvalid": "Invalid email",
+  "err.message": "The message is empty",
+  "form.sending": "Sending...",
+  "form.sent": "Message sent ✓",
+  "form.error": "Error, try again",
+  "theme": "Toggle theme",
+  "theme.title": "Theme",
+  "prev": "Previous section",
+  "next": "Next section",
+  "nav.label": "Section navigation",
+  "footer": "© swaks — All rights reserved",
+  "game.close": "close ✕",
+  "game.label": "Flux game",
+  "game.hold": "HOLD (click / space) to glide",
+  "game.hint": "stay in the stream · catch the motes",
+  "game.over": "GAME OVER",
+  "game.retry": "click / space to play again",
+  "skills.lang": "Languages",
+  "skills.back": "Backend",
+  "skills.data": "Data",
+  "skills.desk": "Desktop &amp; tools",
+  "skills.pcsoft": "PC Soft",
+  "tagline": "Developer · AI · Nantes",
+  "about.p3": "I build concrete tools: bots running in production, Python APIs, desktop software and language-model integrations. What drives me is making AI <span class=\"accent\">useful<\/span> — automating, extracting, summarising — without complicating what should stay simple.",
+  "tl.master": "Master's degree — work-study",
+  "tl.master.d": "until 2028",
+  "tl.bachelor": "Bachelor — development &amp; AI",
+  "tl.bts": "BTS SIO — computer science",
+  "tl.bts.d": "2023 internship · PHP / SQL intranet, Redon",
+  "tl.bac": "General baccalaureate",
+  "about.langs": "English B2 · Spanish B1",
+  "kl.alt": "Kleaner — largest files, each with its verdict",
+  "lm.alt": "Lion Meme — the meme generator",
+  "legal": "Legal notice",
+  "og.desc": "Software developer specialising in development and artificial intelligence.",
+  "cs.tag": "Discord bot · Scraping · Playwright",
+  "nav.contact": "Contact",
+  "ui.more": "Details →",
+  "ui.copy": "copy",
+  "ui.copied": "Email copied ✓",
+  "ui.downloads": "downloads",
+  "ui.updated": "updated",
+  "ui.goto": "Go to",
+  "ui.project": "Project",
+  "ui.action": "Action",
+  "ui.link": "Link",
+  "ui.copyEmail": "Copy email address",
+  "ui.theme": "Toggle light / dark theme",
+  "ui.lang": "Afficher en français",
+  "ui.home": "Home",
+  "ui.palette": "Command palette",
+  "ui.paletteHint": "Search (Ctrl+K)",
+  "ui.search": "Type a command or a page…",
+  "ui.navigate": "navigate",
+  "ui.open": "open",
+  "ui.close": "close",
+  "ui.noResult": "No result"
+ },
+ "fr": {
+  "meta.title": "swaks.org — Matthieu, développeur & IA",
+  "meta.desc": "Matthieu Izac (swaks) — développeur à Nantes, en Master en alternance, orienté développement & intelligence artificielle. Python, Rust, API, bots, LLM : projets, compétences et contact.",
+  "enter": "Accéder",
+  "nav.about": "Présentation",
+  "about.title": "PRÉ<span class=\"hs\">S<\/span>ENTATION",
+  "about.p1": "Bienvenue.",
+  "about.p2": "Je me présente — je suis <span class=\"accent\">Matthieu<\/span>, <span class=\"age\"><\/span> ans. Développeur informatique, je suis en Master en alternance jusqu'en 2028, après un Bachelor spécialisé en développement et <span class=\"accent\">intelligence artificielle<\/span>.",
+  "nav.skills": "Compétences",
+  "skills.title": "COMPÉTENCE<span class=\"hs\">S<\/span>",
+  "skills.ai": "IA",
+  "nav.projects": "Projets",
+  "projects.title": "PROJET<span class=\"hs\">S<\/span>",
+  "kl.tag": "Logiciel Windows · Rust · Open source",
+  "kl.desc": "Nettoyeur de disque Windows gratuit qui explique avant de supprimer : chaque gros fichier reçoit un verdict (sûr, à désinstaller, casse quelque chose, inconnu…) basé sur 108 règles écrites à la main — jamais de devinette. Suppression définitive limitée à une liste publique de caches, vérifiée en Rust et testée. Connaît les machines de dev, de jeu et d'IA (node_modules, .venv, Docker, modèles Ollama / Hugging Face). Aucune télémétrie, exe portable.",
+  "kl.dl": "Télécharger ↗",
+  "lm.tag": "Web · Humour · Générateur",
+  "lm.desc": "Générateur de memes lion gratuit. Joue sur le contraste entre l'image que l'on veut projeter et la réalité — une photo de lion majestueux, et en dessous, une réalité plus cocasse. Création en quelques clics.",
+  "lm.visit": "Voir le site ↗",
+  "cs.desc": "Bot Discord de veille sur 9 sites marchands français (Carrefour, Auchan, Leclerc, JouéClub...) pour repérer les items Pokémon en stock. Filtres créés via un formulaire interactif (aucune syntaxe à taper), alertes en temps quasi réel dans des salons dédiés, anti-détection (intervalle jitté, backoff, plancher dur). Tourne en production sur un Raspberry Pi.",
+  "vg.tag": "Outil · Téléchargement · Playwright",
+  "vg.desc": "Colle l'URL d'une page : l'outil détecte ses vidéos, tu choisis, il télécharge. Gère cookies, Referer et jetons temporaires en téléchargeant depuis la session du navigateur. Formats classiques et flux HLS / DASH. Disponible en application graphique, en ligne de commande et en extension Chrome.",
+  "vg.dl": "Télécharger ↗",
+  "contact.loc": "Localisation",
+  "form.name": "Nom",
+  "form.send": "Envoyer →",
+  "err.name": "Ton nom est requis",
+  "err.email": "Ton email est requis",
+  "err.emailInvalid": "Email invalide",
+  "err.message": "Le message est vide",
+  "form.sending": "Envoi...",
+  "form.sent": "Message envoyé ✓",
+  "form.error": "Erreur, réessaie",
+  "theme": "Changer de thème",
+  "theme.title": "Thème",
+  "prev": "Section précédente",
+  "next": "Section suivante",
+  "nav.label": "Navigation des sections",
+  "footer": "© swaks — Tous droits réservés",
+  "game.close": "fermer ✕",
+  "game.label": "Jeu Flux",
+  "game.hold": "MAINTENIR (clic / espace) pour planer",
+  "game.hint": "reste dans le courant · attrape les motes",
+  "game.over": "PERDU",
+  "game.retry": "clic / espace pour rejouer",
+  "skills.lang": "Langages",
+  "skills.back": "Back-end",
+  "skills.data": "Données",
+  "skills.desk": "Desktop &amp; outils",
+  "skills.pcsoft": "PC Soft",
+  "tagline": "Développeur · IA · Nantes",
+  "about.p3": "Je construis des outils concrets : des bots qui tournent en production, des API Python, des logiciels desktop et des intégrations de modèles de langage. Ce qui m'intéresse, c'est rendre l'IA <span class=\"accent\">utile<\/span> — automatiser, extraire, résumer — sans compliquer ce qui doit rester simple.",
+  "tl.master": "Master — en alternance",
+  "tl.master.d": "jusqu'en 2028",
+  "tl.bachelor": "Bachelor — développement &amp; IA",
+  "tl.bts": "BTS SIO — informatique",
+  "tl.bts.d": "Stage 2023 · intranet PHP / SQL, Redon",
+  "tl.bac": "Baccalauréat général",
+  "about.langs": "Anglais B2 · Espagnol B1",
+  "kl.alt": "Kleaner — les plus gros fichiers, chacun avec son verdict",
+  "lm.alt": "Lion Meme — le générateur de memes",
+  "legal": "Mentions légales",
+  "og.desc": "Développeur informatique spécialisé en développement et intelligence artificielle.",
+  "cs.tag": "Bot Discord · Scraping · Playwright",
+  "nav.contact": "Contact",
+  "ui.more": "Voir plus →",
+  "ui.copy": "copier",
+  "ui.copied": "Email copié ✓",
+  "ui.downloads": "téléchargements",
+  "ui.updated": "mis à jour",
+  "ui.goto": "Aller à",
+  "ui.project": "Projet",
+  "ui.action": "Action",
+  "ui.link": "Lien",
+  "ui.copyEmail": "Copier l'adresse email",
+  "ui.theme": "Changer de thème (clair / sombre)",
+  "ui.lang": "Switch to English",
+  "ui.home": "Accueil",
+  "ui.palette": "Palette de commandes",
+  "ui.paletteHint": "Rechercher (Ctrl+K)",
+  "ui.search": "Tape une commande ou une page…",
+  "ui.navigate": "naviguer",
+  "ui.open": "ouvrir",
+  "ui.close": "fermer",
+  "ui.noResult": "Aucun résultat"
+ }
+}</script>
+  <!-- Au plus tôt (avant l'affichage) : thème mémorisé, textes window.t et version de langue -->
+  <script>
+    (function () {
+      var root = document.documentElement, theme = '', pref = '';
+      root.classList.add('js');
+      try { theme = localStorage.getItem('swaks-theme') || ''; pref = localStorage.getItem('swaks-lang') || ''; } catch (e) {}
+      if (theme) root.dataset.theme = theme;
+      var lang = root.lang === 'fr' ? 'fr' : 'en';
+      var I18N = {};
+      try { I18N = JSON.parse(document.getElementById('i18n').textContent); } catch (e) {}
+      window.t = function (k) {
+        var d = I18N[lang] || {};
+        return k in d ? d[k] : ((I18N.en || {})[k] || k);
+      };
+      // Anglais par défaut, français si choisi ou si le navigateur est en français (robots exclus)
+      if (!pref) pref = /^fr\b/i.test((navigator.languages && navigator.languages[0]) || navigator.language || '') ? 'fr' : 'en';
+      if (pref !== lang && !/bot|crawl|spider|slurp|lighthouse/i.test(navigator.userAgent)) {
+        var p = location.pathname;
+        location.replace((lang === 'fr' ? p.replace(/^\/fr(\/|$)/, '/') : '/fr' + p) + location.search + location.hash);
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="/assets/site.css" />
+
+  <style>
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      background: var(--cream);
+      font-family: 'Outfit', sans-serif;
+      color: var(--text);
+      user-select: none;
+    }
+
+    #wrapper { position: relative; z-index: 1; will-change: transform; }
+
+    /* ---- Effets : barre de progression, vague de transition ---- */
+    #progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      width: 0;
+      background: var(--mauve);
+      z-index: 150;
+      pointer-events: none;
+      transition: width var(--dur-section) var(--ease-expo);
+    }
+    #sweep {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    /* ---- Reveals (fallback no-JS sûr : visibles par défaut) ---- */
+    .js [data-reveal] {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity var(--dur-reveal) var(--ease-expo),
+                  transform var(--dur-reveal) var(--ease-expo);
+      transition-delay: calc(var(--i, 0) * var(--stagger));
+      will-change: opacity, transform;
+    }
+    .js section.is-active [data-reveal] {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ---- SECTION 1 : landing ---- */
+    #landing {
+      position: relative;
+      height: 100vh;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      overflow: hidden;
+    }
+
+    #curves {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 1200ms var(--ease-smooth);
+    }
+    #curves.ready { opacity: 1; }
+
+    #landing h1, #landing button, #tagline { position: relative; z-index: 1; }
+    #tagline {
+      margin-top: -0.9rem;
+      font-size: clamp(11px, 1.1vw, 14px);
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    h1 {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: clamp(40px, 10vw, 160px);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: 0.2em;
+      white-space: nowrap;
+    }
+    .js #landing h1 span { display: inline-block; }
+
+    .s { color: var(--mauve); }
+    .w, .a, .k { color: var(--text); }
+
+    #acceder {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: clamp(11px, 1.1vw, 15px);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.4rem 0;
+      transition: color var(--dur-micro) var(--ease-smooth),
+                  transform var(--dur-micro) var(--ease-smooth);
+    }
+    #acceder:hover { color: var(--mauve); }
+
+    /* ---- Titres de section communs ---- */
+    .section-title {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 3rem;
+      letter-spacing: -0.01em;
+    }
+    .hs { color: var(--mauve); }
+
+    /* Numéro de section en filigrane derrière le titre */
+    .section-title { position: relative; }
+    .section-title::before {
+      content: attr(data-num);
+      position: absolute;
+      left: -0.04em;
+      top: 50%;
+      z-index: -1;
+      font-size: clamp(90px, 12vw, 160px);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      opacity: 0;
+      transform: translate(-36px, -50%);
+      transition: opacity 1s var(--ease-expo) 0.15s, transform 1.2s var(--ease-expo) 0.15s;
+      pointer-events: none;
+    }
+    section.is-active .section-title::before { opacity: 0.05; transform: translate(0, -50%); }
+
+    /* ---- Sections plein écran : centrées, défilables si le contenu dépasse ---- */
+    #home, #skills, #contact {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      justify-content: safe center;
+      overflow-y: auto;
+      scrollbar-width: none;
+    }
+    #home::-webkit-scrollbar, #skills::-webkit-scrollbar, #contact::-webkit-scrollbar { display: none; }
+
+    /* ---- SECTION 2 : présentation ---- */
+    #home {
+      height: 100vh;
+      height: 100dvh;
+      padding: 3rem 2rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    #home p {
+      font-size: clamp(15px, 1.5vw, 18px);
+      font-weight: 400;
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+      user-select: text;
+    }
+    .accent { color: var(--mauve); }
+
+    #home .section-title { margin-bottom: 2.2rem; }
+    .timeline { list-style: none; margin: 1.8rem 0 1.2rem; border-left: 1px solid var(--border); }
+    .timeline li {
+      position: relative;
+      padding: 0.4rem 0 0.4rem 1.3rem;
+      font-size: clamp(14px, 1.35vw, 16px);
+      color: var(--text);
+      user-select: text;
+    }
+    .timeline li::before {
+      content: '';
+      position: absolute;
+      left: -3px;
+      top: calc(0.4rem + 0.6em);
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--taupe);
+    }
+    .timeline li.now::before { background: var(--mauve); }
+    .timeline small { display: block; font-size: 0.78rem; color: var(--muted); }
+    #home p.langs {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      margin: 0;
+    }
+
+
+    /* ---- SECTION 3 : compétences ---- */
+    #skills {
+      height: 100vh;
+      height: 100dvh;
+      padding: 2rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.6rem 2.2rem;
+    }
+    .skills-group-label {
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      padding-bottom: 0.7rem;
+      margin-bottom: 0.9rem;
+      border-bottom: 1px solid var(--border);
+      transition: color var(--dur-micro) var(--ease-smooth),
+                  border-color var(--dur-micro) var(--ease-smooth);
+    }
+    .skills-group:hover .skills-group-label {
+      color: var(--mauve);
+      border-bottom-color: var(--mauve-soft);
+    }
+    .skills-list { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .skills-list li {
+      position: relative;
+      width: fit-content;
+      font-size: clamp(14px, 1.35vw, 16px);
+      color: var(--text);
+      cursor: default;
+      transition: color var(--dur-micro) var(--ease-smooth),
+                  transform var(--dur-micro) var(--ease-smooth);
+    }
+    /* Point mauve au survol, en écho à la navigation latérale */
+    .skills-list li::before {
+      content: '';
+      position: absolute;
+      left: -12px;
+      top: 50%;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--mauve);
+      opacity: 0;
+      transform: translateY(-50%) scale(0.4);
+      transition: opacity var(--dur-micro) var(--ease-smooth),
+                  transform var(--dur-micro) var(--ease-smooth);
+    }
+    .skills-list li:hover { color: var(--mauve); transform: translateX(6px); }
+    .skills-list li:hover::before { opacity: 1; transform: translateY(-50%) scale(1); }
+
+    @media (max-width: 760px) {
+      .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem 1.6rem; }
+    }
+
+    /* ---- SECTION 4 : projets ---- */
+    #projects {
+      height: 100vh;
+      height: 100dvh;
+      overflow-y: auto;
+      padding: 8rem 2rem;
+      max-width: 720px;
+      margin: 0 auto;
+      scrollbar-width: none;
+    }
+    #projects::-webkit-scrollbar { display: none; }
+
+    .card {
+      border-top: 1px solid var(--border);
+      padding: 1.4rem 0;
+      cursor: pointer;
+      user-select: none;
+      transition: border-color var(--dur-micro) var(--ease-smooth);
+    }
+    .card:last-child { border-bottom: 1px solid var(--border); }
+    .card:hover { border-top-color: var(--mauve-soft); }
+
+    .card-header {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 0;
+      font: inherit;
+      color: inherit;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .card-title {
+      font-size: clamp(15px, 1.4vw, 17px);
+      font-weight: 700;
+      color: var(--text);
+      transition: color var(--dur-micro) var(--ease-smooth);
+    }
+    .card:hover .card-title { color: var(--mauve); }
+    .card-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      margin-top: 0.25rem;
+    }
+    .card-arrow {
+      color: var(--taupe);
+      font-size: 1rem;
+      transition: transform 0.35s var(--ease-expo), color var(--dur-micro) var(--ease-smooth);
+      flex-shrink: 0;
+    }
+    .card.open .card-arrow { transform: rotate(45deg); color: var(--mauve); }
+
+    .card-body {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.45s var(--ease-expo);
+    }
+    .card.open .card-body { grid-template-rows: 1fr; }
+    /* Fermée : contenu masqué aussi pour le clavier (visibility retirée après l'animation) */
+    .card-body-inner {
+      overflow: hidden;
+      visibility: hidden;
+      transition: visibility 0s linear 0.45s;
+    }
+    .card.open .card-body-inner { visibility: visible; transition-delay: 0s; }
+
+
+    .card-shot {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      margin-top: 1rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--parchment);
+    }
+    /* Relief au survol (souris) ; la marge de rognage laisse déborder l'inclinaison */
+    .card.open .card-body-inner { overflow: clip; overflow-clip-margin: 16px; }
+    .card-body-inner p {
+      font-size: clamp(13px, 1.3vw, 15px);
+      color: var(--muted);
+      line-height: 1.75;
+      padding-top: 1rem;
+      user-select: text;
+    }
+    .card-body-inner .card-meta {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    .card-chip {
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mauve);
+      border: 1px solid var(--mauve-soft);
+      border-radius: 99px;
+      padding: 0.2rem 0.7rem;
+    }
+    .card-links { display: flex; gap: 1rem; margin-top: 1rem; }
+    .card-links a {
+      font-size: 0.78rem;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color var(--dur-micro) var(--ease-smooth);
+    }
+    .card-links a.primary { color: var(--mauve); }
+    .card-links a.secondary { color: var(--taupe); }
+    .card-links a:hover { color: var(--text); }
+
+    /* ---- SECTION 5 : contact ---- */
+    #contact {
+      height: 100vh;
+      height: 100dvh;
+      padding: 2rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .contact-item {
+      display: flex;
+      align-items: baseline;
+      gap: 1.2rem;
+      padding: 1.2rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .contact-item:last-of-type { border-bottom: 1px solid var(--border); }
+    .contact-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      min-width: 90px;
+    }
+    .contact-value {
+      font-size: clamp(14px, 1.4vw, 16px);
+      color: var(--text);
+      user-select: text;
+    }
+    .contact-value a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--dur-micro) var(--ease-smooth);
+    }
+    .contact-value a:hover { color: var(--mauve); }
+
+    #contact form {
+      margin-top: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    #contact input, #contact textarea {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(13px, 1.3vw, 15px);
+      background: var(--parchment);
+      border: none;
+      border-radius: 6px;
+      color: var(--text);
+      padding: 0.85rem 1rem;
+      outline: none;
+      transition: background var(--dur-micro) var(--ease-smooth),
+                  box-shadow var(--dur-micro) var(--ease-smooth);
+      width: 100%;
+      resize: none;
+    }
+    #contact input::placeholder, #contact textarea::placeholder { color: var(--faint); }
+    #contact input:focus, #contact textarea:focus {
+      background: var(--field-focus);
+      box-shadow: 0 0 0 2px var(--mauve-soft);
+    }
+    #contact textarea { min-height: 100px; }
+
+    #contact button[type="submit"] {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.6rem 0;
+      text-align: left;
+      transition: color var(--dur-micro) var(--ease-smooth),
+                  transform var(--dur-micro) var(--ease-smooth);
+      width: fit-content;
+    }
+    #contact button[type="submit"]:hover:not(:disabled) { color: var(--mauve); transform: translateX(3px); }
+    #contact button[type="submit"]:disabled { cursor: default; }
+
+    .field { display: flex; flex-direction: column; }
+    .field-error {
+      font-size: 0.7rem;
+      color: var(--mauve);
+      letter-spacing: 0.04em;
+      height: 0;
+      overflow: hidden;
+      transition: height var(--dur-micro) var(--ease-smooth), opacity var(--dur-micro);
+      opacity: 0;
+    }
+    .field-error.visible { height: 1.2rem; opacity: 1; }
+    .field input.invalid, .field textarea.invalid { box-shadow: 0 0 0 2px var(--mauve); }
+
+    /* ---- NAV latérale ---- */
+    #sidenav {
+      position: fixed;
+      left: 1.8rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s var(--ease-smooth);
+    }
+    #sidenav.visible { opacity: 1; pointer-events: auto; }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .nav-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--taupe);
+      transition: background var(--dur-micro) var(--ease-smooth),
+                  transform var(--dur-micro) var(--ease-smooth);
+      flex-shrink: 0;
+    }
+    .nav-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      opacity: 0;
+      transform: translateX(-4px);
+      transition: opacity var(--dur-micro), transform var(--dur-micro) var(--ease-smooth),
+                  color var(--dur-micro) var(--ease-smooth);
+      white-space: nowrap;
+    }
+    .nav-item:hover .nav-dot, .nav-item.active .nav-dot {
+      background: var(--mauve);
+      transform: scale(1.5);
+    }
+    .nav-item:hover .nav-label, .nav-item.active .nav-label {
+      opacity: 1;
+      transform: translateX(0);
+      color: var(--mauve);
+    }
+
+    /* Sous ~1040px le contenu (720px centré) frôle la sidenav : on n'affiche
+       plus le label actif en permanence (le point mauve suffit), il reste au survol. */
+    @media (max-width: 1040px) {
+      .nav-item.active:not(:hover) .nav-label {
+        opacity: 0;
+        transform: translateX(-4px);
+      }
+    }
+
+    /* ---- Flèches navigation ---- */
+    #arrows {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      z-index: 100;
+    }
+    .arrow-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--taupe);
+      font-size: 1rem;
+      line-height: 1;
+      padding: 0.2rem;
+      transition: color var(--dur-micro) var(--ease-smooth),
+                  transform var(--dur-micro) var(--ease-smooth);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .arrow-btn:hover { color: var(--mauve); }
+    .arrow-btn:hover.up   { transform: translateY(-2px); }
+    .arrow-btn:hover.down { transform: translateY(2px); }
+    .arrow-btn:disabled { opacity: 0.2; cursor: default; }
+    .arrow-btn:disabled:hover { color: var(--taupe); transform: none; }
+
+    /* ---- Footer ---- */
+    #footer {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.8rem;
+      font-size: 0.72rem;
+      font-family: 'Outfit', sans-serif;
+      color: var(--taupe);
+      letter-spacing: 0.04em;
+      pointer-events: none;
+    }
+    #footer a {
+      pointer-events: auto;
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--dur-micro) var(--ease-smooth);
+    }
+    #footer a:hover { color: var(--mauve); }
+
+    /* ---- Easter egg : jeu Flux ---- */
+    #game-btn {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 40px;
+      height: 40px;
+      background: transparent;
+      border: none;
+      cursor: default;
+      z-index: 200;
+    }
+    #game-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--overlay);
+      backdrop-filter: blur(6px);
+      z-index: 300;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    #game-overlay.open { display: flex; }
+    #game-overlay h2 {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 1.4rem;
+      letter-spacing: 0.12em;
+      color: var(--text);
+    }
+    #game-overlay h2 span { color: var(--mauve); }
+    #game-canvas {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--mist);
+      width: min(640px, 92vw);
+      aspect-ratio: 16 / 9;
+      touch-action: none;
+      cursor: pointer;
+    }
+    #game-close {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.8rem;
+      color: var(--taupe);
+      background: none;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.06em;
+      transition: color var(--dur-micro) var(--ease-smooth);
+    }
+    #game-close:hover { color: var(--mauve); }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 600px) {
+      #arrows { display: none; }
+      /* Points de navigation à droite : indiquent qu'on peut glisser */
+      #sidenav { left: auto; right: 0.3rem; gap: 0; }
+      #sidenav .nav-label { display: none; }
+      #sidenav .nav-item { padding: 0.55rem; }
+
+      #contact {
+        height: 100vh;
+        height: 100dvh;
+        overflow-y: auto;
+        justify-content: flex-start;
+        padding: 3rem 2.4rem 3rem 1.4rem;
+        scrollbar-width: none;
+      }
+      #contact::-webkit-scrollbar { display: none; }
+      #contact .section-title { margin-bottom: 1.8rem; }
+      #contact form { margin-top: 2rem; }
+
+      .contact-item { flex-direction: column; gap: 0.2rem; padding: 0.9rem 0; }
+      .contact-label { min-width: unset; }
+
+      #home {
+        padding: 3rem 2.4rem 3rem 1.4rem;
+        justify-content: flex-start;
+        overflow-y: auto;
+        scrollbar-width: none;
+      }
+      #home::-webkit-scrollbar { display: none; }
+
+      #skills {
+        padding: 3rem 2.4rem 3rem 1.4rem;
+        overflow-y: auto;
+        justify-content: flex-start;
+        scrollbar-width: none;
+      }
+      #skills::-webkit-scrollbar { display: none; }
+
+      #projects { padding: 3rem 2.4rem 3rem 1.4rem; }
+
+      #footer { left: 1.2rem; right: auto; transition: opacity var(--dur-micro) var(--ease-smooth); }
+      /* Sur mobile, le pied de page ne s'affiche qu'à l'accueil et au contact (sinon il recouvre le texte) */
+      body:not([data-section="0"]):not([data-section="4"]) #footer { opacity: 0; pointer-events: none; }
+      body:not([data-section="0"]):not([data-section="4"]) #footer a { pointer-events: none; }
+    }
+
+    /* ---- Accessibilité : mouvement réduit ---- */
+    @media (prefers-reduced-motion: reduce) {
+      .js [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
+  </style>
+
+  <script defer src="/assets/site.js"></script>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="50c62680-6fe2-4654-82fd-813896edce5e"></script>
+</head>
+<body>
+  <div id="progress" aria-hidden="true"></div>
+  <canvas id="sweep" aria-hidden="true"></canvas>
+
+  <div id="wrapper">
+  <section id="landing">
+    <canvas id="curves" aria-hidden="true"></canvas>
+    <h1 aria-label="SWAKS">
+      <span class="s" data-reveal style="--i:0">S</span><span class="w" data-reveal style="--i:1">W</span><span class="a" data-reveal style="--i:2">A</span><span class="k" data-reveal style="--i:3">K</span><span class="s" data-reveal style="--i:4">S</span>
+    </h1>
+    <p id="tagline" data-reveal style="--i:5" data-i18n="tagline">Développeur · IA · Nantes</p>
+    <button id="acceder" data-reveal style="--i:6" data-i18n="enter">Accéder</button>
+  </section>
+
+  <section id="home" aria-label="Présentation" data-i18n-attr="aria-label:nav.about">
+    <h2 class="section-title" data-num="01" data-reveal style="--i:0" data-i18n="about.title">PRÉ<span class="hs">S</span>ENTATION</h2>
+    <p data-reveal style="--i:1" data-i18n="about.p1">Bienvenue.</p>
+    <p data-reveal style="--i:2" data-i18n="about.p2">Je me présente — je suis <span class="accent">Matthieu</span>, <span class="age">22</span> ans. Développeur informatique, je suis en Master en alternance jusqu'en 2028, après un Bachelor spécialisé en développement et <span class="accent">intelligence artificielle</span>.</p>
+    <p data-reveal style="--i:3" data-i18n="about.p3">Je construis des outils concrets : des bots qui tournent en production, des API Python, des logiciels desktop et des intégrations de modèles de langage. Ce qui m'intéresse, c'est rendre l'IA <span class="accent">utile</span> — automatiser, extraire, résumer — sans compliquer ce qui doit rester simple.</p>
+
+    <ol class="timeline" data-reveal style="--i:4">
+      <li class="now"><span data-i18n="tl.master">Master — en alternance</span><small data-i18n="tl.master.d">jusqu'en 2028</small></li>
+      <li><span data-i18n="tl.bachelor">Bachelor — développement &amp; IA</span></li>
+      <li><span data-i18n="tl.bts">BTS SIO — informatique</span><small data-i18n="tl.bts.d">Stage 2023 · intranet PHP / SQL, Redon</small></li>
+      <li><span data-i18n="tl.bac">Baccalauréat général</span><small>2022</small></li>
+    </ol>
+    <p class="langs" data-reveal style="--i:5" data-i18n="about.langs">Anglais B2 · Espagnol B1</p>
+  </section>
+
+  <section id="skills" aria-label="Compétences" data-i18n-attr="aria-label:nav.skills">
+    <h2 class="section-title" data-num="02" data-reveal style="--i:0" data-i18n="skills.title">COMPÉTENCE<span class="hs">S</span></h2>
+
+    <div class="skills-grid">
+      <div class="skills-group" data-reveal style="--i:1">
+        <h3 class="skills-group-label" data-i18n="skills.lang">Langages</h3>
+        <ul class="skills-list"><li>Python</li><li>Rust</li><li>TypeScript</li><li>JavaScript</li><li>HTML / CSS</li></ul>
+      </div>
+      <div class="skills-group" data-reveal style="--i:2">
+        <h3 class="skills-group-label" data-i18n="skills.back">Back-end</h3>
+        <ul class="skills-list"><li>FastAPI</li><li>Flask</li><li>Playwright</li><li>discord.py</li><li>yt-dlp</li></ul>
+      </div>
+      <div class="skills-group" data-reveal style="--i:3">
+        <h3 class="skills-group-label" data-i18n="skills.ai">IA</h3>
+        <ul class="skills-list"><li>Claude</li><li>ChatGPT</li><li>Gemini</li><li>spaCy</li></ul>
+      </div>
+      <div class="skills-group" data-reveal style="--i:4">
+        <h3 class="skills-group-label" data-i18n="skills.data">Données</h3>
+        <ul class="skills-list"><li>PostgreSQL</li><li>MySQL</li><li>HFSQL</li></ul>
+      </div>
+      <div class="skills-group" data-reveal style="--i:5">
+        <h3 class="skills-group-label" data-i18n="skills.desk">Desktop &amp; outils</h3>
+        <ul class="skills-list"><li>Tauri</li><li>Git</li><li>Docker</li><li>Linux</li></ul>
+      </div>
+      <div class="skills-group" data-reveal style="--i:6">
+        <h3 class="skills-group-label" data-i18n="skills.pcsoft">PC Soft</h3>
+        <ul class="skills-list"><li>WinDev</li><li>WebDev</li></ul>
+      </div>
+    </div>
+
+
+  </section>
+
+  <section id="projects" aria-label="Projets" data-i18n-attr="aria-label:nav.projects">
+    <h2 class="section-title" data-num="03" data-reveal style="--i:0" data-i18n="projects.title">PROJET<span class="hs">S</span></h2>
+
+    <div class="card" data-reveal style="--i:1">
+      <button class="card-header" type="button" aria-expanded="false">
+        <div>
+          <div class="card-title">Kleaner</div>
+          <div class="card-tag" data-i18n="kl.tag">Logiciel Windows · Rust · Open source</div>
+          <span class="gh-stats" data-gh="Swaksm/Kleaner" data-gh-releases></span>
+        </div>
+        <span class="card-arrow" aria-hidden="true">+</span>
+      </button>
+      <div class="card-body">
+        <div class="card-body-inner">
+          <img class="card-shot" src="/img/kleaner.webp" data-tilt alt="Kleaner — les plus gros fichiers, chacun avec son verdict" data-i18n-attr="alt:kl.alt" width="1280" height="800" loading="lazy" decoding="async" />
+          <p data-i18n="kl.desc">Nettoyeur de disque Windows gratuit qui explique avant de supprimer : chaque gros fichier reçoit un verdict (sûr, à désinstaller, casse quelque chose, inconnu…) basé sur 108 règles écrites à la main — jamais de devinette. Suppression définitive limitée à une liste publique de caches, vérifiée en Rust et testée. Connaît les machines de dev, de jeu et d'IA (node_modules, .venv, Docker, modèles Ollama / Hugging Face). Aucune télémétrie, exe portable.</p>
+          <div class="card-meta">
+            <span class="card-chip">Rust</span>
+            <span class="card-chip">Tauri</span>
+            <span class="card-chip">MIT</span>
+          </div>
+          <div class="card-links">
+            <a class="primary" href="/fr/projects/kleaner.html" data-localize="href" data-i18n="ui.more">Voir plus →</a>
+            <a class="secondary" href="https://github.com/Swaksm/Kleaner/releases" target="_blank" rel="noopener" data-i18n="kl.dl">Télécharger ↗</a>
+            <a class="secondary" href="https://github.com/Swaksm/Kleaner" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-reveal style="--i:2">
+      <button class="card-header" type="button" aria-expanded="false">
+        <div>
+          <div class="card-title">Lion Meme</div>
+          <div class="card-tag" data-i18n="lm.tag">Web · Humour · Générateur</div>
+          <span class="gh-stats" data-gh="Swaksm/tucroisquetesunlion"></span>
+        </div>
+        <span class="card-arrow" aria-hidden="true">+</span>
+      </button>
+      <div class="card-body">
+        <div class="card-body-inner">
+          <img class="card-shot" src="/img/lion.webp" data-tilt alt="Lion Meme — le générateur de memes" data-i18n-attr="alt:lm.alt" width="1280" height="800" loading="lazy" decoding="async" />
+          <p data-i18n="lm.desc">Générateur de memes lion gratuit. Joue sur le contraste entre l'image que l'on veut projeter et la réalité — une photo de lion majestueux, et en dessous, une réalité plus cocasse. Création en quelques clics.</p>
+          <div class="card-meta">
+            <span class="card-chip">TypeScript</span>
+          </div>
+          <div class="card-links">
+            <a class="primary" href="/fr/projects/lion-meme.html" data-localize="href" data-i18n="ui.more">Voir plus →</a>
+            <a class="secondary" href="https://lion-meme.com" target="_blank" rel="noopener" data-i18n="lm.visit">Voir le site ↗</a>
+            <a class="secondary" href="https://github.com/Swaksm/tucroisquetesunlion" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-reveal style="--i:3">
+      <button class="card-header" type="button" aria-expanded="false">
+        <div>
+          <div class="card-title">CordeSortie</div>
+          <div class="card-tag" data-i18n="cs.tag">Bot Discord · Scraping · Playwright</div>
+          <span class="gh-stats" data-gh="Swaksm/CordeSortie"></span>
+        </div>
+        <span class="card-arrow" aria-hidden="true">+</span>
+      </button>
+      <div class="card-body">
+        <div class="card-body-inner">
+          <p data-i18n="cs.desc">Bot Discord de veille sur 9 sites marchands français (Carrefour, Auchan, Leclerc, JouéClub...) pour repérer les items Pokémon en stock. Filtres créés via un formulaire interactif (aucune syntaxe à taper), alertes en temps quasi réel dans des salons dédiés, anti-détection (intervalle jitté, backoff, plancher dur). Tourne en production sur un Raspberry Pi.</p>
+          <div class="card-meta">
+            <span class="card-chip">Python</span>
+            <span class="card-chip">Playwright</span>
+            <span class="card-chip">discord.py</span>
+          </div>
+          <div class="card-links">
+            <a class="primary" href="/fr/projects/cordesortie.html" data-localize="href" data-i18n="ui.more">Voir plus →</a>
+            <a class="secondary" href="https://github.com/Swaksm/CordeSortie" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-reveal style="--i:4">
+      <button class="card-header" type="button" aria-expanded="false">
+        <div>
+          <div class="card-title">Video Grabber</div>
+          <div class="card-tag" data-i18n="vg.tag">Outil · Téléchargement · Playwright</div>
+          <span class="gh-stats" data-gh="Swaksm/Video-DWNLDR" data-gh-releases></span>
+        </div>
+        <span class="card-arrow" aria-hidden="true">+</span>
+      </button>
+      <div class="card-body">
+        <div class="card-body-inner">
+          <p data-i18n="vg.desc">Colle l'URL d'une page : l'outil détecte ses vidéos, tu choisis, il télécharge. Gère cookies, Referer et jetons temporaires en téléchargeant depuis la session du navigateur. Formats classiques et flux HLS / DASH. Disponible en application graphique, en ligne de commande et en extension Chrome.</p>
+          <div class="card-meta">
+            <span class="card-chip">Python</span>
+            <span class="card-chip">Playwright</span>
+            <span class="card-chip">yt-dlp</span>
+          </div>
+          <div class="card-links">
+            <a class="primary" href="/fr/projects/video-grabber.html" data-localize="href" data-i18n="ui.more">Voir plus →</a>
+            <a class="secondary" href="https://github.com/Swaksm/Video-DWNLDR/releases" target="_blank" rel="noopener" data-i18n="vg.dl">Télécharger ↗</a>
+            <a class="secondary" href="https://github.com/Swaksm/Video-DWNLDR" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="contact" aria-label="Contact">
+    <h2 class="section-title" data-num="04" data-reveal style="--i:0">CONTACT<span class="hs">S</span></h2>
+    <div class="contact-item" data-reveal style="--i:1">
+      <span class="contact-label">Email</span>
+      <span class="contact-value"><button class="copy-email" type="button" data-copy="swks.pro@gmail.com">swks.pro@gmail.com<span class="copy-hint" data-i18n="ui.copy">copier</span></button></span>
+    </div>
+    <div class="contact-item" data-reveal style="--i:2">
+      <span class="contact-label" data-i18n="contact.loc">Localisation</span>
+      <span class="contact-value">Nantes, France</span>
+    </div>
+
+    <form id="contact-form" data-reveal style="--i:3" novalidate>
+      <div class="field">
+        <input type="text" name="name" placeholder="Nom" aria-label="Nom" autocomplete="name" data-i18n-attr="aria-label:form.name;placeholder:form.name" />
+        <span class="field-error"></span>
+      </div>
+      <div class="field">
+        <input type="email" name="email" placeholder="Email" aria-label="Email" autocomplete="email" />
+        <span class="field-error"></span>
+      </div>
+      <div class="field">
+        <textarea name="message" placeholder="Message" aria-label="Message"></textarea>
+        <span class="field-error"></span>
+      </div>
+      <!-- Piège anti-spam : invisible pour les humains, rempli par les robots (rejeté par Formspree) -->
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
+      <button type="submit" id="submit-btn" data-i18n="form.send">Envoyer →</button>
+    </form>
+
+    <script>
+      const form = document.getElementById('contact-form');
+
+      function setError(input, msg) {
+        input.classList.add('invalid');
+        const err = input.closest('.field').querySelector('.field-error');
+        err.textContent = msg;
+        err.classList.add('visible');
+      }
+
+      function clearError(input) {
+        input.classList.remove('invalid');
+        const err = input.closest('.field').querySelector('.field-error');
+        err.classList.remove('visible');
+      }
+
+      // Efface l'erreur dès que l'utilisateur retape
+      form.querySelectorAll('input, textarea').forEach(el => {
+        el.addEventListener('input', () => clearError(el));
+      });
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('submit-btn');
+
+        const name    = form.querySelector('[name="name"]');
+        const email   = form.querySelector('[name="email"]');
+        const message = form.querySelector('[name="message"]');
+        const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        let valid = true;
+
+        if (!name.value.trim())              { setError(name, t('err.name'));                  valid = false; }
+        if (!email.value.trim())             { setError(email, t('err.email'));                valid = false; }
+        else if (!emailRe.test(email.value)) { setError(email, t('err.emailInvalid'));         valid = false; }
+        if (!message.value.trim())           { setError(message, t('err.message'));            valid = false; }
+        if (!valid) return;
+
+        btn.textContent = t('form.sending');
+        btn.disabled = true;
+
+        let res = null;
+        try {
+          res = await fetch('https://formspree.io/f/mojzlrke', {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: new FormData(form),
+          });
+        } catch (err) { /* réseau indisponible : traité comme une erreur */ }
+
+        if (res && res.ok) {
+          btn.textContent = t('form.sent');
+          form.reset();
+        } else {
+          btn.textContent = t('form.error');
+          btn.disabled = false;
+        }
+      });
+    </script>
+  </section>
+
+  </div>
+
+<div id="socials">
+  <a id="lang-toggle" href="/" lang="en" hreflang="en" aria-label="Switch to English">EN</a>
+  <button id="theme-toggle" class="stroke" type="button" aria-label="Changer de thème" title="Thème" data-i18n-attr="title:theme.title;aria-label:theme">
+    <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  </button>
+  <button id="palette-btn" class="stroke" type="button" aria-label="Palette de commandes" title="Rechercher (Ctrl+K)" data-i18n-attr="aria-label:ui.palette;title:ui.paletteHint">
+    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+  </button>
+  <a href="https://github.com/Swaksm" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+  </a>
+  <a href="https://www.linkedin.com/in/matthieu-izac-257758292/" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+  </a>
+  <!-- <a href="https://www.instagram.com/matt.iz/" target="_blank" rel="noopener" title="Instagram">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+  </a> -->
+</div>
+
+<div id="arrows">
+  <button class="arrow-btn up"   id="arrow-up"   aria-label="Section précédente" data-i18n-attr="aria-label:prev">↑</button>
+  <button class="arrow-btn down" id="arrow-down" aria-label="Section suivante" data-i18n-attr="aria-label:next">↓</button>
+</div>
+
+<nav id="sidenav" aria-label="Navigation des sections" data-i18n-attr="aria-label:nav.label">
+  <a class="nav-item" data-index="1" href="#presentation"><span class="nav-dot"></span><span class="nav-label" data-i18n="nav.about">Présentation</span></a>
+  <a class="nav-item" data-index="2" href="#competences"><span class="nav-dot"></span><span class="nav-label" data-i18n="nav.skills">Compétences</span></a>
+  <a class="nav-item" data-index="3" href="#projets"><span class="nav-dot"></span><span class="nav-label" data-i18n="nav.projects">Projets</span></a>
+  <a class="nav-item" data-index="4" href="#contact"><span class="nav-dot"></span><span class="nav-label">Contact</span></a>
+</nav>
+
+<div id="footer"><span data-i18n="footer">© swaks — Tous droits réservés</span> · <a href="/mentions-legales.html" data-i18n="legal">Mentions légales</a></div>
+
+  <script>
+    /* =========================================================
+     *  Moteur de navigation + courbes + micro-interactions
+     * ========================================================= */
+    (() => {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* ---------- Courbes animées (landing) ---------- */
+      const curves = (() => {
+        const cv = document.getElementById('curves');
+        const ctx = cv.getContext('2d');
+        let w = 0, h = 0, t = 0, raf = null;
+        const ptr = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5 };
+        const waves = [
+          { yoff: -0.12, amp: 30, freq: 2.4, speed: 0.012, phase: 0.0, width: 1.4, color: 'rgba(200,138,187,0.22)', par: 22, parx: 8 },
+          { yoff:  0.00, amp: 46, freq: 1.6, speed: 0.008, phase: 1.4, width: 1.6, color: 'rgba(199,192,168,0.32)', par: 34, parx: 12 },
+          { yoff:  0.12, amp: 26, freq: 3.0, speed: 0.016, phase: 2.6, width: 1.2, color: 'rgba(200,138,187,0.16)', par: 16, parx: 6 },
+          { yoff: -0.05, amp: 40, freq: 1.2, speed: 0.006, phase: 3.4, width: 1.2, color: 'rgba(199,192,168,0.20)', par: 28, parx: 10 },
+        ];
+
+        function size() {
+          const r = cv.getBoundingClientRect();
+          const dpr = Math.min(window.devicePixelRatio || 1, 2);
+          w = r.width; h = r.height;
+          cv.width = w * dpr; cv.height = h * dpr;
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+
+        function render() {
+          ptr.x += (ptr.tx - ptr.x) * 0.05;
+          ptr.y += (ptr.ty - ptr.y) * 0.05;
+          ctx.clearRect(0, 0, w, h);
+          const cy = h / 2;
+          for (const wv of waves) {
+            ctx.beginPath();
+            ctx.lineWidth = wv.width;
+            ctx.strokeStyle = wv.color;
+            for (let x = 0; x <= w; x += 6) {
+              const u = x / w;
+              const y = cy + wv.yoff * h
+                + Math.sin(u * Math.PI * wv.freq + t * wv.speed + wv.phase) * wv.amp
+                + Math.sin(u * Math.PI * wv.freq * 0.5 - t * wv.speed * 0.6) * wv.amp * 0.35
+                + (ptr.y - 0.5) * wv.par + (ptr.x - 0.5) * wv.parx;
+              x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+          }
+        }
+
+        function loop() { t += 1; render(); raf = requestAnimationFrame(loop); }
+
+        function start() {
+          if (reduce) { size(); render(); cv.classList.add('ready'); return; }
+          if (raf) return;
+          size();
+          cv.classList.add('ready');
+          raf = requestAnimationFrame(loop);
+        }
+        function stop() { if (raf) { cancelAnimationFrame(raf); raf = null; } }
+
+        window.addEventListener('resize', () => { size(); if (reduce || !raf) render(); });
+        window.addEventListener('pointermove', (e) => {
+          ptr.tx = e.clientX / window.innerWidth;
+          ptr.ty = e.clientY / window.innerHeight;
+        });
+
+        return { toggle: (on) => (on ? start() : stop()) };
+      })();
+
+      /* ---------- Navigation entre sections ---------- */
+      const wrapper   = document.getElementById('wrapper');
+      const sections  = Array.from(wrapper.querySelectorAll('section'));
+      const hashes    = ['', 'presentation', 'competences', 'projets', 'contact'];
+      const sidenav   = document.getElementById('sidenav');
+      const navItems  = Array.from(document.querySelectorAll('.nav-item'));
+      const arrowUp   = document.getElementById('arrow-up');
+      const arrowDown = document.getElementById('arrow-down');
+      // Une section dont le contenu dépasse défile d'abord, puis passe à la suivante
+      const scrollable = (el) => (el.scrollHeight > el.clientHeight + 1 ? el : null);
+      const edges = (el) => ({
+        top: el.scrollTop <= 0,
+        bottom: el.scrollTop + el.clientHeight >= el.scrollHeight - 1,
+      });
+
+      // Le mini-jeu (#game-overlay) est défini plus bas dans le DOM que ce script :
+      // on interroge donc son état paresseusement, au moment de l'événement.
+      const isGameOpen = () => {
+        const o = document.getElementById('game-overlay');
+        return (!!o && o.classList.contains('open')) || document.documentElement.classList.contains('palette-open');
+      };
+
+      const progress = document.getElementById('progress');
+
+      /* ---------- Vague de transition entre sections ---------- */
+      const sweep = (() => {
+        const cv = document.getElementById('sweep');
+        const ctx = cv.getContext('2d');
+        let raf = null;
+        function size() {
+          const dpr = Math.min(window.devicePixelRatio || 1, 2);
+          cv.width = innerWidth * dpr; cv.height = innerHeight * dpr;
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+        size();
+        window.addEventListener('resize', size);
+        return (dir) => {
+          if (reduce) return;
+          cancelAnimationFrame(raf);
+          const cs = getComputedStyle(document.documentElement);
+          const mauve = cs.getPropertyValue('--mauve').trim(), taupe = cs.getPropertyValue('--taupe').trim();
+          const waves = [
+            { off: -50, amp: 34, freq: 1.6, col: mauve, w: 1.4 },
+            { off:   0, amp: 48, freq: 1.1, col: taupe, w: 1.6 },
+            { off:  55, amp: 28, freq: 2.2, col: mauve, w: 1.1 },
+          ];
+          const t0 = performance.now(), D = 1000;
+          const frame = (now) => {
+            const p = Math.min((now - t0) / D, 1);
+            const e = 1 - Math.pow(1 - p, 3);
+            const w = innerWidth, h = innerHeight;
+            // La vague traverse l'écran dans le sens du déplacement
+            const base = dir > 0 ? h * 1.15 - e * h * 1.3 : -h * 0.15 + e * h * 1.3;
+            ctx.clearRect(0, 0, w, h);
+            ctx.globalAlpha = Math.sin(p * Math.PI) * 0.55;
+            waves.forEach((wv, k) => {
+              ctx.beginPath();
+              ctx.lineWidth = wv.w;
+              ctx.strokeStyle = wv.col;
+              for (let x = 0; x <= w; x += 8) {
+                const y = base + wv.off + Math.sin((x / w) * Math.PI * wv.freq + p * 3 + k) * wv.amp;
+                x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+              }
+              ctx.stroke();
+            });
+            ctx.globalAlpha = 1;
+            if (p < 1) raf = requestAnimationFrame(frame);
+            else ctx.clearRect(0, 0, w, h);
+          };
+          raf = requestAnimationFrame(frame);
+        };
+      })();
+
+      let offsets = [];
+      let current = 0;
+      let animating = false;
+      let cooldown = false;
+
+      const easeOutExpo = (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
+      const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
+
+      function measure() {
+        offsets = sections.map((s) => s.offsetTop);
+        wrapper.style.transform = `translateY(${-offsets[current]}px)`;
+      }
+
+      function setActive(idx) {
+        sections.forEach((s, i) => s.classList.toggle('is-active', i === idx));
+        sidenav.classList.toggle('visible', idx !== 0);
+        navItems.forEach((item) => {
+          const on = parseInt(item.dataset.index, 10) === idx;
+          item.classList.toggle('active', on);
+          if (on) item.setAttribute('aria-current', 'true');
+          else item.removeAttribute('aria-current');
+        });
+        arrowUp.disabled = idx === 0;
+        arrowDown.disabled = idx === sections.length - 1;
+        curves.toggle(idx === 0);
+        progress.style.width = (idx / (sections.length - 1)) * 100 + '%';
+        document.body.dataset.section = idx;
+      }
+
+      function syncHash(idx, push) {
+        const url = hashes[idx] ? `#${hashes[idx]}` : location.pathname + location.search;
+        const state = { idx };
+        try {
+          if (push) history.pushState(state, '', url);
+          else history.replaceState(state, '', url);
+        } catch (e) { /* contexte sans historique (aperçu, iframe sandbox) */ }
+      }
+
+      function goTo(idx, push = true) {
+        idx = clamp(idx, 0, sections.length - 1);
+        if (idx === current) { setActive(idx); return; }
+        if (animating) return;
+
+        const from = -offsets[current];
+        const to = -offsets[idx];
+        sweep(idx > current ? 1 : -1);
+        current = idx;
+        setActive(idx);
+        syncHash(idx, push);
+
+        if (reduce) { wrapper.style.transform = `translateY(${to}px)`; return; }
+
+        animating = true;
+        const dist = to - from;
+        const duration = 850;
+        let startTime = null;
+
+        function step(ts) {
+          if (startTime === null) startTime = ts;
+          const p = Math.min((ts - startTime) / duration, 1);
+          wrapper.style.transform = `translateY(${from + dist * easeOutExpo(p)}px)`;
+          if (p < 1) {
+            requestAnimationFrame(step);
+          } else {
+            animating = false;
+            cooldown = true;
+            setTimeout(() => { cooldown = false; }, 90);
+          }
+        }
+        requestAnimationFrame(step);
+      }
+
+      /* ---------- Cartes projets (bouton accessible, sans interférer avec les liens) ---------- */
+      document.querySelectorAll('.card').forEach((card) => {
+        const head = card.querySelector('.card-header');
+        card.addEventListener('click', (e) => {
+          if (e.target.closest('a')) return;
+          const open = card.classList.toggle('open');
+          head.setAttribute('aria-expanded', String(open));
+        });
+      });
+
+      /* ---------- Sidenav / flèches / Accéder ---------- */
+      navItems.forEach((item) => {
+        item.addEventListener('click', (e) => { e.preventDefault(); goTo(parseInt(item.dataset.index, 10)); });
+      });
+      arrowUp.addEventListener('click', () => goTo(current - 1));
+      arrowDown.addEventListener('click', () => goTo(current + 1));
+      document.getElementById('acceder').addEventListener('click', () => goTo(1));
+
+      /* ---------- Molette ---------- */
+      window.addEventListener('wheel', (e) => {
+        if (isGameOpen()) return;
+        if (animating) { e.preventDefault(); return; }
+
+        const sc = scrollable(sections[current]);
+        if (sc) {
+          const { top, bottom } = edges(sc);
+          if (e.deltaY < 0 && top)         { e.preventDefault(); if (!cooldown) goTo(current - 1); }
+          else if (e.deltaY > 0 && bottom) { e.preventDefault(); if (!cooldown) goTo(current + 1); }
+          return; // sinon : scroll natif interne
+        }
+
+        e.preventDefault();
+        if (cooldown) return;
+        if (e.deltaY > 0) goTo(current + 1);
+        else if (e.deltaY < 0) goTo(current - 1);
+      }, { passive: false });
+
+      /* ---------- Clavier ---------- */
+      window.addEventListener('keydown', (e) => {
+        if (isGameOpen()) return;
+        const tag = (document.activeElement && document.activeElement.tagName) || '';
+        if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+
+        let handled = true;
+        switch (e.key) {
+          case 'ArrowDown': case 'PageDown': goTo(current + 1); break;
+          case 'ArrowUp':   case 'PageUp':   goTo(current - 1); break;
+          case 'Home': goTo(0); break;
+          case 'End':  goTo(sections.length - 1); break;
+          default:
+            if (e.key >= '1' && e.key <= '5') goTo(parseInt(e.key, 10) - 1);
+            else handled = false;
+        }
+        if (handled) e.preventDefault();
+      });
+
+      /* ---------- Tactile ---------- */
+      let touchStartY = null;
+      let touchEdges = null; // bords atteints AU DÉBUT du geste (sinon un seul swipe ferait défiler + changer)
+      window.addEventListener('touchstart', (e) => {
+        touchStartY = e.touches[0].clientY;
+        const sc = scrollable(sections[current]);
+        touchEdges = sc ? edges(sc) : null;
+      }, { passive: true });
+      window.addEventListener('touchend', (e) => {
+        if (touchStartY === null) return;
+        if (isGameOpen()) { touchStartY = null; return; }
+        const delta = touchStartY - e.changedTouches[0].clientY;
+        touchStartY = null;
+        if (animating || cooldown || Math.abs(delta) < 40) return;
+
+        if (touchEdges) {
+          if (delta < 0 && touchEdges.top)         goTo(current - 1);
+          else if (delta > 0 && touchEdges.bottom) goTo(current + 1);
+          return;
+        }
+        if (delta > 0) goTo(current + 1);
+        else           goTo(current - 1);
+      }, { passive: true });
+
+      /* ---------- Magnétisme du bouton Accéder ---------- */
+      const acc = document.getElementById('acceder');
+      if (!reduce) {
+        acc.addEventListener('pointermove', (e) => {
+          const r = acc.getBoundingClientRect();
+          const mx = e.clientX - (r.left + r.width / 2);
+          const my = e.clientY - (r.top + r.height / 2);
+          acc.style.transform = `translate(${mx * 0.25}px, ${my * 0.35}px)`;
+        });
+        acc.addEventListener('pointerleave', () => { acc.style.transform = ''; });
+      }
+
+      /* ---------- SWAKS : effet « décodage » au survol ---------- */
+      const bigTitle = document.querySelector('#landing h1');
+      if (!reduce && bigTitle) {
+        const letters = Array.from(bigTitle.querySelectorAll('span'));
+        const glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#%&*+=<>/';
+        let decoding = false;
+        bigTitle.addEventListener('pointerenter', () => {
+          if (decoding) return;
+          decoding = true;
+          const finals = letters.map((l) => l.textContent);
+          // Largeur figée pendant l'effet : pas de saut de mise en page
+          letters.forEach((l) => { l.style.width = l.getBoundingClientRect().width + 'px'; l.style.textAlign = 'center'; });
+          const start = performance.now();
+          const frame = () => {
+            const t = performance.now() - start;
+            let done = true;
+            letters.forEach((l, i) => {
+              if (t < 260 + i * 90) { done = false; l.textContent = glyphs[(Math.random() * glyphs.length) | 0]; }
+              else l.textContent = finals[i];
+            });
+            if (!done) setTimeout(frame, 45);
+            else {
+              letters.forEach((l) => { l.style.width = ''; l.style.textAlign = ''; });
+              decoding = false;
+            }
+          };
+          frame();
+        });
+      }
+
+      /* ---------- Focus clavier (Tab) : amène la section de l'élément focalisé ---------- */
+      // Le navigateur tente de faire défiler la page vers l'élément : on l'annule,
+      // c'est le moteur de sections qui gère la position.
+      const resetPageScroll = () => {
+        if (document.documentElement.scrollTop || document.body.scrollTop) {
+          document.documentElement.scrollTop = 0;
+          document.body.scrollTop = 0;
+        }
+      };
+      window.addEventListener('scroll', resetPageScroll);
+      document.addEventListener('focusin', (e) => {
+        resetPageScroll();
+        const sec = e.target.closest && e.target.closest('#wrapper > section');
+        if (!sec) return;
+        const idx = sections.indexOf(sec);
+        if (idx !== -1 && idx !== current) goTo(idx);
+      });
+
+      /* ---------- Resize / historique ---------- */
+      window.addEventListener('resize', measure);
+      window.addEventListener('popstate', (e) => {
+        const idx = (e.state && typeof e.state.idx === 'number')
+          ? e.state.idx
+          : hashes.indexOf(location.hash.replace('#', ''));
+        if (idx >= 0 && idx !== current) goTo(idx, false);
+      });
+
+      // Utilisé par la palette de commandes (assets/site.js)
+      window.swaksGoTo = goTo;
+
+      // Âge à jour (le HTML contient l'âge au moment du build)
+      const birth = new Date(2004, 3, 2), today = new Date();
+      let age = today.getFullYear() - birth.getFullYear();
+      if (today < new Date(today.getFullYear(), birth.getMonth(), birth.getDate())) age--;
+      document.querySelectorAll('.age').forEach((el) => { el.textContent = age; });
+
+      /* ---------- Init (lien profond + premier reveal) ---------- */
+      const startIdx = Math.max(0, hashes.indexOf(location.hash.replace('#', '')));
+      current = startIdx;
+      measure();
+      // Recalcule les offsets une fois la mise en page stabilisée (polices chargées)
+      window.addEventListener('load', measure);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+      syncHash(current, false);
+      // Force un reflow pour que la transition d'entrée joue, sans dépendre du rAF
+      // (le contenu reste visible même si le rAF est throttlé / onglet en arrière-plan)
+      void wrapper.offsetWidth;
+      setActive(current);
+    })();
+  </script>
+
+  <!-- Easter egg : bouton invisible coin haut-gauche -->
+  <button id="game-btn" aria-label="secret" title=""></button>
+
+  <div id="game-overlay">
+    <h2>SWAK<span>S</span> · FLUX</h2>
+    <canvas id="game-canvas" aria-label="Jeu Flux" role="img" data-i18n-attr="aria-label:game.label"></canvas>
+    <button id="game-close" data-i18n="game.close">fermer ✕</button>
+  </div>
+
+  <script>
+    /* =========================================================
+     *  Easter egg — FLUX
+     *  Maintenir pour faire planer une particule dans un courant
+     *  sinueux (clin d'œil aux courbes du landing). Rester dans le
+     *  chenal, attraper les motes ; le chenal se resserre avec la
+     *  distance. Un seul input : clic / espace / tap maintenu.
+     * ========================================================= */
+    (function () {
+      const btn      = document.getElementById('game-btn');
+      const overlay  = document.getElementById('game-overlay');
+      const closeBtn = document.getElementById('game-close');
+      const canvas   = document.getElementById('game-canvas');
+      const ctx      = canvas.getContext('2d');
+
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Espace logique fixe (16/9) ; le canvas est mis à l'échelle via CSS + DPR.
+      const W = 640, H = 360, MID = H / 2, PLAYER_SX = W * 0.30;
+      let C = {};
+      function readColors() {
+        const cs = getComputedStyle(document.documentElement);
+        const v = (n) => cs.getPropertyValue(n).trim();
+        C = { bg: v('--mist'), wall: v('--taupe'), ghost: 'rgba(200,138,187,0.20)',
+              accent: v('--mauve'), ink: v('--text'), muted: v('--muted') };
+      }
+      const BEST_KEY = 'swaks-flux-best';
+
+      let g, raf = null, holding = false, last = 0;
+      let best = 0;
+      try { best = parseInt(localStorage.getItem(BEST_KEY) || '0', 10) || 0; } catch (e) {}
+
+      function size() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = W * dpr;
+        canvas.height = H * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      // Centre du chenal en coordonnée monde : somme de sinus = courant organique.
+      function center(wx, t) {
+        return MID
+          + 64 * Math.sin(wx * 0.0090 + t * 0.7)
+          + 28 * Math.sin(wx * 0.0205 + t * 1.1 + 1.3);
+      }
+      // Demi-largeur du chenal : se resserre avec la distance.
+      function halfAt(wx) { return Math.max(34, 84 - wx * 0.0016); }
+
+      const playerWX = () => g.worldX + PLAYER_SX;
+
+      function pushMote(wx) {
+        g.motes.push({ wx, off: (Math.random() * 2 - 1) * halfAt(wx) * 0.55, got: false });
+      }
+
+      function initGame() {
+        g = { state: 'idle', t: 0, worldX: 0, speed: 2.6, y: MID, vy: 0,
+              trail: [], motes: [], parts: [], score: 0, combo: 0,
+              collected: 0, shake: 0, nextMote: 240 };
+        for (let wx = 360; wx < 360 + W; wx += 200 + Math.random() * 120) pushMote(wx);
+      }
+
+      function burst(x, y, n, col) {
+        if (reduce) n = Math.min(n, 4);
+        for (let i = 0; i < n; i++) {
+          const a = Math.random() * Math.PI * 2, s = 0.6 + Math.random() * 2.6;
+          g.parts.push({ x, y, vx: Math.cos(a) * s, vy: Math.sin(a) * s, life: 1, col: col || C.accent });
+        }
+      }
+
+      function start() {
+        if (g.state === 'run') return;
+        initGame();
+        g.y = center(playerWX(), g.t); // spawn au centre du chenal
+        g.vy = 0;
+        holding = false;               // l'appui de démarrage n'applique pas de portance
+        g.state = 'run';
+      }
+
+      function die() {
+        g.state = 'over';
+        g.combo = 0;
+        if (!reduce) g.shake = 1;
+        burst(PLAYER_SX, g.y, 26, C.accent);
+        if (g.score > best) { best = g.score; try { localStorage.setItem(BEST_KEY, String(best)); } catch (e) {} }
+      }
+
+      function step(dt) {
+        g.t += dt / 60;
+        if (g.state !== 'run') return;
+
+        g.speed = Math.min(6.2, 2.6 + g.worldX * 0.00018);
+        g.worldX += g.speed * dt;
+
+        // physique 1-bouton : gravité + portance
+        g.vy += (holding ? -0.62 : 0.46) * dt;
+        g.vy = Math.max(-7, Math.min(7, g.vy));
+        g.y += g.vy * dt;
+
+        g.trail.push(g.y);
+        if (g.trail.length > 26) g.trail.shift();
+
+        g.score = Math.floor(g.worldX / 12) + g.collected * 25;
+
+        // motes : spawn devant + collecte
+        if (g.worldX + W > g.nextMote) {
+          pushMote(g.nextMote + W);
+          g.nextMote += 200 + Math.random() * 130;
+        }
+        const pwx = playerWX();
+        for (const m of g.motes) {
+          if (m.got) continue;
+          const my = center(m.wx, g.t) + m.off;
+          if (Math.abs(m.wx - pwx) < 14 && Math.abs(my - g.y) < 16) {
+            m.got = true; g.collected++; g.combo++;
+            g.score += g.combo * 5;
+            burst(PLAYER_SX, g.y, 9, C.accent);
+          }
+        }
+        g.motes = g.motes.filter(m => m.wx - g.worldX > -40);
+
+        // collision : sortie du chenal
+        const cy = center(pwx, g.t);
+        if (Math.abs(g.y - cy) > halfAt(pwx) || g.y < 6 || g.y > H - 6) die();
+
+        for (const p of g.parts) { p.x += p.vx * dt; p.y += p.vy * dt; p.vy += 0.04 * dt; p.life -= 0.02 * dt; }
+        g.parts = g.parts.filter(p => p.life > 0);
+        if (g.shake > 0) g.shake = Math.max(0, g.shake - 0.06 * dt);
+      }
+
+      function draw() {
+        ctx.save();
+        if (g.shake > 0 && !reduce) {
+          ctx.translate((Math.random() * 2 - 1) * 6 * g.shake, (Math.random() * 2 - 1) * 6 * g.shake);
+        }
+
+        ctx.fillStyle = C.bg;
+        ctx.fillRect(-12, -12, W + 24, H + 24);
+
+        const hw = halfAt(playerWX());
+
+        // parois haut/bas — traits qui coulent
+        for (let pass = 0; pass < 2; pass++) {
+          ctx.beginPath();
+          for (let x = 0; x <= W; x += 8) {
+            const cy = center(g.worldX + x, g.t);
+            const y = pass === 0 ? cy - halfAt(g.worldX + x) : cy + halfAt(g.worldX + x);
+            x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+          }
+          ctx.strokeStyle = C.wall; ctx.lineWidth = 1.5; ctx.stroke();
+        }
+        // ligne médiane fantôme (mauve très léger)
+        ctx.beginPath();
+        for (let x = 0; x <= W; x += 10) {
+          const cy = center(g.worldX + x, g.t);
+          x === 0 ? ctx.moveTo(x, cy) : ctx.lineTo(x, cy);
+        }
+        ctx.strokeStyle = C.ghost; ctx.lineWidth = 1; ctx.stroke();
+
+        // motes
+        for (const m of g.motes) {
+          if (m.got) continue;
+          const mx = m.wx - g.worldX;
+          if (mx < -10 || mx > W + 10) continue;
+          const my = center(m.wx, g.t) + m.off;
+          ctx.beginPath(); ctx.arc(mx, my, 3.4, 0, Math.PI * 2);
+          ctx.fillStyle = C.accent; ctx.fill();
+          ctx.beginPath(); ctx.arc(mx, my, 6.5, 0, Math.PI * 2);
+          ctx.strokeStyle = 'rgba(200,138,187,0.35)'; ctx.lineWidth = 1; ctx.stroke();
+        }
+
+        // traînée du joueur
+        if (g.trail.length > 1) {
+          ctx.beginPath();
+          for (let i = 0; i < g.trail.length; i++) {
+            const x = PLAYER_SX - (g.trail.length - 1 - i) * 3.2;
+            i === 0 ? ctx.moveTo(x, g.trail[i]) : ctx.lineTo(x, g.trail[i]);
+          }
+          ctx.strokeStyle = 'rgba(200,138,187,0.45)'; ctx.lineWidth = 2; ctx.stroke();
+        }
+
+        // particules
+        for (const p of g.parts) {
+          ctx.globalAlpha = Math.max(0, p.life);
+          ctx.fillStyle = p.col;
+          ctx.fillRect(p.x - 1.5, p.y - 1.5, 3, 3);
+        }
+        ctx.globalAlpha = 1;
+
+        // joueur
+        if (!reduce) { ctx.shadowColor = C.accent; ctx.shadowBlur = 12; }
+        ctx.beginPath(); ctx.arc(PLAYER_SX, g.y, 6, 0, Math.PI * 2);
+        ctx.fillStyle = C.accent; ctx.fill();
+        ctx.shadowBlur = 0;
+
+        // HUD
+        ctx.fillStyle = C.muted;
+        ctx.font = '700 14px Outfit, sans-serif';
+        ctx.textAlign = 'right';
+        ctx.fillText(String(g.score).padStart(5, '0'), W - 16, 26);
+        ctx.textAlign = 'left';
+        ctx.fillText('BEST ' + String(best).padStart(5, '0'), 16, 26);
+        if (g.combo > 1 && g.state === 'run') {
+          ctx.fillStyle = C.accent; ctx.textAlign = 'center';
+          ctx.fillText('×' + g.combo, PLAYER_SX, g.y - 16);
+          ctx.textAlign = 'left';
+        }
+
+        if (g.state === 'idle') {
+          ctx.fillStyle = C.ink; ctx.font = '700 13px Outfit, sans-serif'; ctx.textAlign = 'center';
+          ctx.fillText(t('game.hold'), W / 2, H / 2 + 2);
+          ctx.fillStyle = C.muted;
+          ctx.fillText(t('game.hint'), W / 2, H / 2 + 22);
+          ctx.textAlign = 'left';
+        }
+        if (g.state === 'over') {
+          ctx.fillStyle = C.ink; ctx.font = '900 22px Roboto Condensed, sans-serif'; ctx.textAlign = 'center';
+          ctx.fillText(t('game.over'), W / 2, H / 2 - 8);
+          ctx.font = '700 12px Outfit, sans-serif'; ctx.fillStyle = C.muted;
+          ctx.fillText('score ' + g.score + '  ·  best ' + best, W / 2, H / 2 + 14);
+          ctx.fillText(t('game.retry'), W / 2, H / 2 + 32);
+          ctx.textAlign = 'left';
+        }
+
+        ctx.restore();
+      }
+
+      function loop(ts) {
+        const dt = last ? Math.min(2, (ts - last) / 16.67) : 1;
+        last = ts;
+        step(dt);
+        draw();
+        raf = requestAnimationFrame(loop);
+      }
+
+      function openGame() {
+        overlay.classList.add('open');
+        readColors();
+        size();
+        initGame();
+        last = 0;
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(loop);
+      }
+      function closeGame() {
+        overlay.classList.remove('open');
+        cancelAnimationFrame(raf);
+        raf = null;
+        holding = false;
+      }
+
+      function press(e) {
+        if (e) e.preventDefault();
+        if (g.state !== 'run') { start(); return; } // 1er appui = démarrer (sans portance)
+        holding = true;
+      }
+      function release() { holding = false; }
+
+      btn.addEventListener('click', openGame);
+      closeBtn.addEventListener('click', closeGame);
+      overlay.addEventListener('click', e => { if (e.target === overlay) closeGame(); });
+
+      canvas.addEventListener('mousedown', press);
+      window.addEventListener('mouseup', release);
+      canvas.addEventListener('touchstart', press, { passive: false });
+      window.addEventListener('touchend', release);
+      window.addEventListener('resize', () => { if (overlay.classList.contains('open')) size(); });
+
+      document.addEventListener('keydown', e => {
+        if (!overlay.classList.contains('open')) return;
+        if (e.code === 'Space' || e.code === 'ArrowUp') {
+          e.preventDefault();
+          if (g.state !== 'run') start(); // 1er appui = démarrer
+          else holding = true;
+        }
+        if (e.code === 'Escape') closeGame();
+      });
+      document.addEventListener('keyup', e => {
+        if (e.code === 'Space' || e.code === 'ArrowUp') holding = false;
+      });
+    })();
+  </script>
+
+</body>
+</html>
