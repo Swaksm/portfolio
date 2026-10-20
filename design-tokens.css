@@ -1,0 +1,110 @@
+/*
+ * =========================================================
+ *  DESIGN TOKENS — swaks.org
+ *  Palette : Parchment Mist
+ * =========================================================
+ */
+
+:root {
+
+  /* -------------------------------------------
+   * COULEURS PRIMAIRES
+   * ------------------------------------------- */
+
+  --color-cream:      #F1EEE7;  /* fond principal — très clair, presque blanc chaud */
+  --color-parchment:  #EDE5D0;  /* parchemin — hover, fonds secondaires */
+  --color-mist:       #F7F3E6;  /* brume — surface de carte, fond input */
+  --color-taupe:      #C7C0A8;  /* taupe chaud — bordures, éléments muted */
+  --color-mauve:      #C88ABB;  /* mauve rosé — accent, liens, highlights */
+
+  /* -------------------------------------------
+   * NUANCES DÉRIVÉES (générées depuis la palette)
+   * ------------------------------------------- */
+
+  /* Mauve — du plus clair au plus sombre */
+  --color-mauve-100:  #F3E6F1;
+  --color-mauve-200:  #E5C8DC;
+  --color-mauve-300:  #D8AAC9;
+  --color-mauve-400:  #C88ABB;  /* = accent base */
+  --color-mauve-500:  #B46FA5;
+  --color-mauve-600:  #96558A;
+
+  /* Taupe — du plus clair au plus sombre */
+  --color-taupe-100:  #F1EDE6;
+  --color-taupe-200:  #DDD6C8;  /* = --border */
+  --color-taupe-300:  #C7C0A8;  /* = taupe base */
+  --color-taupe-400:  #A89E88;
+  --color-taupe-500:  #8a7f73;  /* = --muted */
+  --color-taupe-600:  #6b6158;
+
+  /* Fond — du plus clair au plus sombre */
+  --color-bg-50:      #FDFCFA;
+  --color-bg-100:     #F7F3E6;  /* = mist */
+  --color-bg-200:     #F1EEE7;  /* = cream */
+  --color-bg-300:     #EDE5D0;  /* = parchment */
+
+  /* Texte */
+  --color-text:       #3a3530;  /* brun sombre — texte principal */
+  --color-text-muted: #8a7f73;  /* taupe — texte secondaire */
+  --color-text-faint: #b3a99e;  /* placeholder, labels inactifs */
+
+  /* -------------------------------------------
+   * SÉMANTIQUE (usage dans le site)
+   * ------------------------------------------- */
+
+  --bg:        var(--color-cream);
+  --surface:   var(--color-mist);
+  --parchment: var(--color-parchment);
+  --taupe:     var(--color-taupe);
+  --accent:    var(--color-mauve);
+  --text:      var(--color-text);
+  --muted:     var(--color-text-muted);
+  --border:    var(--color-taupe-200);
+
+  /* -------------------------------------------
+   * TYPOGRAPHIE
+   * ------------------------------------------- */
+
+  /* Import: https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900 */
+
+  --font:           'Nunito', system-ui, sans-serif;
+
+  --font-size-xs:   0.75rem;   /* 12px — labels, badges */
+  --font-size-sm:   0.875rem;  /* 14px — caption, secondary */
+  --font-size-base: 1rem;      /* 16px — corps de texte */
+  --font-size-lg:   1.125rem;  /* 18px — intro / tagline */
+  --font-size-xl:   1.4rem;    /* 22px — sous-titres */
+  --font-size-2xl:  2rem;      /* 32px — h1 mobile */
+  --font-size-3xl:  2.75rem;   /* 44px — h1 desktop */
+  --font-size-4xl:  3.5rem;    /* 56px — h1 large */
+
+  --font-weight-regular:   400;
+  --font-weight-medium:    500;
+  --font-weight-semibold:  600;
+  --font-weight-bold:      700;
+  --font-weight-extrabold: 800;
+  --font-weight-black:     900;
+
+  --line-height-tight:  1.1;
+  --line-height-snug:   1.3;
+  --line-height-normal: 1.6;
+  --line-height-loose:  1.8;
+
+  --letter-spacing-tight:  -0.03em;
+  --letter-spacing-normal:  0;
+  --letter-spacing-wide:    0.05em;
+  --letter-spacing-wider:   0.08em;
+  --letter-spacing-widest:  0.15em;
+
+  /* -------------------------------------------
+   * ESPACEMENTS & RAYONS
+   * ------------------------------------------- */
+
+  --radius-sm:  6px;
+  --radius-md:  12px;
+  --radius-lg:  20px;
+  --radius-full: 9999px;
+
+  --shadow-soft: 0 4px 20px rgba(200, 138, 187, 0.12);
+  --shadow-card: 0 2px 8px rgba(58, 53, 48, 0.06);
+}
