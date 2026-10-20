@@ -33,8 +33,9 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          # FTP chiffré (TLS) ; si OVH refuse la connexion, remplacer par ftp (mot de passe alors envoyé en clair)
-          protocol: ftps
+          # FTP simple : l'hébergement OVH refuse le FTP chiffré (« 500 This security scheme is not implemented »).
+          # Le mot de passe circule donc en clair ; passer en SFTP si l'offre le permet un jour (Pro et plus).
+          protocol: ftp
           # Dossier racine du site sur l'hébergement (www/ par défaut chez OVH)
           server-dir: www/
           exclude: |
