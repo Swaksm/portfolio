@@ -4,9 +4,11 @@ Portfolio de Matthieu Izac (swaks) : **[swaks.org](https://swaks.org)**.
 
 Site 100 % statique, bilingue FR/EN, en HTML/CSS/JS sans framework ni dépendance.
 
-## Lancer en local
+## Tester en local
 
-Servir le dossier à la racine (les chemins sont absolus) :
+En ligne, l'hébergement OVH sert les fichiers tels quels : rien à installer ni à lancer.
+
+En local, ouvrir `index.html` en double-cliquant ne marche pas : les chemins sont absolus (`/assets/…`, `/fonts/…`), pensés pour la racine du domaine. Il faut servir le dossier à la racine :
 
 ```
 python -m http.server 8000
