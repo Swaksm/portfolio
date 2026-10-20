@@ -6,7 +6,7 @@
   <title>swaks.org — Matthieu, developer & AI</title>
 
   <!-- SEO -->
-  <meta name="description" content="Matthieu Izac (swaks) — developer based in Nantes, Bachelor in software development &amp; artificial intelligence. Python, APIs, bots, LLMs: projects, skills and contact." />
+  <meta name="description" content="Matthieu Izac (swaks) — developer based in Nantes, Master's student in work-study, focused on software development &amp; artificial intelligence. Python, Rust, APIs, bots, LLMs: projects, skills and contact." />
   <meta name="author" content="Matthieu Izac" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://swaks.org/" />
@@ -19,12 +19,16 @@
   <meta property="og:title" content="swaks.org" />
   <meta property="og:description" content="Software developer specialising in development and artificial intelligence." />
   <meta property="og:url" content="https://swaks.org" />
-  <meta property="og:image" content="https://swaks.org/favicon.svg" />
+  <meta property="og:image" content="https://swaks.org/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="SWAKS — Matthieu Izac, developer · AI · Nantes" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="fr_FR" />
 
   <!-- Twitter -->
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://swaks.org/og-image.png" />
   <meta name="twitter:title" content="swaks.org" />
   <meta name="twitter:description" content="Software developer specialising in development and artificial intelligence." />
 
@@ -43,9 +47,8 @@
     "sameAs": ["https://github.com/Swaksm", "https://www.linkedin.com/in/matthieu-izac-257758292/"]
   }
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@900&family=Outfit:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/roboto-condensed-900-latin.woff2" as="font" type="font/woff2" crossorigin />
 
   <!-- Active le mode JS le plus tôt possible : évite tout flash des éléments à révéler -->
   <script>
@@ -56,12 +59,12 @@
     const I18N = {
  "en": {
   "meta.title": "swaks.org — Matthieu, developer & AI",
-  "meta.desc": "Matthieu Izac (swaks) — developer based in Nantes, Bachelor in software development & artificial intelligence. Python, APIs, bots, LLMs: projects, skills and contact.",
+  "meta.desc": "Matthieu Izac (swaks) — developer based in Nantes, Master's student in work-study, focused on software development & artificial intelligence. Python, Rust, APIs, bots, LLMs: projects, skills and contact.",
   "enter": "Enter",
   "nav.about": "About",
   "about.title": "ABOUT ME<span class=\"hs\">.</span>",
   "about.p1": "Welcome.",
-  "about.p2": "Let me introduce myself — I'm <span class=\"accent\">Matthieu</span>, <span class=\"age\"></span> years old. I'm a software developer, currently in the third year of a Bachelor's degree specialising in development and <span class=\"accent\">artificial intelligence</span>.",
+  "about.p2": "Let me introduce myself — I'm <span class=\"accent\">Matthieu</span>, <span class=\"age\"></span> years old. I'm a software developer, currently doing a Master's degree in work-study until 2028, after a Bachelor's specialising in development and <span class=\"accent\">artificial intelligence</span>.",
   "nav.skills": "Skills",
   "skills.title": "SKILL<span class=\"hs\">S</span>",
   "skills.ai": "AI",
@@ -103,16 +106,28 @@
   "skills.back": "Backend",
   "skills.data": "Data",
   "skills.desk": "Desktop &amp; tools",
-  "skills.pcsoft": "PC Soft"
+  "skills.pcsoft": "PC Soft",
+  "tagline": "Developer · AI · Nantes",
+  "about.p3": "I build concrete tools: bots running in production, Python APIs, desktop software and language-model integrations. What drives me is making AI <span class=\"accent\">useful</span> — automating, extracting, summarising — without complicating what should stay simple.",
+  "tl.master": "Master's degree — work-study",
+  "tl.master.d": "until 2028",
+  "tl.bachelor": "Bachelor — development &amp; AI",
+  "tl.bts": "BTS SIO — computer science",
+  "tl.bts.d": "2023 internship · PHP / SQL intranet, Redon",
+  "tl.bac": "General baccalaureate",
+  "about.langs": "English B2 · Spanish B1",
+  "kl.alt": "Kleaner — largest files, each with its verdict",
+  "lm.alt": "Lion Meme — the meme generator",
+  "legal": "Legal notice"
  },
  "fr": {
   "meta.title": "swaks.org — Matthieu, développeur & IA",
-  "meta.desc": "Matthieu Izac (swaks) — développeur à Nantes, Bachelor dev & intelligence artificielle. Python, API, bots, LLM : projets, compétences et contact.",
+  "meta.desc": "Matthieu Izac (swaks) — développeur à Nantes, en Master en alternance, orienté développement & intelligence artificielle. Python, Rust, API, bots, LLM : projets, compétences et contact.",
   "enter": "Accéder",
   "nav.about": "Présentation",
   "about.title": "PRÉ<span class=\"hs\">S</span>ENTATION",
   "about.p1": "Bienvenue.",
-  "about.p2": "Je me présente — je suis <span class=\"accent\">Matthieu</span>, <span class=\"age\"></span> ans. Je suis développeur informatique, actuellement en Bachelor 3ème année spécialisé en développement et <span class=\"accent\">intelligence artificielle</span>.",
+  "about.p2": "Je me présente — je suis <span class=\"accent\">Matthieu</span>, <span class=\"age\"></span> ans. Développeur informatique, je suis en Master en alternance jusqu'en 2028, après un Bachelor spécialisé en développement et <span class=\"accent\">intelligence artificielle</span>.",
   "nav.skills": "Compétences",
   "skills.title": "COMPÉTENCE<span class=\"hs\">S</span>",
   "skills.ai": "IA",
@@ -154,7 +169,19 @@
   "skills.back": "Back-end",
   "skills.data": "Données",
   "skills.desk": "Desktop &amp; outils",
-  "skills.pcsoft": "PC Soft"
+  "skills.pcsoft": "PC Soft",
+  "tagline": "Développeur · IA · Nantes",
+  "about.p3": "Je construis des outils concrets : des bots qui tournent en production, des API Python, des logiciels desktop et des intégrations de modèles de langage. Ce qui m'intéresse, c'est rendre l'IA <span class=\"accent\">utile</span> — automatiser, extraire, résumer — sans compliquer ce qui doit rester simple.",
+  "tl.master": "Master — en alternance",
+  "tl.master.d": "jusqu'en 2028",
+  "tl.bachelor": "Bachelor — développement &amp; IA",
+  "tl.bts": "BTS SIO — informatique",
+  "tl.bts.d": "Stage 2023 · intranet PHP / SQL, Redon",
+  "tl.bac": "Baccalauréat général",
+  "about.langs": "Anglais B2 · Espagnol B1",
+  "kl.alt": "Kleaner — les plus gros fichiers, chacun avec son verdict",
+  "lm.alt": "Lion Meme — le générateur de memes",
+  "legal": "Mentions légales"
  }
 };
     let LANG = 'en';
@@ -196,6 +223,15 @@
   </script>
 
   <style>
+    /* Polices hébergées localement (pas d'appel à Google) */
+    @font-face {
+      font-family: 'Outfit'; font-style: normal; font-weight: 100 900; font-display: swap;
+      src: url(fonts/outfit-latin.woff2) format('woff2');
+    }
+    @font-face {
+      font-family: 'Roboto Condensed'; font-style: normal; font-weight: 900; font-display: swap;
+      src: url(fonts/roboto-condensed-900-latin.woff2) format('woff2');
+    }
     /* =========================================================
      *  swaks.org — palette « Parchment Mist »
      * ========================================================= */
@@ -298,7 +334,16 @@
     }
     #curves.ready { opacity: 1; }
 
-    #landing h1, #landing button { position: relative; z-index: 1; }
+    #landing h1, #landing button, #tagline { position: relative; z-index: 1; }
+    #tagline {
+      margin-top: -0.9rem;
+      font-size: clamp(11px, 1.1vw, 14px);
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      padding: 0 1rem;
+    }
 
     h1 {
       font-family: 'Roboto Condensed', sans-serif;
@@ -340,11 +385,22 @@
     }
     .hs { color: var(--mauve); }
 
+    /* ---- Sections plein écran : centrées, défilables si le contenu dépasse ---- */
+    #home, #skills, #contact {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      justify-content: safe center;
+      overflow-y: auto;
+      scrollbar-width: none;
+    }
+    #home::-webkit-scrollbar, #skills::-webkit-scrollbar, #contact::-webkit-scrollbar { display: none; }
+
     /* ---- SECTION 2 : présentation ---- */
     #home {
-      min-height: 100vh;
-      min-height: 100dvh;
-      padding: 8rem 2rem;
+      height: 100vh;
+      height: 100dvh;
+      padding: 3rem 2rem;
       max-width: 720px;
       margin: 0 auto;
     }
@@ -353,20 +409,46 @@
       font-weight: 400;
       line-height: 1.75;
       color: var(--text);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
       user-select: text;
     }
     .accent { color: var(--mauve); }
+
+    #home .section-title { margin-bottom: 2.2rem; }
+    .timeline { list-style: none; margin: 1.8rem 0 1.2rem; border-left: 1px solid var(--border); }
+    .timeline li {
+      position: relative;
+      padding: 0.4rem 0 0.4rem 1.3rem;
+      font-size: clamp(14px, 1.35vw, 16px);
+      color: var(--text);
+      user-select: text;
+    }
+    .timeline li::before {
+      content: '';
+      position: absolute;
+      left: -3px;
+      top: calc(0.4rem + 0.6em);
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--taupe);
+    }
+    .timeline li.now::before { background: var(--mauve); }
+    .timeline small { display: block; font-size: 0.78rem; color: var(--muted); }
+    #home p.langs {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      margin: 0;
+    }
 
 
     /* ---- SECTION 3 : compétences ---- */
     #skills {
       height: 100vh;
       height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 0 2rem;
+      padding: 2rem;
       max-width: 720px;
       margin: 0 auto;
     }
@@ -487,9 +569,26 @@
       transition: grid-template-rows 0.45s var(--ease-expo);
     }
     .card.open .card-body { grid-template-rows: 1fr; }
-    .card-body-inner { overflow: hidden; }
+    /* Fermée : contenu masqué aussi pour le clavier (visibility retirée après l'animation) */
+    .card-body-inner {
+      overflow: hidden;
+      visibility: hidden;
+      transition: visibility 0s linear 0.45s;
+    }
+    .card.open .card-body-inner { visibility: visible; transition-delay: 0s; }
 
 
+    .card-shot {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      margin-top: 1rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--parchment);
+    }
     .card-body-inner p {
       font-size: clamp(13px, 1.3vw, 15px);
       color: var(--muted);
@@ -527,10 +626,7 @@
     #contact {
       height: 100vh;
       height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 0 2rem;
+      padding: 2rem;
       max-width: 720px;
       margin: 0 auto;
     }
@@ -763,6 +859,13 @@
       letter-spacing: 0.04em;
       pointer-events: none;
     }
+    #footer a {
+      pointer-events: auto;
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--dur-micro) var(--ease-smooth);
+    }
+    #footer a:hover { color: var(--mauve); }
 
     /* ---- Easter egg : jeu Flux ---- */
     #game-btn {
@@ -820,14 +923,18 @@
 
     /* ---- Responsive ---- */
     @media (max-width: 600px) {
-      #sidenav, #arrows { display: none; }
+      #arrows { display: none; }
+      /* Points de navigation à droite : indiquent qu'on peut glisser */
+      #sidenav { left: auto; right: 0.3rem; gap: 0; }
+      #sidenav .nav-label { display: none; }
+      #sidenav .nav-item { padding: 0.55rem; }
 
       #contact {
         height: 100vh;
         height: 100dvh;
         overflow-y: auto;
         justify-content: flex-start;
-        padding: 3rem 1.4rem;
+        padding: 3rem 2.4rem 3rem 1.4rem;
         scrollbar-width: none;
       }
       #contact::-webkit-scrollbar { display: none; }
@@ -838,7 +945,7 @@
       .contact-label { min-width: unset; }
 
       #home {
-        padding: 3rem 1.4rem;
+        padding: 3rem 2.4rem 3rem 1.4rem;
         justify-content: flex-start;
         overflow-y: auto;
         scrollbar-width: none;
@@ -846,14 +953,14 @@
       #home::-webkit-scrollbar { display: none; }
 
       #skills {
-        padding: 3rem 1.4rem;
+        padding: 3rem 2.4rem 3rem 1.4rem;
         overflow-y: auto;
         justify-content: flex-start;
         scrollbar-width: none;
       }
       #skills::-webkit-scrollbar { display: none; }
 
-      #projects { padding: 3rem 1.4rem; }
+      #projects { padding: 3rem 2.4rem 3rem 1.4rem; }
 
       #socials { top: 1rem; right: 1.2rem; }
       #footer { left: 1.2rem; right: auto; }
@@ -876,13 +983,23 @@
     <h1 aria-label="SWAKS">
       <span class="s" data-reveal style="--i:0">S</span><span class="w" data-reveal style="--i:1">W</span><span class="a" data-reveal style="--i:2">A</span><span class="k" data-reveal style="--i:3">K</span><span class="s" data-reveal style="--i:4">S</span>
     </h1>
+    <p id="tagline" data-reveal style="--i:5" data-i18n="tagline">Developer · AI · Nantes</p>
     <button id="acceder" data-reveal style="--i:6" data-i18n="enter">Enter</button>
   </section>
 
   <section id="home" aria-label="About" data-i18n-attr="aria-label:nav.about">
     <h2 class="section-title" data-reveal style="--i:0" data-i18n="about.title">ABOUT ME<span class="hs">.</span></h2>
     <p data-reveal style="--i:1" data-i18n="about.p1">Welcome.</p>
-    <p data-reveal style="--i:2" data-i18n="about.p2">Let me introduce myself — I'm <span class="accent">Matthieu</span>, <span class="age"></span> years old. I'm a software developer, currently in the third year of a Bachelor's degree specialising in development and <span class="accent">artificial intelligence</span>.</p>
+    <p data-reveal style="--i:2" data-i18n="about.p2">Let me introduce myself — I'm <span class="accent">Matthieu</span>, <span class="age"></span> years old. I'm a software developer, currently doing a Master's degree in work-study until 2028, after a Bachelor's specialising in development and <span class="accent">artificial intelligence</span>.</p>
+    <p data-reveal style="--i:3" data-i18n="about.p3">I build concrete tools: bots running in production, Python APIs, desktop software and language-model integrations. What drives me is making AI <span class="accent">useful</span> — automating, extracting, summarising — without complicating what should stay simple.</p>
+
+    <ol class="timeline" data-reveal style="--i:4">
+      <li class="now"><span data-i18n="tl.master">Master's degree — work-study</span><small data-i18n="tl.master.d">until 2028</small></li>
+      <li><span data-i18n="tl.bachelor">Bachelor — development &amp; AI</span></li>
+      <li><span data-i18n="tl.bts">BTS SIO — computer science</span><small data-i18n="tl.bts.d">2023 internship · PHP / SQL intranet, Redon</small></li>
+      <li><span data-i18n="tl.bac">General baccalaureate</span><small>2022</small></li>
+    </ol>
+    <p class="langs" data-reveal style="--i:5" data-i18n="about.langs">English B2 · Spanish B1</p>
   </section>
 
   <section id="skills" aria-label="Skills" data-i18n-attr="aria-label:nav.skills">
@@ -931,6 +1048,7 @@
       </button>
       <div class="card-body">
         <div class="card-body-inner">
+          <img class="card-shot" src="img/kleaner.webp" alt="Kleaner — largest files, each with its verdict" data-i18n-attr="alt:kl.alt" width="1280" height="800" loading="lazy" decoding="async" />
           <p data-i18n="kl.desc">A free Windows disk cleaner that explains before it deletes: every large file gets a verdict (safe, uninstall, breaks something, unknown…) based on 108 hand-written rules — it never guesses. Permanent deletion is limited to a public list of caches, enforced in Rust and tested. Knows developer, gaming and AI machines (node_modules, .venv, Docker, Ollama / Hugging Face models). No telemetry, portable exe.</p>
           <div class="card-meta">
             <span class="card-chip">Rust</span>
@@ -955,6 +1073,7 @@
       </button>
       <div class="card-body">
         <div class="card-body-inner">
+          <img class="card-shot" src="img/lion.webp" alt="Lion Meme — the meme generator" data-i18n-attr="alt:lm.alt" width="1280" height="800" loading="lazy" decoding="async" />
           <p data-i18n="lm.desc">A free lion meme generator. It plays on the gap between the image we want to project and reality — a majestic lion photo, and underneath, a far more comical reality. Made in a few clicks.</p>
           <div class="card-meta">
             <span class="card-chip">TypeScript</span>
@@ -1134,7 +1253,7 @@
   <a class="nav-item" data-index="4" href="#contact"><span class="nav-dot"></span><span class="nav-label">Contact</span></a>
 </nav>
 
-<div id="footer" data-i18n="footer">© swaks — All rights reserved</div>
+<div id="footer"><span data-i18n="footer">© swaks — All rights reserved</span> · <a href="mentions-legales.html" data-i18n="legal">Legal notice</a></div>
 
   <script>
     applyLang(LANG);
@@ -1221,8 +1340,12 @@
       const navItems  = Array.from(document.querySelectorAll('.nav-item'));
       const arrowUp   = document.getElementById('arrow-up');
       const arrowDown = document.getElementById('arrow-down');
-      const projectsEl = document.getElementById('projects');
-      const PROJECTS_IDX = 3;
+      // Une section dont le contenu dépasse défile d'abord, puis passe à la suivante
+      const scrollable = (el) => (el.scrollHeight > el.clientHeight + 1 ? el : null);
+      const edges = (el) => ({
+        top: el.scrollTop <= 0,
+        bottom: el.scrollTop + el.clientHeight >= el.scrollHeight - 1,
+      });
 
       // Le mini-jeu (#game-overlay) est défini plus bas dans le DOM que ce script :
       // on interroge donc son état paresseusement, au moment de l'événement.
@@ -1332,11 +1455,11 @@
         if (isGameOpen()) return;
         if (animating) { e.preventDefault(); return; }
 
-        if (current === PROJECTS_IDX) {
-          const atTop = projectsEl.scrollTop <= 0;
-          const atBottom = projectsEl.scrollTop + projectsEl.clientHeight >= projectsEl.scrollHeight - 1;
-          if (e.deltaY < 0 && atTop)        { e.preventDefault(); if (!cooldown) goTo(PROJECTS_IDX - 1); }
-          else if (e.deltaY > 0 && atBottom) { e.preventDefault(); if (!cooldown) goTo(PROJECTS_IDX + 1); }
+        const sc = scrollable(sections[current]);
+        if (sc) {
+          const { top, bottom } = edges(sc);
+          if (e.deltaY < 0 && top)         { e.preventDefault(); if (!cooldown) goTo(current - 1); }
+          else if (e.deltaY > 0 && bottom) { e.preventDefault(); if (!cooldown) goTo(current + 1); }
           return; // sinon : scroll natif interne
         }
 
@@ -1367,7 +1490,12 @@
 
       /* ---------- Tactile ---------- */
       let touchStartY = null;
-      window.addEventListener('touchstart', (e) => { touchStartY = e.touches[0].clientY; }, { passive: true });
+      let touchEdges = null; // bords atteints AU DÉBUT du geste (sinon un seul swipe ferait défiler + changer)
+      window.addEventListener('touchstart', (e) => {
+        touchStartY = e.touches[0].clientY;
+        const sc = scrollable(sections[current]);
+        touchEdges = sc ? edges(sc) : null;
+      }, { passive: true });
       window.addEventListener('touchend', (e) => {
         if (touchStartY === null) return;
         if (isGameOpen()) { touchStartY = null; return; }
@@ -1375,11 +1503,9 @@
         touchStartY = null;
         if (animating || cooldown || Math.abs(delta) < 40) return;
 
-        if (current === PROJECTS_IDX) {
-          const atTop = projectsEl.scrollTop <= 0;
-          const atBottom = projectsEl.scrollTop + projectsEl.clientHeight >= projectsEl.scrollHeight - 1;
-          if (delta < 0 && atTop)        goTo(PROJECTS_IDX - 1);
-          else if (delta > 0 && atBottom) goTo(PROJECTS_IDX + 1);
+        if (touchEdges) {
+          if (delta < 0 && touchEdges.top)         goTo(current - 1);
+          else if (delta > 0 && touchEdges.bottom) goTo(current + 1);
           return;
         }
         if (delta > 0) goTo(current + 1);
@@ -1397,6 +1523,24 @@
         });
         acc.addEventListener('pointerleave', () => { acc.style.transform = ''; });
       }
+
+      /* ---------- Focus clavier (Tab) : amène la section de l'élément focalisé ---------- */
+      // Le navigateur tente de faire défiler la page vers l'élément : on l'annule,
+      // c'est le moteur de sections qui gère la position.
+      const resetPageScroll = () => {
+        if (document.documentElement.scrollTop || document.body.scrollTop) {
+          document.documentElement.scrollTop = 0;
+          document.body.scrollTop = 0;
+        }
+      };
+      window.addEventListener('scroll', resetPageScroll);
+      document.addEventListener('focusin', (e) => {
+        resetPageScroll();
+        const sec = e.target.closest && e.target.closest('#wrapper > section');
+        if (!sec) return;
+        const idx = sections.indexOf(sec);
+        if (idx !== -1 && idx !== current) goTo(idx);
+      });
 
       /* ---------- Resize / historique ---------- */
       window.addEventListener('resize', measure);

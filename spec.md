@@ -6,7 +6,7 @@ Portfolio de Matthieu Izac (swaks). Site **100 % statique** : on dépose les fic
 
 - Minimaliste, lisible, soigné. Pas de surcharge.
 - Un seul fichier principal (`index.html`) : CSS et JS inline, zéro dépendance à installer.
-- Services externes uniquement côté navigateur : Google Fonts, Formspree (formulaire), Umami (stats).
+- Services externes uniquement côté navigateur : Formspree (formulaire), Umami (stats). Les polices sont hébergées localement (`fonts/`).
 
 ## Fichiers
 
@@ -14,10 +14,14 @@ Portfolio de Matthieu Izac (swaks). Site **100 % statique** : on dépose les fic
 |---|---|
 | `index.html` | Le site (5 sections plein écran : accueil, présentation, compétences, projets, contact) |
 | `404.html` | Page d'erreur |
-| `.htaccess` | Config Apache (OVH) : branche `404.html` sur les pages introuvables |
+| `.htaccess` | Config Apache (OVH) : page 404, redirection vers `https://swaks.org` (sans www), compression, cache, en-têtes de sécurité |
+| `mentions-legales.html` | Mentions légales (FR/EN, même détection de langue que le site) |
 | `favicon.svg` | Icône |
+| `og-image.png` | Image d'aperçu des liens partagés (1200×630), générée depuis `og.html` |
+| `og.html` | Source de `og-image.png` (régénérer : `chrome --headless=new --hide-scrollbars --window-size=1200,630 --screenshot=og-image.png og.html`) |
+| `fonts/` | Outfit (variable) et Roboto Condensed 900, sous-ensemble latin, en woff2 |
+| `img/` | Captures des projets (WebP 1280×800, 16:10) |
 | `robots.txt`, `sitemap.xml` | Référencement |
-| `design-tokens.css`, `style.css` | Anciennes feuilles de style, non chargées par `index.html` (référence palette) |
 
 ## Design
 
@@ -35,11 +39,17 @@ Portfolio de Matthieu Izac (swaks). Site **100 % statique** : on dépose les fic
 
 ## Navigation
 
-Sections en plein écran. Molette, flèches, PageUp/PageDown, Home/End, touches 1–5, swipe, points latéraux. URL synchronisée (`#presentation`, `#competences`, `#projets`, `#contact`).
+Sections en plein écran. Molette, flèches, PageUp/PageDown, Home/End, touches 1–5, swipe, points latéraux (à droite sur mobile). URL synchronisée (`#presentation`, `#competences`, `#projets`, `#contact`).
+
+- Une section dont le contenu dépasse l'écran défile d'abord, puis passe à la suivante (molette et swipe).
+- Navigation au clavier (Tab) : la section de l'élément focalisé s'affiche automatiquement.
 
 ## Contenu
 
-- **Projets** : Kleaner, Lion Meme, CordeSortie, Video Grabber. Une carte = titre, tags, description, chips techno, liens. Cartes repliables (bouton accessible, `aria-expanded`).
+- **Accueil** : SWAKS + accroche « Developer · AI · Nantes ».
+- **Présentation** : texte, frise de parcours (Master en alternance → 2028, Bachelor, BTS SIO, bac 2022), langues.
+- **Compétences** : 6 colonnes typographiques, sans icônes.
+- **Projets** : Kleaner, Lion Meme, CordeSortie, Video Grabber. Une carte = titre, tags, capture (optionnelle, `img/`), description, chips techno, liens. Cartes repliables (bouton accessible, `aria-expanded`).
 - **Contact** : email + formulaire Formspree (`mojzlrke`), validation côté client, gestion des erreurs réseau.
 - **Easter egg** : bouton invisible coin haut-gauche → mini-jeu « Flux » (meilleur score en `localStorage`).
 

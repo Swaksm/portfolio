@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Legal notice — swaks.org</title>
+  <meta name="robots" content="noindex" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <script>
+    // Même règle que le site : choix mémorisé, sinon langue du navigateur
+    (function () {
+      let lang = '', theme = '';
+      try { lang = localStorage.getItem('swaks-lang') || ''; theme = localStorage.getItem('swaks-theme') || ''; } catch (e) {}
+      if (!lang) lang = /^fr\b/i.test((navigator.languages && navigator.languages[0]) || navigator.language || '') ? 'fr' : 'en';
+      document.documentElement.lang = lang;
+      if (theme) document.documentElement.dataset.theme = theme;
+      if (lang === 'fr') document.title = 'Mentions légales — swaks.org';
+    })();
+  </script>
+  <style>
+    @font-face { font-family: 'Outfit'; font-weight: 100 900; font-display: swap; src: url(fonts/outfit-latin.woff2) format('woff2'); }
+    @font-face { font-family: 'Roboto Condensed'; font-weight: 900; font-display: swap; src: url(fonts/roboto-condensed-900-latin.woff2) format('woff2'); }
+    :root { --bg: #F1EEE7; --text: #3a3530; --muted: #8a7f73; --taupe: #C7C0A8; --mauve: #C88ABB; --border: #DDD6C8; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { --bg: #1c1917; --text: #ece6dc; --muted: #a89d8f; --taupe: #7f7668; --mauve: #D49DC8; --border: #36302b; }
+    }
+    :root[data-theme="dark"] { --bg: #1c1917; --text: #ece6dc; --muted: #a89d8f; --taupe: #7f7668; --mauve: #D49DC8; --border: #36302b; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; line-height: 1.75; }
+    main { max-width: 720px; margin: 0 auto; padding: 5rem 1.4rem 4rem; }
+    h1 { font-family: 'Roboto Condensed', sans-serif; font-weight: 900; font-size: clamp(28px, 4vw, 48px); line-height: 1.1; margin-bottom: 3rem; }
+    h1 span { color: var(--mauve); }
+    h2 {
+      font-size: 0.68rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--taupe);
+      padding-bottom: 0.6rem; margin: 2.4rem 0 0.9rem; border-bottom: 1px solid var(--border);
+    }
+    p, li { font-size: clamp(14px, 1.35vw, 16px); color: var(--muted); }
+    p + p { margin-top: 0.6rem; }
+    ul { list-style: none; }
+    li + li { margin-top: 0.6rem; }
+    ul + p { margin-top: 1.2rem; }
+    strong { color: var(--text); font-weight: 400; }
+    a { color: var(--mauve); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .back {
+      display: inline-block; margin-top: 3.5rem; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--taupe);
+    }
+    .back:hover { color: var(--mauve); text-decoration: none; }
+    html:not([lang="fr"]) [lang="fr"], html[lang="fr"] [lang="en"] { display: none; }
+  </style>
+</head>
+<body>
+  <main>
+    <!-- Français -->
+    <div lang="fr">
+      <h1>MENTIONS LÉGALE<span>S</span></h1>
+
+      <h2>Éditeur</h2>
+      <p><strong>Matthieu Izac</strong>, particulier. Contact : <a href="mailto:swks.pro@gmail.com">swks.pro@gmail.com</a></p>
+
+      <h2>Hébergement</h2>
+      <p><strong>OVH SAS</strong> — 2 rue Kellermann, 59100 Roubaix, France — <a href="https://www.ovhcloud.com" target="_blank" rel="noopener">ovhcloud.com</a></p>
+
+      <h2>Données personnelles</h2>
+      <ul>
+        <li><strong>Formulaire de contact</strong> — le nom, l'email et le message sont transmis via Formspree (Formspree, Inc., États-Unis) et servent uniquement à répondre. Ils ne sont ni revendus ni réutilisés.</li>
+        <li><strong>Statistiques</strong> — mesure d'audience avec Umami, sans cookie et sans donnée personnelle.</li>
+        <li><strong>Préférences</strong> — la langue, le thème et le meilleur score du mini-jeu sont enregistrés uniquement dans votre navigateur. Rien n'est envoyé.</li>
+        <li><strong>Polices</strong> — hébergées sur ce site, aucun appel à un service tiers.</li>
+      </ul>
+      <p>Pour toute demande d'accès ou de suppression : <a href="mailto:swks.pro@gmail.com">swks.pro@gmail.com</a></p>
+
+      <h2>Propriété intellectuelle</h2>
+      <p>Contenus du site © Matthieu Izac. Les noms et marques cités appartiennent à leurs propriétaires respectifs.</p>
+
+      <a class="back" href="/">← Retour au site</a>
+    </div>
+
+    <!-- English -->
+    <div lang="en">
+      <h1>LEGAL NOTICE<span>.</span></h1>
+
+      <h2>Publisher</h2>
+      <p><strong>Matthieu Izac</strong>, private individual. Contact: <a href="mailto:swks.pro@gmail.com">swks.pro@gmail.com</a></p>
+
+      <h2>Hosting</h2>
+      <p><strong>OVH SAS</strong> — 2 rue Kellermann, 59100 Roubaix, France — <a href="https://www.ovhcloud.com" target="_blank" rel="noopener">ovhcloud.com</a></p>
+
+      <h2>Personal data</h2>
+      <ul>
+        <li><strong>Contact form</strong> — your name, email and message are sent through Formspree (Formspree, Inc., USA) and only used to reply. They are never sold or reused.</li>
+        <li><strong>Analytics</strong> — audience measurement with Umami, without cookies or personal data.</li>
+        <li><strong>Preferences</strong> — language, theme and the mini-game best score are stored only in your browser. Nothing is sent.</li>
+        <li><strong>Fonts</strong> — hosted on this site, no third-party request.</li>
+      </ul>
+      <p>For any access or deletion request: <a href="mailto:swks.pro@gmail.com">swks.pro@gmail.com</a></p>
+
+      <h2>Intellectual property</h2>
+      <p>Site content © Matthieu Izac. Names and trademarks mentioned belong to their respective owners.</p>
+
+      <a class="back" href="/">← Back to the site</a>
+    </div>
+  </main>
+</body>
+</html>
