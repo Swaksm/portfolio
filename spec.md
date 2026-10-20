@@ -60,9 +60,9 @@ python _build/build.py --og     # + images d'aperçu (Chrome ou Edge requis)
 
 ## Contenu
 
-- **Accueil** : SWAKS + accroche « Developer · AI · Nantes ».
-- **Présentation** : texte, frise de parcours (Master en alternance → 2028, Bachelor, BTS SIO, bac 2022), langues.
-- **Compétences** : 6 colonnes typographiques, sans icônes.
+- **Accueil** : SWAKS + accroche « Developer · Tools · Nantes ».
+- **Présentation** : texte, frise de parcours (Master EISI à l'EPSI en alternance chez DGSYS → 2028, Bachelor, BTS SIO, bac 2022), langues, centres d'intérêt. L'IA reste en retrait : le vibecoding (Claude Code) est présenté comme une méthode parmi d'autres.
+- **Compétences** : 5 colonnes typographiques, sans icônes.
 - **Projets** : cartes repliables (aperçu : capture, description, chips, liens) avec un lien « Voir plus » vers la page du projet. Stats GitHub en direct (`data-gh="owner/repo"`, `data-gh-releases` pour les téléchargements ; cache 1 h).
 - **Pages projets** : accroche, chips, stats GitHub, boutons, capture, sections détaillées, galerie, projet suivant. JSON-LD (`SoftwareApplication`, `WebApplication` ou `SoftwareSourceCode`).
 - **Contact** : email copiable en un clic (`data-copy`), formulaire Formspree (`mojzlrke`) avec validation, gestion des erreurs réseau et champ piège anti-spam `_gotcha`.
