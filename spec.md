@@ -16,6 +16,7 @@ Portfolio de Matthieu Izac (swaks). Site **100 % statique** : on dépose les fic
 | `index.html` | Accueil anglais **et source** de l'accueil (5 sections plein écran). Contient le dictionnaire FR/EN (`<script id="i18n">`) |
 | `fr/index.html` | Accueil français — **généré**, ne pas modifier à la main |
 | `projects/*.html`, `fr/projects/*.html` | Pages projets EN / FR — **générées** depuis `_build/projects.json` |
+| `about.html`, `fr/about.html` | Page « À propos » (parcours, formation, méthode, CV à venir) — **générée** depuis `_build/about.json` |
 | `assets/site.css`, `assets/site.js` | Commun à toutes les pages : palette, polices, thème, langue, curseur, palette de commandes, copie d'email, stats GitHub |
 | `assets/project.css` | Style des pages projets |
 | `_build/` | `build.py`, `projects.json` (contenu des pages projets), `head.html` (script d'en-tête commun), `og.html` (modèle des images d'aperçu). Bloqué en ligne par `.htaccess` |
@@ -51,7 +52,7 @@ python _build/build.py --og     # + images d'aperçu (Chrome ou Edge requis)
 - Tout le mouvement est désactivé si `prefers-reduced-motion`.
 - Effets de l'accueil : vague de courbes au changement de section (`#sweep`), barre de progression (`#progress`), « décodage » de SWAKS au survol, numéros de section en filigrane (`data-num`).
 - Effets communs (`site.js`) : thème qui s'étend en cercle (View Transitions API), relief 3D des captures (`data-tilt`).
-- Curseur : point mauve natif (`assets/cursor.svg`, souris uniquement), anneau (`assets/cursor-hover.svg`) sur ce qui est cliquable : écrire `cursor: var(--pointer)` au lieu de `cursor: pointer`. Défini dans `site.css`.
+- Curseur : point mauve natif (`assets/cursor.svg`, souris uniquement), anneau (`assets/cursor-hover.svg`) sur ce qui est cliquable, barre mauve (`assets/cursor-text.svg`) dans les champs. Jamais le curseur du système : écrire `cursor: var(--pointer)`, `var(--default)` ou `var(--text-cursor)`. Défini dans `site.css` (repris en dur dans `404.html` et `mentions-legales.html`).
 
 ## Navigation
 
@@ -61,7 +62,7 @@ python _build/build.py --og     # + images d'aperçu (Chrome ou Edge requis)
 ## Contenu
 
 - **Accueil** : SWAKS + accroche « Developer · Tools · Nantes ».
-- **Présentation** : texte, frise de parcours (Master EISI à l'EPSI en alternance chez DGSYS → 2028, Bachelor, BTS SIO, bac 2022), langues, centres d'intérêt. L'IA reste en retrait : le vibecoding (Claude Code) est présenté comme une méthode parmi d'autres.
+- **Présentation** : texte, frise de parcours (Master EISI à l'EPSI en alternance chez DGSYS → 2028, Bachelor, BTS SIO, bac 2022), langues, centres d'intérêt. Méthode mise en avant : spec d'abord, petites étapes testées, CI avant mise en ligne, accessibilité dans la spec ; Claude Code reste un outil. Lien « En savoir plus sur moi » vers `about.html`.
 - **Compétences** : 5 colonnes typographiques, sans icônes.
 - **Projets** : carte DGSYS (alternance, sans page projet) en tête, puis cartes repliables (aperçu : capture, description, chips, liens) avec un lien « Voir plus » vers la page du projet. Stats GitHub en direct (`data-gh="owner/repo"`, `data-gh-releases` pour les téléchargements ; cache 1 h).
 - **Pages projets** : accroche, chips, stats GitHub, boutons, capture, sections détaillées, galerie, projet suivant. JSON-LD (`SoftwareApplication`, `WebApplication` ou `SoftwareSourceCode`).

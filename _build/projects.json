@@ -10,9 +10,9 @@
       { "href": "https://github.com/Swaksm/Kleaner", "label": { "en": "GitHub", "fr": "GitHub" } }
     ],
     "shots": [
+      { "src": "/img/projects/kleaner-cleanup.webp", "alt": { "en": "Kleaner — recoverable space by type, nothing ticked in advance", "fr": "Kleaner — espace récupérable par type, rien n'est coché d'avance" } },
       { "src": "/img/kleaner.webp", "alt": { "en": "Kleaner — largest files, each with its verdict", "fr": "Kleaner — les plus gros fichiers, chacun avec son verdict" } },
       { "src": "/img/projects/kleaner-home.webp", "alt": { "en": "Kleaner — home: your drives and what you can free", "fr": "Kleaner — accueil : vos disques et l'espace libérable" } },
-      { "src": "/img/projects/kleaner-cleanup.webp", "alt": { "en": "Kleaner — cleanup, nothing ticked in advance", "fr": "Kleaner — nettoyage, rien n'est coché d'avance" } },
       { "src": "/img/projects/kleaner-health.webp", "alt": { "en": "Kleaner — read-only health & security check-up", "fr": "Kleaner — bilan santé & sécurité en lecture seule" } }
     ],
     "schema": { "@type": "SoftwareApplication", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Windows 10, Windows 11", "license": "https://opensource.org/licenses/MIT", "downloadUrl": "https://github.com/Swaksm/Kleaner/releases" },
@@ -275,17 +275,34 @@
       "codeRepository": "https://github.com/Swaksm/portfolio"
     },
     "en": {
-      "title": "swaks.org — this portfolio, built in vibecoding",
-      "description": "How this portfolio is built: vibecoding with Claude Code under my supervision, a static bilingual site with no framework, a Python build script and automatic deployment.",
-      "kicker": "This site · Vibecoding · Static",
-      "lead": "The site you are reading. Built in vibecoding with Claude Code: I supervise everything and decide the stacks and methods, the AI writes the code under my direction.",
+      "title": "swaks.org — this portfolio, spec-driven and shipped by CI",
+      "description": "How this portfolio is built: a written spec first, a static bilingual site with no framework, CI checks and automatic deployment, accessibility by default.",
+      "kicker": "This site · Spec-driven · CI/CD",
+      "lead": "The site you are reading, and a showcase of how I work: spec first, small tested steps, CI before anything goes live.",
       "sections": [
         {
-          "h": "The method",
+          "h": "Spec-driven",
           "ul": [
-            "I set the direction: the stack, the structure, the design and the constraints — static, bilingual, accessible, fast.",
-            "Claude Code writes the code under my direction; I decide what is kept, changed or dropped.",
+            "A written spec (spec.md in the repo) comes before the code: structure, languages, design, constraints and how to add a project.",
+            "Each change is a small step with a clear goal, checked before the next one.",
+            "Claude Code writes much of the code; I set the stack and the architecture, and I review what is kept, changed or dropped.",
             "Every change goes through GitHub, so the whole history is public."
+          ]
+        },
+        {
+          "h": "CI / CD",
+          "ul": [
+            "On every push, GitHub Actions runs the build and fails if the generated pages are not up to date.",
+            "If everything passes, the site is deployed to OVH automatically: no manual upload.",
+            "The build versions CSS and JS files for long-term caching, and computes the script hashes of the Content-Security-Policy."
+          ]
+        },
+        {
+          "h": "Accessibility",
+          "ul": [
+            "Text contrast of at least 4.5:1 in both themes, checked colour by colour.",
+            "Fully usable with the keyboard: sections, project cards, command palette (Ctrl+K), visible focus.",
+            "Labels for screen readers, real buttons and links, and every animation turned off when the system asks for less motion."
           ]
         },
         {
@@ -300,17 +317,34 @@
       ]
     },
     "fr": {
-      "title": "swaks.org — ce portfolio, fait en vibecoding",
-      "description": "Comment ce portfolio est construit : vibecoding avec Claude Code sous ma supervision, un site statique bilingue sans framework, un script de build Python et une mise en ligne automatique.",
-      "kicker": "Ce site · Vibecoding · Statique",
-      "lead": "Le site que tu lis. Fait en vibecoding avec Claude Code : je supervise tout et je décide des stacks et des méthodes, l'IA écrit le code sous ma direction.",
+      "title": "swaks.org — ce portfolio, spec d'abord et mis en ligne par la CI",
+      "description": "Comment ce portfolio est construit : une spec écrite d'abord, un site statique bilingue sans framework, des vérifications en CI et une mise en ligne automatique, accessible par défaut.",
+      "kicker": "Ce site · Spec-driven · CI/CD",
+      "lead": "Le site que tu lis, et une vitrine de ma façon de travailler : la spec d'abord, des petites étapes testées, la CI avant toute mise en ligne.",
       "sections": [
         {
-          "h": "La méthode",
+          "h": "Spec d'abord",
           "ul": [
-            "Je fixe le cap : la stack, la structure, le design et les contraintes — statique, bilingue, accessible, rapide.",
-            "Claude Code écrit le code sous ma direction ; je décide de ce qu'on garde, change ou abandonne.",
+            "Une spec écrite (spec.md dans le dépôt) passe avant le code : structure, langues, design, contraintes et ajout d'un projet.",
+            "Chaque changement est une petite étape avec un objectif clair, vérifiée avant la suivante.",
+            "Claude Code écrit une bonne partie du code ; je fixe la stack et l'architecture, et je relis ce qu'on garde, change ou abandonne.",
             "Chaque changement passe par GitHub : tout l'historique est public."
+          ]
+        },
+        {
+          "h": "CI / CD",
+          "ul": [
+            "À chaque push, GitHub Actions lance le build et échoue si les pages générées ne sont pas à jour.",
+            "Si tout passe, le site est mis en ligne sur OVH automatiquement : aucun envoi à la main.",
+            "Le build versionne les fichiers CSS et JS pour un cache long, et calcule les empreintes des scripts de la Content-Security-Policy."
+          ]
+        },
+        {
+          "h": "Accessibilité",
+          "ul": [
+            "Contraste du texte d'au moins 4.5:1 dans les deux thèmes, vérifié couleur par couleur.",
+            "Entièrement utilisable au clavier : sections, cartes de projets, palette de commandes (Ctrl+K), focus visible.",
+            "Libellés pour les lecteurs d'écran, vrais boutons et liens, et toutes les animations coupées quand le système demande moins de mouvement."
           ]
         },
         {

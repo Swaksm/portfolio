@@ -1,0 +1,110 @@
+{
+  "en": {
+    "title": "Matthieu Izac — about me, background and résumé",
+    "description": "Matthieu Izac (swaks), software developer in Nantes: work-study at DGSYS on WinDev / WebDev point-of-sale software, EISI Master's at EPSI, internships, method and résumé.",
+    "kicker": "About me · Background · Résumé",
+    "lead": "Software developer in Nantes, on a work-study Master's at EPSI and at DGSYS, where I build point-of-sale software. Curious, autonomous, and happiest when a tool I built gets used.",
+    "cv": "Résumé (PDF) — coming soon",
+    "contact": "Contact me",
+    "sections": [
+      { "h": "Experience", "items": [
+        { "title": "Software developer — work-study", "org": "DGSYS", "href": "https://www.dgsys.fr/", "meta": "Aug 2025 – today · Nantes", "ul": [
+          "Development and maintenance of point-of-sale software in WinDev.",
+          "Internal and customer-facing web tools in WebDev.",
+          "New features on existing applications, bug fixes and support; till screens, HFSQL database and data exchanges."
+        ] },
+        { "title": "Developer — internship", "org": "Le Voyage à Nantes", "href": "https://www.levoyageanantes.fr/", "meta": "Jan – Feb 2024 · Nantes", "ul": [
+          "Designed and put into production a complete weather-monitoring solution for the Carrousel des Mondes Marins and the Grand Éléphant.",
+          "Python, PHP, HTML / CSS, PowerShell and SQL; internal supervision tools with automatic notifications.",
+          "Documentation, and tests on a virtual machine."
+        ] },
+        { "title": "Web developer — internship", "org": "Fondation AUB Santé", "href": "https://www.aub-sante.fr/", "meta": "Jun – Jul 2023", "ul": [
+          "A complete web tool in PHP, HTML, CSS and JavaScript to manage dialysis records.",
+          "Generating, centralising, editing and downloading the records as PDF.",
+          "A clear, detailed user guide."
+        ] },
+        { "title": "Other jobs", "meta": "2022 – 2025", "ul": [
+          "Temp work with Adecco (Nov 2024 – Aug 2025): production line, food industry, order picking, inventory.",
+          "McDonald's (2022): team member — pace, teamwork and hygiene standards."
+        ] }
+      ] },
+      { "h": "Education", "items": [
+        { "title": "EISI Master's — IT and information systems expert, work-study", "org": "EPSI Nantes", "href": "https://www.epsi.fr/", "meta": "Sep 2026 – 2028 · Bac+5", "ul": [
+          "Full-stack development, automation and data analysis through hands-on projects."
+        ] },
+        { "title": "Bachelor — AI developer", "org": "EPSI Nantes", "href": "https://www.epsi.fr/", "meta": "2025 – 2026 · Bac+3", "ul": [
+          "Artificial intelligence, Python, algorithms and data science."
+        ] },
+        { "title": "BTS SIO — computer science", "meta": "until 2024" },
+        { "title": "General baccalaureate", "meta": "2022" }
+      ] },
+      { "h": "How I work", "ul": [
+        "Spec first: what to build and its constraints are written down before the code.",
+        "Small steps, each tested; CI (tests, lint, build) before anything goes live.",
+        "Accessibility and performance are part of the spec.",
+        "Claude Code speeds up the writing; the stack, the architecture and the review stay mine."
+      ], "more": { "href": "/projects/swaks-org.html", "label": "This site, as an example →" } },
+      { "h": "Skills", "p": [
+        "Python, Rust, TypeScript, JavaScript, HTML / CSS · WinDev, WebDev, HFSQL · FastAPI, Flask, Playwright · PostgreSQL, MySQL · pandas, spaCy, YOLO, Hugging Face · Tauri, Git, Docker, Linux, GitHub Actions."
+      ] },
+      { "h": "Languages and interests", "p": [
+        "French (native), English B2, Spanish B1.",
+        "Perfumery, cinema, music, tennis and video games."
+      ] }
+    ]
+  },
+  "fr": {
+    "title": "Matthieu Izac — à propos, parcours et CV",
+    "description": "Matthieu Izac (swaks), développeur logiciel à Nantes : alternance chez DGSYS sur des logiciels de caisse WinDev / WebDev, Master EISI à l'EPSI, stages, méthode et CV.",
+    "kicker": "À propos · Parcours · CV",
+    "lead": "Développeur logiciel à Nantes, en Master en alternance à l'EPSI et chez DGSYS, où je développe des logiciels de caisse. Curieux, autonome, et content quand un outil que j'ai fait sert vraiment.",
+    "cv": "CV (PDF) — bientôt",
+    "contact": "Me contacter",
+    "sections": [
+      { "h": "Expérience", "items": [
+        { "title": "Développeur logiciel — alternance", "org": "DGSYS", "href": "https://www.dgsys.fr/", "meta": "août 2025 – aujourd'hui · Nantes", "ul": [
+          "Développement et maintenance de logiciels de caisse enregistreuse en WinDev.",
+          "Outils web internes et externes en WebDev.",
+          "Nouvelles fonctionnalités sur les applications existantes, corrections et support ; écrans de caisse, base HFSQL et échanges de données."
+        ] },
+        { "title": "Développeur informatique — stage", "org": "Le Voyage à Nantes", "href": "https://www.levoyageanantes.fr/", "meta": "janv. – févr. 2024 · Nantes", "ul": [
+          "Conception et mise en production d'une solution complète de surveillance météo pour le Carrousel des Mondes Marins et le Grand Éléphant.",
+          "Python, PHP, HTML / CSS, PowerShell et SQL ; outils internes de supervision avec notifications automatiques.",
+          "Documentation et tests sur machine virtuelle."
+        ] },
+        { "title": "Développeur web — stage", "org": "Fondation AUB Santé", "href": "https://www.aub-sante.fr/", "meta": "juin – juil. 2023", "ul": [
+          "Un outil web complet en PHP, HTML, CSS et JavaScript pour gérer les relevés de dialyse.",
+          "Génération, centralisation, modification et téléchargement des relevés en PDF.",
+          "Une documentation utilisateur claire et détaillée."
+        ] },
+        { "title": "Autres emplois", "meta": "2022 – 2025", "ul": [
+          "Intérim avec Adecco (nov. 2024 – août 2025) : chaîne de production, agroalimentaire, préparation de commandes, inventaires.",
+          "McDonald's (2022) : employé polyvalent — rythme, travail d'équipe et normes d'hygiène."
+        ] }
+      ] },
+      { "h": "Formation", "items": [
+        { "title": "Master EISI — expert en informatique et système d'information, en alternance", "org": "EPSI Nantes", "href": "https://www.epsi.fr/", "meta": "sept. 2026 – 2028 · Bac+5", "ul": [
+          "Développement full-stack, automatisation et analyse de données par projets."
+        ] },
+        { "title": "Bachelor — développeur IA", "org": "EPSI Nantes", "href": "https://www.epsi.fr/", "meta": "2025 – 2026 · Bac+3", "ul": [
+          "Intelligence artificielle, Python, algorithmique et data science."
+        ] },
+        { "title": "BTS SIO — informatique", "meta": "jusqu'en 2024" },
+        { "title": "Baccalauréat général", "meta": "2022" }
+      ] },
+      { "h": "Ma façon de travailler", "ul": [
+        "La spec d'abord : ce qu'il faut construire et ses contraintes sont écrits avant le code.",
+        "Des petites étapes, chacune testée ; la CI (tests, lint, build) avant toute mise en ligne.",
+        "L'accessibilité et la performance font partie de la spec.",
+        "Claude Code accélère l'écriture ; la stack, l'architecture et la relecture restent les miennes."
+      ], "more": { "href": "/projects/swaks-org.html", "label": "Ce site, en exemple →" } },
+      { "h": "Compétences", "p": [
+        "Python, Rust, TypeScript, JavaScript, HTML / CSS · WinDev, WebDev, HFSQL · FastAPI, Flask, Playwright · PostgreSQL, MySQL · pandas, spaCy, YOLO, Hugging Face · Tauri, Git, Docker, Linux, GitHub Actions."
+      ] },
+      { "h": "Langues et centres d'intérêt", "p": [
+        "Français (langue maternelle), anglais B2, espagnol B1.",
+        "Parfumerie, cinéma, musique, tennis et jeux vidéo."
+      ] }
+    ]
+  }
+}

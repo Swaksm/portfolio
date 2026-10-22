@@ -111,13 +111,19 @@
 
 /* ---- Curseur : point mauve natif (souris uniquement), suit la souris sans décalage ;
         anneau mauve sur ce qui est cliquable (règles « cursor: var(--pointer) ») ---- */
-:root { --pointer: pointer; }
-a[href] { cursor: var(--pointer); }
+:root { --pointer: pointer; --default: default; --text-cursor: text; }
+a[href], button, label, summary, select { cursor: var(--pointer); }
+input, textarea, [contenteditable] { cursor: var(--text-cursor); }
 @media (pointer: fine) {
-  :root { --pointer: url(/assets/cursor-hover.svg) 14 14, pointer; }
+  :root {
+    --pointer: url(/assets/cursor-hover.svg) 14 14, pointer;
+    --default: url(/assets/cursor.svg) 6 6, default;
+    --text-cursor: url(/assets/cursor-text.svg) 8 12, text;
+  }
   html { cursor: url(/assets/cursor.svg) 6 6, auto; }
-  input, textarea { cursor: text; }
 }
+/* Jamais le curseur natif : « cursor: default » s'écrit cursor: var(--default) */
+:disabled { cursor: var(--default) !important; }
 
 /* Thème : le nouveau thème s'étend en cercle depuis le bouton (View Transitions) */
 ::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
@@ -186,7 +192,7 @@ a[href] { cursor: var(--pointer); }
   color: var(--taupe-text);
 }
 .palette li[aria-selected="true"] { background: var(--parchment); color: var(--mauve); }
-.palette .palette-empty { padding: 0.9rem 0.8rem; font-size: 0.9rem; color: var(--muted); cursor: default; }
+.palette .palette-empty { padding: 0.9rem 0.8rem; font-size: 0.9rem; color: var(--muted); cursor: var(--default); }
 .palette-foot {
   display: flex;
   gap: 1.2rem;

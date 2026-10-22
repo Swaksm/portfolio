@@ -244,15 +244,38 @@ def project_page(p: dict, lang: str, nxt: dict, home_page: str, head_snippet: st
 
     nxt_path = f'/projects/{nxt["slug"]}.html'
     nxt_href = nxt_path if lang == 'en' else fr_url(nxt_path)
-    title = f'{c["title"]} · {u["title_suffix"]}'
 
+    main = f'''<main class="project">
+    <p class="kicker" style="--i:0">{text(c['kicker'])}</p>
+    <h1 style="--i:0">{text(p['name'])}<span>.</span></h1>
+    <p class="lead" style="--i:1">{text(c['lead'])}</p>
+    <div class="meta" style="--i:1">{chips}{stats}</div>
+    <div class="actions" style="--i:2">
+      {links}
+    </div>{hero}{sections}{gallery}
+
+    <nav class="next" style="--i:{next(i)}">
+      <a class="to-all" href="{home}#projets"><small>←</small><strong>{text(u['all'])}</strong></a>
+      <a class="to-next" href="{nxt_href}"><small>{text(u['next'])} →</small><strong>{text(nxt['name'])}</strong></a>
+    </nav>
+  </main>'''
+    return shell(lang, en_path, c['title'], c['description'], og, schema, main, home_page, head_snippet, ui_dict,
+                 back=f'{home}#projets')
+
+
+def shell(lang: str, en_path: str, title: str, description: str, og: str, schema: dict, main: str,
+          home_page: str, head_snippet: str, ui_dict: dict, back: str) -> str:
+    """Page complète (en-tête, barre du haut, pied de page) autour du <main> des pages projets et « À propos »."""
+    u = UI[lang]
+    url = SITE + (en_path if lang == 'en' else fr_url(en_path))
+    full_title = f'{title} · {u["title_suffix"]}'
     return f'''<!DOCTYPE html>
 <html lang="{lang}">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{text(title)}</title>
-  <meta name="description" content="{attr(c['description'])}" />
+  <title>{text(full_title)}</title>
+  <meta name="description" content="{attr(description)}" />
   <meta name="author" content="Matthieu Izac" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="{url}" />
@@ -265,8 +288,8 @@ def project_page(p: dict, lang: str, nxt: dict, home_page: str, head_snippet: st
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="swaks.org" />
-  <meta property="og:title" content="{attr(c['title'])}" />
-  <meta property="og:description" content="{attr(c['description'])}" />
+  <meta property="og:title" content="{attr(title)}" />
+  <meta property="og:description" content="{attr(description)}" />
   <meta property="og:url" content="{url}" />
   <meta property="og:image" content="{og}" />
   <meta property="og:image:width" content="1200" />
@@ -297,24 +320,11 @@ def project_page(p: dict, lang: str, nxt: dict, home_page: str, head_snippet: st
 </head>
 <body class="page">
   <header class="topbar">
-    <a class="home-link" href="{home}#projets">{text(u['home'])}</a>
+    <a class="home-link" href="{back}">{text(u['home'])}</a>
     {socials(home_page, lang, en_path)}
   </header>
 
-  <main class="project">
-    <p class="kicker" style="--i:0">{text(c['kicker'])}</p>
-    <h1 style="--i:0">{text(p['name'])}<span>.</span></h1>
-    <p class="lead" style="--i:1">{text(c['lead'])}</p>
-    <div class="meta" style="--i:1">{chips}{stats}</div>
-    <div class="actions" style="--i:2">
-      {links}
-    </div>{hero}{sections}{gallery}
-
-    <nav class="next" style="--i:{next(i)}">
-      <a class="to-all" href="{home}#projets"><small>←</small><strong>{text(u['all'])}</strong></a>
-      <a class="to-next" href="{nxt_href}"><small>{text(u['next'])} →</small><strong>{text(nxt['name'])}</strong></a>
-    </nav>
-  </main>
+  {main}
 
   <footer class="page-footer">{text(u['footer'])} · <a href="/mentions-legales.html">{text(u['legal'])}</a></footer>
 </body>
@@ -341,10 +351,71 @@ def build_projects(home_dict: dict) -> list:
 
 
 # ---------------------------------------------------------------------------
+#  Page « À propos » : _build/about.json -> about.html, fr/about.html
+# ---------------------------------------------------------------------------
+LINKEDIN = 'https://www.linkedin.com/in/matthieu-izac-257758292/'
+GITHUB = 'https://github.com/Swaksm'
+
+
+def about_page(c: dict, lang: str, home_page: str, head_snippet: str, ui_dict: dict) -> str:
+    en_path = '/about.html'
+    home = '/' if lang == 'en' else '/fr/'
+    ext = lambda href, label, cls='btn': (f'<a class="{cls}" href="{attr(href)}" target="_blank" rel="noopener">'
+                                          f'{text(label)} ↗</a>')
+    i = iter(range(3, 60))
+    sections = ''
+    for sec in c['sections']:
+        body = ''.join(f'\n      <p>{text(x)}</p>' for x in sec.get('p', []))
+        if sec.get('ul'):
+            body += '\n      <ul>' + ''.join(f'\n        <li>{text(x)}</li>' for x in sec['ul']) + '\n      </ul>'
+        for it in sec.get('items', []):
+            org = f' · {ext(it["href"], it["org"], "org")}' if it.get('href') else ''
+            ul = ''.join(f'\n          <li>{text(x)}</li>' for x in it.get('ul', []))
+            body += (f'\n      <article class="entry">\n        <h3>{text(it["title"])}{org}</h3>'
+                     f'\n        <p class="entry-meta">{text(it["meta"])}</p>'
+                     + (f'\n        <ul>{ul}\n        </ul>' if ul else '') + '\n      </article>')
+        if sec.get('more'):
+            href = sec['more']['href'] if lang == 'en' else fr_url(sec['more']['href'])
+            body += f'\n      <p><a class="more" href="{href}">{text(sec["more"]["label"])}</a></p>'
+        sections += f'\n    <section style="--i:{next(i)}">\n      <h2>{text(sec["h"])}</h2>{body}\n    </section>'
+
+    main = f'''<main class="project about">
+    <p class="kicker" style="--i:0">{text(c['kicker'])}</p>
+    <h1 style="--i:0">Matthieu Izac<span>.</span></h1>
+    <p class="lead" style="--i:1">{text(c['lead'])}</p>
+    <div class="actions" style="--i:2">
+      {ext(LINKEDIN, 'LinkedIn', 'btn primary')}
+      {ext(GITHUB, 'GitHub')}
+      <a class="btn" href="{home}#contact">{text(c['contact'])}</a>
+      <span class="btn soon" aria-disabled="true">{text(c['cv'])}</span>
+    </div>{sections}
+  </main>'''
+    schema = {'@context': 'https://schema.org', '@type': 'ProfilePage', 'name': c['title'], 'description': c['description'],
+              'url': SITE + (en_path if lang == 'en' else fr_url(en_path)), 'inLanguage': lang,
+              'mainEntity': {'@type': 'Person', 'name': 'Matthieu Izac', 'alternateName': 'swaks', 'url': SITE + '/',
+                             'sameAs': [GITHUB, LINKEDIN]}}
+    return shell(lang, en_path, c['title'], c['description'], SITE + '/og-image.png', schema, main,
+                 home_page, head_snippet, ui_dict, back=f'{home}#presentation')
+
+
+def build_about(home_dict: dict) -> None:
+    data = json.loads(read(BUILD / 'about.json'))
+    home_page = read(ROOT / 'index.html')
+    head_snippet = read(BUILD / 'head.html').rstrip('\n')
+    keep = lambda k: k.startswith(('ui.', 'nav.')) or k in ('legal', 'theme', 'theme.title')
+    ui_dict = {lang: {k: v for k, v in home_dict[lang].items() if keep(k)} for lang in ('en', 'fr')}
+    for lang in ('en', 'fr'):
+        page = about_page(data[lang], lang, home_page, head_snippet, ui_dict)
+        if lang == 'fr':
+            page = localize(page, ui_dict['fr'])
+        write(ROOT / ('about.html' if lang == 'en' else 'fr/about.html'), page)
+
+
+# ---------------------------------------------------------------------------
 #  Sitemap et images d'aperçu
 # ---------------------------------------------------------------------------
 def build_sitemap(projects: list) -> None:
-    paths = ['/'] + [f'/projects/{p["slug"]}.html' for p in projects]
+    paths = ['/', '/about.html'] + [f'/projects/{p["slug"]}.html' for p in projects]
     urls = []
     for en in paths:
         alts = ''.join(f'\n    <xhtml:link rel="alternate" hreflang="{h}" href="{SITE}{u}" />'
@@ -364,6 +435,7 @@ ASSETS = ('site.css', 'site.js', 'project.css', 'lang.js')
 
 def served_pages() -> list:
     return [ROOT / 'index.html', ROOT / 'fr' / 'index.html', ROOT / '404.html', ROOT / 'mentions-legales.html',
+            ROOT / 'about.html', ROOT / 'fr' / 'about.html',
             *sorted((ROOT / 'projects').glob('*.html')), *sorted((ROOT / 'fr' / 'projects').glob('*.html'))]
 
 
@@ -432,6 +504,7 @@ def build_og(projects: list) -> None:
 if __name__ == '__main__':
     print('Accueil FR'); home_dict = build_home()
     print('Pages projets'); projects = build_projects(home_dict)
+    print('À propos'); build_about(home_dict)
     print('Sitemap'); build_sitemap(projects)
     print('Cache et CSP'); version_assets(); csp_script_hashes()
     if '--og' in sys.argv:

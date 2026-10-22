@@ -2,84 +2,98 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://swaks.org/</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://swaks.org/fr/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/" />
   </url>
   <url>
     <loc>https://swaks.org/fr/</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://swaks.org/fr/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/" />
   </url>
   <url>
+    <loc>https://swaks.org/about.html</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/about.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://swaks.org/fr/about.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/about.html" />
+  </url>
+  <url>
+    <loc>https://swaks.org/fr/about.html</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/about.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://swaks.org/fr/about.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/about.html" />
+  </url>
+  <url>
     <loc>https://swaks.org/projects/kleaner.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/projects/kleaner.html" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://swaks.org/fr/projects/kleaner.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/projects/kleaner.html" />
   </url>
   <url>
     <loc>https://swaks.org/fr/projects/kleaner.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/projects/kleaner.html" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://swaks.org/fr/projects/kleaner.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/projects/kleaner.html" />
   </url>
   <url>
     <loc>https://swaks.org/projects/lion-meme.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/projects/lion-meme.html" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://swaks.org/fr/projects/lion-meme.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/projects/lion-meme.html" />
   </url>
   <url>
     <loc>https://swaks.org/fr/projects/lion-meme.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/projects/lion-meme.html" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://swaks.org/fr/projects/lion-meme.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/projects/lion-meme.html" />
   </url>
   <url>
     <loc>https://swaks.org/projects/cordesortie.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/projects/cordesortie.html" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://swaks.org/fr/projects/cordesortie.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/projects/cordesortie.html" />
   </url>
   <url>
     <loc>https://swaks.org/fr/projects/cordesortie.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/projects/cordesortie.html" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://swaks.org/fr/projects/cordesortie.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/projects/cordesortie.html" />
   </url>
   <url>
     <loc>https://swaks.org/projects/video-grabber.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/projects/video-grabber.html" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://swaks.org/fr/projects/video-grabber.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/projects/video-grabber.html" />
   </url>
   <url>
     <loc>https://swaks.org/fr/projects/video-grabber.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/projects/video-grabber.html" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://swaks.org/fr/projects/video-grabber.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/projects/video-grabber.html" />
   </url>
   <url>
     <loc>https://swaks.org/projects/swaks-org.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/projects/swaks-org.html" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://swaks.org/fr/projects/swaks-org.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/projects/swaks-org.html" />
   </url>
   <url>
     <loc>https://swaks.org/fr/projects/swaks-org.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/projects/swaks-org.html" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://swaks.org/fr/projects/swaks-org.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/projects/swaks-org.html" />

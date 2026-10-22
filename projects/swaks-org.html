@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>swaks.org — this portfolio, built in vibecoding · swaks.org</title>
-  <meta name="description" content="How this portfolio is built: vibecoding with Claude Code under my supervision, a static bilingual site with no framework, a Python build script and automatic deployment." />
+  <title>swaks.org — this portfolio, spec-driven and shipped by CI · swaks.org</title>
+  <meta name="description" content="How this portfolio is built: a written spec first, a static bilingual site with no framework, CI checks and automatic deployment, accessibility by default." />
   <meta name="author" content="Matthieu Izac" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://swaks.org/projects/swaks-org.html" />
@@ -17,8 +17,8 @@
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="swaks.org" />
-  <meta property="og:title" content="swaks.org — this portfolio, built in vibecoding" />
-  <meta property="og:description" content="How this portfolio is built: vibecoding with Claude Code under my supervision, a static bilingual site with no framework, a Python build script and automatic deployment." />
+  <meta property="og:title" content="swaks.org — this portfolio, spec-driven and shipped by CI" />
+  <meta property="og:description" content="How this portfolio is built: a written spec first, a static bilingual site with no framework, CI checks and automatic deployment, accessibility by default." />
   <meta property="og:url" content="https://swaks.org/projects/swaks-org.html" />
   <meta property="og:image" content="https://swaks.org/img/og/swaks-org.png" />
   <meta property="og:image:width" content="1200" />
@@ -44,6 +44,7 @@
   "theme": "Toggle theme",
   "theme.title": "Theme",
   "nav.label": "Section navigation",
+  "nav.me": "About me",
   "legal": "Legal notice",
   "nav.contact": "Contact",
   "ui.more": "Details →",
@@ -74,6 +75,7 @@
   "theme": "Changer de thème",
   "theme.title": "Thème",
   "nav.label": "Navigation des sections",
+  "nav.me": "À propos de moi",
   "legal": "Mentions légales",
   "nav.contact": "Contact",
   "ui.more": "Voir plus →",
@@ -120,8 +122,8 @@
       }
     })();
   </script>
-  <link rel="stylesheet" href="/assets/site.css?v=8f71c0b4e5" />
-  <link rel="stylesheet" href="/assets/project.css?v=714004b176" />
+  <link rel="stylesheet" href="/assets/site.css?v=e8765bb4bc" />
+  <link rel="stylesheet" href="/assets/project.css?v=2559148285" />
 
   <script type="application/ld+json">
 {
@@ -130,7 +132,7 @@
   "programmingLanguage": "JavaScript",
   "codeRepository": "https://github.com/Swaksm/portfolio",
   "name": "swaks.org",
-  "description": "How this portfolio is built: vibecoding with Claude Code under my supervision, a static bilingual site with no framework, a Python build script and automatic deployment.",
+  "description": "How this portfolio is built: a written spec first, a static bilingual site with no framework, CI checks and automatic deployment, accessibility by default.",
   "url": "https://swaks.org/projects/swaks-org.html",
   "image": "https://swaks.org/img/og/swaks-org.png",
   "inLanguage": "en",
@@ -141,7 +143,7 @@
   }
 }
   </script>
-  <script defer src="/assets/site.js?v=f8bdc8b9ec"></script>
+  <script defer src="/assets/site.js?v=df5108a458"></script>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="50c62680-6fe2-4654-82fd-813896edce5e"></script>
 </head>
 <body class="page">
@@ -166,23 +168,40 @@
   </header>
 
   <main class="project">
-    <p class="kicker" style="--i:0">This site · Vibecoding · Static</p>
+    <p class="kicker" style="--i:0">This site · Spec-driven · CI/CD</p>
     <h1 style="--i:0">swaks.org<span>.</span></h1>
-    <p class="lead" style="--i:1">The site you are reading. Built in vibecoding with Claude Code: I supervise everything and decide the stacks and methods, the AI writes the code under my direction.</p>
+    <p class="lead" style="--i:1">The site you are reading, and a showcase of how I work: spec first, small tested steps, CI before anything goes live.</p>
     <div class="meta" style="--i:1"><span class="chip">HTML / CSS</span><span class="chip">JavaScript</span><span class="chip">Python</span><span class="chip">GitHub Actions</span><span class="gh-stats" data-gh="Swaksm/portfolio"></span></div>
     <div class="actions" style="--i:2">
       <a class="btn primary" href="https://github.com/Swaksm/portfolio" data-umami-event="github" data-umami-event-project="swaks-org" target="_blank" rel="noopener">GitHub ↗</a>
     </div>
     <figure class="shot" style="--i:3"><img src="/img/projects/swaks-org.webp" srcset="/img/projects/swaks-org-640.webp 640w, /img/projects/swaks-org.webp 1280w" sizes="(max-width: 600px) calc(100vw - 2.4rem), (max-width: 760px) calc(100vw - 3.2rem), 709px" alt="swaks.org — the home screen" width="1280" height="800" data-tilt /></figure>
     <section style="--i:4">
-      <h2>The method</h2>
+      <h2>Spec-driven</h2>
       <ul>
-        <li>I set the direction: the stack, the structure, the design and the constraints — static, bilingual, accessible, fast.</li>
-        <li>Claude Code writes the code under my direction; I decide what is kept, changed or dropped.</li>
+        <li>A written spec (spec.md in the repo) comes before the code: structure, languages, design, constraints and how to add a project.</li>
+        <li>Each change is a small step with a clear goal, checked before the next one.</li>
+        <li>Claude Code writes much of the code; I set the stack and the architecture, and I review what is kept, changed or dropped.</li>
         <li>Every change goes through GitHub, so the whole history is public.</li>
       </ul>
     </section>
     <section style="--i:5">
+      <h2>CI / CD</h2>
+      <ul>
+        <li>On every push, GitHub Actions runs the build and fails if the generated pages are not up to date.</li>
+        <li>If everything passes, the site is deployed to OVH automatically: no manual upload.</li>
+        <li>The build versions CSS and JS files for long-term caching, and computes the script hashes of the Content-Security-Policy.</li>
+      </ul>
+    </section>
+    <section style="--i:6">
+      <h2>Accessibility</h2>
+      <ul>
+        <li>Text contrast of at least 4.5:1 in both themes, checked colour by colour.</li>
+        <li>Fully usable with the keyboard: sections, project cards, command palette (Ctrl+K), visible focus.</li>
+        <li>Labels for screen readers, real buttons and links, and every animation turned off when the system asks for less motion.</li>
+      </ul>
+    </section>
+    <section style="--i:7">
       <h2>Under the hood</h2>
       <ul>
         <li>Plain HTML, CSS and JavaScript: no framework, nothing to install.</li>
@@ -192,7 +211,7 @@
       </ul>
     </section>
 
-    <nav class="next" style="--i:6">
+    <nav class="next" style="--i:8">
       <a class="to-all" href="/#projets"><small>←</small><strong>All projects</strong></a>
       <a class="to-next" href="/projects/kleaner.html"><small>Next project →</small><strong>Kleaner</strong></a>
     </nav>

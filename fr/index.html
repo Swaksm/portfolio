@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-i18n="meta.title">swaks.org — Matthieu, développeur logiciel</title>
+  <title data-i18n="meta.title">Matthieu Izac — Développeur logiciel à Nantes · swaks</title>
 
   <!-- SEO -->
-  <meta name="description" data-i18n-attr="content:meta.desc" content="Matthieu Izac (swaks) — développeur logiciel à Nantes, en Master en alternance à l&#x27;EPSI. Logiciels de caisse en WinDev / WebDev, Python, Rust, bots et outils desktop : projets, compétences et contact." />
+  <meta name="description" data-i18n-attr="content:meta.desc" content="Matthieu Izac (swaks), développeur logiciel à Nantes : logiciels de caisse WinDev / WebDev chez DGSYS, outils en Python et Rust. Projets, parcours et contact." />
   <meta name="author" content="Matthieu Izac" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://swaks.org/fr/" data-localize="href" />
@@ -19,7 +19,7 @@
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="swaks.org" />
+  <meta property="og:title" content="Matthieu Izac — swaks.org" />
   <meta property="og:description" data-i18n-attr="content:og.desc" content="Développeur logiciel à Nantes : logiciels de caisse, Python, Rust et des outils qui servent." />
   <meta property="og:url" content="https://swaks.org/fr/" data-localize="content" />
   <meta property="og:image" content="https://swaks.org/og-image.png" />
@@ -32,7 +32,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://swaks.org/og-image.png" />
-  <meta name="twitter:title" content="swaks.org" />
+  <meta name="twitter:title" content="Matthieu Izac — swaks.org" />
   <meta name="twitter:description" data-i18n-attr="content:og.desc" content="Développeur logiciel à Nantes : logiciels de caisse, Python, Rust et des outils qui servent." />
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -45,9 +45,13 @@
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Matthieu Izac",
-    "alternateName": "swaks",
+    "givenName": "Matthieu",
+    "familyName": "Izac",
+    "alternateName": ["swaks", "IZAC Matthieu"],
     "url": "https://swaks.org/",
-    "jobTitle": "Software developer",
+    "jobTitle": "Software developer (WinDev / WebDev)",
+    "worksFor": { "@type": "Organization", "name": "DGSYS", "url": "https://www.dgsys.fr/" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "EPSI Nantes", "url": "https://www.epsi.fr/" },
     "address": { "@type": "PostalAddress", "addressLocality": "Nantes", "addressCountry": "FR" },
     "knowsAbout": ["Python", "Rust", "TypeScript", "Tauri", "Playwright", "FastAPI", "Flask", "PostgreSQL", "WinDev", "WebDev", "Docker", "pandas", "spaCy", "YOLO", "Hugging Face"],
     "sameAs": ["https://github.com/Swaksm", "https://www.linkedin.com/in/matthieu-izac-257758292/"]
@@ -61,13 +65,13 @@
   <!-- Textes FR/EN (lus par window.t et par le script de build) -->
   <script id="i18n" type="application/json">{
  "en": {
-  "meta.title": "swaks.org — Matthieu, software developer",
-  "meta.desc": "Matthieu Izac (swaks) — software developer in Nantes, on a work-study Master's at EPSI. Point-of-sale software in WinDev / WebDev, Python, Rust, bots and desktop tools: projects, skills and contact.",
+  "meta.title": "Matthieu Izac — Software developer in Nantes · swaks",
+  "meta.desc": "Matthieu Izac (swaks), software developer in Nantes: WinDev / WebDev point-of-sale software at DGSYS, tools in Python and Rust. Projects, résumé and contact.",
   "enter": "Enter",
   "nav.about": "About",
   "about.title": "ABOUT ME<span class=\"hs\">.<\/span>",
   "about.p1": "Welcome.",
-  "about.p2": "Let me introduce myself — I'm <span class=\"accent\">Matthieu<\/span>, <span class=\"age\"><\/span> years old. I'm a software developer on a work-study Master's (EISI) at EPSI Nantes until 2028, at <span class=\"accent\">DGSYS<\/span>, where I build point-of-sale software in WinDev and WebDev. Before that, a Bachelor's in development &amp; artificial intelligence.",
+  "about.p2": "Let me introduce myself — I'm <span class=\"accent\">Matthieu Izac<\/span>, <span class=\"age\"><\/span> years old. I'm a software developer on a work-study Master's (EISI) at EPSI Nantes until 2028, at <span class=\"accent\">DGSYS<\/span>, where I build point-of-sale software in WinDev and WebDev. Before that, a Bachelor's in development &amp; artificial intelligence.",
   "nav.skills": "Skills",
   "skills.title": "SKILL<span class=\"hs\">S<\/span>",
   "nav.projects": "Projects",
@@ -83,8 +87,8 @@
   "vg.desc": "Paste a page URL: the tool detects its videos, you pick, it downloads. Handles cookies, Referer and temporary tokens by downloading from inside the browser session. Regular formats plus HLS / DASH streams. Available as a desktop app, a command-line tool and a Chrome extension.",
   "dg.tag": "Work-study · Point-of-sale software · since 2025",
   "dg.desc": "Software developer on a work-study contract at DGSYS since 2025, on point-of-sale software for all kinds of businesses. I build new features, fix bugs and handle support, design the till screens and work on the HFSQL database and data exchanges.",
-  "sw.tag": "This site · Vibecoding · Static",
-  "sw.desc": "This portfolio, built in vibecoding with Claude Code: I supervise everything and decide the stacks and methods, the AI writes the code. Static and bilingual, no framework; a Python script generates the French pages, and GitHub Actions deploys every push to OVH.",
+  "sw.tag": "This site · Spec-driven · CI/CD",
+  "sw.desc": "This portfolio, built spec-first: a written spec sets the structure, the constraints and the quality bar (accessibility, performance, security). Static and bilingual, no framework; a Python script generates the French pages, and GitHub Actions checks then deploys every push to OVH. Code written with Claude Code, under my review.",
   "sw.alt": "swaks.org — the home screen",
   "vg.dl": "Download ↗",
   "contact.loc": "Location",
@@ -115,9 +119,9 @@
   "skills.data": "Data",
   "skills.desk": "Desktop &amp; tools",
   "skills.pcsoft": "PC Soft",
-  "tagline": "Developer · Tools · Nantes",
+  "tagline": "Matthieu Izac · Developer · Nantes",
   "about.p3": "On the side, I build my own tools to meet real needs: a Discord bot running in production, a Windows disk cleaner in Rust, a video downloader. I learn <span class=\"accent\">by building<\/span>, autonomously and out of curiosity.",
-  "about.p4": "My way of working: <span class=\"accent\">vibecoding<\/span> with Claude Code. I supervise everything — I decide the stacks and the methods, and the AI writes the code under my direction.",
+  "about.p4": "My way of working: <span class=\"accent\">spec first<\/span>. I write down what to build and its constraints before any code, then move in small steps that are each tested. Every push goes through CI (tests, lint, build) before it ships, and accessibility is part of the spec, not an afterthought. Claude Code speeds up the writing; the stack, the architecture and the review stay mine.",
   "tl.master": "EISI Master's — EPSI Nantes, work-study",
   "tl.master.d": "until 2028 · software developer at DGSYS",
   "tl.bachelor": "Bachelor — development &amp; AI",
@@ -126,7 +130,9 @@
   "tl.bac": "General baccalaureate",
   "about.langs": "English B2 · Spanish B1",
   "about.likes": "Outside code: perfumery, cinema, music, tennis and video games.",
-  "kl.alt": "Kleaner — largest files, each with its verdict",
+  "about.more": "More about me →",
+  "nav.me": "About me",
+  "kl.alt": "Kleaner — recoverable space by type",
   "lm.alt": "Lion Meme — the meme generator",
   "legal": "Legal notice",
   "og.desc": "Software developer in Nantes: point-of-sale software, Python, Rust and tools that get used.",
@@ -154,13 +160,13 @@
   "ui.noResult": "No result"
  },
  "fr": {
-  "meta.title": "swaks.org — Matthieu, développeur logiciel",
-  "meta.desc": "Matthieu Izac (swaks) — développeur logiciel à Nantes, en Master en alternance à l'EPSI. Logiciels de caisse en WinDev / WebDev, Python, Rust, bots et outils desktop : projets, compétences et contact.",
+  "meta.title": "Matthieu Izac — Développeur logiciel à Nantes · swaks",
+  "meta.desc": "Matthieu Izac (swaks), développeur logiciel à Nantes : logiciels de caisse WinDev / WebDev chez DGSYS, outils en Python et Rust. Projets, parcours et contact.",
   "enter": "Accéder",
   "nav.about": "Présentation",
   "about.title": "PRÉ<span class=\"hs\">S<\/span>ENTATION",
   "about.p1": "Bienvenue.",
-  "about.p2": "Je me présente — je suis <span class=\"accent\">Matthieu<\/span>, <span class=\"age\"><\/span> ans. Développeur logiciel, je suis en Master EISI en alternance à l'EPSI Nantes jusqu'en 2028, chez <span class=\"accent\">DGSYS<\/span>, où je développe des logiciels de caisse en WinDev et WebDev. Avant ça : un Bachelor développement &amp; intelligence artificielle.",
+  "about.p2": "Je me présente — je suis <span class=\"accent\">Matthieu Izac<\/span>, <span class=\"age\"><\/span> ans. Développeur logiciel, je suis en Master EISI en alternance à l'EPSI Nantes jusqu'en 2028, chez <span class=\"accent\">DGSYS<\/span>, où je développe des logiciels de caisse en WinDev et WebDev. Avant ça : un Bachelor développement &amp; intelligence artificielle.",
   "nav.skills": "Compétences",
   "skills.title": "COMPÉTENCE<span class=\"hs\">S<\/span>",
   "nav.projects": "Projets",
@@ -176,8 +182,8 @@
   "vg.desc": "Colle l'URL d'une page : l'outil détecte ses vidéos, tu choisis, il télécharge. Gère cookies, Referer et jetons temporaires en téléchargeant depuis la session du navigateur. Formats classiques et flux HLS / DASH. Disponible en application graphique, en ligne de commande et en extension Chrome.",
   "dg.tag": "Alternance · Logiciel de caisse · depuis 2025",
   "dg.desc": "Développeur logiciel en alternance chez DGSYS depuis 2025, sur un logiciel de caisse pour tous types de commerces. Je développe de nouvelles fonctionnalités, je corrige les bugs et je fais du support, je conçois les écrans de caisse et je travaille sur la base HFSQL et les échanges de données.",
-  "sw.tag": "Ce site · Vibecoding · Statique",
-  "sw.desc": "Ce portfolio, fait en vibecoding avec Claude Code : je supervise tout et je décide des stacks et des méthodes, l'IA écrit le code. Statique et bilingue, sans framework ; un script Python génère les pages françaises, et GitHub Actions met en ligne chaque push sur OVH.",
+  "sw.tag": "Ce site · Spec-driven · CI/CD",
+  "sw.desc": "Ce portfolio, construit spec d'abord : une spec écrite fixe la structure, les contraintes et le niveau de qualité (accessibilité, performance, sécurité). Statique et bilingue, sans framework ; un script Python génère les pages françaises, et GitHub Actions vérifie puis met en ligne chaque push sur OVH. Code écrit avec Claude Code, sous ma relecture.",
   "sw.alt": "swaks.org — l'écran d'accueil",
   "vg.dl": "Télécharger ↗",
   "contact.loc": "Localisation",
@@ -208,9 +214,9 @@
   "skills.data": "Données",
   "skills.desk": "Desktop &amp; outils",
   "skills.pcsoft": "PC Soft",
-  "tagline": "Développeur · Outils · Nantes",
+  "tagline": "Matthieu Izac · Développeur · Nantes",
   "about.p3": "À côté, je construis mes propres outils pour répondre à de vrais besoins : un bot Discord en production, un nettoyeur de disque Windows en Rust, un téléchargeur de vidéos. J'apprends <span class=\"accent\">en construisant<\/span>, en autonomie et par curiosité.",
-  "about.p4": "Ma méthode de travail : le <span class=\"accent\">vibecoding<\/span> avec Claude Code. Je supervise tout — je décide des stacks et des méthodes, et l'IA écrit le code sous ma direction.",
+  "about.p4": "Ma méthode : <span class=\"accent\">la spec d'abord<\/span>. J'écris ce qu'il faut construire et ses contraintes avant de coder, puis j'avance par petites étapes testées. Chaque push passe par la CI (tests, lint, build) avant la mise en ligne, et l'accessibilité fait partie de la spec, pas d'une finition. Claude Code accélère l'écriture ; la stack, l'architecture et la relecture restent les miennes.",
   "tl.master": "Master EISI — EPSI Nantes, en alternance",
   "tl.master.d": "jusqu'en 2028 · développeur logiciel chez DGSYS",
   "tl.bachelor": "Bachelor — développement &amp; IA",
@@ -219,7 +225,9 @@
   "tl.bac": "Baccalauréat général",
   "about.langs": "Anglais B2 · Espagnol B1",
   "about.likes": "Hors code : parfumerie, cinéma, musique, tennis et jeux vidéo.",
-  "kl.alt": "Kleaner — les plus gros fichiers, chacun avec son verdict",
+  "about.more": "En savoir plus sur moi →",
+  "nav.me": "À propos de moi",
+  "kl.alt": "Kleaner — espace récupérable par type",
   "lm.alt": "Lion Meme — le générateur de memes",
   "legal": "Mentions légales",
   "og.desc": "Développeur logiciel à Nantes : logiciels de caisse, Python, Rust et des outils qui servent.",
@@ -270,7 +278,7 @@
     })();
   </script>
 
-  <link rel="stylesheet" href="/assets/site.css?v=8f71c0b4e5" />
+  <link rel="stylesheet" href="/assets/site.css?v=e8765bb4bc" />
 
   <style>
     html, body {
@@ -463,6 +471,18 @@
     }
     .timeline li.now::before { background: var(--mauve); }
     .timeline small { display: block; font-size: 0.78rem; color: var(--muted); }
+    .more-link {
+      display: inline-block;
+      margin-top: 1.4rem;
+      font-weight: 700;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mauve-text);
+      text-decoration: none;
+      transition: color var(--dur-micro) var(--ease-smooth), transform var(--dur-micro) var(--ease-smooth);
+    }
+    .more-link:hover { color: var(--mauve); transform: translateX(3px); }
     #home p.langs {
       font-size: 0.68rem;
       letter-spacing: 0.12em;
@@ -507,7 +527,7 @@
       width: fit-content;
       font-size: clamp(14px, 1.35vw, 16px);
       color: var(--text);
-      cursor: default;
+      cursor: var(--default);
       transition: color var(--dur-micro) var(--ease-smooth),
                   transform var(--dur-micro) var(--ease-smooth);
     }
@@ -732,7 +752,7 @@
       width: fit-content;
     }
     #contact button[type="submit"]:hover:not(:disabled) { color: var(--mauve); transform: translateX(3px); }
-    #contact button[type="submit"]:disabled { cursor: default; }
+    #contact button[type="submit"]:disabled { cursor: var(--default); }
 
     .field { display: flex; flex-direction: column; }
     .field-error {
@@ -836,7 +856,7 @@
     .arrow-btn:hover { color: var(--mauve); }
     .arrow-btn:hover.up   { transform: translateY(-2px); }
     .arrow-btn:hover.down { transform: translateY(2px); }
-    .arrow-btn:disabled { opacity: 0.2; cursor: default; }
+    .arrow-btn:disabled { opacity: 0.2; cursor: var(--default); }
     .arrow-btn:disabled:hover { color: var(--taupe-text); transform: none; }
 
     /* ---- Footer ---- */
@@ -849,6 +869,7 @@
       color: var(--taupe-text);
       letter-spacing: 0.04em;
       pointer-events: none;
+      z-index: 100; /* au-dessus de #wrapper (z-index 1), sinon le lien n'est pas cliquable */
     }
     #footer a {
       pointer-events: auto;
@@ -867,7 +888,7 @@
       height: 40px;
       background: transparent;
       border: none;
-      cursor: default;
+      cursor: var(--default);
       z-index: 200;
     }
     #game-overlay {
@@ -968,7 +989,7 @@
     }
   </style>
 
-  <script defer src="/assets/site.js?v=f8bdc8b9ec"></script>
+  <script defer src="/assets/site.js?v=df5108a458"></script>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="50c62680-6fe2-4654-82fd-813896edce5e"></script>
 </head>
 <body>
@@ -981,16 +1002,16 @@
     <h1 aria-label="SWAKS">
       <span class="s" data-reveal style="--i:0">S</span><span class="w" data-reveal style="--i:1">W</span><span class="a" data-reveal style="--i:2">A</span><span class="k" data-reveal style="--i:3">K</span><span class="s" data-reveal style="--i:4">S</span>
     </h1>
-    <p id="tagline" data-reveal style="--i:5" data-i18n="tagline">Développeur · Outils · Nantes</p>
+    <p id="tagline" data-reveal style="--i:5" data-i18n="tagline">Matthieu Izac · Développeur · Nantes</p>
     <button id="acceder" data-reveal style="--i:6" data-i18n="enter">Accéder</button>
   </section>
 
   <section id="home" aria-label="Présentation" data-i18n-attr="aria-label:nav.about">
     <h2 class="section-title" data-num="01" data-reveal style="--i:0" data-i18n="about.title">PRÉ<span class="hs">S</span>ENTATION</h2>
     <p data-reveal style="--i:1" data-i18n="about.p1">Bienvenue.</p>
-    <p data-reveal style="--i:2" data-i18n="about.p2">Je me présente — je suis <span class="accent">Matthieu</span>, <span class="age">22</span> ans. Développeur logiciel, je suis en Master EISI en alternance à l'EPSI Nantes jusqu'en 2028, chez <span class="accent">DGSYS</span>, où je développe des logiciels de caisse en WinDev et WebDev. Avant ça : un Bachelor développement &amp; intelligence artificielle.</p>
+    <p data-reveal style="--i:2" data-i18n="about.p2">Je me présente — je suis <span class="accent">Matthieu Izac</span>, <span class="age">22</span> ans. Développeur logiciel, je suis en Master EISI en alternance à l'EPSI Nantes jusqu'en 2028, chez <span class="accent">DGSYS</span>, où je développe des logiciels de caisse en WinDev et WebDev. Avant ça : un Bachelor développement &amp; intelligence artificielle.</p>
     <p data-reveal style="--i:3" data-i18n="about.p3">À côté, je construis mes propres outils pour répondre à de vrais besoins : un bot Discord en production, un nettoyeur de disque Windows en Rust, un téléchargeur de vidéos. J'apprends <span class="accent">en construisant</span>, en autonomie et par curiosité.</p>
-    <p data-reveal style="--i:4" data-i18n="about.p4">Ma méthode de travail : le <span class="accent">vibecoding</span> avec Claude Code. Je supervise tout — je décide des stacks et des méthodes, et l'IA écrit le code sous ma direction.</p>
+    <p data-reveal style="--i:4" data-i18n="about.p4">Ma méthode : <span class="accent">la spec d'abord</span>. J'écris ce qu'il faut construire et ses contraintes avant de coder, puis j'avance par petites étapes testées. Chaque push passe par la CI (tests, lint, build) avant la mise en ligne, et l'accessibilité fait partie de la spec, pas d'une finition. Claude Code accélère l'écriture ; la stack, l'architecture et la relecture restent les miennes.</p>
 
     <ol class="timeline" data-reveal style="--i:5">
       <li class="now"><span data-i18n="tl.master">Master EISI — EPSI Nantes, en alternance</span><small data-i18n="tl.master.d">jusqu'en 2028 · développeur logiciel chez DGSYS</small></li>
@@ -1000,6 +1021,7 @@
     </ol>
     <p class="langs" data-reveal style="--i:6" data-i18n="about.langs">Anglais B2 · Espagnol B1</p>
     <p class="langs" data-reveal style="--i:7" data-i18n="about.likes">Hors code : parfumerie, cinéma, musique, tennis et jeux vidéo.</p>
+    <a class="more-link" href="/fr/about.html" data-localize="href" data-reveal style="--i:8" data-i18n="about.more">En savoir plus sur moi →</a>
   </section>
 
   <section id="skills" aria-label="Compétences" data-i18n-attr="aria-label:nav.skills">
@@ -1050,6 +1072,9 @@
             <span class="card-chip">WebDev</span>
             <span class="card-chip">HFSQL</span>
           </div>
+          <div class="card-links">
+            <a class="secondary" href="https://www.dgsys.fr/" data-umami-event="visit" data-umami-event-project="dgsys" target="_blank" rel="noopener">dgsys.fr ↗</a>
+          </div>
         </div>
       </div>
     </div>
@@ -1065,7 +1090,7 @@
       </button>
       <div class="card-body">
         <div class="card-body-inner">
-          <img class="card-shot" src="/img/kleaner.webp" srcset="/img/kleaner-640.webp 640w, /img/kleaner.webp 1280w" sizes="(max-width: 600px) calc(100vw - 3.8rem), (max-width: 720px) calc(100vw - 4rem), 656px" data-tilt alt="Kleaner — les plus gros fichiers, chacun avec son verdict" data-i18n-attr="alt:kl.alt" width="1280" height="800" loading="lazy" decoding="async" />
+          <img class="card-shot" src="/img/projects/kleaner-cleanup.webp" srcset="/img/projects/kleaner-cleanup-640.webp 640w, /img/projects/kleaner-cleanup.webp 1280w" sizes="(max-width: 600px) calc(100vw - 3.8rem), (max-width: 720px) calc(100vw - 4rem), 656px" data-tilt alt="Kleaner — espace récupérable par type" data-i18n-attr="alt:kl.alt" width="1280" height="800" loading="lazy" decoding="async" />
           <p data-i18n="kl.desc">Nettoyeur de disque Windows gratuit qui explique avant de supprimer : chaque gros fichier reçoit un verdict (sûr, à désinstaller, casse quelque chose, inconnu…) basé sur 108 règles écrites à la main — jamais de devinette. Suppression définitive limitée à une liste publique de caches, vérifiée en Rust et testée. Connaît les machines de dev, de jeu et d'IA (node_modules, .venv, Docker, modèles Ollama / Hugging Face). Aucune télémétrie, exe portable.</p>
           <div class="card-meta">
             <span class="card-chip">Rust</span>
@@ -1161,7 +1186,7 @@
       <button class="card-header" type="button" aria-expanded="false">
         <div>
           <div class="card-title">swaks.org</div>
-          <div class="card-tag" data-i18n="sw.tag">Ce site · Vibecoding · Statique</div>
+          <div class="card-tag" data-i18n="sw.tag">Ce site · Spec-driven · CI/CD</div>
           <span class="gh-stats" data-gh="Swaksm/portfolio"></span>
         </div>
         <span class="card-arrow" aria-hidden="true">+</span>
@@ -1169,7 +1194,7 @@
       <div class="card-body">
         <div class="card-body-inner">
           <img class="card-shot" src="/img/projects/swaks-org.webp" srcset="/img/projects/swaks-org-640.webp 640w, /img/projects/swaks-org.webp 1280w" sizes="(max-width: 600px) calc(100vw - 3.8rem), (max-width: 720px) calc(100vw - 4rem), 656px" data-tilt alt="swaks.org — l&#x27;écran d&#x27;accueil" data-i18n-attr="alt:sw.alt" width="1280" height="800" loading="lazy" decoding="async" />
-          <p data-i18n="sw.desc">Ce portfolio, fait en vibecoding avec Claude Code : je supervise tout et je décide des stacks et des méthodes, l'IA écrit le code. Statique et bilingue, sans framework ; un script Python génère les pages françaises, et GitHub Actions met en ligne chaque push sur OVH.</p>
+          <p data-i18n="sw.desc">Ce portfolio, construit spec d'abord : une spec écrite fixe la structure, les contraintes et le niveau de qualité (accessibilité, performance, sécurité). Statique et bilingue, sans framework ; un script Python génère les pages françaises, et GitHub Actions vérifie puis met en ligne chaque push sur OVH. Code écrit avec Claude Code, sous ma relecture.</p>
           <div class="card-meta">
             <span class="card-chip">HTML / CSS</span>
             <span class="card-chip">JavaScript</span>

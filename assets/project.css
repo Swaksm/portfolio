@@ -131,6 +131,14 @@ body.page {
   background: var(--mauve);
 }
 
+/* ---- Page « À propos » : expériences et formations ---- */
+.entry { margin-bottom: 1.6rem; }
+.entry h3 { font-size: clamp(15px, 1.5vw, 17px); font-weight: 700; line-height: 1.5; }
+.entry-meta { margin: 0.1rem 0 0.5rem !important; font-size: 0.72rem !important; letter-spacing: 0.08em; text-transform: uppercase; color: var(--taupe-text); }
+.org, .more { color: var(--mauve-text); text-decoration: none; transition: color var(--dur-micro) var(--ease-smooth); }
+.org:hover, .more:hover { color: var(--mauve); text-decoration: underline; }
+.btn.soon { border-style: dashed; color: var(--taupe-text); cursor: var(--default); }
+
 .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 3.5rem; }
 .gallery img { border-radius: 8px; }
 .gallery img:last-child:nth-child(odd) { grid-column: 1 / -1; } /* nombre impair : la dernière prend toute la largeur */

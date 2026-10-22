@@ -32,6 +32,10 @@
       color: var(--taupe-text); text-decoration: none; transition: color 220ms;
     }
     a:hover, a:focus-visible { color: var(--mauve); }
+    @media (pointer: fine) {
+      html { cursor: url(/assets/cursor.svg) 6 6, auto; }
+      a[href] { cursor: url(/assets/cursor-hover.svg) 14 14, pointer; }
+    }
   </style>
 </head>
 <body>

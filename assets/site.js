@@ -164,6 +164,7 @@
       label: t(k), group: t('ui.goto'),
       run: isHome ? () => window.swaksGoTo(i) : go(local('/') + '#' + HASHES[i]),
     })),
+    { label: t('nav.me'), group: t('ui.goto'), run: go(local('/about.html')) },
     ...PROJECTS.map(([slug, name]) => ({ label: name, group: t('ui.project'), run: go(local(`/projects/${slug}.html`)) })),
     { label: t('ui.copyEmail'), group: t('ui.action'), run: () => copyText(EMAIL) },
     { label: t('ui.theme'), group: t('ui.action'), run: () => toggleTheme(themeBtn) },
