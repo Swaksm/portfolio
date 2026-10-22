@@ -126,16 +126,71 @@
     const j = await res.json();
     const data = { stars: j.stargazers_count, pushed: j.pushed_at, downloads: 0, version: '' };
     if (withReleases) {
-      const rr = await fetch('https://api.github.com/repos/' + repo + '/releases?per_page=100');
-      if (rr.ok) {
-        const rel = await rr.json();
-        data.downloads = rel.reduce((n, r) => n + r.assets.reduce((m, a) => m + a.download_count, 0), 0);
-        data.version = rel[0] ? rel[0].tag_name : '';
-      }
+      const rel = await releasesOf(repo).catch(() => []);
+      data.downloads = rel.reduce((n, r) => n + r.assets.reduce((m, a) => m + a.count, 0), 0);
+      data.version = rel[0] ? rel[0].tag : '';
     }
     try { localStorage.setItem(key, JSON.stringify({ at: Date.now(), data })); } catch (e) {}
     return data;
   }
+
+  /* ---------- Releases GitHub (cache 1 h) : stats et bloc de téléchargement, une seule requête par page ---------- */
+  const releaseLoads = {};
+  function releasesOf(repo) {
+    releaseLoads[repo] = releaseLoads[repo] || (async () => {
+      const key = 'swaks-rel-' + repo;
+      try {
+        const c = JSON.parse(localStorage.getItem(key) || 'null');
+        if (c && Date.now() - c.at < 3600e3) return c.data;
+      } catch (e) {}
+      const res = await fetch('https://api.github.com/repos/' + repo + '/releases?per_page=100');
+      if (!res.ok) throw new Error('github');
+      const data = (await res.json()).filter((r) => !r.draft).map((r) => ({
+        tag: r.tag_name, date: r.published_at, pre: r.prerelease, url: r.html_url,
+        assets: r.assets.map((a) => ({ name: a.name, url: a.browser_download_url, size: a.size, count: a.download_count })),
+      }));
+      try { localStorage.setItem(key, JSON.stringify({ at: Date.now(), data })); } catch (e) {}
+      return data;
+    })();
+    return releaseLoads[repo];
+  }
+
+  /* ---------- Bloc « Télécharger » : dernière version en un clic, toutes les versions en dessous ---------- */
+  const setupOf = (r) => r.assets.find((a) => /-setup\.exe$/i.test(a.name));
+  const portableOf = (r) => r.assets.find((a) => /\.exe$/i.test(a.name) && !/-setup\.exe$/i.test(a.name));
+  const day = (iso) => new Date(iso).toLocaleDateString(LANG, { day: 'numeric', month: 'short', year: 'numeric' });
+  const mb = (b) => (b / 1e6).toLocaleString(LANG, { maximumFractionDigits: 1 }) + ' ' + t('ui.dl.mb');
+  document.querySelectorAll('[data-releases]').forEach(async (box) => {
+    let rel;
+    try { rel = await releasesOf(box.dataset.releases); } catch (e) { return; } // hors ligne ou quota : liens GitHub gardés
+    const latest = rel[0];
+    if (!latest) return;
+    const project = box.dataset.releases.split('/')[1].toLowerCase();
+    const main = setupOf(latest) || portableOf(latest);
+    const portable = portableOf(latest);
+    const version = latest.tag.replace(/^v/, '');
+    if (main) {
+      const btn = box.querySelector('[data-dl="setup"]');
+      btn.href = main.url;
+      btn.textContent = `${t('ui.dl.button')} ${version} ↓`;
+    }
+    const alt = box.querySelector('[data-dl="portable"]');
+    if (portable && portable !== main) alt.href = portable.url;
+    else alt.hidden = true;
+    box.querySelector('[data-dl="meta"]').textContent = [version, day(latest.date), main && mb(main.size), latest.pre && t('ui.dl.pre'), t('ui.dl.req')]
+      .filter(Boolean).join(' · ');
+    box.querySelector('[data-dl="list"]').innerHTML = rel.map((r, n) => {
+      const links = [[setupOf(r), t('ui.dl.setup')], [portableOf(r), t('ui.dl.exe')]]
+        .filter(([a]) => a)
+        .map(([a, label]) => `<a href="${esc(a.url)}" data-umami-event="download" data-umami-event-project="${esc(project)}">${esc(label)}</a>`)
+        .join('');
+      return `<li><span class="dl-tag">${esc(r.tag)}</span>`
+        + (n === 0 ? `<span class="dl-badge">${esc(t('ui.dl.latest'))}</span>` : '')
+        + (r.pre ? `<span class="dl-badge pre">${esc(t('ui.dl.pre'))}</span>` : '')
+        + `<span class="dl-date">${esc(day(r.date))}</span>`
+        + `<span class="dl-links">${links}<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(t('ui.dl.notes'))} ↗</a></span></li>`;
+    }).join('');
+  });
   const rtf = new Intl.RelativeTimeFormat(LANG, { numeric: 'auto' });
   function ago(iso) {
     const s = (new Date(iso) - Date.now()) / 1000;

@@ -4,9 +4,9 @@
     "name": "Kleaner",
     "repo": "Swaksm/Kleaner",
     "releases": true,
+    "download": true,
     "chips": ["Rust", "Tauri", "Windows 10 / 11", "MIT"],
     "links": [
-      { "href": "https://github.com/Swaksm/Kleaner/releases", "label": { "en": "Download", "fr": "Télécharger" }, "primary": true },
       { "href": "https://github.com/Swaksm/Kleaner", "label": { "en": "GitHub", "fr": "GitHub" } }
     ],
     "shots": [

@@ -66,7 +66,22 @@
   "ui.navigate": "navigate",
   "ui.open": "open",
   "ui.close": "close",
-  "ui.noResult": "No result"
+  "ui.noResult": "No result",
+  "ui.dl.title": "Download",
+  "ui.dl.button": "Download Kleaner",
+  "ui.dl.portable": "Portable version (no install)",
+  "ui.dl.req": "Windows 10 / 11 · 64-bit · free",
+  "ui.dl.step1": "Download the installer, then open it from your Downloads folder.",
+  "ui.dl.step2": "If Windows says “Windows protected your PC”, click “More info”, then “Run anyway”: Kleaner is free and not signed yet.",
+  "ui.dl.step3": "Follow the installer. Kleaner then opens, and stays in the Start menu.",
+  "ui.dl.versions": "All versions",
+  "ui.dl.latest": "latest",
+  "ui.dl.pre": "pre-release",
+  "ui.dl.setup": "Installer",
+  "ui.dl.exe": "Portable",
+  "ui.dl.notes": "Notes",
+  "ui.dl.mb": "MB",
+  "ui.dl.home": "Download Kleaner, the free Windows cleaner"
  },
  "fr": {
   "nav.about": "Présentation",
@@ -97,7 +112,22 @@
   "ui.navigate": "naviguer",
   "ui.open": "ouvrir",
   "ui.close": "fermer",
-  "ui.noResult": "Aucun résultat"
+  "ui.noResult": "Aucun résultat",
+  "ui.dl.title": "Télécharger",
+  "ui.dl.button": "Télécharger Kleaner",
+  "ui.dl.portable": "Version portable (sans installation)",
+  "ui.dl.req": "Windows 10 / 11 · 64 bits · gratuit",
+  "ui.dl.step1": "Télécharge l'installateur, puis ouvre-le depuis ton dossier Téléchargements.",
+  "ui.dl.step2": "Si Windows affiche « Windows a protégé votre ordinateur », clique sur « Informations complémentaires », puis « Exécuter quand même » : Kleaner est gratuit et pas encore signé.",
+  "ui.dl.step3": "Suis l'installation. Kleaner s'ouvre ensuite, et reste dans le menu Démarrer.",
+  "ui.dl.versions": "Toutes les versions",
+  "ui.dl.latest": "dernière",
+  "ui.dl.pre": "pré-version",
+  "ui.dl.setup": "Installateur",
+  "ui.dl.exe": "Portable",
+  "ui.dl.notes": "Notes",
+  "ui.dl.mb": "Mo",
+  "ui.dl.home": "Télécharger Kleaner, le nettoyeur Windows gratuit"
  }
 }</script>
   <!-- Au plus tôt (avant l'affichage) : thème mémorisé, textes window.t et version de langue -->
@@ -123,7 +153,7 @@
     })();
   </script>
   <link rel="stylesheet" href="/assets/site.css?v=e8765bb4bc" />
-  <link rel="stylesheet" href="/assets/project.css?v=2559148285" />
+  <link rel="stylesheet" href="/assets/project.css?v=d81b7fdaab" />
 
   <script type="application/ld+json">
 {
@@ -150,7 +180,7 @@
   }
 }
   </script>
-  <script defer src="/assets/site.js?v=df5108a458"></script>
+  <script defer src="/assets/site.js?v=e32d1d0398"></script>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="50c62680-6fe2-4654-82fd-813896edce5e"></script>
 </head>
 <body class="page">
@@ -180,9 +210,25 @@
     <p class="lead" style="--i:1">A free Windows cleaner that tells you what you can delete — and what breaks if you do.</p>
     <div class="meta" style="--i:1"><span class="chip">Rust</span><span class="chip">Tauri</span><span class="chip">Windows 10 / 11</span><span class="chip">MIT</span><span class="gh-stats" data-gh="Swaksm/Kleaner" data-gh-releases></span></div>
     <div class="actions" style="--i:2">
-      <a class="btn primary" href="https://github.com/Swaksm/Kleaner/releases" data-umami-event="download" data-umami-event-project="kleaner" target="_blank" rel="noopener">Download ↗</a>
       <a class="btn" href="https://github.com/Swaksm/Kleaner" data-umami-event="github" data-umami-event-project="kleaner" target="_blank" rel="noopener">GitHub ↗</a>
     </div>
+    <section class="download" id="download" data-releases="Swaksm/Kleaner" style="--i:9">
+      <h2>Download</h2>
+      <div class="dl-main">
+        <a class="btn primary dl-big" data-dl="setup" href="https://github.com/Swaksm/Kleaner/releases" data-umami-event="download" data-umami-event-project="kleaner">Download Kleaner ↓</a>
+        <a class="dl-alt" data-dl="portable" href="https://github.com/Swaksm/Kleaner/releases" data-umami-event="download" data-umami-event-project="kleaner">Portable version (no install)</a>
+      </div>
+      <p class="dl-meta" data-dl="meta">Windows 10 / 11 · 64-bit · free</p>
+      <ol class="dl-steps">
+        <li>Download the installer, then open it from your Downloads folder.</li>
+        <li>If Windows says “Windows protected your PC”, click “More info”, then “Run anyway”: Kleaner is free and not signed yet.</li>
+        <li>Follow the installer. Kleaner then opens, and stays in the Start menu.</li>
+      </ol>
+      <details class="dl-versions">
+        <summary>All versions</summary>
+        <ul data-dl="list"><li><a href="https://github.com/Swaksm/Kleaner/releases" target="_blank" rel="noopener">GitHub Releases ↗</a></li></ul>
+      </details>
+    </section>
     <figure class="shot" style="--i:3"><img src="/img/projects/kleaner-cleanup.webp" srcset="/img/projects/kleaner-cleanup-640.webp 640w, /img/projects/kleaner-cleanup.webp 1280w" sizes="(max-width: 600px) calc(100vw - 2.4rem), (max-width: 760px) calc(100vw - 3.2rem), 709px" alt="Kleaner — recoverable space by type, nothing ticked in advance" width="1280" height="800" data-tilt /></figure>
     <section style="--i:5">
       <h2>Why</h2>
@@ -218,7 +264,7 @@
       <img src="/img/projects/kleaner-health.webp" srcset="/img/projects/kleaner-health-640.webp 640w, /img/projects/kleaner-health.webp 1280w" sizes="(max-width: 600px) calc(100vw - 2.4rem), (max-width: 760px) calc(100vw - 3.2rem), 709px" alt="Kleaner — read-only health &amp; security check-up" width="1280" height="800" loading="lazy" decoding="async" data-tilt />
     </div>
 
-    <nav class="next" style="--i:9">
+    <nav class="next" style="--i:10">
       <a class="to-all" href="/#projets"><small>←</small><strong>All projects</strong></a>
       <a class="to-next" href="/projects/lion-meme.html"><small>Next project →</small><strong>Lion Meme</strong></a>
     </nav>

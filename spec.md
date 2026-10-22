@@ -66,6 +66,8 @@ python _build/build.py --og     # + images d'aperçu (Chrome ou Edge requis)
 - **Compétences** : 5 colonnes typographiques, sans icônes.
 - **Projets** : carte DGSYS (alternance, sans page projet) en tête, puis cartes repliables (aperçu : capture, description, chips, liens) avec un lien « Voir plus » vers la page du projet. Stats GitHub en direct (`data-gh="owner/repo"`, `data-gh-releases` pour les téléchargements ; cache 1 h).
 - **Pages projets** : accroche, chips, stats GitHub, boutons, capture, sections détaillées, galerie, projet suivant. JSON-LD (`SoftwareApplication`, `WebApplication` ou `SoftwareSourceCode`).
+- **Téléchargement** (`"download": true` dans `projects.json`, Kleaner) : bloc en tête de la page projet. Gros bouton vers l'installateur (`*-setup.exe`) de la dernière release, version portable, 3 étapes pour les débutants (SmartScreen compris), liste repliée de toutes les versions. Rempli par `site.js` depuis l'API GitHub (cache 1 h, même requête que les stats) : se met à jour seul à chaque release. Sans JS ou hors quota, les liens mènent à la page Releases de GitHub.
+- **Lien « ↓ Kleaner »** en haut à gauche de l'accueil, et adresse courte `swaks.org/kleaner` (`.htaccess`) vers ce bloc.
 - **Contact** : appel « Ouvert aux projets et petites missions » en tête, email copiable en un clic (`data-copy`), formulaire Formspree (`mojzlrke`) avec validation, gestion des erreurs réseau et champ piège anti-spam `_gotcha`.
 - **Easter egg** : bouton invisible coin haut-gauche → mini-jeu « Flux ».
 

@@ -242,6 +242,29 @@ def project_page(p: dict, lang: str, nxt: dict, home_page: str, head_snippet: st
             body += '\n      <ul>' + ''.join(f'\n        <li>{text(x)}</li>' for x in sec['ul']) + '\n      </ul>'
         sections += f'\n    <section style="--i:{next(i)}">\n      <h2>{text(sec["h"])}</h2>{body}\n    </section>'
 
+    # Téléchargement : liens vers la page Releases de GitHub, remplacés au chargement par les vrais fichiers
+    # de la dernière version (site.js, API GitHub) ; la liste de toutes les versions suit chaque release.
+    download = ''
+    if p.get('download'):
+        d = ui_dict[lang]
+        rel = f'https://github.com/{p["repo"]}/releases'
+        steps = ''.join(f'\n        <li>{text(d[f"ui.dl.step{n}"])}</li>' for n in (1, 2, 3))
+        download = f'''
+    <section class="download" id="download" data-releases="{p['repo']}" style="--i:{next(i)}">
+      <h2>{text(d['ui.dl.title'])}</h2>
+      <div class="dl-main">
+        <a class="btn primary dl-big" data-dl="setup" href="{rel}"{event(rel)}>{text(d['ui.dl.button'])} ↓</a>
+        <a class="dl-alt" data-dl="portable" href="{rel}"{event(rel)}>{text(d['ui.dl.portable'])}</a>
+      </div>
+      <p class="dl-meta" data-dl="meta">{text(d['ui.dl.req'])}</p>
+      <ol class="dl-steps">{steps}
+      </ol>
+      <details class="dl-versions">
+        <summary>{text(d['ui.dl.versions'])}</summary>
+        <ul data-dl="list"><li><a href="{rel}" target="_blank" rel="noopener">GitHub Releases ↗</a></li></ul>
+      </details>
+    </section>'''
+
     nxt_path = f'/projects/{nxt["slug"]}.html'
     nxt_href = nxt_path if lang == 'en' else fr_url(nxt_path)
 
@@ -252,7 +275,7 @@ def project_page(p: dict, lang: str, nxt: dict, home_page: str, head_snippet: st
     <div class="meta" style="--i:1">{chips}{stats}</div>
     <div class="actions" style="--i:2">
       {links}
-    </div>{hero}{sections}{gallery}
+    </div>{download}{hero}{sections}{gallery}
 
     <nav class="next" style="--i:{next(i)}">
       <a class="to-all" href="{home}#projets"><small>←</small><strong>{text(u['all'])}</strong></a>

@@ -157,7 +157,22 @@
   "ui.navigate": "navigate",
   "ui.open": "open",
   "ui.close": "close",
-  "ui.noResult": "No result"
+  "ui.noResult": "No result",
+  "ui.dl.title": "Download",
+  "ui.dl.button": "Download Kleaner",
+  "ui.dl.portable": "Portable version (no install)",
+  "ui.dl.req": "Windows 10 / 11 · 64-bit · free",
+  "ui.dl.step1": "Download the installer, then open it from your Downloads folder.",
+  "ui.dl.step2": "If Windows says “Windows protected your PC”, click “More info”, then “Run anyway”: Kleaner is free and not signed yet.",
+  "ui.dl.step3": "Follow the installer. Kleaner then opens, and stays in the Start menu.",
+  "ui.dl.versions": "All versions",
+  "ui.dl.latest": "latest",
+  "ui.dl.pre": "pre-release",
+  "ui.dl.setup": "Installer",
+  "ui.dl.exe": "Portable",
+  "ui.dl.notes": "Notes",
+  "ui.dl.mb": "MB",
+  "ui.dl.home": "Download Kleaner, the free Windows cleaner"
  },
  "fr": {
   "meta.title": "Matthieu Izac — Développeur logiciel à Nantes · swaks",
@@ -252,7 +267,22 @@
   "ui.navigate": "naviguer",
   "ui.open": "ouvrir",
   "ui.close": "fermer",
-  "ui.noResult": "Aucun résultat"
+  "ui.noResult": "Aucun résultat",
+  "ui.dl.title": "Télécharger",
+  "ui.dl.button": "Télécharger Kleaner",
+  "ui.dl.portable": "Version portable (sans installation)",
+  "ui.dl.req": "Windows 10 / 11 · 64 bits · gratuit",
+  "ui.dl.step1": "Télécharge l'installateur, puis ouvre-le depuis ton dossier Téléchargements.",
+  "ui.dl.step2": "Si Windows affiche « Windows a protégé votre ordinateur », clique sur « Informations complémentaires », puis « Exécuter quand même » : Kleaner est gratuit et pas encore signé.",
+  "ui.dl.step3": "Suis l'installation. Kleaner s'ouvre ensuite, et reste dans le menu Démarrer.",
+  "ui.dl.versions": "Toutes les versions",
+  "ui.dl.latest": "dernière",
+  "ui.dl.pre": "pré-version",
+  "ui.dl.setup": "Installateur",
+  "ui.dl.exe": "Portable",
+  "ui.dl.notes": "Notes",
+  "ui.dl.mb": "Mo",
+  "ui.dl.home": "Télécharger Kleaner, le nettoyeur Windows gratuit"
  }
 }</script>
   <!-- Au plus tôt (avant l'affichage) : thème mémorisé, textes window.t et version de langue -->
@@ -879,6 +909,29 @@
     }
     #footer a:hover { color: var(--mauve); }
 
+    /* ---- Lien de téléchargement de Kleaner (en haut à gauche, à côté du bouton caché du jeu) ---- */
+    #dl-kleaner {
+      position: fixed;
+      top: calc(1.5rem - 4px);
+      left: 3.4rem;
+      z-index: 100;
+      padding: 3px 0.8rem;
+      border: 1px solid var(--mauve-soft);
+      border-radius: 99px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.72rem;
+      line-height: 18px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mauve-text);
+      text-decoration: none;
+      transition: color var(--dur-micro) var(--ease-smooth), border-color var(--dur-micro) var(--ease-smooth),
+                  transform var(--dur-micro) var(--ease-smooth);
+    }
+    #dl-kleaner:hover { color: var(--mauve); border-color: var(--mauve); transform: translateY(-2px); }
+    @media (max-width: 600px) { #dl-kleaner { top: calc(1rem - 4px); left: 3rem; } }
+
     /* ---- Easter egg : jeu Flux ---- */
     #game-btn {
       position: fixed;
@@ -989,7 +1042,7 @@
     }
   </style>
 
-  <script defer src="/assets/site.js?v=df5108a458"></script>
+  <script defer src="/assets/site.js?v=e32d1d0398"></script>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="50c62680-6fe2-4654-82fd-813896edce5e"></script>
 </head>
 <body>
@@ -1302,6 +1355,8 @@
   </section>
 
   </main>
+
+<a id="dl-kleaner" href="/fr/projects/kleaner.html#download" data-localize="href" aria-label="Télécharger Kleaner, le nettoyeur Windows gratuit" title="Télécharger Kleaner, le nettoyeur Windows gratuit" data-i18n-attr="aria-label:ui.dl.home;title:ui.dl.home" data-umami-event="download" data-umami-event-project="kleaner">↓ Kleaner</a>
 
 <div id="socials">
   <a id="lang-toggle" href="/" lang="en" hreflang="en" aria-label="EN — Switch to English">EN</a>

@@ -187,3 +187,60 @@ body.page {
   .project { padding: 2.5rem 1.2rem 3rem; }
   .gallery { grid-template-columns: 1fr; }
 }
+
+/* ---- Téléchargement (pages projets avec `download`) ---- */
+.download {
+  margin-bottom: 3.5rem;
+  padding: 1.4rem 1.6rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--mist);
+  scroll-margin-top: 5rem;
+}
+.dl-main { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem 1.4rem; }
+.btn.dl-big { padding: 0.85rem 1.6rem; font-size: 0.95rem; }
+.dl-alt { font-size: 0.85rem; color: var(--mauve-text); text-decoration: none; }
+.dl-alt:hover { color: var(--mauve); text-decoration: underline; }
+.project .download .dl-meta {
+  margin: 0.8rem 0 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: var(--taupe-text);
+  font-variant-numeric: tabular-nums;
+}
+.project .download .dl-steps { margin: 1.2rem 0 0; padding-left: 1.3rem; }
+.project .download li { margin-bottom: 0.35rem; padding-left: 0.2rem; font-size: 0.92rem; color: var(--muted); }
+.project .download li::before { content: none; }
+.dl-versions { margin-top: 1rem; }
+.dl-versions summary { width: fit-content; font-size: 0.85rem; color: var(--mauve-text); cursor: var(--pointer); }
+.dl-versions summary:hover { color: var(--mauve); }
+.project .download .dl-versions ul { margin-top: 0.6rem; }
+.project .download .dl-versions li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 0.7rem;
+  margin: 0;
+  padding: 0.55rem 0;
+  border-top: 1px solid var(--border);
+  font-size: 0.85rem;
+}
+.dl-tag { font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }
+.dl-badge {
+  padding: 0.05rem 0.5rem;
+  border: 1px solid var(--mauve-soft);
+  border-radius: 99px;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mauve-text);
+}
+.dl-badge.pre { border-color: var(--border); color: var(--taupe-text); }
+.dl-date { color: var(--taupe-text); font-variant-numeric: tabular-nums; }
+.dl-links { display: flex; gap: 0.9rem; margin-left: auto; }
+.download a { color: var(--mauve-text); }
+.download .btn.primary { color: var(--cream); }
+@media (max-width: 600px) {
+  .download { padding: 1.2rem 1rem 1rem; }
+  .dl-links { margin-left: 0; width: 100%; }
+}
