@@ -1,0 +1,44 @@
+{
+  "repo": "Swaksm/Kleaner",
+  "shot": { "src": "/img/projects/kleaner-cleanup.webp", "alt": { "en": "Kleaner — recoverable space by type", "fr": "Kleaner — espace récupérable par type" } },
+  "en": {
+    "title": "Download Kleaner — free Windows disk cleaner",
+    "description": "Download Kleaner for Windows 10 and 11: a free disk cleaner that tells you what you can delete, and what breaks if you do. No ads, no account.",
+    "tagline": "Free up space on Windows, without breaking anything.",
+    "points": [
+      { "h": "It explains before it deletes", "p": "Every large file gets a clear verdict: safe to delete, uninstall it properly, or leave it alone." },
+      { "h": "Nothing goes behind your back", "p": "Nothing is ticked in advance. Your own files only go to the Recycle Bin, and can come back." },
+      { "h": "Private and free", "p": "No account, no ads, nothing sent from your PC. Free, for good." }
+    ],
+    "steps": "Install in 3 steps",
+    "faq": "Questions",
+    "questions": [
+      { "q": "Is it really free?", "a": "Yes. No paid version, no ads, no account. The source code is public." },
+      { "q": "Why does Windows show a warning?", "a": "Kleaner is not signed with a paid certificate yet, so Windows does not recognise it. Click “More info”, then “Run anyway”." },
+      { "q": "Installer or portable version?", "a": "The installer adds Kleaner to the Start menu and to Windows apps. The portable version is a single file that runs without installing anything." },
+      { "q": "How do I uninstall it?", "a": "Windows Settings → Apps → Kleaner → Uninstall. Or, in Kleaner: Settings → Remove Kleaner." }
+    ],
+    "versions": "Previous versions",
+    "more": "How Kleaner is built →"
+  },
+  "fr": {
+    "title": "Télécharger Kleaner — nettoyeur de disque Windows gratuit",
+    "description": "Télécharge Kleaner pour Windows 10 et 11 : un nettoyeur de disque gratuit qui dit ce que tu peux supprimer, et ce qui casse si tu le fais. Sans pub ni compte.",
+    "tagline": "Libère de la place sur Windows, sans rien casser.",
+    "points": [
+      { "h": "Il explique avant de supprimer", "p": "Chaque gros fichier reçoit un verdict clair : à supprimer sans risque, à désinstaller proprement, ou à laisser tranquille." },
+      { "h": "Rien dans ton dos", "p": "Rien n'est coché d'avance. Tes fichiers ne vont qu'à la Corbeille, et peuvent revenir." },
+      { "h": "Privé et gratuit", "p": "Pas de compte, pas de pub, rien n'est envoyé depuis ton PC. Gratuit, pour de bon." }
+    ],
+    "steps": "Installer en 3 étapes",
+    "faq": "Questions",
+    "questions": [
+      { "q": "C'est vraiment gratuit ?", "a": "Oui. Pas de version payante, pas de pub, pas de compte. Le code source est public." },
+      { "q": "Pourquoi Windows affiche un avertissement ?", "a": "Kleaner n'est pas encore signé avec un certificat payant, donc Windows ne le reconnaît pas. Clique sur « Informations complémentaires », puis « Exécuter quand même »." },
+      { "q": "Installateur ou version portable ?", "a": "L'installateur ajoute Kleaner au menu Démarrer et aux applications de Windows. La version portable est un seul fichier qui se lance sans rien installer." },
+      { "q": "Comment le désinstaller ?", "a": "Paramètres Windows → Applications → Kleaner → Désinstaller. Ou, dans Kleaner : Paramètres → Retirer Kleaner." }
+    ],
+    "versions": "Versions précédentes",
+    "more": "Comment Kleaner est fait →"
+  }
+}

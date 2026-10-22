@@ -188,43 +188,80 @@ body.page {
   .gallery { grid-template-columns: 1fr; }
 }
 
-/* ---- Téléchargement (pages projets avec `download`) ---- */
-.download {
-  margin-bottom: 3.5rem;
-  padding: 1.4rem 1.6rem 1.2rem;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: var(--mist);
-  scroll-margin-top: 5rem;
+/* ---- Page d'installation (/kleaner/) : page produit, hero centré puis une colonne ---- */
+.install { max-width: 880px; margin: 0 auto; padding: 2.5rem 1.6rem 4rem; }
+.install > * { animation: rise 0.9s var(--ease-expo) both; animation-delay: calc(var(--i, 0) * 90ms); }
+.install h2 {
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--taupe-text);
 }
-.dl-main { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem 1.4rem; }
-.btn.dl-big { padding: 0.85rem 1.6rem; font-size: 0.95rem; }
+
+.i-hero { display: flex; flex-direction: column; align-items: center; gap: 0.9rem; padding: 1rem 0 3rem; text-align: center; }
+.i-logo {
+  width: 84px;
+  height: 84px;
+  background: var(--mauve);
+  -webkit-mask: url(/img/kleaner-logo.svg) center / contain no-repeat;
+  mask: url(/img/kleaner-logo.svg) center / contain no-repeat;
+}
+.install h1 {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(56px, 11vw, 112px);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+}
+.i-tagline { max-width: 28em; margin-bottom: 0.8rem; font-size: clamp(18px, 2.4vw, 23px); color: var(--muted); text-wrap: balance; }
+.btn.dl-big { padding: 1rem 2rem; font-size: 1rem; }
+.dl-meta { font-size: 0.8rem; letter-spacing: 0.02em; color: var(--taupe-text); font-variant-numeric: tabular-nums; }
 .dl-alt { font-size: 0.85rem; color: var(--mauve-text); text-decoration: none; }
 .dl-alt:hover { color: var(--mauve); text-decoration: underline; }
-.project .download .dl-meta {
-  margin: 0.8rem 0 0;
-  font-size: 0.78rem;
-  letter-spacing: 0.02em;
-  color: var(--taupe-text);
-  font-variant-numeric: tabular-nums;
+
+.install .shot { margin-bottom: 4rem; }
+
+.i-points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem; margin-bottom: 4rem; }
+.i-point h3 { margin-bottom: 0.4rem; font-size: 1rem; font-weight: 700; color: var(--text); }
+.i-point h3::before { content: ''; display: inline-block; width: 6px; height: 6px; margin: 0 0.6rem 0.15em 0; border-radius: 50%; background: var(--mauve); }
+.i-point p { font-size: 0.92rem; line-height: 1.65; color: var(--muted); }
+
+.i-steps { margin-bottom: 3.5rem; }
+.i-steps ol { display: grid; gap: 1rem; list-style: none; counter-reset: step; }
+.i-steps li { display: grid; grid-template-columns: 2.4rem 1fr; align-items: baseline; counter-increment: step; font-size: 1rem; }
+.i-steps li::before {
+  content: counter(step);
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 1.7rem;
+  line-height: 1;
+  color: var(--mauve);
 }
-.project .download .dl-steps { margin: 1.2rem 0 0; padding-left: 1.3rem; }
-.project .download li { margin-bottom: 0.35rem; padding-left: 0.2rem; font-size: 0.92rem; color: var(--muted); }
-.project .download li::before { content: none; }
-.dl-versions { margin-top: 1rem; }
-.dl-versions summary { width: fit-content; font-size: 0.85rem; color: var(--mauve-text); cursor: var(--pointer); }
-.dl-versions summary:hover { color: var(--mauve); }
-.project .download .dl-versions ul { margin-top: 0.6rem; }
-.project .download .dl-versions li {
+
+.i-faq { margin-bottom: 3.5rem; }
+.i-faq details { border-bottom: 1px solid var(--border); }
+.i-faq summary { padding: 0.9rem 0; font-weight: 600; cursor: var(--pointer); }
+.i-faq summary:hover { color: var(--mauve); }
+.i-faq details p { padding: 0 0 1rem; font-size: 0.95rem; line-height: 1.65; color: var(--muted); }
+
+.i-versions summary { width: fit-content; font-size: 0.88rem; color: var(--mauve-text); cursor: var(--pointer); }
+.i-versions summary:hover { color: var(--mauve); }
+.i-versions ul { margin-top: 0.6rem; list-style: none; }
+.i-versions li {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0.3rem 0.7rem;
-  margin: 0;
   padding: 0.55rem 0;
   border-top: 1px solid var(--border);
   font-size: 0.85rem;
 }
+.i-versions a { color: var(--mauve-text); text-decoration: none; }
+.i-versions a:hover { text-decoration: underline; }
 .dl-tag { font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }
 .dl-badge {
   padding: 0.05rem 0.5rem;
@@ -238,9 +275,17 @@ body.page {
 .dl-badge.pre { border-color: var(--border); color: var(--taupe-text); }
 .dl-date { color: var(--taupe-text); font-variant-numeric: tabular-nums; }
 .dl-links { display: flex; gap: 0.9rem; margin-left: auto; }
-.download a { color: var(--mauve-text); }
-.download .btn.primary { color: var(--cream); }
+.i-more { margin-top: 2.5rem; font-size: 0.85rem; }
+.i-more a { color: var(--taupe-text); text-decoration: none; }
+.i-more a:hover { color: var(--mauve); }
+
+@media (max-width: 700px) {
+  .i-points { grid-template-columns: 1fr; gap: 1.4rem; }
+}
 @media (max-width: 600px) {
-  .download { padding: 1.2rem 1rem 1rem; }
-  .dl-links { margin-left: 0; width: 100%; }
+  .install { padding: 1.5rem 1.2rem 3rem; }
+  .dl-links { width: 100%; margin-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .install > * { animation: none; }
 }

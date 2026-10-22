@@ -216,9 +216,14 @@ def project_page(p: dict, lang: str, nxt: dict, home_page: str, head_snippet: st
     def event(href):  # clic mesuré par Umami, mêmes noms que sur les cartes de l'accueil
         ev = 'download' if href.endswith('/releases') else 'github' if 'github.com' in href else 'visit'
         return f' data-umami-event="{ev}" data-umami-event-project="{slug}"'
-    links = '\n      '.join(
-        f'<a class="btn{" primary" if l.get("primary") else ""}" href="{attr(l["href"])}"{event(l["href"])} target="_blank" rel="noopener">'
-        f'{text(l["label"][lang])} ↗</a>' for l in p['links'])
+    def link(l):
+        cls = 'btn primary' if l.get('primary') else 'btn'
+        if l['href'].startswith('/'):  # page du site : même onglet, dans la langue de la page
+            href = l['href'] if lang == 'en' else fr_url(l['href'])
+            return f'<a class="{cls}" href="{attr(href)}">{text(l["label"][lang])} →</a>'
+        return (f'<a class="{cls}" href="{attr(l["href"])}"{event(l["href"])} target="_blank" rel="noopener">'
+                f'{text(l["label"][lang])} ↗</a>')
+    links = '\n      '.join(link(l) for l in p['links'])
 
     shots = p['shots']
     hero = ''
@@ -242,29 +247,6 @@ def project_page(p: dict, lang: str, nxt: dict, home_page: str, head_snippet: st
             body += '\n      <ul>' + ''.join(f'\n        <li>{text(x)}</li>' for x in sec['ul']) + '\n      </ul>'
         sections += f'\n    <section style="--i:{next(i)}">\n      <h2>{text(sec["h"])}</h2>{body}\n    </section>'
 
-    # Téléchargement : liens vers la page Releases de GitHub, remplacés au chargement par les vrais fichiers
-    # de la dernière version (site.js, API GitHub) ; la liste de toutes les versions suit chaque release.
-    download = ''
-    if p.get('download'):
-        d = ui_dict[lang]
-        rel = f'https://github.com/{p["repo"]}/releases'
-        steps = ''.join(f'\n        <li>{text(d[f"ui.dl.step{n}"])}</li>' for n in (1, 2, 3))
-        download = f'''
-    <section class="download" id="download" data-releases="{p['repo']}" style="--i:{next(i)}">
-      <h2>{text(d['ui.dl.title'])}</h2>
-      <div class="dl-main">
-        <a class="btn primary dl-big" data-dl="setup" href="{rel}"{event(rel)}>{text(d['ui.dl.button'])} ↓</a>
-        <a class="dl-alt" data-dl="portable" href="{rel}"{event(rel)}>{text(d['ui.dl.portable'])}</a>
-      </div>
-      <p class="dl-meta" data-dl="meta">{text(d['ui.dl.req'])}</p>
-      <ol class="dl-steps">{steps}
-      </ol>
-      <details class="dl-versions">
-        <summary>{text(d['ui.dl.versions'])}</summary>
-        <ul data-dl="list"><li><a href="{rel}" target="_blank" rel="noopener">GitHub Releases ↗</a></li></ul>
-      </details>
-    </section>'''
-
     nxt_path = f'/projects/{nxt["slug"]}.html'
     nxt_href = nxt_path if lang == 'en' else fr_url(nxt_path)
 
@@ -275,7 +257,7 @@ def project_page(p: dict, lang: str, nxt: dict, home_page: str, head_snippet: st
     <div class="meta" style="--i:1">{chips}{stats}</div>
     <div class="actions" style="--i:2">
       {links}
-    </div>{download}{hero}{sections}{gallery}
+    </div>{hero}{sections}{gallery}
 
     <nav class="next" style="--i:{next(i)}">
       <a class="to-all" href="{home}#projets"><small>←</small><strong>{text(u['all'])}</strong></a>
@@ -435,10 +417,81 @@ def build_about(home_dict: dict) -> None:
 
 
 # ---------------------------------------------------------------------------
+#  Page d'installation de Kleaner : _build/install.json -> kleaner/index.html, fr/kleaner/index.html
+#  Page produit, sans technique. Les liens mènent à la page Releases de GitHub ; site.js les remplace
+#  au chargement par les fichiers de la dernière version et remplit la liste des versions.
+# ---------------------------------------------------------------------------
+def install_page(data: dict, lang: str, home_page: str, head_snippet: str, ui_dict: dict) -> str:
+    c, d = data[lang], ui_dict[lang]
+    en_path = '/kleaner/'
+    home = '/' if lang == 'en' else '/fr/'
+    rel = f'https://github.com/{data["repo"]}/releases'
+    ev = ' data-umami-event="download" data-umami-event-project="kleaner"'
+    shot = data['shot']
+    points = ''.join(f'\n      <div class="i-point"><h3>{text(x["h"])}</h3><p>{text(x["p"])}</p></div>' for x in c['points'])
+    steps = ''.join(f'\n        <li>{text(d[f"ui.dl.step{n}"])}</li>' for n in (1, 2, 3))
+    faq = ''.join(f'\n      <details><summary>{text(x["q"])}</summary><p>{text(x["a"])}</p></details>' for x in c['questions'])
+    project = '/projects/kleaner.html' if lang == 'en' else fr_url('/projects/kleaner.html')
+    main = f'''<main class="install" data-releases="{data['repo']}">
+    <section class="i-hero" style="--i:0">
+      <span class="i-logo" aria-hidden="true"></span>
+      <h1>Kleaner</h1>
+      <p class="i-tagline">{text(c['tagline'])}</p>
+      <a class="btn primary dl-big" data-dl="setup" href="{rel}"{ev}>{text(d['ui.dl.button'])} ↓</a>
+      <p class="dl-meta" data-dl="meta">{text(d['ui.dl.req'])}</p>
+      <a class="dl-alt" data-dl="portable" href="{rel}"{ev}>{text(d['ui.dl.portable'])}</a>
+    </section>
+
+    <figure class="shot" style="--i:1"><img src="{shot['src']}"{srcset(shot['src'], 'hero')} alt="{attr(shot['alt'][lang])}" width="1280" height="800" data-tilt /></figure>
+
+    <section class="i-points" style="--i:2">{points}
+    </section>
+
+    <section class="i-steps" style="--i:3">
+      <h2>{text(c['steps'])}</h2>
+      <ol>{steps}
+      </ol>
+    </section>
+
+    <section class="i-faq" style="--i:4">
+      <h2>{text(c['faq'])}</h2>{faq}
+    </section>
+
+    <section class="i-versions" style="--i:5">
+      <details>
+        <summary>{text(c['versions'])}</summary>
+        <ul data-dl="list"><li><a href="{rel}" target="_blank" rel="noopener">GitHub Releases ↗</a></li></ul>
+      </details>
+      <p class="i-more"><a href="{project}">{text(c['more'])}</a></p>
+    </section>
+  </main>'''
+    schema = {'@context': 'https://schema.org', '@type': 'SoftwareApplication', 'name': 'Kleaner',
+              'description': c['description'], 'url': SITE + (en_path if lang == 'en' else fr_url(en_path)),
+              'applicationCategory': 'UtilitiesApplication', 'operatingSystem': 'Windows 10, Windows 11',
+              'downloadUrl': rel, 'inLanguage': lang, 'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': 'EUR'},
+              'author': {'@type': 'Person', 'name': 'Matthieu Izac', 'url': SITE + '/'}}
+    return shell(lang, en_path, c['title'], c['description'], f'{SITE}/img/og/kleaner.png', schema, main,
+                 home_page, head_snippet, ui_dict, back=home)
+
+
+def build_install(home_dict: dict) -> None:
+    data = json.loads(read(BUILD / 'install.json'))
+    home_page = read(ROOT / 'index.html')
+    head_snippet = read(BUILD / 'head.html').rstrip('\n')
+    keep = lambda k: k.startswith(('ui.', 'nav.')) or k in ('legal', 'theme', 'theme.title')
+    ui_dict = {lang: {k: v for k, v in home_dict[lang].items() if keep(k)} for lang in ('en', 'fr')}
+    for lang in ('en', 'fr'):
+        page = install_page(data, lang, home_page, head_snippet, ui_dict)
+        if lang == 'fr':
+            page = localize(page, ui_dict['fr'])
+        write(ROOT / ('kleaner' if lang == 'en' else 'fr/kleaner') / 'index.html', page)
+
+
+# ---------------------------------------------------------------------------
 #  Sitemap et images d'aperçu
 # ---------------------------------------------------------------------------
 def build_sitemap(projects: list) -> None:
-    paths = ['/', '/about.html'] + [f'/projects/{p["slug"]}.html' for p in projects]
+    paths = ['/', '/about.html', '/kleaner/'] + [f'/projects/{p["slug"]}.html' for p in projects]
     urls = []
     for en in paths:
         alts = ''.join(f'\n    <xhtml:link rel="alternate" hreflang="{h}" href="{SITE}{u}" />'
@@ -459,6 +512,7 @@ ASSETS = ('site.css', 'site.js', 'project.css', 'lang.js')
 def served_pages() -> list:
     return [ROOT / 'index.html', ROOT / 'fr' / 'index.html', ROOT / '404.html', ROOT / 'mentions-legales.html',
             ROOT / 'about.html', ROOT / 'fr' / 'about.html',
+            ROOT / 'kleaner' / 'index.html', ROOT / 'fr' / 'kleaner' / 'index.html',
             *sorted((ROOT / 'projects').glob('*.html')), *sorted((ROOT / 'fr' / 'projects').glob('*.html'))]
 
 
@@ -528,6 +582,7 @@ if __name__ == '__main__':
     print('Accueil FR'); home_dict = build_home()
     print('Pages projets'); projects = build_projects(home_dict)
     print('À propos'); build_about(home_dict)
+    print('Installation de Kleaner'); build_install(home_dict)
     print('Sitemap'); build_sitemap(projects)
     print('Cache et CSP'); version_assets(); csp_script_hashes()
     if '--og' in sys.argv:

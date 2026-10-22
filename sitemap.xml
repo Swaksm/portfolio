@@ -29,6 +29,20 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/about.html" />
   </url>
   <url>
+    <loc>https://swaks.org/kleaner/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/kleaner/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://swaks.org/fr/kleaner/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/kleaner/" />
+  </url>
+  <url>
+    <loc>https://swaks.org/fr/kleaner/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/kleaner/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://swaks.org/fr/kleaner/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/kleaner/" />
+  </url>
+  <url>
     <loc>https://swaks.org/projects/kleaner.html</loc>
     <lastmod>2026-10-22</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/projects/kleaner.html" />
