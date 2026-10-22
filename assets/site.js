@@ -255,6 +255,16 @@
     });
   });
 
+  /* ---------- Arrivée depuis le désinstalleur de Kleaner (?bye) : un mot, « un avis » présélectionné ---------- */
+  const feedback = document.getElementById('feedback');
+  if (feedback && new URLSearchParams(location.search).has('bye')) {
+    feedback.querySelector('.i-bye').hidden = false;
+    const types = feedback.querySelectorAll('input[name="type"]');
+    if (types.length) types[types.length - 1].checked = true;
+    // Après le chargement (polices, images) : sinon la page bouge encore et le message passe sous la barre du haut
+    addEventListener('load', () => feedback.scrollIntoView({ block: 'start' }));
+  }
+
   /* ---------- Palette de commandes (Ctrl+K) ---------- */
   const isHome = typeof window.swaksGoTo === 'function';
   const go = (url) => () => { location.href = url; };

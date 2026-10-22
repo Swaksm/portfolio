@@ -471,6 +471,7 @@ def install_page(data: dict, lang: str, home_page: str, head_snippet: str, ui_di
 
     <section class="i-feedback" id="feedback" style="--i:5">
       <h2>{text(c['feedback_h'])}</h2>
+      <p class="i-bye" hidden>{text(c['feedback_bye'])}</p>
       <p class="i-sub">{text(c['feedback_p'])}</p>
       <form class="i-form" data-formspree="mojzlrke" novalidate>
         <fieldset class="i-types">

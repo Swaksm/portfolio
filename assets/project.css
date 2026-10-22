@@ -263,8 +263,15 @@ body.page {
 .i-faq summary:hover { color: var(--mauve); }
 .i-faq details p { padding: 0 0 1rem; font-size: 0.95rem; line-height: 1.65; color: var(--muted); }
 
-.i-feedback { margin-bottom: 3.5rem; }
+.i-feedback { margin-bottom: 3.5rem; scroll-margin-top: 7rem; } /* sous la barre du haut, qui reste fixe */
 .i-sub { margin: -0.4rem 0 1.4rem; color: var(--muted); }
+.i-bye {
+  margin: -0.2rem 0 1rem;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  background: var(--mauve-soft);
+  color: var(--text);
+}
 .i-form { display: flex; flex-direction: column; gap: 0.9rem; max-width: 620px; }
 .i-types { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; border: 0; }
 .i-types legend { float: left; margin-right: 0.4rem; font-size: 0.85rem; color: var(--taupe-text); }

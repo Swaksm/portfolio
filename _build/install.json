@@ -113,7 +113,8 @@
     "feedback_subject": "Kleaner: feedback",
     "feedback_github": "Have a GitHub account? You can also {bug} or {idea} there.",
     "feedback_github_bug": "report a bug",
-    "feedback_github_idea": "suggest an idea"
+    "feedback_github_idea": "suggest an idea",
+    "feedback_bye": "Kleaner is uninstalled. Thanks for trying it! If you have a second: what was missing or what went wrong? (optional)"
   },
   "fr": {
     "title": "Kleaner : nettoyeur PC Windows gratuit, rapide et sûr",
@@ -196,6 +197,7 @@
     "feedback_subject": "Kleaner : avis",
     "feedback_github": "Tu as un compte GitHub ? Tu peux aussi y {bug} ou {idea}.",
     "feedback_github_bug": "signaler un bug",
-    "feedback_github_idea": "proposer une idée"
+    "feedback_github_idea": "proposer une idée",
+    "feedback_bye": "Kleaner est désinstallé. Merci de l'avoir essayé ! Si tu as une seconde : qu'est-ce qui manquait ou n'allait pas ? (facultatif)"
   }
 }
