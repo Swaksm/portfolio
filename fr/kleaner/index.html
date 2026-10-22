@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Télécharger Kleaner — nettoyeur de disque Windows gratuit · swaks.org</title>
-  <meta name="description" content="Télécharge Kleaner pour Windows 10 et 11 : un nettoyeur de disque gratuit qui dit ce que tu peux supprimer, et ce qui casse si tu le fais. Sans pub ni compte." />
+  <title>Kleaner : nettoyeur PC Windows gratuit, rapide et sûr</title>
+  <meta name="description" content="Nettoyeur PC gratuit pour Windows 10 et 11 : Kleaner libère de l&#x27;espace disque, vite et sans rien casser. Caches, fichiers temporaires, doublons. Sans pub." />
   <meta name="author" content="Matthieu Izac" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://swaks.org/fr/kleaner/" />
@@ -17,8 +17,8 @@
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="swaks.org" />
-  <meta property="og:title" content="Télécharger Kleaner — nettoyeur de disque Windows gratuit" />
-  <meta property="og:description" content="Télécharge Kleaner pour Windows 10 et 11 : un nettoyeur de disque gratuit qui dit ce que tu peux supprimer, et ce qui casse si tu le fais. Sans pub ni compte." />
+  <meta property="og:title" content="Kleaner : nettoyeur PC Windows gratuit, rapide et sûr" />
+  <meta property="og:description" content="Nettoyeur PC gratuit pour Windows 10 et 11 : Kleaner libère de l&#x27;espace disque, vite et sans rien casser. Caches, fichiers temporaires, doublons. Sans pub." />
   <meta property="og:url" content="https://swaks.org/fr/kleaner/" />
   <meta property="og:image" content="https://swaks.org/img/og/kleaner.png" />
   <meta property="og:image:width" content="1200" />
@@ -153,29 +153,98 @@
     })();
   </script>
   <link rel="stylesheet" href="/assets/site.css?v=e8765bb4bc" />
-  <link rel="stylesheet" href="/assets/project.css?v=4c33bc7c63" />
+  <link rel="stylesheet" href="/assets/project.css?v=92f02497c0" />
 
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Kleaner",
-  "description": "Télécharge Kleaner pour Windows 10 et 11 : un nettoyeur de disque gratuit qui dit ce que tu peux supprimer, et ce qui casse si tu le fais. Sans pub ni compte.",
-  "url": "https://swaks.org/fr/kleaner/",
-  "applicationCategory": "UtilitiesApplication",
-  "operatingSystem": "Windows 10, Windows 11",
-  "downloadUrl": "https://github.com/Swaksm/Kleaner/releases",
-  "inLanguage": "fr",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "EUR"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "Matthieu Izac",
-    "url": "https://swaks.org/"
-  }
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Kleaner",
+      "description": "Nettoyeur PC gratuit pour Windows 10 et 11 : Kleaner libère de l'espace disque, vite et sans rien casser. Caches, fichiers temporaires, doublons. Sans pub.",
+      "url": "https://swaks.org/fr/kleaner/",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Windows 10, Windows 11",
+      "keywords": "nettoyeur Windows gratuit, nettoyeur PC, nettoyer son PC, libérer de l'espace disque, nettoyage de disque, Windows 11, Windows 10, alternative à CCleaner, fichiers temporaires, cache",
+      "image": "https://swaks.org/img/projects/kleaner-cleanup.webp",
+      "downloadUrl": "https://github.com/Swaksm/Kleaner/releases",
+      "inLanguage": "fr",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Matthieu Izac",
+        "url": "https://swaks.org/"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "inLanguage": "fr",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Comment libérer de l'espace disque sur Windows 11 ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ouvre Kleaner et clique sur « Nettoyer sans risque » : il coche les caches et fichiers temporaires inutiles, te montre la liste, puis les supprime. Regarde ensuite tes plus gros fichiers et les restes de vieux programmes, chacun avec son explication."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "C'est vraiment gratuit ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui. Pas de version payante, pas de pub, pas de compte. Le code source est public."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kleaner est-il une alternative à CCleaner ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, gratuite et sans publicité. La différence : Kleaner explique chaque fichier avant de le supprimer, ne « nettoie » jamais le registre et n'envoie rien sur Internet."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Est-ce sans risque ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Rien n'est coché d'avance. La suppression définitive est limitée aux caches qui se recréent tout seuls ; tes fichiers personnels vont seulement à la Corbeille et peuvent être restaurés."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Pourquoi Windows affiche un avertissement ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Kleaner n'est pas encore signé avec un certificat payant, donc Windows ne le reconnaît pas. Clique sur « Informations complémentaires », puis « Exécuter quand même »."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Installateur ou version portable ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "L'installateur ajoute Kleaner au menu Démarrer et aux applications de Windows. La version portable est un seul fichier qui se lance sans rien installer."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment le désinstaller ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Paramètres Windows → Applications → Kleaner → Désinstaller. Ou, dans Kleaner : Paramètres → Retirer Kleaner."
+          }
+        }
+      ]
+    }
+  ]
 }
   </script>
   <script defer src="/assets/site.js?v=e32d1d0398"></script>
@@ -205,23 +274,38 @@
   <main class="install" data-releases="Swaksm/Kleaner">
     <section class="i-hero" style="--i:0">
       <span class="i-logo" aria-hidden="true"></span>
-      <h1>Kleaner</h1>
-      <p class="i-tagline">Libère de la place sur Windows, sans rien casser.</p>
+      <h1>Kleaner<span class="i-kicker">Nettoyeur Windows gratuit</span></h1>
+      <p class="i-tagline">Libère de l'espace disque sur ton PC, vite et sans rien casser.</p>
       <a class="btn primary dl-big" data-dl="setup" href="https://github.com/Swaksm/Kleaner/releases" data-umami-event="download" data-umami-event-project="kleaner">Télécharger Kleaner ↓</a>
       <p class="dl-meta" data-dl="meta">Windows 10 / 11 · 64 bits · gratuit</p>
       <a class="dl-alt" data-dl="portable" href="https://github.com/Swaksm/Kleaner/releases" data-umami-event="download" data-umami-event-project="kleaner">Version portable (sans installation)</a>
     </section>
 
-    <figure class="shot" style="--i:1"><img src="/img/projects/kleaner-cleanup.webp" srcset="/img/projects/kleaner-cleanup-640.webp 640w, /img/projects/kleaner-cleanup.webp 1280w" sizes="(max-width: 600px) calc(100vw - 2.4rem), (max-width: 760px) calc(100vw - 3.2rem), 709px" alt="Kleaner — espace récupérable par type" width="1280" height="800" data-tilt /></figure>
+    <figure class="shot" style="--i:1"><img src="/img/projects/kleaner-cleanup.webp" srcset="/img/projects/kleaner-cleanup-640.webp 640w, /img/projects/kleaner-cleanup.webp 1280w" sizes="(max-width: 600px) calc(100vw - 2.4rem), (max-width: 760px) calc(100vw - 3.2rem), 709px" alt="Kleaner, nettoyeur Windows gratuit : espace disque récupérable par type" width="1280" height="800" data-tilt /></figure>
 
     <section class="i-points" style="--i:2">
+      <div class="i-point"><h3>Rapide et efficace</h3><p>Analyse ton disque en quelques secondes et trouve ce qui prend vraiment de la place : caches, fichiers temporaires, vieux téléchargements, doublons.</p></div>
       <div class="i-point"><h3>Il explique avant de supprimer</h3><p>Chaque gros fichier reçoit un verdict clair : à supprimer sans risque, à désinstaller proprement, ou à laisser tranquille.</p></div>
       <div class="i-point"><h3>Rien dans ton dos</h3><p>Rien n'est coché d'avance. Tes fichiers ne vont qu'à la Corbeille, et peuvent revenir.</p></div>
       <div class="i-point"><h3>Privé et gratuit</h3><p>Pas de compte, pas de pub, rien n'est envoyé depuis ton PC. Gratuit, pour de bon.</p></div>
     </section>
 
+    <section class="i-cleans" style="--i:3">
+      <h2>Ce que Kleaner nettoie</h2>
+      <ul>
+        <li>Fichiers temporaires de Windows et des applications</li>
+        <li>Caches des navigateurs (Chrome, Edge, Firefox…), sans te déconnecter de tes sites</li>
+        <li>Cache de Windows Update et vieux fichiers d'installation de Windows</li>
+        <li>Corbeille, vidages mémoire et restes de mises à jour</li>
+        <li>Restes de programmes désinstallés</li>
+        <li>Doublons de photos, vidéos et documents</li>
+        <li>Vieux dossiers de projets de code (node_modules, .venv…)</li>
+        <li>Plus de 1 100 logiciels couverts par le catalogue communautaire</li>
+      </ul>
+    </section>
+
     <section class="i-steps" style="--i:3">
-      <h2>Installer en 3 étapes</h2>
+      <h2>Installer Kleaner en 3 étapes</h2>
       <ol>
         <li>Télécharge l'installateur, puis ouvre-le depuis ton dossier Téléchargements.</li>
         <li>Si Windows affiche « Windows a protégé votre ordinateur », clique sur « Informations complémentaires », puis « Exécuter quand même » : Kleaner est gratuit et pas encore signé.</li>
@@ -230,8 +314,11 @@
     </section>
 
     <section class="i-faq" style="--i:4">
-      <h2>Questions</h2>
+      <h2>Questions fréquentes</h2>
+      <details><summary>Comment libérer de l'espace disque sur Windows 11 ?</summary><p>Ouvre Kleaner et clique sur « Nettoyer sans risque » : il coche les caches et fichiers temporaires inutiles, te montre la liste, puis les supprime. Regarde ensuite tes plus gros fichiers et les restes de vieux programmes, chacun avec son explication.</p></details>
       <details><summary>C'est vraiment gratuit ?</summary><p>Oui. Pas de version payante, pas de pub, pas de compte. Le code source est public.</p></details>
+      <details><summary>Kleaner est-il une alternative à CCleaner ?</summary><p>Oui, gratuite et sans publicité. La différence : Kleaner explique chaque fichier avant de le supprimer, ne « nettoie » jamais le registre et n'envoie rien sur Internet.</p></details>
+      <details><summary>Est-ce sans risque ?</summary><p>Rien n'est coché d'avance. La suppression définitive est limitée aux caches qui se recréent tout seuls ; tes fichiers personnels vont seulement à la Corbeille et peuvent être restaurés.</p></details>
       <details><summary>Pourquoi Windows affiche un avertissement ?</summary><p>Kleaner n'est pas encore signé avec un certificat payant, donc Windows ne le reconnaît pas. Clique sur « Informations complémentaires », puis « Exécuter quand même ».</p></details>
       <details><summary>Installateur ou version portable ?</summary><p>L'installateur ajoute Kleaner au menu Démarrer et aux applications de Windows. La version portable est un seul fichier qui se lance sans rien installer.</p></details>
       <details><summary>Comment le désinstaller ?</summary><p>Paramètres Windows → Applications → Kleaner → Désinstaller. Ou, dans Kleaner : Paramètres → Retirer Kleaner.</p></details>

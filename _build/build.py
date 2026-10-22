@@ -269,11 +269,11 @@ def project_page(p: dict, lang: str, nxt: dict, home_page: str, head_snippet: st
 
 
 def shell(lang: str, en_path: str, title: str, description: str, og: str, schema: dict, main: str,
-          home_page: str, head_snippet: str, ui_dict: dict, back: str) -> str:
+          home_page: str, head_snippet: str, ui_dict: dict, back: str, suffix: bool = True) -> str:
     """Page complète (en-tête, barre du haut, pied de page) autour du <main> des pages projets et « À propos »."""
     u = UI[lang]
     url = SITE + (en_path if lang == 'en' else fr_url(en_path))
-    full_title = f'{title} · {u["title_suffix"]}'
+    full_title = f'{title} · {u["title_suffix"]}' if suffix else title
     return f'''<!DOCTYPE html>
 <html lang="{lang}">
 <head>
@@ -429,13 +429,14 @@ def install_page(data: dict, lang: str, home_page: str, head_snippet: str, ui_di
     ev = ' data-umami-event="download" data-umami-event-project="kleaner"'
     shot = data['shot']
     points = ''.join(f'\n      <div class="i-point"><h3>{text(x["h"])}</h3><p>{text(x["p"])}</p></div>' for x in c['points'])
+    cleans = ''.join(f'\n        <li>{text(x)}</li>' for x in c['cleans'])
     steps = ''.join(f'\n        <li>{text(d[f"ui.dl.step{n}"])}</li>' for n in (1, 2, 3))
     faq = ''.join(f'\n      <details><summary>{text(x["q"])}</summary><p>{text(x["a"])}</p></details>' for x in c['questions'])
     project = '/projects/kleaner.html' if lang == 'en' else fr_url('/projects/kleaner.html')
     main = f'''<main class="install" data-releases="{data['repo']}">
     <section class="i-hero" style="--i:0">
       <span class="i-logo" aria-hidden="true"></span>
-      <h1>Kleaner</h1>
+      <h1>Kleaner<span class="i-kicker">{text(c['kicker'])}</span></h1>
       <p class="i-tagline">{text(c['tagline'])}</p>
       <a class="btn primary dl-big" data-dl="setup" href="{rel}"{ev}>{text(d['ui.dl.button'])} ↓</a>
       <p class="dl-meta" data-dl="meta">{text(d['ui.dl.req'])}</p>
@@ -445,6 +446,12 @@ def install_page(data: dict, lang: str, home_page: str, head_snippet: str, ui_di
     <figure class="shot" style="--i:1"><img src="{shot['src']}"{srcset(shot['src'], 'hero')} alt="{attr(shot['alt'][lang])}" width="1280" height="800" data-tilt /></figure>
 
     <section class="i-points" style="--i:2">{points}
+    </section>
+
+    <section class="i-cleans" style="--i:3">
+      <h2>{text(c['cleans_h'])}</h2>
+      <ul>{cleans}
+      </ul>
     </section>
 
     <section class="i-steps" style="--i:3">
@@ -465,13 +472,20 @@ def install_page(data: dict, lang: str, home_page: str, head_snippet: str, ui_di
       <p class="i-more"><a href="{project}">{text(c['more'])}</a></p>
     </section>
   </main>'''
-    schema = {'@context': 'https://schema.org', '@type': 'SoftwareApplication', 'name': 'Kleaner',
-              'description': c['description'], 'url': SITE + (en_path if lang == 'en' else fr_url(en_path)),
-              'applicationCategory': 'UtilitiesApplication', 'operatingSystem': 'Windows 10, Windows 11',
-              'downloadUrl': rel, 'inLanguage': lang, 'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': 'EUR'},
-              'author': {'@type': 'Person', 'name': 'Matthieu Izac', 'url': SITE + '/'}}
+    url = SITE + (en_path if lang == 'en' else fr_url(en_path))
+    # Logiciel + questions fréquentes : Google peut afficher les questions directement dans ses résultats
+    schema = {'@context': 'https://schema.org', '@graph': [
+        {'@type': 'SoftwareApplication', 'name': 'Kleaner', 'description': c['description'], 'url': url,
+         'applicationCategory': 'UtilitiesApplication', 'operatingSystem': 'Windows 10, Windows 11',
+         'keywords': ', '.join(data['keywords'][lang]), 'image': SITE + shot['src'],
+         'downloadUrl': rel, 'inLanguage': lang, 'isAccessibleForFree': True,
+         'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': 'EUR'},
+         'author': {'@type': 'Person', 'name': 'Matthieu Izac', 'url': SITE + '/'}},
+        {'@type': 'FAQPage', 'inLanguage': lang, 'mainEntity': [
+            {'@type': 'Question', 'name': x['q'], 'acceptedAnswer': {'@type': 'Answer', 'text': x['a']}} for x in c['questions']]},
+    ]}
     return shell(lang, en_path, c['title'], c['description'], f'{SITE}/img/og/kleaner.png', schema, main,
-                 home_page, head_snippet, ui_dict, back=home)
+                 home_page, head_snippet, ui_dict, back=home, suffix=False)
 
 
 def build_install(home_dict: dict) -> None:
