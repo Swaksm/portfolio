@@ -210,6 +210,47 @@
     } catch (e) { /* rien affiché */ }
   });
 
+  /* ---------- Formulaires envoyés par Formspree (contact de l'accueil, avis sur Kleaner) ----------
+     Champs obligatoires : attribut `required` + `data-error` (clé du texte d'erreur). Email vérifié s'il est rempli. */
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  document.querySelectorAll('form[data-formspree]').forEach((form) => {
+    const fields = form.querySelectorAll('.field input, .field textarea');
+    const errorOf = (el) => el.closest('.field').querySelector('.field-error');
+    const setError = (el, msg) => { el.classList.add('invalid'); errorOf(el).textContent = msg; errorOf(el).classList.add('visible'); };
+    const clearError = (el) => { el.classList.remove('invalid'); errorOf(el).classList.remove('visible'); };
+    fields.forEach((el) => el.addEventListener('input', () => clearError(el)));
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('[type="submit"]');
+      let valid = true;
+      fields.forEach((el) => {
+        const v = el.value.trim();
+        if (el.required && !v) { setError(el, t(el.dataset.error)); valid = false; }
+        else if (el.type === 'email' && v && !emailRe.test(v)) { setError(el, t('err.emailInvalid')); valid = false; }
+      });
+      if (!valid) return;
+
+      btn.textContent = t('form.sending');
+      btn.disabled = true;
+      let res = null;
+      try {
+        res = await fetch('https://formspree.io/f/' + form.dataset.formspree, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+        });
+      } catch (err) { /* réseau indisponible : traité comme une erreur */ }
+      if (res && res.ok) {
+        btn.textContent = t('form.sent');
+        form.reset();
+      } else {
+        btn.textContent = t('form.error');
+        btn.disabled = false;
+      }
+    });
+  });
+
   /* ---------- Palette de commandes (Ctrl+K) ---------- */
   const isHome = typeof window.swaksGoTo === 'function';
   const go = (url) => () => { location.href = url; };

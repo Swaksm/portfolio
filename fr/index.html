@@ -1042,7 +1042,7 @@
     }
   </style>
 
-  <script defer src="/assets/site.js?v=e32d1d0398"></script>
+  <script defer src="/assets/site.js?v=0162db21ba"></script>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="50c62680-6fe2-4654-82fd-813896edce5e"></script>
 </head>
 <body>
@@ -1276,17 +1276,17 @@
       <span class="contact-value">Nantes, France</span>
     </div>
 
-    <form id="contact-form" data-reveal style="--i:4" novalidate>
+    <form id="contact-form" data-formspree="mojzlrke" data-reveal style="--i:4" novalidate>
       <div class="field">
-        <input type="text" name="name" placeholder="Nom" aria-label="Nom" autocomplete="name" data-i18n-attr="aria-label:form.name;placeholder:form.name" />
+        <input type="text" name="name" placeholder="Nom" aria-label="Nom" autocomplete="name" required data-error="err.name" data-i18n-attr="aria-label:form.name;placeholder:form.name" />
         <span class="field-error"></span>
       </div>
       <div class="field">
-        <input type="email" name="email" placeholder="Email" aria-label="Email" autocomplete="email" />
+        <input type="email" name="email" placeholder="Email" aria-label="Email" autocomplete="email" required data-error="err.email" />
         <span class="field-error"></span>
       </div>
       <div class="field">
-        <textarea name="message" placeholder="Message" aria-label="Message"></textarea>
+        <textarea name="message" placeholder="Message" aria-label="Message" required data-error="err.message"></textarea>
         <span class="field-error"></span>
       </div>
       <!-- Piège anti-spam : invisible pour les humains, rempli par les robots (rejeté par Formspree) -->
@@ -1294,64 +1294,6 @@
       <button type="submit" id="submit-btn" data-umami-event="contact-submit" data-i18n="form.send">Envoyer →</button>
     </form>
 
-    <script>
-      const form = document.getElementById('contact-form');
-
-      function setError(input, msg) {
-        input.classList.add('invalid');
-        const err = input.closest('.field').querySelector('.field-error');
-        err.textContent = msg;
-        err.classList.add('visible');
-      }
-
-      function clearError(input) {
-        input.classList.remove('invalid');
-        const err = input.closest('.field').querySelector('.field-error');
-        err.classList.remove('visible');
-      }
-
-      // Efface l'erreur dès que l'utilisateur retape
-      form.querySelectorAll('input, textarea').forEach(el => {
-        el.addEventListener('input', () => clearError(el));
-      });
-
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const btn = document.getElementById('submit-btn');
-
-        const name    = form.querySelector('[name="name"]');
-        const email   = form.querySelector('[name="email"]');
-        const message = form.querySelector('[name="message"]');
-        const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        let valid = true;
-
-        if (!name.value.trim())              { setError(name, t('err.name'));                  valid = false; }
-        if (!email.value.trim())             { setError(email, t('err.email'));                valid = false; }
-        else if (!emailRe.test(email.value)) { setError(email, t('err.emailInvalid'));         valid = false; }
-        if (!message.value.trim())           { setError(message, t('err.message'));            valid = false; }
-        if (!valid) return;
-
-        btn.textContent = t('form.sending');
-        btn.disabled = true;
-
-        let res = null;
-        try {
-          res = await fetch('https://formspree.io/f/mojzlrke', {
-            method: 'POST',
-            headers: { 'Accept': 'application/json' },
-            body: new FormData(form),
-          });
-        } catch (err) { /* réseau indisponible : traité comme une erreur */ }
-
-        if (res && res.ok) {
-          btn.textContent = t('form.sent');
-          form.reset();
-        } else {
-          btn.textContent = t('form.error');
-          btn.disabled = false;
-        }
-      });
-    </script>
   </section>
 
   </main>

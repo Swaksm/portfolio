@@ -69,6 +69,8 @@ python _build/build.py --og     # + images d'aperçu (Chrome ou Edge requis)
 - **Page d'installation de Kleaner** (`/kleaner/`, `/fr/kleaner/`, générée depuis `_build/install.json`) : page produit, sans technique (logo, accroche, gros bouton vers l'installateur `*-setup.exe` de la dernière release, version portable, capture, 3 points forts, installation en 3 étapes avec SmartScreen, questions, versions précédentes, lien vers la page projet). `site.js` remplit les liens et la liste depuis l'API GitHub (cache 1 h, même requête que les stats) : elle suit chaque release sans rebuild. Sans JS ou hors quota, les liens mènent à la page Releases de GitHub.
 - **Page projet Kleaner** : bouton « Le tester » vers la page d'installation (lien interne dans `projects.json` : même onglet, version FR). La pastille « ↓ Kleaner » en haut à gauche de l'accueil et le lien « Télécharger » de la carte y mènent aussi.
 - **Contact** : appel « Ouvert aux projets et petites missions » en tête, email copiable en un clic (`data-copy`), formulaire Formspree (`mojzlrke`) avec validation, gestion des erreurs réseau et champ piège anti-spam `_gotcha`.
+- **Formulaires** : un seul code dans `site.js` pour tout `form[data-formspree]` (contact de l'accueil, avis sur Kleaner). Champ obligatoire : `required` + `data-error="clé du texte"` ; email vérifié s'il est rempli.
+- **Avis sur Kleaner** (page d'installation, `#feedback`) : bug / idée / avis, message, email facultatif, sujet « Kleaner : avis » dans l'email reçu. Liens vers les modèles d'issue GitHub `bug.yml` et `idea.yml` du dépôt Kleaner pour ceux qui ont un compte.
 - **Easter egg** : bouton invisible coin haut-gauche → mini-jeu « Flux ».
 
 ## Ajouter un projet

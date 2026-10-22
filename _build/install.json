@@ -1,9 +1,36 @@
 {
   "repo": "Swaksm/Kleaner",
-  "shot": { "src": "/img/projects/kleaner-cleanup.webp", "alt": { "en": "Kleaner, free Windows cleaner: recoverable disk space by type", "fr": "Kleaner, nettoyeur Windows gratuit : espace disque récupérable par type" } },
+  "shot": {
+    "src": "/img/projects/kleaner-cleanup.webp",
+    "alt": {
+      "en": "Kleaner, free Windows cleaner: recoverable disk space by type",
+      "fr": "Kleaner, nettoyeur Windows gratuit : espace disque récupérable par type"
+    }
+  },
   "keywords": {
-    "en": ["free Windows cleaner", "PC cleaner", "disk cleanup", "free up disk space", "Windows 11 cleaner", "Windows 10 cleaner", "CCleaner alternative", "temporary files", "browser cache"],
-    "fr": ["nettoyeur Windows gratuit", "nettoyeur PC", "nettoyer son PC", "libérer de l'espace disque", "nettoyage de disque", "Windows 11", "Windows 10", "alternative à CCleaner", "fichiers temporaires", "cache"]
+    "en": [
+      "free Windows cleaner",
+      "PC cleaner",
+      "disk cleanup",
+      "free up disk space",
+      "Windows 11 cleaner",
+      "Windows 10 cleaner",
+      "CCleaner alternative",
+      "temporary files",
+      "browser cache"
+    ],
+    "fr": [
+      "nettoyeur Windows gratuit",
+      "nettoyeur PC",
+      "nettoyer son PC",
+      "libérer de l'espace disque",
+      "nettoyage de disque",
+      "Windows 11",
+      "Windows 10",
+      "alternative à CCleaner",
+      "fichiers temporaires",
+      "cache"
+    ]
   },
   "en": {
     "title": "Kleaner: free, fast and safe Windows PC cleaner",
@@ -11,10 +38,22 @@
     "kicker": "Free Windows cleaner",
     "tagline": "Free up disk space on your PC, fast and without breaking anything.",
     "points": [
-      { "h": "Fast and effective", "p": "Scans your drive in seconds and finds what really takes up space: caches, temporary files, old downloads, duplicates." },
-      { "h": "It explains before it deletes", "p": "Every large file gets a clear verdict: safe to delete, uninstall it properly, or leave it alone." },
-      { "h": "Nothing goes behind your back", "p": "Nothing is ticked in advance. Your own files only go to the Recycle Bin, and can come back." },
-      { "h": "Private and free", "p": "No account, no ads, nothing sent from your PC. Free, for good." }
+      {
+        "h": "Fast and effective",
+        "p": "Scans your drive in seconds and finds what really takes up space: caches, temporary files, old downloads, duplicates."
+      },
+      {
+        "h": "It explains before it deletes",
+        "p": "Every large file gets a clear verdict: safe to delete, uninstall it properly, or leave it alone."
+      },
+      {
+        "h": "Nothing goes behind your back",
+        "p": "Nothing is ticked in advance. Your own files only go to the Recycle Bin, and can come back."
+      },
+      {
+        "h": "Private and free",
+        "p": "No account, no ads, nothing sent from your PC. Free, for good."
+      }
     ],
     "cleans_h": "What Kleaner cleans",
     "cleans": [
@@ -30,16 +69,51 @@
     "steps": "Install Kleaner in 3 steps",
     "faq": "Frequently asked questions",
     "questions": [
-      { "q": "How do I free up disk space on Windows 11?", "a": "Open Kleaner and click “Clean risk-free”: it ticks the useless caches and temporary files, shows you the list, then deletes them. Then look at your largest files and the leftovers of old programs, each with its explanation." },
-      { "q": "Is it really free?", "a": "Yes. No paid version, no ads, no account. The source code is public." },
-      { "q": "Is Kleaner a CCleaner alternative?", "a": "Yes, a free one with no ads. The difference: Kleaner explains every file before deleting it, never “cleans” the registry and sends nothing over the Internet." },
-      { "q": "Is it safe?", "a": "Nothing is ticked in advance. Permanent deletion is limited to caches that rebuild themselves; your personal files only go to the Recycle Bin and can be restored." },
-      { "q": "Why does Windows show a warning?", "a": "Kleaner is not signed with a paid certificate yet, so Windows does not recognise it. Click “More info”, then “Run anyway”." },
-      { "q": "Installer or portable version?", "a": "The installer adds Kleaner to the Start menu and to Windows apps. The portable version is a single file that runs without installing anything." },
-      { "q": "How do I uninstall it?", "a": "Windows Settings → Apps → Kleaner → Uninstall. Or, in Kleaner: Settings → Remove Kleaner." }
+      {
+        "q": "How do I free up disk space on Windows 11?",
+        "a": "Open Kleaner and click “Clean risk-free”: it ticks the useless caches and temporary files, shows you the list, then deletes them. Then look at your largest files and the leftovers of old programs, each with its explanation."
+      },
+      {
+        "q": "Is it really free?",
+        "a": "Yes. No paid version, no ads, no account. The source code is public."
+      },
+      {
+        "q": "Is Kleaner a CCleaner alternative?",
+        "a": "Yes, a free one with no ads. The difference: Kleaner explains every file before deleting it, never “cleans” the registry and sends nothing over the Internet."
+      },
+      {
+        "q": "Is it safe?",
+        "a": "Nothing is ticked in advance. Permanent deletion is limited to caches that rebuild themselves; your personal files only go to the Recycle Bin and can be restored."
+      },
+      {
+        "q": "Why does Windows show a warning?",
+        "a": "Kleaner is not signed with a paid certificate yet, so Windows does not recognise it. Click “More info”, then “Run anyway”."
+      },
+      {
+        "q": "Installer or portable version?",
+        "a": "The installer adds Kleaner to the Start menu and to Windows apps. The portable version is a single file that runs without installing anything."
+      },
+      {
+        "q": "How do I uninstall it?",
+        "a": "Windows Settings → Apps → Kleaner → Uninstall. Or, in Kleaner: Settings → Remove Kleaner."
+      }
     ],
     "versions": "Previous versions",
-    "more": "How Kleaner is built →"
+    "more": "How Kleaner is built →",
+    "feedback_h": "A bug? An idea?",
+    "feedback_p": "Tell me here, no account needed. I read every message.",
+    "feedback_type": "It is about",
+    "feedback_types": [
+      "A bug",
+      "An idea",
+      "A review"
+    ],
+    "feedback_message": "What happened, or what you would like Kleaner to do…",
+    "feedback_email": "Your email (optional, to get an answer)",
+    "feedback_subject": "Kleaner: feedback",
+    "feedback_github": "Have a GitHub account? You can also {bug} or {idea} there.",
+    "feedback_github_bug": "report a bug",
+    "feedback_github_idea": "suggest an idea"
   },
   "fr": {
     "title": "Kleaner : nettoyeur PC Windows gratuit, rapide et sûr",
@@ -47,10 +121,22 @@
     "kicker": "Nettoyeur Windows gratuit",
     "tagline": "Libère de l'espace disque sur ton PC, vite et sans rien casser.",
     "points": [
-      { "h": "Rapide et efficace", "p": "Analyse ton disque en quelques secondes et trouve ce qui prend vraiment de la place : caches, fichiers temporaires, vieux téléchargements, doublons." },
-      { "h": "Il explique avant de supprimer", "p": "Chaque gros fichier reçoit un verdict clair : à supprimer sans risque, à désinstaller proprement, ou à laisser tranquille." },
-      { "h": "Rien dans ton dos", "p": "Rien n'est coché d'avance. Tes fichiers ne vont qu'à la Corbeille, et peuvent revenir." },
-      { "h": "Privé et gratuit", "p": "Pas de compte, pas de pub, rien n'est envoyé depuis ton PC. Gratuit, pour de bon." }
+      {
+        "h": "Rapide et efficace",
+        "p": "Analyse ton disque en quelques secondes et trouve ce qui prend vraiment de la place : caches, fichiers temporaires, vieux téléchargements, doublons."
+      },
+      {
+        "h": "Il explique avant de supprimer",
+        "p": "Chaque gros fichier reçoit un verdict clair : à supprimer sans risque, à désinstaller proprement, ou à laisser tranquille."
+      },
+      {
+        "h": "Rien dans ton dos",
+        "p": "Rien n'est coché d'avance. Tes fichiers ne vont qu'à la Corbeille, et peuvent revenir."
+      },
+      {
+        "h": "Privé et gratuit",
+        "p": "Pas de compte, pas de pub, rien n'est envoyé depuis ton PC. Gratuit, pour de bon."
+      }
     ],
     "cleans_h": "Ce que Kleaner nettoie",
     "cleans": [
@@ -66,15 +152,50 @@
     "steps": "Installer Kleaner en 3 étapes",
     "faq": "Questions fréquentes",
     "questions": [
-      { "q": "Comment libérer de l'espace disque sur Windows 11 ?", "a": "Ouvre Kleaner et clique sur « Nettoyer sans risque » : il coche les caches et fichiers temporaires inutiles, te montre la liste, puis les supprime. Regarde ensuite tes plus gros fichiers et les restes de vieux programmes, chacun avec son explication." },
-      { "q": "C'est vraiment gratuit ?", "a": "Oui. Pas de version payante, pas de pub, pas de compte. Le code source est public." },
-      { "q": "Kleaner est-il une alternative à CCleaner ?", "a": "Oui, gratuite et sans publicité. La différence : Kleaner explique chaque fichier avant de le supprimer, ne « nettoie » jamais le registre et n'envoie rien sur Internet." },
-      { "q": "Est-ce sans risque ?", "a": "Rien n'est coché d'avance. La suppression définitive est limitée aux caches qui se recréent tout seuls ; tes fichiers personnels vont seulement à la Corbeille et peuvent être restaurés." },
-      { "q": "Pourquoi Windows affiche un avertissement ?", "a": "Kleaner n'est pas encore signé avec un certificat payant, donc Windows ne le reconnaît pas. Clique sur « Informations complémentaires », puis « Exécuter quand même »." },
-      { "q": "Installateur ou version portable ?", "a": "L'installateur ajoute Kleaner au menu Démarrer et aux applications de Windows. La version portable est un seul fichier qui se lance sans rien installer." },
-      { "q": "Comment le désinstaller ?", "a": "Paramètres Windows → Applications → Kleaner → Désinstaller. Ou, dans Kleaner : Paramètres → Retirer Kleaner." }
+      {
+        "q": "Comment libérer de l'espace disque sur Windows 11 ?",
+        "a": "Ouvre Kleaner et clique sur « Nettoyer sans risque » : il coche les caches et fichiers temporaires inutiles, te montre la liste, puis les supprime. Regarde ensuite tes plus gros fichiers et les restes de vieux programmes, chacun avec son explication."
+      },
+      {
+        "q": "C'est vraiment gratuit ?",
+        "a": "Oui. Pas de version payante, pas de pub, pas de compte. Le code source est public."
+      },
+      {
+        "q": "Kleaner est-il une alternative à CCleaner ?",
+        "a": "Oui, gratuite et sans publicité. La différence : Kleaner explique chaque fichier avant de le supprimer, ne « nettoie » jamais le registre et n'envoie rien sur Internet."
+      },
+      {
+        "q": "Est-ce sans risque ?",
+        "a": "Rien n'est coché d'avance. La suppression définitive est limitée aux caches qui se recréent tout seuls ; tes fichiers personnels vont seulement à la Corbeille et peuvent être restaurés."
+      },
+      {
+        "q": "Pourquoi Windows affiche un avertissement ?",
+        "a": "Kleaner n'est pas encore signé avec un certificat payant, donc Windows ne le reconnaît pas. Clique sur « Informations complémentaires », puis « Exécuter quand même »."
+      },
+      {
+        "q": "Installateur ou version portable ?",
+        "a": "L'installateur ajoute Kleaner au menu Démarrer et aux applications de Windows. La version portable est un seul fichier qui se lance sans rien installer."
+      },
+      {
+        "q": "Comment le désinstaller ?",
+        "a": "Paramètres Windows → Applications → Kleaner → Désinstaller. Ou, dans Kleaner : Paramètres → Retirer Kleaner."
+      }
     ],
     "versions": "Versions précédentes",
-    "more": "Comment Kleaner est fait →"
+    "more": "Comment Kleaner est fait →",
+    "feedback_h": "Un bug ? Une idée ?",
+    "feedback_p": "Dis-le-moi ici, sans compte. Je lis chaque message.",
+    "feedback_type": "C'est",
+    "feedback_types": [
+      "Un bug",
+      "Une idée",
+      "Un avis"
+    ],
+    "feedback_message": "Ce qui s'est passé, ou ce que tu aimerais que Kleaner fasse…",
+    "feedback_email": "Ton email (facultatif, pour te répondre)",
+    "feedback_subject": "Kleaner : avis",
+    "feedback_github": "Tu as un compte GitHub ? Tu peux aussi y {bug} ou {idea}.",
+    "feedback_github_bug": "signaler un bug",
+    "feedback_github_idea": "proposer une idée"
   }
 }

@@ -433,6 +433,11 @@ def install_page(data: dict, lang: str, home_page: str, head_snippet: str, ui_di
     steps = ''.join(f'\n        <li>{text(d[f"ui.dl.step{n}"])}</li>' for n in (1, 2, 3))
     faq = ''.join(f'\n      <details><summary>{text(x["q"])}</summary><p>{text(x["a"])}</p></details>' for x in c['questions'])
     project = '/projects/kleaner.html' if lang == 'en' else fr_url('/projects/kleaner.html')
+    issue = f'https://github.com/{data["repo"]}/issues/new?template='
+    gh = lambda tpl, key: f'<a href="{issue}{tpl}" target="_blank" rel="noopener">{text(c[key])} ↗</a>'
+    github = text(c['feedback_github']).replace('{bug}', gh('bug.yml', 'feedback_github_bug')).replace('{idea}', gh('idea.yml', 'feedback_github_idea'))
+    types = ''.join(f'\n          <label><input type="radio" name="type" value="{attr(x)}"{" checked" if n == 0 else ""} /><span>{text(x)}</span></label>'
+                    for n, x in enumerate(c['feedback_types']))
     main = f'''<main class="install" data-releases="{data['repo']}">
     <section class="i-hero" style="--i:0">
       <span class="i-logo" aria-hidden="true"></span>
@@ -464,7 +469,29 @@ def install_page(data: dict, lang: str, home_page: str, head_snippet: str, ui_di
       <h2>{text(c['faq'])}</h2>{faq}
     </section>
 
-    <section class="i-versions" style="--i:5">
+    <section class="i-feedback" id="feedback" style="--i:5">
+      <h2>{text(c['feedback_h'])}</h2>
+      <p class="i-sub">{text(c['feedback_p'])}</p>
+      <form class="i-form" data-formspree="mojzlrke" novalidate>
+        <fieldset class="i-types">
+          <legend>{text(c['feedback_type'])}</legend>{types}
+        </fieldset>
+        <div class="field">
+          <textarea name="message" rows="5" placeholder="{attr(c['feedback_message'])}" aria-label="{attr(c['feedback_message'])}" required data-error="err.message"></textarea>
+          <span class="field-error"></span>
+        </div>
+        <div class="field">
+          <input type="email" name="email" placeholder="{attr(c['feedback_email'])}" aria-label="{attr(c['feedback_email'])}" autocomplete="email" />
+          <span class="field-error"></span>
+        </div>
+        <input type="hidden" name="_subject" value="{attr(c['feedback_subject'])}" />
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
+        <button type="submit" class="btn primary" data-umami-event="kleaner-feedback">{text(d['form.send'])}</button>
+      </form>
+      <p class="i-github">{github}</p>
+    </section>
+
+    <section class="i-versions" style="--i:6">
       <details>
         <summary>{text(c['versions'])}</summary>
         <ul data-dl="list"><li><a href="{rel}" target="_blank" rel="noopener">GitHub Releases ↗</a></li></ul>
@@ -492,7 +519,7 @@ def build_install(home_dict: dict) -> None:
     data = json.loads(read(BUILD / 'install.json'))
     home_page = read(ROOT / 'index.html')
     head_snippet = read(BUILD / 'head.html').rstrip('\n')
-    keep = lambda k: k.startswith(('ui.', 'nav.')) or k in ('legal', 'theme', 'theme.title')
+    keep = lambda k: k.startswith(('ui.', 'nav.', 'form.', 'err.')) or k in ('legal', 'theme', 'theme.title')
     ui_dict = {lang: {k: v for k, v in home_dict[lang].items() if keep(k)} for lang in ('en', 'fr')}
     for lang in ('en', 'fr'):
         page = install_page(data, lang, home_page, head_snippet, ui_dict)

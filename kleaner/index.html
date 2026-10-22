@@ -41,6 +41,15 @@
   "nav.about": "About",
   "nav.skills": "Skills",
   "nav.projects": "Projects",
+  "form.name": "Name",
+  "form.send": "Send →",
+  "err.name": "Your name is required",
+  "err.email": "Your email is required",
+  "err.emailInvalid": "Invalid email",
+  "err.message": "The message is empty",
+  "form.sending": "Sending...",
+  "form.sent": "Message sent ✓",
+  "form.error": "Error, try again",
   "theme": "Toggle theme",
   "theme.title": "Theme",
   "nav.label": "Section navigation",
@@ -87,6 +96,15 @@
   "nav.about": "Présentation",
   "nav.skills": "Compétences",
   "nav.projects": "Projets",
+  "form.name": "Nom",
+  "form.send": "Envoyer →",
+  "err.name": "Ton nom est requis",
+  "err.email": "Ton email est requis",
+  "err.emailInvalid": "Email invalide",
+  "err.message": "Le message est vide",
+  "form.sending": "Envoi...",
+  "form.sent": "Message envoyé ✓",
+  "form.error": "Erreur, réessaie",
   "theme": "Changer de thème",
   "theme.title": "Thème",
   "nav.label": "Navigation des sections",
@@ -153,7 +171,7 @@
     })();
   </script>
   <link rel="stylesheet" href="/assets/site.css?v=e8765bb4bc" />
-  <link rel="stylesheet" href="/assets/project.css?v=92f02497c0" />
+  <link rel="stylesheet" href="/assets/project.css?v=5379965689" />
 
   <script type="application/ld+json">
 {
@@ -247,7 +265,7 @@
   ]
 }
   </script>
-  <script defer src="/assets/site.js?v=e32d1d0398"></script>
+  <script defer src="/assets/site.js?v=0162db21ba"></script>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="50c62680-6fe2-4654-82fd-813896edce5e"></script>
 </head>
 <body class="page">
@@ -324,7 +342,32 @@
       <details><summary>How do I uninstall it?</summary><p>Windows Settings → Apps → Kleaner → Uninstall. Or, in Kleaner: Settings → Remove Kleaner.</p></details>
     </section>
 
-    <section class="i-versions" style="--i:5">
+    <section class="i-feedback" id="feedback" style="--i:5">
+      <h2>A bug? An idea?</h2>
+      <p class="i-sub">Tell me here, no account needed. I read every message.</p>
+      <form class="i-form" data-formspree="mojzlrke" novalidate>
+        <fieldset class="i-types">
+          <legend>It is about</legend>
+          <label><input type="radio" name="type" value="A bug" checked /><span>A bug</span></label>
+          <label><input type="radio" name="type" value="An idea" /><span>An idea</span></label>
+          <label><input type="radio" name="type" value="A review" /><span>A review</span></label>
+        </fieldset>
+        <div class="field">
+          <textarea name="message" rows="5" placeholder="What happened, or what you would like Kleaner to do…" aria-label="What happened, or what you would like Kleaner to do…" required data-error="err.message"></textarea>
+          <span class="field-error"></span>
+        </div>
+        <div class="field">
+          <input type="email" name="email" placeholder="Your email (optional, to get an answer)" aria-label="Your email (optional, to get an answer)" autocomplete="email" />
+          <span class="field-error"></span>
+        </div>
+        <input type="hidden" name="_subject" value="Kleaner: feedback" />
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
+        <button type="submit" class="btn primary" data-umami-event="kleaner-feedback">Send →</button>
+      </form>
+      <p class="i-github">Have a GitHub account? You can also <a href="https://github.com/Swaksm/Kleaner/issues/new?template=bug.yml" target="_blank" rel="noopener">report a bug ↗</a> or <a href="https://github.com/Swaksm/Kleaner/issues/new?template=idea.yml" target="_blank" rel="noopener">suggest an idea ↗</a> there.</p>
+    </section>
+
+    <section class="i-versions" style="--i:6">
       <details>
         <summary>Previous versions</summary>
         <ul data-dl="list"><li><a href="https://github.com/Swaksm/Kleaner/releases" target="_blank" rel="noopener">GitHub Releases ↗</a></li></ul>
