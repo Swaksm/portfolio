@@ -113,13 +113,14 @@
     });
   }
 
-  /* ---------- Stats GitHub en direct (cache 1 h, rien si hors ligne ou quota atteint) ---------- */
+  /* ---------- Stats GitHub en direct (cache 10 min, rien si hors ligne ou quota atteint) ---------- */
+  const CACHE_MS = 600e3;
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   async function ghData(repo, withReleases) {
     const key = 'swaks-gh-' + repo;
     try {
       const c = JSON.parse(localStorage.getItem(key) || 'null');
-      if (c && Date.now() - c.at < 3600e3) return c.data;
+      if (c && Date.now() - c.at < CACHE_MS) return c.data;
     } catch (e) {}
     const res = await fetch('https://api.github.com/repos/' + repo);
     if (!res.ok) throw new Error('github');
@@ -134,15 +135,15 @@
     return data;
   }
 
-  /* ---------- Releases GitHub (cache 1 h) : stats et bloc de téléchargement, une seule requête par page ---------- */
+  /* ---------- Releases GitHub : une seule requête par page, partagée par les stats et le bloc de téléchargement.
+     `fresh` (téléchargement) : toujours la liste à jour, le cache ne sert que si GitHub refuse (quota, hors ligne). ---------- */
   const releaseLoads = {};
-  function releasesOf(repo) {
+  function releasesOf(repo, fresh) {
+    const key = 'swaks-rel-' + repo;
+    let cached = null;
+    try { cached = JSON.parse(localStorage.getItem(key) || 'null'); } catch (e) {}
+    if (!fresh && cached && Date.now() - cached.at < CACHE_MS) return Promise.resolve(cached.data);
     releaseLoads[repo] = releaseLoads[repo] || (async () => {
-      const key = 'swaks-rel-' + repo;
-      try {
-        const c = JSON.parse(localStorage.getItem(key) || 'null');
-        if (c && Date.now() - c.at < 3600e3) return c.data;
-      } catch (e) {}
       const res = await fetch('https://api.github.com/repos/' + repo + '/releases?per_page=100');
       if (!res.ok) throw new Error('github');
       const data = (await res.json()).filter((r) => !r.draft).map((r) => ({
@@ -151,7 +152,10 @@
       }));
       try { localStorage.setItem(key, JSON.stringify({ at: Date.now(), data })); } catch (e) {}
       return data;
-    })();
+    })().catch((e) => {
+      if (cached) return cached.data;
+      throw e;
+    });
     return releaseLoads[repo];
   }
 
@@ -162,7 +166,7 @@
   const mb = (b) => (b / 1e6).toLocaleString(LANG, { maximumFractionDigits: 1 }) + ' ' + t('ui.dl.mb');
   document.querySelectorAll('[data-releases]').forEach(async (box) => {
     let rel;
-    try { rel = await releasesOf(box.dataset.releases); } catch (e) { return; } // hors ligne ou quota : liens GitHub gardés
+    try { rel = await releasesOf(box.dataset.releases, true); } catch (e) { return; } // hors ligne ou quota : liens GitHub gardés
     const latest = rel[0];
     if (!latest) return;
     const project = box.dataset.releases.split('/')[1].toLowerCase();
