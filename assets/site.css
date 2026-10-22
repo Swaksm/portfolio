@@ -118,7 +118,7 @@ input, textarea, [contenteditable] { cursor: var(--text-cursor); }
   :root {
     --pointer: url(/assets/cursor-hover.svg) 14 14, pointer;
     --default: url(/assets/cursor.svg) 6 6, default;
-    --text-cursor: url(/assets/cursor-text.svg) 7 12, text;
+    --text-cursor: url(/assets/cursor-text.svg?v=2) 7 12, text;
   }
   html { cursor: url(/assets/cursor.svg) 6 6, auto; }
 }
