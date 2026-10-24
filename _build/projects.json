@@ -31,7 +31,7 @@
           "Cleanup: 45 built-in items plus about 1,100 from the community catalog, each saying what it removes and what changes for you.",
           "Knows developer, gamer and AI machines: old node_modules, .venv or target folders (with the command that rebuilds them), Docker and WSL disks, Ollama, LM Studio and Hugging Face models, game launchers.",
           "Programs: real size on disk, last launch date, leftovers of uninstalled programs. Startup items and boot times, duplicates, a photo & video browser.",
-          "A read-only health & security check-up, and an offline AI report — a Markdown summary to paste into the AI of your choice. 6 languages, light and dark themes."
+          "A read-only health & security check-up, and an offline AI report — a Markdown summary to paste into the AI of your choice. 8 languages, light and dark themes."
         ] },
         { "h": "Safe by design", "ul": [
           "Your files only go to the Recycle Bin, and the log can restore them.",
@@ -59,7 +59,7 @@
           "Nettoyage : 45 éléments intégrés et environ 1 100 issus du catalogue communautaire, chacun expliquant ce qu'il supprime et ce qui change pour vous.",
           "Connaît les machines de dev, de jeu et d'IA : vieux dossiers node_modules, .venv ou target (avec la commande qui les recrée), disques Docker et WSL, modèles Ollama, LM Studio et Hugging Face, lanceurs de jeux.",
           "Programmes : taille réelle sur le disque, date du dernier lancement, restes de programmes désinstallés. Démarrage et durée des derniers boots, doublons, visionneuse de photos et vidéos.",
-          "Un bilan santé & sécurité en lecture seule, et un rapport IA hors ligne — un résumé Markdown à coller dans l'IA de votre choix. 6 langues, thèmes clair et sombre."
+          "Un bilan santé & sécurité en lecture seule, et un rapport IA hors ligne — un résumé Markdown à coller dans l'IA de votre choix. 8 langues, thèmes clair et sombre."
         ] },
         { "h": "Sûr par conception", "ul": [
           "Vos fichiers vont uniquement à la Corbeille, et le journal peut les restaurer.",
