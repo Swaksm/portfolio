@@ -15,6 +15,7 @@
   const HASHES = ['', 'presentation', 'competences', 'projets', 'contact'];
   const PROJECTS = [
     ['kleaner', 'Kleaner'],
+    ['autosu', 'Autosu'],
     ['lion-meme', 'Lion Meme'],
     ['cordesortie', 'CordeSortie'],
     ['video-grabber', 'Video Grabber'],

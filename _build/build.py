@@ -212,7 +212,8 @@ def project_page(p: dict, lang: str, nxt: dict, home_page: str, head_snippet: st
 
     i = iter(range(3, 60))  # ordre d'apparition (animation en cascade)
     chips = ''.join(f'<span class="chip">{text(x)}</span>' for x in p['chips'])
-    stats = (f'<span class="gh-stats" data-gh="{p["repo"]}"' + (' data-gh-releases' if p['releases'] else '') + '></span>')
+    stats = (f'<span class="gh-stats" data-gh="{p["repo"]}"' + (' data-gh-releases' if p['releases'] else '') + '></span>'
+             if p.get('repo') else '')  # dépôt privé : pas de stats GitHub
     def event(href):  # clic mesuré par Umami, mêmes noms que sur les cartes de l'accueil
         ev = 'download' if href.endswith('/releases') else 'github' if 'github.com' in href else 'visit'
         return f' data-umami-event="{ev}" data-umami-event-project="{slug}"'

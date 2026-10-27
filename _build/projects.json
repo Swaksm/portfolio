@@ -74,6 +74,100 @@
     }
   },
   {
+    "slug": "autosu",
+    "name": "Autosu",
+    "chips": [
+      "Node.js",
+      "C++",
+      "osu! (neomod fork)",
+      "TikTok LIVE",
+      "UDP"
+    ],
+    "links": [],
+    "shots": [
+      {
+        "src": "/img/projects/autosu.webp",
+        "alt": {
+          "en": "Autosu — the live overlay: bot stats, combo to break, gift prices, top gifters and the next map asked by chat",
+          "fr": "Autosu — l'overlay du live : stats du bot, combo à casser, prix des cadeaux, meilleurs donateurs et prochaine map demandée par le chat"
+        }
+      }
+    ],
+    "schema": {
+      "@type": "SoftwareApplication",
+      "applicationCategory": "GameApplication",
+      "operatingSystem": "Windows"
+    },
+    "en": {
+      "title": "Autosu — an osu! bot that TikTok LIVE viewers sabotage",
+      "description": "Autosu is a fully automated TikTok LIVE: an osu! bot plays marathons non-stop and viewers sabotage it in real time with gifts, likes and chat commands. Node.js server + a modified build of osu! (neomod).",
+      "kicker": "Interactive live · Game modding · Real time",
+      "lead": "An osu! bot plays marathons live on TikTok, 100% automatically. Viewers try to make it fail — and every sabotage shows up on screen with their name.",
+      "sections": [
+        {
+          "h": "How the live works",
+          "ul": [
+            "Gifts are ranked by coin price: a 1-coin Rose speeds the map up, 5 coins turns on Hidden + Flashlight, 10 forces a combo break, 20 restarts the map, 50 triggers CHAOS MODE (the map slows down for 3 s, then speed ×2.5 + Hidden + Flashlight hit at once).",
+            "Free actions for everyone: every 100 likes boosts the speed, each new follower doubles it for 10 s, !smoke in chat makes the bot's cursor smoke.",
+            "!map <id> in chat downloads the requested map (hardest difficulty, 8 minutes max) from a public mirror and plays it right after the current one, then deletes it.",
+            "The overlay shows the live pp, a combo that heats up from gold to pulsing red, combo milestones with the price to break them, the top gifters, the biggest combo killer and an end-of-map recap with confetti before the next map."
+          ]
+        },
+        {
+          "h": "Under the hood",
+          "ul": [
+            "My own build of osu! (a fork of neomod, C++, GPL-3.0): about 20 console commands are allowed over local UDP (miss, retry, next map, speed, mods, cursor smoke, intro skip, map requests), and the game publishes its state 4 times a second. Built and tested headless by GitHub Actions on every push.",
+            "A Node.js 22 server with zero dependencies: reads TikTok events through TikFinity's local WebSocket, queues and caps every action so a burst of 100 gifts never lags behind, merges overlapping effects by priority, and streams to the overlay over Server-Sent Events.",
+            "A vanilla HTML/CSS/JS overlay sized for a 1080×1920 portrait live, laid out around TikTok's own interface (top bar, chat, buttons).",
+            "Spec first, then small tested steps: 85 automated tests (mocked timers, fake game, fake WebSocket, in-memory zip archives)."
+          ]
+        },
+        {
+          "h": "Safe by design",
+          "ul": [
+            "The modified game never connects to osu! servers, and only listens on 127.0.0.1.",
+            "Only an allowlist of commands reaches the game; viewer names are always inserted as text, never as HTML.",
+            "Requested maps come from a public mirror with size and length limits, and their archive is unpacked with path checks."
+          ]
+        }
+      ]
+    },
+    "fr": {
+      "title": "Autosu — un bot osu! que les spectateurs d'un live TikTok sabotent",
+      "description": "Autosu est un live TikTok entièrement automatique : un bot osu! joue des marathons en continu et les spectateurs le sabotent en direct avec leurs cadeaux, likes et commandes dans le chat. Serveur Node.js + version modifiée d'osu! (neomod).",
+      "kicker": "Live interactif · Modding de jeu · Temps réel",
+      "lead": "Un bot osu! joue des marathons en live sur TikTok, 100 % en automatique. Les spectateurs essaient de le faire échouer, et chaque sabotage s'affiche à l'écran avec leur pseudo.",
+      "sections": [
+        {
+          "h": "Comment marche le live",
+          "ul": [
+            "Les cadeaux sont classés par prix : une Rose à 1 pièce accélère la map, 5 pièces mettent Hidden + Flashlight, 10 provoquent un combo break, 20 relancent la map, 50 déclenchent le CHAOS MODE (la map ralentit 3 s, puis vitesse ×2,5 + Hidden + Flashlight d'un coup).",
+            "Gratuit pour tout le monde : tous les 100 likes la vitesse monte, chaque nouvel abonné la double pendant 10 s, !smoke dans le chat fait fumer le curseur du bot.",
+            "!map <id> dans le chat télécharge la map demandée (difficulté la plus dure, 8 minutes max) sur un miroir public, la joue juste après la map en cours, puis la supprime.",
+            "L'overlay affiche les pp en direct, un combo qui chauffe du doré au rouge pulsant, les paliers de combo avec le prix pour le casser, le top des donateurs, le plus gros « combo killer » et un récap de fin de map avec confettis avant la suivante."
+          ]
+        },
+        {
+          "h": "Sous le capot",
+          "ul": [
+            "Ma propre version d'osu! (fork de neomod, C++, GPL-3.0) : une vingtaine de commandes console autorisées en UDP local (miss, retry, map suivante, vitesse, mods, fumée du curseur, saut de l'intro, maps demandées), et le jeu publie son état 4 fois par seconde. Compilée et testée sans écran par GitHub Actions à chaque push.",
+            "Un serveur Node.js 22 sans aucune dépendance : il lit les événements TikTok via le WebSocket local de TikFinity, met chaque action en file avec un plafond pour qu'une rafale de 100 cadeaux ne prenne jamais de retard, fusionne les effets qui se chevauchent par priorité, et pousse tout à l'overlay en Server-Sent Events.",
+            "Un overlay en HTML/CSS/JS sans framework, au format 1080×1920 d'un live portrait, placé autour de l'interface de TikTok (barre du haut, chat, boutons).",
+            "Spec d'abord, puis petites étapes testées : 85 tests automatiques (minuteurs simulés, faux jeu, faux WebSocket, archives zip en mémoire)."
+          ]
+        },
+        {
+          "h": "Sûr par conception",
+          "ul": [
+            "Le jeu modifié ne se connecte jamais aux serveurs d'osu! et n'écoute que sur 127.0.0.1.",
+            "Seule une liste de commandes autorisées atteint le jeu ; les pseudos des spectateurs sont toujours insérés comme texte, jamais comme HTML.",
+            "Les maps demandées viennent d'un miroir public, avec des limites de taille et de durée, et leur archive est extraite en vérifiant chaque chemin."
+          ]
+        }
+      ]
+    }
+  },
+  {
     "slug": "lion-meme",
     "name": "Lion Meme",
     "repo": "Swaksm/tucroisquetesunlion",

@@ -79,6 +79,8 @@
   "kl.tag": "Windows software · Rust · Open source",
   "kl.desc": "A free Windows disk cleaner that explains before it deletes: every large file gets a verdict (safe, uninstall, breaks something, unknown…) based on 108 hand-written rules — it never guesses. Permanent deletion is limited to a public list of caches, enforced in Rust and tested. Knows developer, gaming and AI machines (node_modules, .venv, Docker, Ollama / Hugging Face models). No telemetry, portable exe.",
   "kl.dl": "Download →",
+  "au.tag": "TikTok LIVE · osu! modding · Real time",
+  "au.desc": "A 100% automated TikTok LIVE: an osu! bot plays marathons non-stop while viewers sabotage it with gifts, likes and chat commands — speed-ups, Hidden + Flashlight, combo breaks, retries, CHAOS MODE, and !map to pick the next map. Node.js server + my own build of osu! driven over local UDP.",
   "lm.tag": "Web · Humor · Generator",
   "lm.desc": "A free lion meme generator. It plays on the gap between the image we want to project and reality — a majestic lion photo, and underneath, a far more comical reality. Made in a few clicks.",
   "lm.visit": "Visit site ↗",
@@ -133,6 +135,7 @@
   "about.more": "More about me →",
   "nav.me": "About me",
   "kl.alt": "Kleaner — recoverable space by type",
+  "au.alt": "Autosu — the live overlay: bot stats, combo to break, gift prices and top gifters",
   "lm.alt": "Lion Meme — the meme generator",
   "legal": "Legal notice",
   "og.desc": "Software developer in Nantes: point-of-sale software, Python, Rust and tools that get used.",
@@ -189,6 +192,8 @@
   "kl.tag": "Logiciel Windows · Rust · Open source",
   "kl.desc": "Nettoyeur de disque Windows gratuit qui explique avant de supprimer : chaque gros fichier reçoit un verdict (sûr, à désinstaller, casse quelque chose, inconnu…) basé sur 108 règles écrites à la main — jamais de devinette. Suppression définitive limitée à une liste publique de caches, vérifiée en Rust et testée. Connaît les machines de dev, de jeu et d'IA (node_modules, .venv, Docker, modèles Ollama / Hugging Face). Aucune télémétrie, exe portable.",
   "kl.dl": "Télécharger →",
+  "au.tag": "TikTok LIVE · Modding osu! · Temps réel",
+  "au.desc": "Un live TikTok 100 % automatique : un bot osu! joue des marathons en continu pendant que les spectateurs le sabotent avec leurs cadeaux, likes et commandes dans le chat — accélérations, Hidden + Flashlight, combo breaks, retries, CHAOS MODE, et !map pour choisir la map suivante. Serveur Node.js + ma propre version d'osu! pilotée en UDP local.",
   "lm.tag": "Web · Humour · Générateur",
   "lm.desc": "Générateur de memes lion gratuit. Joue sur le contraste entre l'image que l'on veut projeter et la réalité — une photo de lion majestueux, et en dessous, une réalité plus cocasse. Création en quelques clics.",
   "lm.visit": "Voir le site ↗",
@@ -243,6 +248,7 @@
   "about.more": "En savoir plus sur moi →",
   "nav.me": "À propos de moi",
   "kl.alt": "Kleaner — espace récupérable par type",
+  "au.alt": "Autosu — l'overlay du live : stats du bot, combo à casser, prix des cadeaux et meilleurs donateurs",
   "lm.alt": "Lion Meme — le générateur de memes",
   "legal": "Mentions légales",
   "og.desc": "Développeur logiciel à Nantes : logiciels de caisse, Python, Rust et des outils qui servent.",
@@ -1042,7 +1048,7 @@
     }
   </style>
 
-  <script defer src="/assets/site.js?v=f306f25893"></script>
+  <script defer src="/assets/site.js?v=7b6b8374c0"></script>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="50c62680-6fe2-4654-82fd-813896edce5e"></script>
 </head>
 <body>
@@ -1154,6 +1160,30 @@
             <a class="primary" href="/projects/kleaner.html" data-localize="href" data-i18n="ui.more">Details →</a>
             <a class="secondary" href="/kleaner/" data-localize="href" data-umami-event="download" data-umami-event-project="kleaner" data-i18n="kl.dl">Download →</a>
             <a class="secondary" href="https://github.com/Swaksm/Kleaner" data-umami-event="github" data-umami-event-project="kleaner" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-reveal style="--i:3">
+      <button class="card-header" type="button" aria-expanded="false">
+        <div>
+          <div class="card-title">Autosu</div>
+          <div class="card-tag" data-i18n="au.tag">TikTok LIVE · osu! modding · Real time</div>
+        </div>
+        <span class="card-arrow" aria-hidden="true">+</span>
+      </button>
+      <div class="card-body">
+        <div class="card-body-inner">
+          <img class="card-shot" src="/img/projects/autosu.webp" srcset="/img/projects/autosu-640.webp 640w, /img/projects/autosu.webp 1280w" sizes="(max-width: 600px) calc(100vw - 3.8rem), (max-width: 720px) calc(100vw - 4rem), 656px" data-tilt alt="Autosu — the live overlay: bot stats, combo to break, gift prices and top gifters" data-i18n-attr="alt:au.alt" width="1280" height="800" loading="lazy" decoding="async" />
+          <p data-i18n="au.desc">A 100% automated TikTok LIVE: an osu! bot plays marathons non-stop while viewers sabotage it with gifts, likes and chat commands — speed-ups, Hidden + Flashlight, combo breaks, retries, CHAOS MODE, and !map to pick the next map. Node.js server + my own build of osu! driven over local UDP.</p>
+          <div class="card-meta">
+            <span class="card-chip">Node.js</span>
+            <span class="card-chip">C++</span>
+            <span class="card-chip">TikTok LIVE</span>
+          </div>
+          <div class="card-links">
+            <a class="primary" href="/projects/autosu.html" data-localize="href" data-i18n="ui.more">Details →</a>
           </div>
         </div>
       </div>
