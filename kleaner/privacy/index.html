@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kleaner privacy policy — swaks.org</title>
+  <meta name="description" content="Kleaner collects no data: no telemetry, no account, no ads." />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <script src="/assets/lang.js?v=ee29fd9060"></script>
+  <script>
+    // Politique de confidentialité de l'appli Kleaner (adresse donnée au Microsoft Store). Même règle de langue que le site.
+    (function () {
+      const lang = window.swaksLang();
+      let theme = '';
+      try { theme = localStorage.getItem('swaks-theme') || ''; } catch (e) {}
+      document.documentElement.lang = lang;
+      if (theme) document.documentElement.dataset.theme = theme;
+      if (lang === 'fr') document.title = 'Confidentialité de Kleaner — swaks.org';
+      document.addEventListener('DOMContentLoaded', function () {
+        if (lang === 'fr') document.querySelectorAll('a.back').forEach(function (b) { b.href = '/fr/kleaner/'; });
+      });
+    })();
+  </script>
+  <style>
+    @font-face { font-family: 'Outfit'; font-weight: 100 900; font-display: swap; src: url(/fonts/outfit-latin.woff2) format('woff2'); }
+    @font-face { font-family: 'Roboto Condensed'; font-weight: 900; font-display: swap; src: url(/fonts/roboto-condensed-900-latin.woff2) format('woff2'); }
+    :root { --bg: #F1EEE7; --text: #3a3530; --muted: #6f6557; --taupe: #C7C0A8; --taupe-text: #756b5d; --mauve: #C88ABB; --mauve-text: #935683; --border: #DDD6C8; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { --bg: #1c1917; --text: #ece6dc; --muted: #a89d8f; --taupe: #7f7668; --taupe-text: #a39888; --mauve: #D49DC8; --mauve-text: #D49DC8; --border: #36302b; }
+    }
+    :root[data-theme="dark"] { --bg: #1c1917; --text: #ece6dc; --muted: #a89d8f; --taupe: #7f7668; --taupe-text: #a39888; --mauve: #D49DC8; --mauve-text: #D49DC8; --border: #36302b; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; line-height: 1.75; }
+    main { max-width: 720px; margin: 0 auto; padding: 5rem 1.4rem 4rem; }
+    h1 { font-family: 'Roboto Condensed', sans-serif; font-weight: 900; font-size: clamp(28px, 4vw, 48px); line-height: 1.1; margin-bottom: 1rem; }
+    h1 span { color: var(--mauve); }
+    .date { font-size: 0.8rem; color: var(--taupe-text); margin-bottom: 2.4rem; }
+    h2 {
+      font-size: 0.68rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--taupe-text);
+      padding-bottom: 0.6rem; margin: 2.4rem 0 0.9rem; border-bottom: 1px solid var(--border);
+    }
+    p, li { font-size: clamp(14px, 1.35vw, 16px); color: var(--muted); }
+    p + p { margin-top: 0.6rem; }
+    ul { list-style: none; }
+    li + li { margin-top: 0.6rem; }
+    ul + p, p + ul { margin-top: 1.2rem; }
+    strong { color: var(--text); font-weight: 400; }
+    code { font-size: 0.9em; overflow-wrap: anywhere; }
+    @media (pointer: fine) {
+      html { cursor: url(/assets/cursor.svg) 6 6, auto; }
+      a[href] { cursor: url(/assets/cursor-hover.svg) 14 14, pointer; }
+    }
+    a { color: var(--mauve-text); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .back {
+      display: inline-block; margin-top: 3.5rem; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--taupe-text);
+    }
+    .back:hover { color: var(--mauve); text-decoration: none; }
+    html:not([lang="fr"]) [lang="fr"], html[lang="fr"] [lang="en"] { display: none; }
+  </style>
+</head>
+<body>
+  <main>
+    <!-- Français -->
+    <div lang="fr">
+      <h1>CONFIDENTIALITÉ DE KLEANE<span>R</span></h1>
+      <p class="date">Dernière mise à jour : 29 octobre 2026</p>
+
+      <p><strong>Kleaner ne collecte aucune donnée personnelle.</strong> Aucune télémétrie, aucune mesure d'audience, aucun compte, aucune publicité. Rien sur toi ou ton PC n'est envoyé à swaks ni à personne.</p>
+
+      <h2>Ce qui reste sur ton PC</h2>
+      <ul>
+        <li><strong>Analyses</strong> — les résultats restent en mémoire et disparaissent à la fermeture de Kleaner.</li>
+        <li><strong>Journal et réglages</strong> — le journal des actions de Kleaner (ce qui a été nettoyé, déplacé ou envoyé à la Corbeille) et tes réglages sont dans <code>%LOCALAPPDATA%\Kleaner</code> et <code>%LOCALAPPDATA%\com.swaksm.kleaner</code>. Le journal se lit dans Kleaner ; Paramètres → « Retirer Kleaner » efface tout.</li>
+        <li><strong>Rapports</strong> — les rapports de bug et les rapports pour IA sont des fichiers enregistrés sur ton PC. Kleaner ne les envoie jamais : tu choisis de les partager ou non.</li>
+        <li><strong>Ce que Kleaner ne lit jamais</strong> — tes mots de passe, cookies, sessions et ton historique.</li>
+      </ul>
+
+      <h2>Quand Kleaner utilise Internet</h2>
+      <p>Seulement sur clic, et seulement vers le service demandé :</p>
+      <ul>
+        <li><strong>Mises à jour et pilotes</strong> — Windows Update et winget contactent les serveurs de Microsoft, comme en dehors de Kleaner.</li>
+        <li><strong>Liens</strong> — GitHub, ce site, « Signaler un bug », « Proposer une règle » s'ouvrent dans ton navigateur. Un signalement de bug ouvre un formulaire GitHub prérempli, que tu peux lire et modifier avant de l'envoyer toi-même.</li>
+        <li><strong>Nouvelles versions</strong> — hors version Microsoft Store seulement : une vérification facultative (désactivée par défaut) lit la liste publique des versions sur api.github.com.</li>
+      </ul>
+
+      <h2>Microsoft Store</h2>
+      <p>L'installation et les mises à jour par le Microsoft Store relèvent de la <a href="https://privacy.microsoft.com/fr-fr/privacystatement" target="_blank" rel="noopener">déclaration de confidentialité de Microsoft</a>. swaks ne voit que les statistiques anonymes que Partner Center donne à tout éditeur (nombre d'installations, plantages).</p>
+
+      <h2>Contact</h2>
+      <p>Questions : <a href="mailto:swks.pro@gmail.com">swks.pro@gmail.com</a> ou <a href="https://github.com/Swaksm/Kleaner/issues" target="_blank" rel="noopener">GitHub</a>. Kleaner est open source (MIT) : tout le code est lisible sur <a href="https://github.com/Swaksm/Kleaner" target="_blank" rel="noopener">GitHub</a>.</p>
+
+      <a class="back" href="/kleaner/">← Retour à Kleaner</a>
+    </div>
+
+    <!-- English -->
+    <div lang="en">
+      <h1>KLEANER PRIVACY POLIC<span>Y</span></h1>
+      <p class="date">Last updated: October 29, 2026</p>
+
+      <p><strong>Kleaner collects no personal data.</strong> No telemetry, no analytics, no account, no ads. Nothing about you or your PC is sent to swaks or anyone else.</p>
+
+      <h2>What stays on your PC</h2>
+      <ul>
+        <li><strong>Scans</strong> — results are kept in memory only, and lost when Kleaner closes.</li>
+        <li><strong>Log and settings</strong> — the log of Kleaner's own actions (what was cleaned, moved or sent to the Recycle Bin) and your settings are kept in <code>%LOCALAPPDATA%\Kleaner</code> and <code>%LOCALAPPDATA%\com.swaksm.kleaner</code>. You can read the log in Kleaner; Settings → "Remove Kleaner" deletes everything.</li>
+        <li><strong>Reports</strong> — bug reports and AI reports are files saved on your PC. Kleaner never sends them: you decide whether to share them.</li>
+        <li><strong>What Kleaner never reads</strong> — your passwords, cookies, sessions and browsing history.</li>
+      </ul>
+
+      <h2>When Kleaner uses the Internet</h2>
+      <p>Only when you click, and only to the service you asked for:</p>
+      <ul>
+        <li><strong>Updates &amp; drivers</strong> — Windows Update and winget contact Microsoft's servers, as they do outside Kleaner.</li>
+        <li><strong>Links</strong> — GitHub, this website, "Report a bug", "Suggest a rule" open in your web browser. A bug report opens a pre-filled GitHub form that you can read and edit before sending it yourself.</li>
+        <li><strong>New versions</strong> — outside the Microsoft Store version only: an optional check (off by default) reads the public list of releases on api.github.com.</li>
+      </ul>
+
+      <h2>Microsoft Store</h2>
+      <p>Installing and updating Kleaner through the Microsoft Store is covered by <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener">Microsoft's privacy statement</a>. swaks only sees the anonymous statistics that Partner Center gives every publisher (number of installs, crashes).</p>
+
+      <h2>Contact</h2>
+      <p>Questions: <a href="mailto:swks.pro@gmail.com">swks.pro@gmail.com</a> or <a href="https://github.com/Swaksm/Kleaner/issues" target="_blank" rel="noopener">GitHub</a>. Kleaner is open source (MIT): all the code is readable on <a href="https://github.com/Swaksm/Kleaner" target="_blank" rel="noopener">GitHub</a>.</p>
+
+      <a class="back" href="/kleaner/">← Back to Kleaner</a>
+    </div>
+  </main>
+</body>
+</html>

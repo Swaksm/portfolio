@@ -555,7 +555,7 @@ ASSETS = ('site.css', 'site.js', 'project.css', 'lang.js')
 def served_pages() -> list:
     return [ROOT / 'index.html', ROOT / 'fr' / 'index.html', ROOT / '404.html', ROOT / 'mentions-legales.html',
             ROOT / 'about.html', ROOT / 'fr' / 'about.html',
-            ROOT / 'kleaner' / 'index.html', ROOT / 'fr' / 'kleaner' / 'index.html',
+            ROOT / 'kleaner' / 'index.html', ROOT / 'fr' / 'kleaner' / 'index.html', ROOT / 'kleaner' / 'privacy' / 'index.html',
             *sorted((ROOT / 'projects').glob('*.html')), *sorted((ROOT / 'fr' / 'projects').glob('*.html'))]
 
 

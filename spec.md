@@ -21,6 +21,7 @@ Portfolio de Matthieu Izac (swaks). Site **100 % statique** : on dépose les fic
 | `assets/project.css` | Style des pages projets |
 | `_build/` | `build.py`, `projects.json` (contenu des pages projets), `head.html` (script d'en-tête commun), `og.html` (modèle des images d'aperçu). Bloqué en ligne par `.htaccess` |
 | `404.html`, `mentions-legales.html` | Page d'erreur, mentions légales (FR/EN dans la même page) |
+| `kleaner/privacy/index.html` | Politique de confidentialité de l'appli Kleaner (FR/EN dans la même page), adresse donnée au Microsoft Store |
 | `.htaccess` | Config Apache (OVH) : 404, redirection vers `https://swaks.org` (sans www), compression, cache, en-têtes de sécurité, blocage de `_build/` |
 | `favicon.svg`, `icons/`, `site.webmanifest` | Icônes (navigateur, iPhone, Android) |
 | `og-image.png`, `img/og/*.png` | Images d'aperçu des liens partagés (1200×630) — générées |
