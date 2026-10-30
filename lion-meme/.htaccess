@@ -1,0 +1,5 @@
+# Lion Meme (générateur, source : github.com/Swaksm/tucroisquetesunlion)
+# Remplace la CSP du site : l'appli lit les images choisies en data:/blob: (canvas, partage)
+<IfModule mod_headers.c>
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' https://cloud.umami.is; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' data: blob: https://gateway.umami.is; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"
+</IfModule>

@@ -543,7 +543,10 @@ def build_sitemap(projects: list) -> None:
             urls.append(f'  <url>\n    <loc>{SITE}{u}</loc>\n    <lastmod>{TODAY.isoformat()}</lastmod>{alts}\n  </url>')
     write(ROOT / 'sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n'
           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
-          + '\n'.join(urls) + '\n</urlset>\n')
+          + '\n'.join(urls) + '\n'
+          # Générateur Lion Meme (appli en français seulement, sources : dépôt tucroisquetesunlion)
+          f'  <url>\n    <loc>{SITE}/lion-meme/</loc>\n    <lastmod>{TODAY.isoformat()}</lastmod>\n  </url>\n'
+          '</urlset>\n')
 
 
 # ---------------------------------------------------------------------------

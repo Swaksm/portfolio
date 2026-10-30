@@ -174,13 +174,13 @@
     "releases": false,
     "chips": ["React", "TypeScript", "Vite", "Canvas"],
     "links": [
-      { "href": "https://lion-meme.com", "label": { "en": "Visit site", "fr": "Voir le site" }, "primary": true },
+      { "href": "https://swaks.org/lion-meme/", "label": { "en": "Make a meme", "fr": "Créer un meme" }, "primary": true },
       { "href": "https://github.com/Swaksm/tucroisquetesunlion", "label": { "en": "GitHub", "fr": "GitHub" } }
     ],
     "shots": [
       { "src": "/img/lion.webp", "alt": { "en": "Lion Meme — the meme generator", "fr": "Lion Meme — le générateur de memes" } }
     ],
-    "schema": { "@type": "WebApplication", "applicationCategory": "EntertainmentApplication", "operatingSystem": "Web", "url": "https://lion-meme.com" },
+    "schema": { "@type": "WebApplication", "applicationCategory": "EntertainmentApplication", "operatingSystem": "Web", "url": "https://swaks.org/lion-meme/" },
     "en": {
       "title": "Lion Meme — free “you think you're a lion” meme generator",
       "description": "Lion Meme is a free meme generator: a majestic lion on top, your “real nature” underneath. Pick a format and a lion, add your photo, then download or share.",
@@ -194,7 +194,7 @@
           "Preview the meme live, then download it or share it in one click."
         ] },
         { "h": "Under the hood", "p": [
-          "A single-page app in React 19 and TypeScript, built with Vite. The meme is composed directly in the browser on a canvas, so the pictures stay on your device. Hosted on Netlify."
+          "A single-page app in React 19 and TypeScript, built with Vite. The meme is composed directly in the browser on a canvas, so the pictures stay on your device. Hosted on this site, at swaks.org/lion-meme."
         ] }
       ]
     },
@@ -211,7 +211,7 @@
           "Le meme s'affiche en direct, puis se télécharge ou se partage en un clic."
         ] },
         { "h": "Sous le capot", "p": [
-          "Une application monopage en React 19 et TypeScript, construite avec Vite. Le meme est composé directement dans le navigateur, sur un canvas : les images restent sur ton appareil. Hébergé sur Netlify."
+          "Une application monopage en React 19 et TypeScript, construite avec Vite. Le meme est composé directement dans le navigateur, sur un canvas : les images restent sur ton appareil. Hébergé sur ce site, à swaks.org/lion-meme."
         ] }
       ]
     }
