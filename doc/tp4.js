@@ -11,6 +11,8 @@
   function show(n) {
     i = Math.max(0, Math.min(s.length - 1, n));
     s.forEach(function (el, k) { el.classList.toggle('on', k === i); });
+    document.getElementById('prev').disabled = i === 0;
+    document.getElementById('next').disabled = i === s.length - 1;
     bar.style.width = ((i + 1) / s.length * 100) + '%';
     history.replaceState(null, '', '#' + (i + 1));
   }
@@ -22,7 +24,8 @@
     else if (e.key === 'End') show(s.length - 1);
     else if (e.key === 'f') document.documentElement.requestFullscreen && document.documentElement.requestFullscreen();
   });
-  addEventListener('click', function (e) { show(e.clientX < innerWidth / 3 ? i - 1 : i + 1); });
+  document.getElementById('prev').addEventListener('click', function () { show(i - 1); });
+  document.getElementById('next').addEventListener('click', function () { show(i + 1); });
   var tx = null;
   addEventListener('touchstart', function (e) { tx = e.touches[0].clientX; });
   addEventListener('touchend', function (e) {
