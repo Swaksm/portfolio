@@ -20,6 +20,9 @@ Options -Indexes -MultiViews
   RewriteCond %{THE_REQUEST} \s/(.*/)?index\.html[\s?]
   RewriteRule ^(.*/)?index\.html$ https://swaks.org/$1 [R=301,L]
 
+  # /docs (avec ou sans « / » final, ou un sous-chemin) mène à /doc/ : une seule adresse
+  RewriteRule ^docs(/(.*))?$ https://swaks.org/doc/$2 [R=301,L]
+
   # Dossier sans « / » final (/fr, /kleaner) : redirigé ici, sinon Apache ajoute « :443 » à l'adresse
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^(.*[^/])$ https://swaks.org/$1/ [R=301,L]
