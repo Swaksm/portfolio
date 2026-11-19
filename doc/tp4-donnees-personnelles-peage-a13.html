@@ -107,6 +107,25 @@ th { color:#756b5d; font-weight:400; letter-spacing:0.1em; text-transform:upperc
 .d-crit { color:#E27D7D; } .d-high { color:#E8A86A; } .d-mid { color:#E2C86A; }
 .l-crit { color:#A8321F; } .l-high { color:#9A5200; } .l-mid { color:#6E5800; } .l-low { color:#2E6B3E; }
 
+/* matrice */
+.mx { display:flex; gap:64px; }
+.mx-grid { flex:none; width:1100px; }
+.mx-lab { font-size:26px; letter-spacing:0.1em; text-transform:uppercase; color:#756b5d; margin:0 0 12px 68px; }
+.mx-lab-x { text-align:right; margin:12px 0 0; }
+.mx-row { display:flex; gap:12px; margin:0 0 12px; }
+.mx-n { width:56px; flex:none; font-size:32px; color:#756b5d; display:flex; align-items:center; justify-content:center; }
+.mx-c { flex:1; height:100px; box-sizing:border-box; border-radius:12px; display:flex; flex-wrap:wrap; align-content:center; justify-content:center; gap:8px; padding:8px; }
+.mx-x { flex:1; font-size:32px; color:#756b5d; text-align:center; }
+.c1 { background:#DDE6D2; } .c2 { background:#EFE3B5; } .c3 { background:#F0CFA6; } .c4 { background:#E6A99F; }
+.chip-t, .chip-o { font-size:30px; font-weight:600; border-radius:99px; padding:4px 16px; margin:0; line-height:1.3; }
+.chip-t { background:#3a3530; color:#F1EEE7; }
+.chip-o { background:#F7F3E6; color:#3a3530; border:2px solid #3a3530; }
+.mx-leg { flex:1; padding-top:48px; }
+.lg-row { display:flex; gap:20px; align-items:center; margin:0 0 20px; }
+.lg-gap { margin-top:40px; }
+.sw { width:48px; height:48px; border-radius:10px; flex:none; }
+.lg-t { font-size:32px; margin:0; color:#3a3530; }
+
 table { width:100%; border-collapse:collapse; } th { text-align:left; } td, th { border-bottom:1px solid #DDD6C8; }
 </style>
 </head>
@@ -158,11 +177,26 @@ table { width:100%; border-collapse:collapse; } th { text-align:left; } td, th {
 </section>
 <section id="risques">
 <p class="eyebrow">3 · Risques identifiés</p>
-<h2>Neuf risques<span>.</span></h2><table class="sm"><tr><th style="width:10%"></th><th style="width:52%">Risque</th><th style="width:38%">Score</th></tr><tr><td>R1</td><td>Fuite de la base</td><td class="l-crit">16 · Critique</td></tr><tr><td>R2</td><td>Accès interne abusif</td><td class="l-crit">16 · Critique</td></tr><tr><td>R3</td><td>Usage commercial détourné</td><td class="l-high">12 · Élevée</td></tr><tr><td>R4</td><td>Mauvais usage du SIV</td><td class="l-mid">8 · Moyenne</td></tr><tr><td>R5</td><td>Surveillance de masse</td><td class="l-high">9 · Élevée</td></tr><tr><td>R6</td><td>Non-conformité RGPD</td><td class="l-high">12 · Élevée</td></tr><tr><td>R7</td><td>Sous-traitant défaillant</td><td class="l-mid">6 · Moyenne</td></tr><tr><td>R8</td><td>Erreur ou panne LAPI</td><td class="l-high">9 · Élevée</td></tr><tr><td>R9</td><td>Piratage de comptes usagers</td><td class="l-high">9 · Élevée</td></tr></table>
-</section>
-<section id="top5">
-<p class="eyebrow">3 · Sélection pour le comité</p>
-<h2>Les 5 plus critiques<span>.</span></h2><table class="lg"><tr><th style="width:10%"></th><th style="width:52%">Risque</th><th style="width:38%">Score</th></tr><tr><td>1</td><td>R1 · Fuite de la base</td><td class="l-crit">16 · Critique</td></tr><tr><td>2</td><td>R2 · Accès interne abusif</td><td class="l-crit">16 · Critique</td></tr><tr><td>3</td><td>R3 · Usage commercial détourné</td><td class="l-high">12 · Élevée</td></tr><tr><td>4</td><td>R6 · Non-conformité RGPD</td><td class="l-high">12 · Élevée</td></tr><tr><td>5</td><td>R5 · Surveillance de masse</td><td class="l-high">9 · Élevée</td></tr></table>
+<h2>Matrice des risques<span>.</span></h2>
+<div class="mx">
+<div class="mx-grid">
+<p class="mx-lab">Vraisemblance ↑</p>
+<div class="mx-row"><div class="mx-n">4</div><div class="mx-c c1"></div><div class="mx-c c2"></div><div class="mx-c c3"><p class="chip-t">R3</p><p class="chip-t">R6</p></div><div class="mx-c c4"><p class="chip-t">R1</p><p class="chip-t">R2</p></div></div>
+<div class="mx-row"><div class="mx-n">3</div><div class="mx-c c1"></div><div class="mx-c c2"></div><div class="mx-c c3"><p class="chip-t">R5</p><p class="chip-o">R8</p><p class="chip-o">R9</p></div><div class="mx-c c3"></div></div>
+<div class="mx-row"><div class="mx-n">2</div><div class="mx-c c1"></div><div class="mx-c c1"></div><div class="mx-c c2"><p class="chip-o">R7</p></div><div class="mx-c c2"><p class="chip-o">R4</p></div></div>
+<div class="mx-row"><div class="mx-n">1</div><div class="mx-c c1"></div><div class="mx-c c1"></div><div class="mx-c c1"></div><div class="mx-c c1"></div></div>
+<div class="mx-row"><div class="mx-n"></div><div class="mx-x">1</div><div class="mx-x">2</div><div class="mx-x">3</div><div class="mx-x">4</div></div>
+<p class="mx-lab mx-lab-x">Impact →</p>
+</div>
+<div class="mx-leg">
+<div class="lg-row"><div class="sw c4"></div><p class="lg-t">Critique</p></div>
+<div class="lg-row"><div class="sw c3"></div><p class="lg-t">Élevée</p></div>
+<div class="lg-row"><div class="sw c2"></div><p class="lg-t">Moyenne</p></div>
+<div class="lg-row"><div class="sw c1"></div><p class="lg-t">Faible</p></div>
+<div class="lg-row lg-gap"><p class="chip-t">R1</p><p class="lg-t">Top 5 retenu</p></div>
+<div class="lg-row"><p class="chip-o">R8</p><p class="lg-t">Autre risque</p></div>
+</div>
+</div>
 </section>
 <section id="r1">
 <p class="eyebrow">Risque n°1 · R1</p>
