@@ -32,3 +32,18 @@
   });
   fit(); show(i);
 })();
+
+var NAMES = {R1:'Fuite de la base',R2:'Accès interne abusif',R3:'Usage commercial détourné',R4:'Mauvais usage du SIV',R5:'Surveillance de masse',R6:'Non-conformité RGPD',R7:'Sous-traitant défaillant',R8:'Erreur ou panne LAPI',R9:'Piratage de comptes usagers'};
+(function () {
+  var tip = document.createElement('div'); tip.id = 'tip'; document.body.appendChild(tip);
+  function chip(e) { var t = e.target; return t && t.classList && (t.classList.contains('chip-t') || t.classList.contains('chip-o')) && NAMES[t.textContent] ? t : null; }
+  document.addEventListener('mouseover', function (e) {
+    var c = chip(e); if (!c) return;
+    tip.textContent = c.textContent + ' · ' + NAMES[c.textContent]; tip.style.opacity = 1;
+  });
+  document.addEventListener('mousemove', function (e) {
+    tip.style.left = Math.min(e.clientX + 16, innerWidth - tip.offsetWidth - 8) + 'px';
+    tip.style.top = (e.clientY + 18) + 'px';
+  });
+  document.addEventListener('mouseout', function (e) { if (chip(e)) tip.style.opacity = 0; });
+})();
