@@ -1,6 +1,11 @@
-// Tri des documents par date d'upload (attribut data-date="AAAA-MM-JJ" sur chaque <li>).
-// Pour ajouter un document : copier un <li> dans index.html et changer lien, titre et date.
+// Page /doc/ : thème mémorisé + tri des documents par date d'upload.
+// Pour ajouter un document : copier un <li> dans index.html, changer lien, titre et data-date (AAAA-MM-JJ).
 (function () {
+  try {
+    var theme = localStorage.getItem('swaks-theme');
+    if (theme) document.documentElement.dataset.theme = theme;
+  } catch (e) {}
+
   var list = document.getElementById('docs');
   var buttons = document.querySelectorAll('.sort button');
   function sort(order) {

@@ -1,38 +1,48 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex">
-<title>Documents · swaks</title>
-<link rel="icon" href="/favicon.svg">
-<style>
-@font-face { font-family:'Inter'; font-weight:100 900; font-display:swap; src:url(inter.woff2) format('woff2'); }
-body { margin:0; background:#F2F2F7; color:#1C1C1E; font-family:'Inter', Arial, sans-serif; }
-main { max-width:720px; margin:0 auto; padding:96px 24px; }
-h1 { font-size:40px; letter-spacing:-0.5px; margin:0 0 24px; }
-.sort { display:flex; gap:8px; margin:0 0 24px; }
-.sort button { font:inherit; font-size:15px; font-weight:600; color:#007AFF; background:#E5E5EA; border:0; border-radius:999px; padding:8px 16px; cursor:pointer; }
-.sort button[aria-pressed="true"] { background:#007AFF; color:#fff; }
-ul { list-style:none; margin:0; padding:0; }
-a.card { display:flex; justify-content:space-between; align-items:baseline; gap:16px; background:#fff; border:1px solid #E5E5EA; border-radius:16px; padding:20px 24px; margin:0 0 12px; color:inherit; text-decoration:none; }
-a.card:hover { border-color:#007AFF; }
-a.card b { display:block; font-size:20px; }
-a.card span { color:#6B6B70; font-size:16px; }
-a.card time { color:#6B6B70; font-size:15px; white-space:nowrap; }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documents · swaks</title>
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#F1EEE7" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1c1917" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preload" href="/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/roboto-condensed-900-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/site.css" />
+  <link rel="stylesheet" href="/assets/project.css" />
+  <style>
+    .sort { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2rem; }
+    .sort .btn { font-family: inherit; background: none; cursor: var(--pointer); }
+    .sort .btn[aria-pressed="true"] { background: var(--mauve); border-color: var(--mauve); color: var(--cream); }
+    #docs { list-style: none; padding: 0; }
+    #docs .entry a.more { color: inherit; text-decoration: none; }
+    #docs .entry a.more:hover { color: var(--mauve); }
+  </style>
 </head>
-<body>
-<main>
-<h1>Documents</h1>
-<div class="sort" role="group" aria-label="Tri par date d’upload">
-<button type="button" data-order="desc" aria-pressed="true">Plus récent</button>
-<button type="button" data-order="asc" aria-pressed="false">Plus ancien</button>
-</div>
-<ul id="docs">
-<li data-date="2026-11-19"><a class="card" href="tp4-donnees-personnelles-peage-a13.html"><div><b>TP4 · Données personnelles &amp; risques</b><span>Diaporama · péage en flux libre A13</span></div><time datetime="2026-11-19">19 nov. 2026</time></a></li>
-</ul>
-</main>
-<script src="index.js"></script>
+<body class="page">
+  <header class="topbar">
+    <a class="home-link" href="/#presentation">← swaks</a>
+  </header>
+
+  <main class="project">
+    <p class="kicker" style="--i:0">Documents · Cours · Présentations</p>
+    <h1 style="--i:0">Documents<span>.</span></h1>
+    <div class="sort" style="--i:1" role="group" aria-label="Tri par date d’upload">
+      <button class="btn" type="button" data-order="desc" aria-pressed="true">Plus récent</button>
+      <button class="btn" type="button" data-order="asc" aria-pressed="false">Plus ancien</button>
+    </div>
+    <ul id="docs" style="--i:2">
+      <li class="entry" data-date="2026-11-19">
+        <h3><a class="more" href="tp4-donnees-personnelles-peage-a13.html">TP4 · Données personnelles &amp; risques →</a></h3>
+        <p class="entry-meta">Uploadé le <time datetime="2026-11-19">19 nov. 2026</time> · Diaporama · péage en flux libre A13</p>
+      </li>
+    </ul>
+  </main>
+
+  <footer class="page-footer">© swaks — Tous droits réservés · <a href="/mentions-legales.html">Mentions légales</a></footer>
+  <script src="index.js"></script>
 </body>
 </html>
