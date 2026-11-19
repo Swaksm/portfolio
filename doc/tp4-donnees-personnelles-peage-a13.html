@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TP4 – Données personnelles &amp; risques (Péage A13)</title>
+<link rel="icon" href="../favicon.svg">
+<style>
+@font-face { font-family:'Inter'; font-weight:100 900; font-display:swap; src:url(inter.woff2) format('woff2'); }
+html, body { margin:0; height:100%; background:#000; overflow:hidden; }
+#stage { position:absolute; left:50%; top:50%; width:1920px; height:1080px; transform-origin:center center; }
+#stage section { position:absolute; left:0; top:0; width:1920px; height:1080px; box-sizing:border-box; display:none; overflow:hidden; }
+#stage section.on { display:block; }
+#bar { position:fixed; left:0; bottom:0; height:4px; background:#007AFF; transition:width .3s; }
+
+body { font-family: 'Inter', Arial, sans-serif; }
+section { padding:128px 128px 160px; background:#F2F2F7; color:#1C1C1E; counter-increment:page; }
+section::after { content:counter(page); position:absolute; left:1664px; bottom:64px; width:128px; text-align:right; font-size:24px; color:#6B6B70; }
+.dark { background:#1C1C1E; color:#F2F2F7; }
+.dark::after { color:#AEAEB2; }
+.cover::after { content:""; }
+.cover { padding-top:300px; }
+.eyebrow { font-size:28px; font-weight:600; color:#007AFF; margin:0 0 20px; }
+.dark .eyebrow { color:#0A84FF; }
+h1 { font-size:128px; font-weight:700; line-height:1.05; letter-spacing:-2px; margin:0 0 36px; }
+h2 { font-size:72px; font-weight:700; line-height:1.1; letter-spacing:-1px; margin:0 0 48px; }
+.sub { font-size:40px; line-height:1.35; color:#AEAEB2; margin:0; }
+.lead { font-size:36px; line-height:1.4; color:#6B6B70; margin:0 0 48px; }
+.row { display:flex; gap:32px; margin:0 0 32px; }
+.card { flex:1; background:#FFFFFF; border-radius:24px; border:1px solid #E5E5EA; padding:48px; }
+.card h3 { font-size:38px; font-weight:600; line-height:1.15; margin:0 0 14px; }
+.card p { font-size:28px; line-height:1.4; color:#6B6B70; margin:0; }
+.ic { height:56px; margin:0 0 24px; }
+.ic x-icon { width:56px; height:56px; color:#007AFF; }
+.big { font-size:88px; font-weight:700; line-height:1; color:#007AFF; margin:0 0 16px; }
+.note { font-size:26px; line-height:1.4; color:#6B6B70; margin:28px 0 0; }
+.info { font-size:32px; line-height:1.4; margin:0 0 16px; }
+.info b { color:#007AFF; }
+table { font-size:26px; color:#1C1C1E; }
+table.lg { font-size:30px; }
+th { color:#6B6B70; }
+td, th { padding:14px 20px; }
+.l-crit { color:#C4001A; }
+.l-high { color:#B35C00; }
+.l-mid { color:#7A5F00; }
+.l-low { color:#1B7A3A; }
+ul.big-list { font-size:36px; line-height:1.4; margin:0; }
+ul.big-list li { margin:0 0 18px; }
+.dark ol { font-size:40px; line-height:1.4; margin:0; }
+.dark ol li { margin:0 0 20px; }
+.risk-body { display:flex; gap:64px; }
+.risk-text { flex:1; display:flex; flex-direction:column; gap:32px; }
+.blk h3 { font-size:24px; font-weight:600; color:#007AFF; margin:0 0 8px; }
+.blk p { font-size:30px; line-height:1.4; margin:0; }
+.score { flex:none; width:480px; box-sizing:border-box; background:#1C1C1E; color:#F2F2F7; border-radius:24px; padding:56px; display:flex; flex-direction:column; gap:8px; }
+.score .lab { font-size:24px; color:#AEAEB2; margin:0; }
+.score .val { font-size:64px; font-weight:700; line-height:1.1; margin:0 0 20px; }
+.score .tot { font-size:112px; font-weight:700; line-height:1.05; margin:0; }
+.score .lvl { font-size:40px; font-weight:600; margin:0; }
+.d-crit { color:#FF453A; }
+.d-high { color:#FF9F0A; }
+.d-mid { color:#FFD60A; }
+.tags { font-size:26px; color:#6B6B70; margin:0 0 28px; }
+.col h3 { font-size:44px; font-weight:700; margin:0 0 6px; color:#1C1C1E; }
+.col .when { font-size:26px; font-weight:600; color:#007AFF; margin:0 0 28px; }
+.col ul { font-size:27px; line-height:1.35; margin:0; }
+.col ul li { margin:0 0 14px; }
+
+table { font-size:34px; }
+table.lg { font-size:38px; }
+table.sm { font-size:30px; }
+table.sm td, table.sm th { padding:10px 20px; }
+.card h3 { font-size:44px; }
+.card p { font-size:34px; }
+.info { font-size:36px; }
+.blk h3 { font-size:28px; }
+.blk p { font-size:42px; line-height:1.3; }
+ul.big-list { font-size:46px; line-height:1.4; }
+ul.big-list li { margin:0 0 28px; }
+.col ul { font-size:30px; line-height:1.3; }
+.col ul li { margin:0 0 24px; }
+.dark ol { font-size:48px; line-height:1.4; }
+
+table { width:100%; border-collapse:collapse; } th { text-align:left; } td, th { border-bottom:1px solid #D1D1D6; }
+</style>
+</head>
+<body>
+<div id="stage">
+<section id="cover" class="dark cover">
+<p class="eyebrow">TP N°4 · Stratégie des risques IT · EPSI M1</p>
+<h1>Données personnelles<br>&amp; risques associés</h1>
+<p class="sub">Audit du péage en flux libre – autoroute A13</p>
+
+</section>
+<section id="contexte">
+<p class="eyebrow">Contexte</p>
+<h2>Péage sans barrière sur l’A13</h2>
+<div class="row">
+<div class="card"><h3>Caméras</h3><p>Lecture des plaques</p></div>
+<div class="card"><h3>Capteurs</h3><p>Détection des véhicules</p></div>
+<div class="card"><h3>Badges</h3><p>Télépéage</p></div>
+</div>
+<p class="info"><b>Non-paiement :</b> recherche du propriétaire dans le SIV (État).</p>
+</section>
+<section id="incidents">
+<p class="eyebrow">Pourquoi un audit</p>
+<h2>Quatre incidents</h2>
+<div class="row">
+<div class="card"><h3>Démarchage ciblé</h3><p>Offres reçues après un passage</p></div>
+<div class="card"><h3>Ex-salarié</h3><p>Consulte les trajets de personnalités</p></div>
+</div>
+<div class="row">
+<div class="card"><h3>Hacker</h3><p>Détient une partie de la base</p></div>
+<div class="card"><h3>Association</h3><p>Dénonce une surveillance de masse</p></div>
+</div>
+</section>
+<section id="hypotheses">
+<p class="eyebrow">Nos hypothèses</p>
+<h2>Ce que nous supposons</h2>
+<ul class="big-list">
+<li>Passages conservés sans limite de durée</li>
+<li>Accès larges, comptes d’ex-salariés actifs</li>
+<li>Pas d’AIPD, usagers peu informés</li>
+</ul>
+</section>
+<section id="donnees">
+<p class="eyebrow">1 · Données personnelles</p>
+<h2>Classées par sensibilité</h2><table><tr><th style="width:66%">Donnée</th><th style="width:34%">Sensibilité</th></tr><tr><td>Trajets (plaque + date + lieu)</td><td class="l-crit">Critique</td></tr><tr><td>Plaque, photo du véhicule</td><td class="l-high">Élevée</td></tr><tr><td>Identité et adresse (SIV)</td><td class="l-high">Élevée</td></tr><tr><td>Paiement (carte, IBAN)</td><td class="l-high">Élevée</td></tr><tr><td>Compte télépéage (badge, factures)</td><td class="l-mid">Moyenne</td></tr><tr><td>Contacts (mail, téléphone)</td><td class="l-mid">Moyenne</td></tr></table>
+</section>
+<section id="actifs">
+<p class="eyebrow">2 · Actifs informationnels</p>
+<h2>Ce qu’il faut protéger</h2><table><tr><th style="width:66%">Actif</th><th style="width:34%">Importance</th></tr><tr><td>Base des passages</td><td class="l-crit">Critique</td></tr><tr><td>Portiques et caméras</td><td class="l-high">Élevée</td></tr><tr><td>Base clients et badges</td><td class="l-high">Élevée</td></tr><tr><td>Appli et portail de paiement</td><td class="l-high">Élevée</td></tr><tr><td>Accès au SIV</td><td class="l-high">Élevée</td></tr><tr><td>Comptes administrateurs</td><td class="l-high">Élevée</td></tr></table>
+</section>
+<section id="risques">
+<p class="eyebrow">3 · Risques identifiés</p>
+<h2>Neuf risques</h2><table class="sm"><tr><th style="width:10%"></th><th style="width:52%">Risque</th><th style="width:38%">Score</th></tr><tr><td>R1</td><td>Fuite de la base</td><td class="l-crit">16 · Critique</td></tr><tr><td>R2</td><td>Accès interne abusif</td><td class="l-crit">16 · Critique</td></tr><tr><td>R3</td><td>Usage commercial détourné</td><td class="l-high">12 · Élevée</td></tr><tr><td>R4</td><td>Mauvais usage du SIV</td><td class="l-mid">8 · Moyenne</td></tr><tr><td>R5</td><td>Surveillance de masse</td><td class="l-high">9 · Élevée</td></tr><tr><td>R6</td><td>Non-conformité RGPD</td><td class="l-high">12 · Élevée</td></tr><tr><td>R7</td><td>Sous-traitant défaillant</td><td class="l-mid">6 · Moyenne</td></tr><tr><td>R8</td><td>Erreur ou panne LAPI</td><td class="l-high">9 · Élevée</td></tr><tr><td>R9</td><td>Piratage de comptes usagers</td><td class="l-high">9 · Élevée</td></tr></table>
+</section>
+<section id="top5">
+<p class="eyebrow">3 · Sélection pour le comité</p>
+<h2>Les 5 plus critiques</h2><table class="lg"><tr><th style="width:10%"></th><th style="width:52%">Risque</th><th style="width:38%">Score</th></tr><tr><td>1</td><td>R1 · Fuite de la base</td><td class="l-crit">16 · Critique</td></tr><tr><td>2</td><td>R2 · Accès interne abusif</td><td class="l-crit">16 · Critique</td></tr><tr><td>3</td><td>R3 · Usage commercial détourné</td><td class="l-high">12 · Élevée</td></tr><tr><td>4</td><td>R6 · Non-conformité RGPD</td><td class="l-high">12 · Élevée</td></tr><tr><td>5</td><td>R5 · Surveillance de masse</td><td class="l-high">9 · Élevée</td></tr></table>
+</section>
+<section id="r1">
+<p class="eyebrow">Risque n°1 · R1</p>
+<h2>Fuite de la base</h2>
+<div class="risk-body">
+<div class="risk-text">
+<div class="blk"><h3>Cause</h3><p>Base mal protégée</p></div>
+<div class="blk"><h3>Menace</h3><p>Vol de données par un hacker</p></div>
+<div class="blk"><h3>Conséquences</h3><p>Trajets exposés, amende CNIL, image dégradée</p></div>
+</div>
+<div class="score">
+<p class="lab">Vraisemblance</p><p class="val">4 / 4</p>
+<p class="lab">Impact</p><p class="val">4 / 4</p>
+<p class="lab">Criticité</p><p class="tot d-crit">16</p><p class="lvl d-crit">Critique</p>
+</div>
+</div>
+</section>
+<section id="r2">
+<p class="eyebrow">Risque n°2 · R2</p>
+<h2>Accès interne abusif</h2>
+<div class="risk-body">
+<div class="risk-text">
+<div class="blk"><h3>Cause</h3><p>Comptes d’ex-salariés toujours actifs</p></div>
+<div class="blk"><h3>Menace</h3><p>Consultation des trajets de personnalités</p></div>
+<div class="blk"><h3>Conséquences</h3><p>Vie privée violée, sanction, plainte</p></div>
+</div>
+<div class="score">
+<p class="lab">Vraisemblance</p><p class="val">4 / 4</p>
+<p class="lab">Impact</p><p class="val">4 / 4</p>
+<p class="lab">Criticité</p><p class="tot d-crit">16</p><p class="lvl d-crit">Critique</p>
+</div>
+</div>
+</section>
+<section id="r3">
+<p class="eyebrow">Risque n°3 · R3</p>
+<h2>Usage commercial détourné</h2>
+<div class="risk-body">
+<div class="risk-text">
+<div class="blk"><h3>Cause</h3><p>Données réutilisées pour du marketing</p></div>
+<div class="blk"><h3>Menace</h3><p>Trajets croisés avec des fichiers commerciaux</p></div>
+<div class="blk"><h3>Conséquences</h3><p>Traitement illégal, plaintes, sanction CNIL</p></div>
+</div>
+<div class="score">
+<p class="lab">Vraisemblance</p><p class="val">4 / 4</p>
+<p class="lab">Impact</p><p class="val">3 / 4</p>
+<p class="lab">Criticité</p><p class="tot d-high">12</p><p class="lvl d-high">Élevée</p>
+</div>
+</div>
+</section>
+<section id="r6">
+<p class="eyebrow">Risque n°4 · R6</p>
+<h2>Non-conformité RGPD</h2>
+<div class="risk-body">
+<div class="risk-text">
+<div class="blk"><h3>Cause</h3><p>Pas d’AIPD, registre ni durées de conservation</p></div>
+<div class="blk"><h3>Menace</h3><p>Contrôle de la CNIL</p></div>
+<div class="blk"><h3>Conséquences</h3><p>Amende jusqu’à 4 % du CA, mise en demeure</p></div>
+</div>
+<div class="score">
+<p class="lab">Vraisemblance</p><p class="val">4 / 4</p>
+<p class="lab">Impact</p><p class="val">3 / 4</p>
+<p class="lab">Criticité</p><p class="tot d-high">12</p><p class="lvl d-high">Élevée</p>
+</div>
+</div>
+</section>
+<section id="r5">
+<p class="eyebrow">Risque n°5 · R5</p>
+<h2>Surveillance de masse</h2>
+<div class="risk-body">
+<div class="risk-text">
+<div class="blk"><h3>Cause</h3><p>Tout est conservé, accès trop larges</p></div>
+<div class="blk"><h3>Menace</h3><p>Suivi de personnes hors cadre légal</p></div>
+<div class="blk"><h3>Conséquences</h3><p>Atteinte aux libertés, scandale médiatique</p></div>
+</div>
+<div class="score">
+<p class="lab">Vraisemblance</p><p class="val">3 / 4</p>
+<p class="lab">Impact</p><p class="val">3 / 4</p>
+<p class="lab">Criticité</p><p class="tot d-high">9</p><p class="lvl d-high">Élevée</p>
+</div>
+</div>
+</section>
+<section id="plan">
+<p class="eyebrow">4 · Plan de traitement</p>
+<h2>Par priorité</h2>
+<div class="row">
+<div class="card col"><h3>Immédiat</h3><p class="when">0 à 30 jours</p><ul>
+<li><b>Technique</b><br>Couper les accès inutiles</li>
+<li><b>Juridique</b><br>Notifier la CNIL si fuite</li>
+<li><b>Organisation</b><br>Stopper le marketing</li></ul></div>
+<div class="card col"><h3>Court terme</h3><p class="when">1 à 3 mois</p><ul>
+<li><b>Technique</b><br>Chiffrer les données</li>
+<li><b>Juridique</b><br>Réaliser l’AIPD</li>
+<li><b>Humain</b><br>Former les équipes</li></ul></div>
+<div class="card col"><h3>Moyen terme</h3><p class="when">3 à 12 mois</p><ul>
+<li><b>Technique</b><br>Supervision, purge auto</li>
+<li><b>Organisation</b><br>DPO, registre, durées</li>
+<li><b>Humain</b><br>Exercices de crise</li></ul></div>
+</div>
+</section>
+<section id="decisions" class="dark">
+<p class="eyebrow">Demande au comité</p>
+<h2>Décisions à prendre aujourd’hui</h2>
+<ol>
+<li>Enquêter sur la fuite</li>
+<li>Stopper l’usage commercial</li>
+<li>Couper les accès inutiles, activer la MFA</li>
+<li>Valider le plan et le budget [€ __]</li>
+</ol>
+</section>
+<section id="fin" class="dark cover">
+<h1>Merci</h1>
+<p class="sub">Questions ?</p>
+<p class="sub">[Noms du groupe]</p>
+</section>
+</div>
+<div id="bar"></div>
+<script src="tp4.js"></script>
+</body>
+</html>
