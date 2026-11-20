@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TP5 – Audit IT PACKSOLUTIONS</title>
+<link rel="icon" href="../favicon.svg">
+<style>
+@font-face { font-family:'Outfit'; font-weight:100 900; font-display:swap; src:url(/fonts/outfit-latin.woff2) format('woff2'); }
+@font-face { font-family:'Roboto Condensed'; font-weight:900; font-display:swap; src:url(/fonts/roboto-condensed-900-latin.woff2) format('woff2'); }
+html, body { margin:0; height:100%; background:#1c1917; overflow:hidden; }
+#stage { position:absolute; left:50%; top:50%; width:1920px; height:1080px; transform-origin:center center; }
+#stage section { position:absolute; left:0; top:0; width:1920px; height:1080px; box-sizing:border-box; display:none; overflow:hidden; }
+#stage section.on { display:block; }
+#bar { position:fixed; left:0; bottom:0; height:4px; background:#C88ABB; transition:width .3s; }
+
+body { font-family: 'Inter', Arial, sans-serif; }
+section { padding:128px 128px 160px; background:#F1EEE7; color:#1c1917; counter-increment:page; }
+section::after { content:counter(page); position:absolute; left:1664px; bottom:64px; width:128px; text-align:right; font-size:24px; color:#6f6557; }
+.dark { background:#1c1917; color:#F1EEE7; }
+.dark::after { color:#a89d8f; }
+.cover::after { content:""; }
+.cover { padding-top:300px; }
+.eyebrow { font-size:28px; font-weight:600; color:#935683; margin:0 0 20px; }
+.dark .eyebrow { color:#D49DC8; }
+h1 { font-size:128px; font-weight:700; line-height:1.05; letter-spacing:-2px; margin:0 0 36px; }
+h2 { font-size:72px; font-weight:700; line-height:1.1; letter-spacing:-1px; margin:0 0 48px; }
+.sub { font-size:40px; line-height:1.35; color:#a89d8f; margin:0; }
+.lead { font-size:36px; line-height:1.4; color:#6f6557; margin:0 0 48px; }
+.row { display:flex; gap:32px; margin:0 0 32px; }
+.card { flex:1; background:#F7F3E6; border-radius:24px; border:1px solid #DDD6C8; padding:48px; }
+.card h3 { font-size:38px; font-weight:600; line-height:1.15; margin:0 0 14px; }
+.card p { font-size:28px; line-height:1.4; color:#6f6557; margin:0; }
+.ic { height:56px; margin:0 0 24px; }
+.ic x-icon { width:56px; height:56px; color:#935683; }
+.big { font-size:88px; font-weight:700; line-height:1; color:#935683; margin:0 0 16px; }
+.note { font-size:26px; line-height:1.4; color:#6f6557; margin:28px 0 0; }
+.info { font-size:32px; line-height:1.4; margin:0 0 16px; }
+.info b { color:#935683; }
+table { font-size:26px; color:#1c1917; }
+table.lg { font-size:30px; }
+th { color:#6f6557; }
+td, th { padding:14px 20px; }
+.l-crit { color:#C4001A; }
+.l-high { color:#B35C00; }
+.l-mid { color:#7A5F00; }
+.l-low { color:#1B7A3A; }
+ul.big-list { font-size:36px; line-height:1.4; margin:0; }
+ul.big-list li { margin:0 0 18px; }
+.dark ol { font-size:40px; line-height:1.4; margin:0; }
+.dark ol li { margin:0 0 20px; }
+.risk-body { display:flex; gap:64px; }
+.risk-text { flex:1; display:flex; flex-direction:column; gap:32px; }
+.blk h3 { font-size:24px; font-weight:600; color:#935683; margin:0 0 8px; }
+.blk p { font-size:30px; line-height:1.4; margin:0; }
+.score { flex:none; width:480px; box-sizing:border-box; background:#1c1917; color:#F1EEE7; border-radius:24px; padding:56px; display:flex; flex-direction:column; gap:8px; }
+.score .lab { font-size:24px; color:#a89d8f; margin:0; }
+.score .val { font-size:64px; font-weight:700; line-height:1.1; margin:0 0 20px; }
+.score .tot { font-size:112px; font-weight:700; line-height:1.05; margin:0; }
+.score .lvl { font-size:40px; font-weight:600; margin:0; }
+.d-crit { color:#FF453A; }
+.d-high { color:#FF9F0A; }
+.d-mid { color:#FFD60A; }
+.tags { font-size:26px; color:#6f6557; margin:0 0 28px; }
+.col h3 { font-size:44px; font-weight:700; margin:0 0 6px; color:#1c1917; }
+.col .when { font-size:26px; font-weight:600; color:#935683; margin:0 0 28px; }
+.col ul { font-size:27px; line-height:1.35; margin:0; }
+.col ul li { margin:0 0 14px; }
+
+table { font-size:34px; }
+table.lg { font-size:38px; }
+table.sm { font-size:30px; }
+table.sm td, table.sm th { padding:10px 20px; }
+.card h3 { font-size:44px; }
+.card p { font-size:34px; }
+.info { font-size:36px; }
+.blk h3 { font-size:28px; }
+.blk p { font-size:42px; line-height:1.3; }
+ul.big-list { font-size:46px; line-height:1.4; }
+ul.big-list li { margin:0 0 28px; }
+.col ul { font-size:30px; line-height:1.3; }
+.col ul li { margin:0 0 24px; }
+.dark ol { font-size:48px; line-height:1.4; }
+
+body { font-family:'Outfit', Arial, sans-serif; }
+section { background:#F1EEE7; color:#3a3530; }
+.dark { background:#1c1917; color:#ece6dc; }
+.dark::after { color:#a39888; }
+.card { background:#F7F3E6; border:1px solid #DDD6C8; border-radius:12px; }
+.dark .eyebrow { color:#D49DC8; }
+.eyebrow { font-size:26px; font-weight:400; letter-spacing:0.14em; text-transform:uppercase; color:#756b5d; }
+h1, h2 { font-family:'Roboto Condensed', 'Arial Narrow', sans-serif; font-weight:900; letter-spacing:-0.01em; line-height:0.95; }
+h1 { font-size:176px; }
+h2 { font-size:112px; margin:0 0 56px; }
+h1 span, h2 span { color:#C88ABB; }
+.dark h1 span { color:#D49DC8; }
+.sub { color:#a89d8f; font-weight:300; }
+.lead, .note { color:#6f6557; }
+.card h3 { font-weight:700; }
+.card p, .blk p { color:#3a3530; }
+.card p { color:#6f6557; }
+.blk h3 { color:#935683; letter-spacing:0.14em; text-transform:uppercase; font-size:26px; font-weight:400; }
+th { color:#756b5d; font-weight:400; letter-spacing:0.1em; text-transform:uppercase; font-size:24px; }
+.col .when { color:#935683; }
+.score { background:#1c1917; color:#ece6dc; border:none; border-radius:12px; }
+.score .lab { color:#a89d8f; }
+.d-crit { color:#E27D7D; } .d-high { color:#E8A86A; } .d-mid { color:#E2C86A; }
+.l-crit { color:#A8321F; } .l-high { color:#9A5200; } .l-mid { color:#6E5800; } .l-low { color:#2E6B3E; }
+
+/* matrice */
+.mx { display:flex; gap:64px; }
+.mx-grid { flex:none; width:1100px; }
+.mx-lab { font-size:26px; letter-spacing:0.1em; text-transform:uppercase; color:#756b5d; margin:0 0 12px 68px; }
+.mx-lab-x { text-align:right; margin:12px 0 0; }
+.mx-row { display:flex; gap:12px; margin:0 0 12px; }
+.mx-n { width:56px; flex:none; font-size:32px; color:#756b5d; display:flex; align-items:center; justify-content:center; }
+.mx-c { flex:1; height:100px; box-sizing:border-box; border-radius:12px; display:flex; flex-wrap:wrap; align-content:center; justify-content:center; gap:8px; padding:8px; }
+.mx-x { flex:1; font-size:32px; color:#756b5d; text-align:center; }
+.c1 { background:#DDE6D2; } .c2 { background:#EFE3B5; } .c3 { background:#F0CFA6; } .c4 { background:#E6A99F; }
+.chip-t { background:#3a3530; color:#F1EEE7; }
+.chip-o { background:#F7F3E6; color:#3a3530; border:2px solid #3a3530; }
+.mx-leg { flex:1; padding-top:48px; }
+.lg-row { display:flex; gap:20px; align-items:center; margin:0 0 20px; }
+.lg-gap { margin-top:40px; }
+.sw { width:48px; height:48px; border-radius:10px; flex:none; }
+.lg-t { font-size:32px; margin:0; color:#3a3530; }
+
+/* watermark */
+section::before { content:"swaks.org"; position:absolute; left:128px; bottom:64px; font-size:24px; letter-spacing:0.08em; color:#756b5d; }
+.dark::before { color:#a39888; }
+
+section::before { font-size:18px; opacity:0.8; }
+#nav { position:fixed; left:50%; bottom:14px; transform:translateX(-50%); display:flex; gap:12px; z-index:20; }
+#nav button { width:44px; height:44px; border-radius:50%; border:1px solid #DDD6C8; background:rgba(247,243,230,.92); color:#3a3530; font:600 20px/1 'Outfit', Arial, sans-serif; cursor:pointer; opacity:.7; transition:opacity .15s, background .15s; }
+#nav button:hover { opacity:1; background:#C88ABB; color:#F1EEE7; border-color:#C88ABB; }
+#nav button:disabled { opacity:.25; cursor:default; background:rgba(247,243,230,.92); color:#3a3530; border-color:#DDD6C8; }
+table { width:100%; border-collapse:collapse; } th { text-align:left; } td, th { border-bottom:1px solid #DDD6C8; }
+
+h2.s { font-size:88px; margin:0 0 40px; }
+.card .big { font-size:120px; font-weight:700; line-height:1; color:#935683; margin:0 0 16px; }
+table.fiche { font-size:32px; }
+table.fiche td { padding:10px 20px; vertical-align:top; }
+table.fiche td.lab { width:21%; color:#935683; font-size:26px; letter-spacing:0.1em; text-transform:uppercase; }
+</style>
+</head>
+<body>
+<div id="stage">
+<section id="cover" class="dark cover">
+<p class="eyebrow">TP N°5 · Audit IT &amp; gestion des risques · EPSI M1 · Groupe 4</p>
+<h1>Audit IT<br>PACKSOLUTIONS<span>.</span></h1>
+<p class="sub">Entretien avec l’Architecte fonctionnel</p>
+</section>
+<section id="contexte">
+<p class="eyebrow">Contexte</p>
+<h2>Une croissance très rapide<span>.</span></h2>
+<div class="row">
+<div class="card"><p class="big">1 500</p><h3>Salariés</h3><p>10 au départ, il y a 5 ans</p></div>
+<div class="card"><p class="big">25</p><h3>Informaticiens</h3><p>15 internes, 10 externes</p></div>
+<div class="card"><p class="big">1</p><h3>Question du DG</h3><p>Notre organisation est-elle adaptée à notre taille ?</p></div>
+</div>
+</section>
+<section id="synthese" class="dark">
+<p class="eyebrow">Notre conclusion</p>
+<h2>Un SI qui fonctionne, mais qui repose<br>sur les personnes, pas sur des règles<span>.</span></h2>
+</section>
+<section id="vue">
+<p class="eyebrow">Constats et risques</p>
+<h2>Six risques identifiés<span>.</span></h2>
+<table class="sm"><tr><th style="width:8%"></th><th style="width:62%">Risque</th><th style="width:30%">Priorité</th></tr><tr><td>1</td><td>Gouvernance d’architecture absente</td><td class="l-high">Haute</td></tr><tr><td>2</td><td>Connaissance du SI fragile</td><td class="l-high">Haute</td></tr><tr><td>3</td><td>Revues de droits hétérogènes</td><td class="l-high">Haute</td></tr><tr><td>4</td><td>RGPD peu contrôlé dans les projets</td><td class="l-high">Haute</td></tr><tr><td>5</td><td>Pas de gestion des problèmes</td><td class="l-mid">Moyenne</td></tr><tr><td>6</td><td>Architecte associé trop tard</td><td class="l-mid">Moyenne</td></tr></table>
+</section>
+<section id="r1">
+<p class="eyebrow">Risque 1 · Priorité haute</p>
+<h2 class="s">Gouvernance d’architecture absente<span>.</span></h2>
+<table class="fiche"><tr><td class="lab">Constat</td><td>Pas de comité d’architecture, décisions prises au fil des projets</td></tr><tr><td class="lab">Risque</td><td>Choix locaux qui complexifient le SI</td></tr><tr><td class="lab">Causes</td><td>Pression sur les délais, solution retenue pour le besoin immédiat</td></tr><tr><td class="lab">Conséquences</td><td>Dette technique, coûts de maintenance, SI difficile à faire évoluer</td></tr><tr><td class="lab">Existant</td><td>Décisions discutées avec études, architecte technique et DSI</td></tr><tr><td class="lab">Limite</td><td>Seulement sur les gros projets, non tracé</td></tr><tr><td class="lab">Préconisation</td><td>Créer un comité d’architecture mensuel (archi fonctionnel et technique, études, DSI) qui valide et trace les décisions structurantes</td></tr></table>
+</section>
+<section id="r2">
+<p class="eyebrow">Risque 2 · Priorité haute</p>
+<h2 class="s">Connaissance du SI fragile<span>.</span></h2>
+<table class="fiche"><tr><td class="lab">Constat</td><td>Cartographie pas à jour, documentation inégale, un seul architecte fonctionnel</td></tr><tr><td class="lab">Risque</td><td>Perte de savoir, impact des changements mal évalué</td></tr><tr><td class="lab">Causes</td><td>Évolutions rapides, applications ajoutées sans formalisation</td></tr><tr><td class="lab">Conséquences</td><td>Incident ou évolution mal analysés, dépendance à quelques personnes</td></tr><tr><td class="lab">Existant</td><td>Cartographie des applications principales, projets récents documentés</td></tr><tr><td class="lab">Limite</td><td>Flux, dépendances et applications historiques mal connus</td></tr><tr><td class="lab">Préconisation</td><td>Mettre à jour la cartographie, imposer une documentation selon la criticité, nommer un suppléant à l’architecte</td></tr></table>
+</section>
+<section id="r3">
+<p class="eyebrow">Risque 3 · Priorité haute</p>
+<h2 class="s">Revues de droits hétérogènes<span>.</span></h2>
+<table class="fiche"><tr><td class="lab">Constat</td><td>Fréquence variable, anciennes applications peu structurées</td></tr><tr><td class="lab">Risque</td><td>Accès non justifiés (départs, changements de poste)</td></tr><tr><td class="lab">Causes</td><td>Pas de règle commune, responsabilités floues</td></tr><tr><td class="lab">Conséquences</td><td>Fraude, fuite de données, non-conformité</td></tr><tr><td class="lab">Existant</td><td>Revues par les responsables métier sur les applications sensibles</td></tr><tr><td class="lab">Limite</td><td>Déclenchées par un événement, pas à fréquence fixe</td></tr><tr><td class="lab">Préconisation</td><td>Revue au moins annuelle (trimestrielle pour les applications critiques), responsable désigné, retrait des accès au départ</td></tr></table>
+</section>
+<section id="r4">
+<p class="eyebrow">Risque 4 · Priorité haute</p>
+<h2 class="s">RGPD peu contrôlé dans les projets<span>.</span></h2>
+<table class="fiche"><tr><td class="lab">Constat</td><td>La prise en compte dépend de la sensibilisation du chef de projet</td></tr><tr><td class="lab">Risque</td><td>Traitements de données non conformes</td></tr><tr><td class="lab">Causes</td><td>Pas de point de contrôle obligatoire, petites évolutions peu analysées</td></tr><tr><td class="lab">Conséquences</td><td>Sanctions de la CNIL, atteinte à l’image</td></tr><tr><td class="lab">Existant</td><td>Vigilance sur les nouveaux projets, DPO sollicité au besoin</td></tr><tr><td class="lab">Limite</td><td>Pas de contrôle systématique à chaque étape</td></tr><tr><td class="lab">Préconisation</td><td>Ajouter des points de contrôle RGPD obligatoires (cadrage, recette) avec validation du DPO</td></tr></table>
+</section>
+<section id="r5">
+<p class="eyebrow">Risque 5 · Priorité moyenne</p>
+<h2 class="s">Pas de gestion des problèmes<span>.</span></h2>
+<table class="fiche"><tr><td class="lab">Constat</td><td>On corrige le symptôme, les actions ne sont pas toujours suivies</td></tr><tr><td class="lab">Risque</td><td>Incidents qui se répètent</td></tr><tr><td class="lab">Causes</td><td>Équipes sursollicitées, priorité au rétablissement du service</td></tr><tr><td class="lab">Conséquences</td><td>Indisponibilités répétées, charge de support</td></tr><tr><td class="lab">Existant</td><td>Analyse après les incidents importants</td></tr><tr><td class="lab">Limite</td><td>Dépend de la gravité et des personnes disponibles</td></tr><tr><td class="lab">Préconisation</td><td>Mettre en place une gestion des problèmes : analyse de cause racine, registre d’actions suivi jusqu’à la clôture</td></tr></table>
+</section>
+<section id="r6">
+<p class="eyebrow">Risque 6 · Priorité moyenne</p>
+<h2 class="s">Architecte associé trop tard<span>.</span></h2>
+<table class="fiche"><tr><td class="lab">Constat</td><td>Sollicité tardivement sur les projets jugés simples</td></tr><tr><td class="lab">Risque</td><td>Décisions prises sans analyse d’impact</td></tr><tr><td class="lab">Causes</td><td>Pas de règle d’implication, délais courts</td></tr><tr><td class="lab">Conséquences</td><td>Remises en cause coûteuses (délais, budget)</td></tr><tr><td class="lab">Existant</td><td>Implication précoce sur les projets structurants</td></tr><tr><td class="lab">Limite</td><td>Dépend du projet</td></tr><tr><td class="lab">Préconisation</td><td>Rendre sa validation obligatoire dès le cadrage, selon un seuil de budget ou d’impact sur le SI</td></tr></table>
+</section>
+<section id="plan">
+<p class="eyebrow">Préconisations</p>
+<h2>Un plan sur 12 mois<span>.</span></h2>
+<div class="row">
+<div class="card col"><h3>0 à 3 mois</h3><p class="when">Priorité haute</p><ul>
+<li>Créer le comité d’architecture</li>
+<li>Revoir les droits des applications critiques</li>
+<li>Points de contrôle RGPD dans les projets</li></ul></div>
+<div class="card col"><h3>3 à 6 mois</h3><p class="when">Structurer</p><ul>
+<li>Lancer la gestion des problèmes</li>
+<li>Associer l’architecte dès le cadrage</li>
+<li>Documenter les applications critiques</li></ul></div>
+<div class="card col"><h3>6 à 12 mois</h3><p class="when">Pérenniser</p><ul>
+<li>Cartographie à jour et outillée</li>
+<li>Revues de droits homogènes</li>
+<li>Tableau de bord de suivi</li></ul></div>
+</div>
+</section>
+<section id="decisions" class="dark">
+<p class="eyebrow">Demande à la Direction Générale</p>
+<h2>Décisions à prendre<span>.</span></h2>
+<ol>
+<li>Mandater un comité d’architecture</li>
+<li>Désigner un responsable des droits d’accès</li>
+<li>Rendre le contrôle RGPD obligatoire dans les projets</li>
+<li>Valider le plan à 12 mois</li>
+</ol>
+</section>
+<section id="fin" class="dark cover">
+<h1>Merci<span>.</span></h1>
+<p class="sub">Questions ?</p>
+</section>
+</div>
+<div id="bar"></div>
+<nav id="nav" aria-label="Navigation"><button id="prev" type="button" aria-label="Slide précédente">&#8592;</button><button id="next" type="button" aria-label="Slide suivante">&#8594;</button></nav>
+<script src="tp5.js?v=d4c3eeb658"></script>
+</body>
+</html>
