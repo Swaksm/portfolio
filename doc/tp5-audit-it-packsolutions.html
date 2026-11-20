@@ -200,6 +200,26 @@ table.fiche td.lab { width:21%; color:#935683; font-size:26px; letter-spacing:0.
 .dots { display:flex; flex-wrap:wrap; gap:14px; width:560px; }
 .dots i { width:60px; height:60px; border-radius:50%; background:#935683; }
 .dots i.ext { background:transparent; border:5px solid #935683; box-sizing:border-box; }
+.org { display:flex; flex-direction:column; align-items:center; gap:0; }
+.ob { box-sizing:border-box; border-radius:16px; padding:22px 30px; text-align:center; font-size:34px; font-weight:600; background:#F7F3E6; border:1px solid #DDD6C8; }
+.ob small { display:block; font-size:26px; font-weight:400; color:#6f6557; margin-top:4px; }
+.ob.top { background:#1c1917; color:#F1EEE7; border-color:#1c1917; } .ob.top small { color:#a89d8f; }
+.ob.us { background:#C88ABB; border-color:#C88ABB; } .ob.us small { color:#3a3530; }
+.vl { width:4px; height:36px; background:#935683; }
+.hl { height:4px; background:#935683; width:844px; }
+.cols2 { display:flex; gap:80px; align-items:flex-start; }
+.team { background:#F7F3E6; border:1px solid #DDD6C8; border-radius:16px; padding:28px 36px; width:780px; box-sizing:border-box; }
+.team h4 { font-size:28px; letter-spacing:.12em; text-transform:uppercase; color:#935683; margin:0 0 12px; font-weight:500; }
+.team p { font-size:30px; line-height:1.45; margin:0; }
+.brick { flex:1; background:#F7F3E6; border:1px solid #DDD6C8; border-radius:16px; padding:36px; box-sizing:border-box; }
+.brick svg { width:64px; height:64px; display:block; margin:0 0 18px; }
+.brick h3 { font-size:42px; margin:0 0 10px; font-weight:700; }
+.brick p { font-size:30px; line-height:1.35; margin:0 0 16px; color:#6f6557; }
+.tag { display:inline-block; font-size:24px; padding:4px 16px; border-radius:99px; background:#E8E0D0; color:#3a3530; margin:0 8px 8px 0; font-weight:500; }
+.tag.cl { background:#D9E6F2; color:#1d3f5e; }
+.steps { display:flex; align-items:stretch; gap:16px; }
+.st { flex:1; background:#F7F3E6; border:1px solid #DDD6C8; border-radius:14px; padding:44px 14px; text-align:center; font-size:30px; font-weight:600; }
+.st.last { background:#C88ABB; border-color:#C88ABB; }
 </style>
 </head>
 <body>
@@ -210,17 +230,53 @@ table.fiche td.lab { width:21%; color:#935683; font-size:26px; letter-spacing:0.
 <p class="sub">Entretien avec l’Architecte fonctionnel</p>
 </section>
 <section id="contexte">
-<p class="eyebrow">Contexte</p>
-<h2>Une croissance très rapide<span>.</span></h2>
+<p class="eyebrow">Contexte · L’entreprise</p>
+<h2 style="margin-bottom:24px">PACKSOLUTIONS<span>.</span></h2>
+<p class="lead" style="margin-bottom:36px">Vend des solutions d’emballage à des fabricants de produits. Son activité repose fortement sur son système d’information (SI).</p>
 <div style="display:flex;gap:80px;align-items:flex-end">
-<div><p class="note" style="margin:0 0 20px">Salariés en 5 ans</p>
-<div class="bars"><div style="text-align:center"><div class="bar" style="height:22px;padding:0"></div><p class="note" style="margin:10px 0 0">Il y a 5 ans<br><b style="font-size:48px;color:#3a3530">10</b></p></div>
-<div style="text-align:center"><div class="bar" style="height:380px">× 150</div><p class="note" style="margin:10px 0 0">Aujourd’hui<br><b style="font-size:48px;color:#3a3530">1 500</b></p></div></div></div>
-<div style="flex:1"><p class="note" style="margin:0 0 20px">25 informaticiens pour 1 500 salariés</p>
-<div class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="ext"></i><i class="ext"></i><i class="ext"></i><i class="ext"></i><i class="ext"></i><i class="ext"></i><i class="ext"></i><i class="ext"></i><i class="ext"></i><i class="ext"></i></div>
-<p class="note"><b style="color:#935683">●</b> 15 internes &nbsp; <b style="color:#935683">○</b> 10 externes</p>
-<div style="background:#1c1917;color:#F1EEE7;border-radius:16px;padding:32px 40px;margin-top:36px;font-size:40px;line-height:1.25">Question du DG : notre organisation est-elle adaptée à notre taille ?</div></div>
+<div><p class="note" style="margin:0 0 12px">Salariés en 5 ans</p>
+<div class="bars" style="height:400px"><div style="text-align:center"><div class="bar" style="height:20px;padding:0"></div><p class="note" style="margin:10px 0 0">Année 1<br><b style="font-size:44px;color:#3a3530">10</b></p></div>
+<div style="text-align:center"><div class="bar" style="height:260px">× 150</div><p class="note" style="margin:10px 0 0">Année 5<br><b style="font-size:44px;color:#3a3530">1 500</b></p></div></div></div>
+<div style="flex:1"><p class="note" style="margin:0 0 16px">Équipe informatique : 25 personnes</p>
+<div class="dots" style="width:640px;gap:12px"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="ext"></i><i class="ext"></i><i class="ext"></i><i class="ext"></i><i class="ext"></i><i class="ext"></i><i class="ext"></i><i class="ext"></i><i class="ext"></i><i class="ext"></i></div>
+<p class="note" style="margin-top:16px"><b style="color:#935683">●</b> 15 internes &nbsp; <b style="color:#935683">○</b> 10 externes</p></div>
 </div>
+</section>
+<section id="dsi">
+<p class="eyebrow">Contexte · L’informatique (DSI)</p>
+<h2 style="margin-bottom:36px">Qui fait quoi<span>.</span></h2>
+<div class="org">
+<div class="ob top">DSI<small>seul à connaître le début de l’entreprise</small></div>
+<div class="vl"></div><div class="hl"></div>
+<div style="display:flex;gap:80px;margin-top:0">
+<div style="display:flex;flex-direction:column;align-items:center"><div class="vl"></div>
+<div class="ob" style="width:760px">Responsable Études<small>projets et vie des applications</small></div><div class="vl"></div>
+<div class="ob us" style="width:760px">Architecte fonctionnel (notre entretien)<small>adjoint, fait le lien entre besoins métiers et applications</small></div>
+<p class="note" style="margin-top:20px;width:760px;text-align:center">+ 4 chefs de projet, 2 développeurs internes, 6 développeurs Java/Oracle et 2 consultants CRM externes</p></div>
+<div style="display:flex;flex-direction:column;align-items:center"><div class="vl"></div>
+<div class="ob" style="width:760px">Resp. Infrastructure, Réseaux, Cyber, Exploitation<small>pôle technique</small></div><div class="vl"></div>
+<div class="ob" style="width:760px">Architecte technique<small>adjoint, choix techniques</small></div>
+<p class="note" style="margin-top:20px;width:760px;text-align:center">+ experts infra, base de données, cybersécurité, web, support poste</p></div>
+</div></div>
+</section>
+<section id="si">
+<p class="eyebrow">Contexte · Le système d’information</p>
+<h2 style="margin-bottom:40px">Quatre briques principales<span>.</span></h2>
+<div class="row" style="margin:0">
+<div class="brick"><svg viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 14l18-8 18 8v20l-18 8-18-8z"/><path d="M6 14l18 8 18-8M24 22v20"/></svg><h3>Application métier</h3><p>Cœur du SI : achats, ventes, production. Développée en Java sur base Oracle, critique.</p><span class="tag">Sur mesure</span><span class="tag">On premise</span></div>
+<div class="brick"><svg viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M14 36a9 9 0 0 1-1-18 12 12 0 0 1 23 3 7.5 7.5 0 0 1-1 15z"/></svg><h3>CRM</h3><p>Oracle CRM On Demand : suivi des prospects et clients. Données tarifaires sensibles.</p><span class="tag cl">Cloud (USA)</span></div>
+<div class="brick"><svg viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="17" cy="16" r="6"/><circle cx="34" cy="18" r="5"/><path d="M5 40c0-8 5-12 12-12s12 4 12 12M30 29c7-1 13 3 13 11"/></svg><h3>RH</h3><p>Totalement externalisé chez un fournisseur, service clé en main.</p><span class="tag cl">Hébergé en France</span></div>
+<div class="brick"><svg viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="5" width="30" height="38" rx="4"/><path d="M15 13h18M15 22h4M24 22h4M15 30h4M24 30h4M15 37h4M24 37h4"/></svg><h3>Finance</h3><p>SAP R3 et SAP BW (reporting), maintenus par l’IT interne.</p><span class="tag">On premise</span></div>
+</div>
+<p class="note" style="margin-top:36px;font-size:30px">Les métiers demandent sans cesse des évolutions, et les mêmes personnes gèrent projets, corrections et incidents.</p>
+</section>
+<section id="mission">
+<p class="eyebrow">Notre mission</p>
+<h2 style="margin-bottom:28px">Auditeurs mandatés par la DG<span>.</span></h2>
+<div style="background:#1c1917;color:#F1EEE7;border-radius:16px;padding:36px 44px;font-size:38px;line-height:1.3;margin-bottom:40px"><b style="color:#D49DC8">Le DG :</b> « Notre informatique fonctionne, mais nous avons grandi très vite. Notre organisation est-elle adaptée à notre taille ? »</div>
+<p class="note" style="margin:0 0 16px">À partir de l’entretien de l’Architecte fonctionnel, pour chaque risque :</p>
+<div class="steps"><div class="st">Constat</div><svg class="arr" style="width:32px;height:32px;align-self:center" viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 24h30M26 12l12 12-12 12"/></svg><div class="st">Risque</div><svg class="arr" style="width:32px;height:32px;align-self:center" viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 24h30M26 12l12 12-12 12"/></svg><div class="st">Causes</div><svg class="arr" style="width:32px;height:32px;align-self:center" viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 24h30M26 12l12 12-12 12"/></svg><div class="st">Conséquences</div><svg class="arr" style="width:32px;height:32px;align-self:center" viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 24h30M26 12l12 12-12 12"/></svg><div class="st">Existant</div><svg class="arr" style="width:32px;height:32px;align-self:center" viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 24h30M26 12l12 12-12 12"/></svg><div class="st">Limites</div><svg class="arr" style="width:32px;height:32px;align-self:center" viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 24h30M26 12l12 12-12 12"/></svg><div class="st last">Préconisation</div></div>
+<p class="note" style="margin-top:40px;font-size:32px">On ne résume pas l’entretien : on le transforme en constats et risques exploitables par la Direction Générale. Restitution de 10 à 15 min devant le DG.</p>
 </section>
 <section id="synthese" class="dark">
 <p class="eyebrow">Notre conclusion</p>
