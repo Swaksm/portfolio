@@ -1,0 +1,35 @@
+name: Statistiques Kleaner
+
+on:
+  schedule:
+    - cron: '53 23 * * *'   # une fois par jour, fin de journée UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Instantané des téléchargements
+        run: python3 _build/stats.py
+
+      - name: Enregistrer et déployer
+        run: |
+          if git diff --quiet -- data/; then
+            echo "Rien de nouveau"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/kleaner-downloads.json
+          git commit -m "stats: téléchargements Kleaner du jour"
+          git push
+          # un push fait avec le jeton de l'Action ne lance pas deploy.yml : on le déclenche à la main
+          gh workflow run deploy.yml --ref main
