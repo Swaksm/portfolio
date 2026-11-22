@@ -339,6 +339,7 @@ body.page {
 }
 .dl-badge.pre { border-color: var(--border); color: var(--taupe-text); }
 .dl-date { color: var(--taupe-text); font-variant-numeric: tabular-nums; }
+.dl-count { color: var(--taupe-text); font-variant-numeric: tabular-nums; }
 .dl-links { display: flex; gap: 0.9rem; margin-left: auto; }
 .i-more { margin-top: 2.5rem; font-size: 0.85rem; }
 .i-more a { color: var(--taupe-text); text-decoration: none; }

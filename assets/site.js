@@ -193,6 +193,7 @@
         + (n === 0 ? `<span class="dl-badge">${esc(t('ui.dl.latest'))}</span>` : '')
         + (r.pre ? `<span class="dl-badge pre">${esc(t('ui.dl.pre'))}</span>` : '')
         + `<span class="dl-date">${esc(day(r.date))}</span>`
+        + `<span class="dl-count">↓ ${r.assets.reduce((m, a) => m + (a.count || 0), 0).toLocaleString(LANG)} ${esc(t('ui.downloads'))}</span>`
         + `<span class="dl-links">${links}<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(t('ui.dl.notes'))} ↗</a></span></li>`;
     }).join('');
   });
