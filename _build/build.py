@@ -424,6 +424,7 @@ def build_about(home_dict: dict) -> None:
 # ---------------------------------------------------------------------------
 def install_page(data: dict, lang: str, home_page: str, head_snippet: str, ui_dict: dict) -> str:
     c, d = data[lang], ui_dict[lang]
+    st = c['stats']
     en_path = '/kleaner/'
     home = '/' if lang == 'en' else '/fr/'
     rel = f'https://github.com/{data["repo"]}/releases'
@@ -493,7 +494,34 @@ def install_page(data: dict, lang: str, home_page: str, head_snippet: str, ui_di
       <p class="i-github">{github}</p>
     </section>
 
-    <section class="i-versions" style="--i:6">
+    <section class="i-stats" data-stats="/data/kleaner-downloads.json" data-s="{attr(json.dumps(st, ensure_ascii=False))}" style="--i:6" hidden>
+      <h2>{text(st['h'])}</h2>
+      <p class="st-note">{text(st['note'])} <span data-st="updated"></span></p>
+      <div class="st-kpis" data-st="kpis"></div>
+      <figure class="st-card" data-st="timeline">
+        <figcaption><h3>{text(st['t_timeline'])}</h3><p>{text(st['timeline_note'])}</p></figcaption>
+        <div class="st-plot"></div>
+      </figure>
+      <figure class="st-card" data-st="versions">
+        <figcaption><h3>{text(st['t_versions'])}</h3><p>{text(st['versions_note'])}</p></figcaption>
+        <ul class="st-legend"><li><i class="st-key"></i>{text(st['stable'])}</li><li><i class="st-key pre"></i>{text(st['pre'])}</li></ul>
+        <div class="st-plot"></div>
+      </figure>
+      <figure class="st-card" data-st="daily">
+        <figcaption><h3>{text(st['t_daily'])}</h3><p>{text(st['daily_note'])}</p></figcaption>
+        <div class="st-plot"></div>
+      </figure>
+      <figure class="st-card" data-st="stars">
+        <figcaption><h3>{text(st['t_stars'])}</h3><p>{text(st['stars_note'])}</p></figcaption>
+        <div class="st-plot"></div>
+      </figure>
+      <details class="st-table">
+        <summary>{text(st['table'])}</summary>
+        <div data-st="tables"></div>
+      </details>
+    </section>
+
+    <section class="i-versions" style="--i:7">
       <details>
         <summary>{text(c['versions'])}</summary>
         <ul data-dl="list"><li><a href="{rel}" target="_blank" rel="noopener">GitHub Releases ↗</a></li></ul>

@@ -171,7 +171,7 @@
     })();
   </script>
   <link rel="stylesheet" href="/assets/site.css?v=7d3578a8ef" />
-  <link rel="stylesheet" href="/assets/project.css?v=fcfe7ad565" />
+  <link rel="stylesheet" href="/assets/project.css?v=bfd38c9ac7" />
 
   <script type="application/ld+json">
 {
@@ -265,7 +265,7 @@
   ]
 }
   </script>
-  <script defer src="/assets/site.js?v=375bd90a56"></script>
+  <script defer src="/assets/site.js?v=3b6316c8cb"></script>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="50c62680-6fe2-4654-82fd-813896edce5e"></script>
 </head>
 <body class="page">
@@ -368,7 +368,34 @@
       <p class="i-github">Have a GitHub account? You can also <a href="https://github.com/Swaksm/Kleaner/issues/new?template=bug.yml" target="_blank" rel="noopener">report a bug ↗</a> or <a href="https://github.com/Swaksm/Kleaner/issues/new?template=idea.yml" target="_blank" rel="noopener">suggest an idea ↗</a> there.</p>
     </section>
 
-    <section class="i-versions" style="--i:6">
+    <section class="i-stats" data-stats="/data/kleaner-downloads.json" data-s="{&quot;h&quot;: &quot;Kleaner in numbers&quot;, &quot;note&quot;: &quot;Updated daily from GitHub.&quot;, &quot;updated&quot;: &quot;Updated&quot;, &quot;k_downloads&quot;: &quot;Downloads&quot;, &quot;k_stars&quot;: &quot;GitHub stars&quot;, &quot;k_versions&quot;: &quot;Versions published&quot;, &quot;k_days&quot;: &quot;Days since launch&quot;, &quot;k_launch&quot;: &quot;Launched&quot;, &quot;k_versions_sub&quot;: &quot;{n} stable&quot;, &quot;k_downloads_sub&quot;: &quot;all versions&quot;, &quot;t_timeline&quot;: &quot;Timeline&quot;, &quot;t_daily&quot;: &quot;Downloads per day&quot;, &quot;t_versions&quot;: &quot;Downloads per version&quot;, &quot;t_stars&quot;: &quot;GitHub stars&quot;, &quot;launch&quot;: &quot;Launch&quot;, &quot;stable&quot;: &quot;Stable version&quot;, &quot;pre&quot;: &quot;Pre-release&quot;, &quot;latest&quot;: &quot;Latest&quot;, &quot;today&quot;: &quot;Today&quot;, &quot;daily_empty&quot;: &quot;Daily history started on {date}. The chart fills in from tomorrow.&quot;, &quot;downloads&quot;: &quot;downloads&quot;, &quot;star&quot;: &quot;star&quot;, &quot;stars&quot;: &quot;stars&quot;, &quot;table&quot;: &quot;Show the data as a table&quot;, &quot;c_version&quot;: &quot;Version&quot;, &quot;c_date&quot;: &quot;Date&quot;, &quot;c_downloads&quot;: &quot;Downloads&quot;, &quot;c_day&quot;: &quot;Day&quot;, &quot;c_new&quot;: &quot;New downloads&quot;, &quot;c_total&quot;: &quot;Total&quot;, &quot;daily_note&quot;: &quot;Downloads gained each day, all versions together.&quot;, &quot;versions_note&quot;: &quot;Per version, installer and portable together.&quot;, &quot;stars_note&quot;: &quot;Cumulative total since launch.&quot;, &quot;timeline_note&quot;: &quot;Each dot is a release.&quot;}" style="--i:6" hidden>
+      <h2>Kleaner in numbers</h2>
+      <p class="st-note">Updated daily from GitHub. <span data-st="updated"></span></p>
+      <div class="st-kpis" data-st="kpis"></div>
+      <figure class="st-card" data-st="timeline">
+        <figcaption><h3>Timeline</h3><p>Each dot is a release.</p></figcaption>
+        <div class="st-plot"></div>
+      </figure>
+      <figure class="st-card" data-st="versions">
+        <figcaption><h3>Downloads per version</h3><p>Per version, installer and portable together.</p></figcaption>
+        <ul class="st-legend"><li><i class="st-key"></i>Stable version</li><li><i class="st-key pre"></i>Pre-release</li></ul>
+        <div class="st-plot"></div>
+      </figure>
+      <figure class="st-card" data-st="daily">
+        <figcaption><h3>Downloads per day</h3><p>Downloads gained each day, all versions together.</p></figcaption>
+        <div class="st-plot"></div>
+      </figure>
+      <figure class="st-card" data-st="stars">
+        <figcaption><h3>GitHub stars</h3><p>Cumulative total since launch.</p></figcaption>
+        <div class="st-plot"></div>
+      </figure>
+      <details class="st-table">
+        <summary>Show the data as a table</summary>
+        <div data-st="tables"></div>
+      </details>
+    </section>
+
+    <section class="i-versions" style="--i:7">
       <details>
         <summary>Previous versions</summary>
         <ul data-dl="list"><li><a href="https://github.com/Swaksm/Kleaner/releases" target="_blank" rel="noopener">GitHub Releases ↗</a></li></ul>
