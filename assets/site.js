@@ -368,4 +368,211 @@
   });
   const paletteBtn = document.getElementById('palette-btn');
   if (paletteBtn) paletteBtn.addEventListener('click', openPalette);
+  /* ---------- Statistiques Kleaner : graphiques SVG sans bibliothèque, données de data/kleaner-downloads.json
+     (instantané quotidien écrit par .github/workflows/stats.yml). Couleurs par classes CSS : le thème clair/sombre suit seul. ---------- */
+  document.querySelectorAll('[data-stats]').forEach(async (sec) => {
+    let S, D;
+    try {
+      S = JSON.parse(sec.dataset.s);
+      const res = await fetch(sec.dataset.stats, { cache: 'no-cache' });
+      if (!res.ok) throw new Error('stats');
+      D = await res.json();
+    } catch (e) { return; } // hors ligne ou fichier absent : la section reste cachée
+    const days = D.days || [];
+    const last = days[days.length - 1];
+    if (!last || !D.releases) return;
+    sec.hidden = false;
+
+    const q = (k) => sec.querySelector(`[data-st="${k}"]`);
+    const num = (n) => Number(n).toLocaleString(LANG);
+    const short = (iso) => new Date(iso).toLocaleDateString(LANG, { day: 'numeric', month: 'short' });
+    const ms = (iso) => new Date(iso).getTime();
+    const M = { l: 36, r: 16, t: 16, b: 26 };
+    const NOW = Date.now();
+
+    const rels = Object.entries(D.releases).map(([tag, r]) => ({ tag, date: r.date, pre: r.pre, count: last.versions[tag] || 0 }))
+      .sort((a, b) => ms(a.date) - ms(b.date));
+    const stable = rels.filter((r) => !r.pre);
+    const starDates = (D.star_dates || []).map(ms).sort((a, b) => a - b);
+    const launch = ms(D.launch || rels[0].date);
+
+    /* Graduations rondes : 0, 1, 2, 5 × 10^n */
+    function ticks(max) {
+      const raw = Math.max(max, 1) / 4, p = Math.pow(10, Math.floor(Math.log10(raw))), f = raw / p;
+      const step = (f <= 1 ? 1 : f <= 2 ? 2 : f <= 5 ? 5 : 10) * p, out = [0];
+      while (out[out.length - 1] < max) out.push(out[out.length - 1] + step);
+      return out;
+    }
+    const grid = (W, H, tk, y) => tk.map((v) =>
+      `<line class="st-grid" x1="${M.l}" x2="${W - M.r}" y1="${y(v)}" y2="${y(v)}"/><text class="st-ax" x="${M.l - 8}" y="${y(v) + 4}" text-anchor="end">${num(v)}</text>`).join('');
+    const colPath = (x, base, y, w) => {
+      const h = base - y, r = Math.min(4, w / 2, h);
+      return h <= 0 ? '' : `M${x},${base}V${y + r}a${r},${r} 0 0 1 ${r},-${r}h${w - 2 * r}a${r},${r} 0 0 1 ${r},${r}V${base}Z`;
+    };
+
+    /* Une bulle par graphique : valeur en gras, nom en retrait ; mêmes infos au clavier (focus) qu'à la souris */
+    function tipFor(plot) {
+      const el = document.createElement('div');
+      el.className = 'st-tip';
+      el.hidden = true;
+      plot.appendChild(el);
+      return {
+        show(x, y, title, value, unit) {
+          el.replaceChildren();
+          const a = document.createElement('span'); a.className = 'st-tip-t'; a.textContent = title;
+          const b = document.createElement('b'); b.textContent = value;
+          const c = document.createElement('span'); c.textContent = ' ' + unit;
+          el.append(a, document.createElement('br'), b, c);
+          el.hidden = false;
+          const w = el.offsetWidth, h = el.offsetHeight;
+          el.style.left = Math.max(2, Math.min(plot.clientWidth - w - 2, x - w / 2)) + 'px';
+          el.style.top = (y - h - 10 < 0 ? y + 14 : y - h - 10) + 'px';
+        },
+        hide() { el.hidden = true; },
+      };
+    }
+    function hits(svg, tip, items) { // items : { el, x, y, title, value, unit, bar }
+      items.forEach((it) => {
+        const on = () => { it.bar && it.bar.classList.add('on'); tip.show(it.x, it.y, it.title, it.value, it.unit); };
+        const off = () => { it.bar && it.bar.classList.remove('on'); tip.hide(); };
+        it.el.addEventListener('pointerenter', on);
+        it.el.addEventListener('pointermove', on);
+        it.el.addEventListener('pointerleave', off);
+        it.el.addEventListener('focus', on);
+        it.el.addEventListener('blur', off);
+      });
+    }
+    const svgOf = (plot, W, H, label, inner) => {
+      let svg = plot.querySelector('svg');
+      if (svg) svg.remove();
+      plot.insertAdjacentHTML('afterbegin', `<svg class="st-svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(label)}">${inner}</svg>`);
+      return plot.querySelector('svg');
+    };
+    const flag = (cx, w) => cx < 60 ? 'start' : cx > w - 60 ? 'end' : 'middle';
+
+    /* ----- Chiffres clés ----- */
+    const tile = (label, value, sub) => `<div class="st-kpi"><span class="st-kpi-l">${esc(label)}</span><b class="st-kpi-v">${esc(value)}</b><span class="st-kpi-s">${esc(sub || '')}</span></div>`;
+    q('kpis').innerHTML = tile(S.k_downloads, num(last.total), S.k_downloads_sub)
+      + tile(S.k_stars, num(starDates.length), '')
+      + tile(S.k_versions, num(rels.length), S.k_versions_sub.replace('{n}', stable.length))
+      + tile(S.k_days, num(Math.max(0, Math.floor((NOW - launch) / 864e5))), `${S.k_launch} ${day(new Date(launch).toISOString())}`);
+    q('updated').textContent = `${S.updated} ${day(last.date)}.`;
+
+    /* ----- Chronologie : une ligne du lancement à aujourd'hui, un point par version ----- */
+    const tl = q('timeline'), tlPlot = tl.querySelector('.st-plot'), tlTip = tipFor(tlPlot);
+    function drawTimeline() {
+      const W = tlPlot.clientWidth; if (!W) return;
+      const H = 104, y0 = 52, x0 = 16, x1 = W - 16, span = Math.max(NOW - launch, 1);
+      const x = (t) => x0 + (x1 - x0) * (t - launch) / span;
+      let g = `<line class="st-axis" x1="${x0}" x2="${x1}" y1="${y0}" y2="${y0}"/>`;
+      const first = stable[0], newest = rels[rels.length - 1];
+      const lab = (cx, cy, txt, anchor, strong) => `<text class="${strong ? 'st-lab' : 'st-ax'}" x="${cx}" y="${cy}" text-anchor="${anchor}">${esc(txt)}</text>`;
+      g += lab(x0, 22, `${S.launch} · ${short(new Date(launch).toISOString())}`, 'start', true);
+      g += lab(x1, 22, `${S.latest} · ${newest.tag}`, 'end', true);
+      if (first && x(ms(first.date)) > x0 + 80 && x(ms(first.date)) < x1 - 80) g += lab(x(ms(first.date)), 92, `${first.tag} · ${short(first.date)}`, flag(x(ms(first.date)), W), false);
+      g += lab(x1, 92, `${S.today} · ${short(new Date(NOW).toISOString())}`, 'end', false);
+      const dots = rels.map((r) => `<circle class="st-dot${r.pre ? ' pre' : ''}" cx="${x(ms(r.date))}" cy="${y0}" r="${r.pre ? 4 : 6}"/>`).join('');
+      const hit = rels.map((r, i) => `<circle class="st-hit" tabindex="0" cx="${x(ms(r.date))}" cy="${y0}" r="14" data-i="${i}" aria-label="${esc(`${r.tag}, ${day(r.date)}, ${num(r.count)} ${S.downloads}`)}"/>`).join('');
+      const svg = svgOf(tlPlot, W, H, `${S.t_timeline}: ${rels.length}`, g + dots + hit);
+      hits(svg, tlTip, [...svg.querySelectorAll('.st-hit')].map((el, i) => {
+        const r = rels[i];
+        return { el, x: x(ms(r.date)), y: y0, title: `${r.tag} · ${day(r.date)} · ${r.pre ? S.pre : S.stable}`, value: num(r.count), unit: S.downloads, bar: svg.querySelectorAll('.st-dot')[i] };
+      }));
+    }
+
+    /* ----- Téléchargements par version : une colonne par version, la plus récente à droite ----- */
+    const vs = q('versions'), vsPlot = vs.querySelector('.st-plot'), vsTip = tipFor(vsPlot);
+    function drawVersions() {
+      const W = vsPlot.clientWidth; if (!W) return;
+      const H = 220, base = H - M.b, top = ticks(Math.max(...rels.map((r) => r.count), 1));
+      const ymax = top[top.length - 1], y = (v) => base - (base - M.t) * v / ymax;
+      const slot = (W - M.l - M.r) / rels.length, bw = Math.max(3, Math.min(24, slot - 2));
+      const cx = (i) => M.l + slot * (i + 0.5);
+      let g = grid(W, H, top, y), bars = '', hit = '', xl = '', lastX = -99;
+      rels.forEach((r, i) => {
+        bars += `<path class="st-bar${r.pre ? ' pre' : ''}" d="${colPath(cx(i) - bw / 2, base, y(r.count), bw)}"/>`;
+        hit += `<rect class="st-hit" tabindex="0" x="${cx(i) - slot / 2}" y="${M.t}" width="${slot}" height="${base - M.t}" aria-label="${esc(`${r.tag}, ${day(r.date)}, ${num(r.count)} ${S.downloads}`)}"/>`;
+        if (!r.pre && cx(i) - lastX >= 46 && cx(i) > M.l + 14 && cx(i) < W - M.r - 14) { xl += `<text class="st-ax" x="${cx(i)}" y="${H - 8}" text-anchor="middle">${esc(r.tag)}</text>`; lastX = cx(i); }
+      });
+      // étiquettes sélectives : la dernière version et la plus téléchargée
+      const peak = rels.reduce((a, r, i) => r.count > rels[a].count ? i : a, 0), ends = new Set([rels.length - 1, peak]);
+      let vals = '';
+      ends.forEach((i) => { vals += `<text class="st-lab" x="${Math.max(M.l + 8, Math.min(W - M.r - 8, cx(i)))}" y="${y(rels[i].count) - 6}" text-anchor="middle">${num(rels[i].count)}</text>`; });
+      const svg = svgOf(vsPlot, W, H, S.t_versions, g + bars + vals + xl + hit);
+      hits(svg, vsTip, [...svg.querySelectorAll('.st-hit')].map((el, i) => ({
+        el, x: cx(i), y: y(rels[i].count), title: `${rels[i].tag} · ${day(rels[i].date)}${rels[i].pre ? ' · ' + S.pre : ''}`,
+        value: num(rels[i].count), unit: S.downloads, bar: svg.querySelectorAll('.st-bar')[i],
+      })));
+    }
+
+    /* ----- Téléchargements par jour : écart entre deux instantanés ----- */
+    const dl = q('daily'), dlPlot = dl.querySelector('.st-plot'), dlTip = tipFor(dlPlot);
+    const gains = days.slice(1).map((d, i) => ({ date: d.date, n: Math.max(0, d.total - days[i].total), total: d.total })).slice(-60);
+    function drawDaily() {
+      const W = dlPlot.clientWidth; if (!W) return;
+      if (!gains.length) {
+        dlPlot.innerHTML = `<p class="st-empty">${esc(S.daily_empty.replace('{date}', day(days[0].date)))}</p>`;
+        return;
+      }
+      const H = 200, base = H - M.b, top = ticks(Math.max(...gains.map((d) => d.n), 1));
+      const ymax = top[top.length - 1], y = (v) => base - (base - M.t) * v / ymax;
+      const slot = (W - M.l - M.r) / gains.length, bw = Math.max(3, Math.min(24, slot - 2));
+      const cx = (i) => M.l + slot * (i + 0.5);
+      let g = grid(W, H, top, y), bars = '', hit = '';
+      gains.forEach((d, i) => {
+        bars += `<path class="st-bar" d="${colPath(cx(i) - bw / 2, base, y(d.n), bw)}"/>`;
+        hit += `<rect class="st-hit" tabindex="0" x="${cx(i) - slot / 2}" y="${M.t}" width="${slot}" height="${base - M.t}" aria-label="${esc(`${day(d.date)}, ${num(d.n)} ${S.downloads}`)}"/>`;
+      });
+      const idx = [...new Set([0, Math.floor((gains.length - 1) / 2), gains.length - 1])];
+      const xl = idx.map((i) => `<text class="st-ax" x="${cx(i)}" y="${H - 8}" text-anchor="${flag(cx(i), W)}">${esc(short(gains[i].date))}</text>`).join('');
+      const svg = svgOf(dlPlot, W, H, S.t_daily, g + bars + xl + hit);
+      hits(svg, dlTip, [...svg.querySelectorAll('.st-hit')].map((el, i) => ({
+        el, x: cx(i), y: y(gains[i].n), title: day(gains[i].date), value: num(gains[i].n), unit: S.downloads, bar: svg.querySelectorAll('.st-bar')[i],
+      })));
+    }
+
+    /* ----- Étoiles : total cumulé en escalier ----- */
+    const sr = q('stars'), srPlot = sr.querySelector('.st-plot'), srTip = tipFor(srPlot);
+    if (!starDates.length) sr.hidden = true;
+    function drawStars() {
+      const W = srPlot.clientWidth; if (!W || !starDates.length) return;
+      const H = 190, base = H - M.b, top = ticks(starDates.length), ymax = top[top.length - 1];
+      const t0 = Math.min(launch, starDates[0]), span = Math.max(NOW - t0, 1);
+      const x = (t) => M.l + (W - M.l - M.r) * (t - t0) / span, y = (v) => base - (base - M.t) * v / ymax;
+      let d = `M${x(t0)},${y(0)}`, prev = 0;
+      starDates.forEach((t, i) => { d += `H${x(t)}V${y(i + 1)}`; prev = i + 1; });
+      d += `H${x(NOW)}`;
+      const g = grid(W, H, top, y)
+        + `<path class="st-area" d="${d}V${base}H${x(t0)}Z"/><path class="st-line" d="${d}"/>`;
+      const dots = starDates.map((t, i) => `<circle class="st-dot" cx="${x(t)}" cy="${y(i + 1)}" r="4"/>`).join('');
+      const hit = starDates.map((t, i) => `<circle class="st-hit" tabindex="0" cx="${x(t)}" cy="${y(i + 1)}" r="14" aria-label="${esc(`${day(new Date(t).toISOString())}, ${i + 1} ${i ? S.stars : S.star}`)}"/>`).join('');
+      const xl = [t0, NOW].map((t, i) => `<text class="st-ax" x="${x(t)}" y="${H - 8}" text-anchor="${i ? 'end' : 'start'}">${esc(short(new Date(t).toISOString()))}</text>`).join('');
+      const endLab = `<text class="st-lab" x="${x(NOW)}" y="${y(prev) - 10}" text-anchor="end">${num(prev)}</text>`;
+      const svg = svgOf(srPlot, W, H, S.t_stars, g + xl + dots + endLab + hit);
+      hits(svg, srTip, [...svg.querySelectorAll('.st-hit')].map((el, i) => ({
+        el, x: x(starDates[i]), y: y(i + 1), title: day(new Date(starDates[i]).toISOString()), value: num(i + 1), unit: i ? S.stars : S.star, bar: svg.querySelectorAll('.st-dot')[i],
+      })));
+    }
+
+    /* ----- Version tableau : tout ce que les infobulles montrent, sans survol ----- */
+    const table = (head, rows) => {
+      const t = document.createElement('table');
+      const hr = t.createTHead().insertRow();
+      head.forEach((h) => { const c = document.createElement('th'); c.scope = 'col'; c.textContent = h; hr.appendChild(c); });
+      const body = t.createTBody();
+      rows.forEach((r) => { const tr = body.insertRow(); r.forEach((v) => { tr.insertCell().textContent = v; }); });
+      return t;
+    };
+    const tabs = q('tables');
+    tabs.append(table([S.c_version, S.c_date, S.c_downloads], [...rels].reverse().map((r) => [r.tag + (r.pre ? ' (' + S.pre + ')' : ''), day(r.date), num(r.count)])));
+    if (gains.length) tabs.append(table([S.c_day, S.c_new, S.c_total], [...gains].reverse().map((d) => [day(d.date), num(d.n), num(d.total)])));
+
+    const draws = [[tlPlot, drawTimeline], [vsPlot, drawVersions], [dlPlot, drawDaily], [srPlot, drawStars]];
+    const seen = new Map();
+    const ro = new ResizeObserver((entries) => entries.forEach((e) => {
+      const f = draws.find(([p]) => p === e.target)[1], w = Math.round(e.contentRect.width);
+      if (w && seen.get(e.target) !== w) { seen.set(e.target, w); f(); }
+    }));
+    draws.forEach(([p]) => ro.observe(p));
+  });
 })();

@@ -14,9 +14,11 @@ REPO = 'Swaksm/Kleaner'
 OUT = Path(__file__).resolve().parent.parent / 'data' / 'kleaner-downloads.json'
 
 
-def releases() -> list:
-    raw = subprocess.run(['gh', 'api', '--paginate', f'repos/{REPO}/releases?per_page=100'],
-                         check=True, capture_output=True, text=True).stdout
+def pages(path: str, *headers: str) -> list:
+    cmd = ['gh', 'api', '--paginate']
+    for h in headers:
+        cmd += ['-H', h]
+    raw = subprocess.run(cmd + [path], check=True, capture_output=True, text=True).stdout
     # --paginate concatène les pages : [..][..]
     dec, i, out = json.JSONDecoder(), 0, []
     while i < len(raw):
@@ -28,19 +30,34 @@ def releases() -> list:
     return out
 
 
+def releases() -> list:
+    return pages(f'repos/{REPO}/releases?per_page=100')
+
+
+def star_dates() -> list:
+    # le type « star+json » ajoute la date de chaque étoile
+    rows = pages(f'repos/{REPO}/stargazers?per_page=100', 'Accept: application/vnd.github.star+json')
+    return sorted(r['starred_at'] for r in rows)
+
+
 def main() -> None:
-    versions = {}
+    versions, info = {}, {}
     for r in releases():
         if r.get('draft'):
             continue
         versions[r['tag_name']] = sum(a.get('download_count', 0) for a in r['assets'])
+        info[r['tag_name']] = {'date': r['published_at'], 'pre': bool(r['prerelease'])}
+    stars = star_dates()
     day = datetime.datetime.now(datetime.timezone.utc).date().isoformat()
     data = json.loads(OUT.read_text('utf-8')) if OUT.exists() else {'repo': REPO, 'days': []}
     data['days'] = [d for d in data['days'] if d['date'] != day]
-    data['days'].append({'date': day, 'total': sum(versions.values()), 'versions': versions})
+    data['days'].append({'date': day, 'total': sum(versions.values()), 'stars': len(stars), 'versions': versions})
+    data['launch'] = min(v['date'] for v in info.values())
+    data['releases'] = info
+    data['star_dates'] = stars
     data['days'].sort(key=lambda d: d['date'])
     OUT.write_text(json.dumps(data, ensure_ascii=False, indent=1) + '\n', 'utf-8')
-    print(day, sum(versions.values()), 'téléchargements,', len(versions), 'versions')
+    print(day, sum(versions.values()), 'téléchargements,', len(versions), 'versions,', len(stars), 'étoiles')
 
 
 if __name__ == '__main__':
