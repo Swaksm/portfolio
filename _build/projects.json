@@ -45,8 +45,8 @@
       ]
     },
     "fr": {
-      "title": "Kleaner — nettoyeur de disque Windows gratuit et open source",
-      "description": "Kleaner est un nettoyeur de disque Windows gratuit et open source : il analyse vos disques, explique chaque gros fichier et ce qui casse si on le supprime. Rust + Tauri.",
+      "title": "Kleaner — nettoyeur de disque Windows gratuit",
+      "description": "Kleaner, nettoyeur de disque Windows gratuit et open source, explique chaque gros fichier et ce qui casse si vous le supprimez. Rust + Tauri.",
       "kicker": "Logiciel Windows · Rust · Open source",
       "lead": "Un nettoyeur Windows gratuit qui dit ce qu'on peut supprimer — et ce qui casse si on le fait.",
       "sections": [
@@ -99,8 +99,8 @@
       "operatingSystem": "Windows"
     },
     "en": {
-      "title": "Autosu — an osu! bot that TikTok LIVE viewers sabotage",
-      "description": "Autosu is a fully automated TikTok LIVE: an osu! bot plays marathons non-stop and viewers sabotage it in real time with gifts, likes and chat commands. Node.js server + a modified build of osu! (neomod).",
+      "title": "Autosu — osu! bot sabotaged by TikTok LIVE viewers",
+      "description": "Autosu, a fully automated TikTok LIVE: an osu! bot plays non-stop while viewers sabotage it with gifts, likes and chat commands. Node.js + modded osu!.",
       "kicker": "Interactive live · Game modding · Real time",
       "lead": "An osu! bot plays marathons live on TikTok, 100% automatically. Viewers try to make it fail — and every sabotage shows up on screen with their name.",
       "sections": [
@@ -133,8 +133,8 @@
       ]
     },
     "fr": {
-      "title": "Autosu — un bot osu! que les spectateurs d'un live TikTok sabotent",
-      "description": "Autosu est un live TikTok entièrement automatique : un bot osu! joue des marathons en continu et les spectateurs le sabotent en direct avec leurs cadeaux, likes et commandes dans le chat. Serveur Node.js + version modifiée d'osu! (neomod).",
+      "title": "Autosu — un bot osu! saboté par le live TikTok",
+      "description": "Autosu, un live TikTok 100 % automatique : un bot osu! joue en continu et les spectateurs le sabotent avec cadeaux, likes et chat. Node.js + osu! modifié.",
       "kicker": "Live interactif · Modding de jeu · Temps réel",
       "lead": "Un bot osu! joue des marathons en live sur TikTok, 100 % en automatique. Les spectateurs essaient de le faire échouer, et chaque sabotage s'affiche à l'écran avec leur pseudo.",
       "sections": [
@@ -179,8 +179,8 @@
     "shots": [],
     "schema": { "@type": "SoftwareApplication", "applicationCategory": "BrowserApplication", "operatingSystem": "Chrome, Opera GX, Edge, Brave", "license": "https://www.gnu.org/licenses/gpl-3.0.html", "codeRepository": "https://github.com/Swaksm/Popperz" },
     "en": {
-      "title": "Popperz — an anti-pop-under ad blocker for Chrome and Opera GX",
-      "description": "Popperz is an open-source ad blocker for Chrome and Opera GX that also stops pop-unders, surprise tabs and invisible click-stealing layers. TypeScript, Manifest V3.",
+      "title": "Popperz — pop-under ad blocker for Chrome, Opera GX",
+      "description": "Popperz, an open-source ad blocker for Chrome and Opera GX that also stops pop-unders, surprise tabs and invisible click-stealing layers.",
       "kicker": "Browser extension · Ad blocker · TypeScript",
       "lead": "Regular blockers hide banners but let the worst through: on some sites, every click opens an ad tab. Popperz blocks ads like the others, and stops that too.",
       "sections": [
@@ -205,8 +205,8 @@
       ]
     },
     "fr": {
-      "title": "Popperz — bloqueur de pub anti-popunder pour Chrome et Opera GX",
-      "description": "Popperz est un bloqueur de pub open source pour Chrome et Opera GX qui bloque aussi les popunders, les onglets surprise et les calques invisibles qui volent les clics.",
+      "title": "Popperz — bloqueur anti-popunder Chrome et Opera GX",
+      "description": "Popperz, bloqueur de pub open source pour Chrome et Opera GX : il bloque aussi popunders, onglets surprise et calques invisibles qui volent les clics.",
       "kicker": "Extension navigateur · Bloqueur de pub · TypeScript",
       "lead": "Les bloqueurs classiques cachent les bannières mais laissent passer le pire : sur certains sites, chaque clic ouvre un onglet de pub. Popperz bloque la pub comme les autres, et ça en plus.",
       "sections": [
@@ -246,7 +246,7 @@
     ],
     "schema": { "@type": "WebApplication", "applicationCategory": "EntertainmentApplication", "operatingSystem": "Web", "url": "https://swaks.org/lion-meme/" },
     "en": {
-      "title": "Lion Meme — free “you think you're a lion” meme generator",
+      "title": "Lion Meme — free “you think you're a lion” meme maker",
       "description": "Lion Meme is a free meme generator: a majestic lion on top, your “real nature” underneath. Pick a format and a lion, add your photo, then download or share.",
       "kicker": "Web app · Humor · Generator",
       "lead": "“You think you're a lion… but you're actually this.” A meme generator built on the gap between the image we project and reality.",
@@ -263,8 +263,8 @@
       ]
     },
     "fr": {
-      "title": "Lion Meme — générateur de memes « tu crois que t'es un lion » gratuit",
-      "description": "Lion Meme est un générateur de memes gratuit : un lion majestueux en haut, ta « vraie nature » en dessous. Choisis le format et le lion, ajoute ta photo, puis télécharge ou partage.",
+      "title": "Lion Meme — générateur « tu crois que t'es un lion »",
+      "description": "Lion Meme, générateur de memes gratuit : un lion majestueux en haut, ta « vraie nature » en dessous. Choisis format et lion, ajoute ta photo, partage.",
       "kicker": "Application web · Humour · Générateur",
       "lead": "« Tu crois que t'es un lion… mais t'es ça. » Un générateur de memes qui joue sur l'écart entre l'image qu'on veut renvoyer et la réalité.",
       "sections": [
@@ -292,7 +292,7 @@
     "shots": [],
     "schema": { "@type": "SoftwareSourceCode", "programmingLanguage": "Python", "codeRepository": "https://github.com/Swaksm/CordeSortie" },
     "en": {
-      "title": "CordeSortie — Discord bot that tracks Pokémon items in stock",
+      "title": "CordeSortie — Discord bot tracking Pokémon stock",
       "description": "CordeSortie is a Discord bot that watches 9 French retail sites for Pokémon items in stock, with guided filters and near real-time alerts. Python, Playwright.",
       "kicker": "Discord bot · Scraping · Playwright",
       "lead": "The rope that gets you out of checking shop websites yourself: a Discord bot that watches 9 French retailers and pings you as soon as a Pokémon item is in stock.",
@@ -315,8 +315,8 @@
       ]
     },
     "fr": {
-      "title": "CordeSortie — bot Discord de veille des stocks Pokémon",
-      "description": "CordeSortie est un bot Discord qui surveille 9 sites marchands français pour repérer les produits Pokémon en stock, avec filtres guidés et alertes quasi en temps réel.",
+      "title": "CordeSortie — bot Discord de veille stocks Pokémon",
+      "description": "CordeSortie, bot Discord qui surveille 9 sites marchands français et prévient dès qu'un produit Pokémon est en stock. Filtres guidés, alertes rapides.",
       "kicker": "Bot Discord · Scraping · Playwright",
       "lead": "La corde qui te sort de la galère de surveiller les sites toi-même : un bot Discord qui surveille 9 enseignes françaises et te prévient dès qu'un produit Pokémon est en stock.",
       "sections": [
@@ -352,7 +352,7 @@
     "schema": { "@type": "SoftwareApplication", "applicationCategory": "MultimediaApplication", "operatingSystem": "Windows, macOS, Linux", "license": "https://opensource.org/licenses/MIT", "downloadUrl": "https://github.com/Swaksm/Video-DWNLDR/releases" },
     "en": {
       "title": "Video Grabber — download the videos of any web page",
-      "description": "Video Grabber detects the videos on a web page and downloads them, even behind cookies, Referer checks or temporary tokens. Desktop app, CLI and Chrome extension.",
+      "description": "Video Grabber detects the videos on a web page and downloads them, even behind cookies, Referer checks or tokens. Desktop app, CLI and Chrome extension.",
       "kicker": "Tool · Downloader · Playwright",
       "lead": "Paste a page URL: it detects the videos, you pick, it downloads.",
       "sections": [
@@ -375,7 +375,7 @@
     },
     "fr": {
       "title": "Video Grabber — télécharger les vidéos d'une page web",
-      "description": "Video Grabber détecte les vidéos d'une page web et les télécharge, même protégées par cookies, Referer ou jetons temporaires. Application, ligne de commande et extension Chrome.",
+      "description": "Video Grabber détecte les vidéos d'une page web et les télécharge, même derrière cookies, Referer ou jetons. Appli, ligne de commande, extension Chrome.",
       "kicker": "Outil · Téléchargement · Playwright",
       "lead": "Colle l'URL d'une page : il détecte les vidéos, tu choisis, il télécharge.",
       "sections": [
@@ -405,8 +405,8 @@
     "shots": [],
     "schema": { "@type": "SoftwareApplication", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Linux (Raspberry Pi)" },
     "en": {
-      "title": "Timetableur — Discord bot that follows a HyperPlanning timetable",
-      "description": "Timetableur is a Discord bot that follows a HyperPlanning school timetable: evening and morning summaries, a reminder before each class, change alerts. Python, Raspberry Pi.",
+      "title": "Timetableur — HyperPlanning timetable Discord bot",
+      "description": "Timetableur, a Discord bot that follows a HyperPlanning timetable: evening and morning summaries, class reminders, change alerts. Python, Raspberry Pi.",
       "kicker": "Discord bot · Timetable · Raspberry Pi",
       "lead": "No more opening HyperPlanning to know where my next class is: a Discord bot reads my timetable and tells me — the day before, in the morning and an hour before.",
       "sections": [
@@ -426,8 +426,8 @@
       ]
     },
     "fr": {
-      "title": "Timetableur — bot Discord qui suit un emploi du temps HyperPlanning",
-      "description": "Timetableur est un bot Discord qui suit un emploi du temps HyperPlanning : résumé du soir et du matin, rappel avant chaque cours, alertes de changement. Python, Raspberry Pi.",
+      "title": "Timetableur — l'EDT HyperPlanning sur Discord",
+      "description": "Timetableur, bot Discord qui suit un emploi du temps HyperPlanning : résumé du soir et du matin, rappel avant chaque cours, alertes de changement.",
       "kicker": "Bot Discord · Emploi du temps · Raspberry Pi",
       "lead": "Plus besoin d'ouvrir HyperPlanning pour savoir où est mon prochain cours : un bot Discord lit mon emploi du temps et me prévient, la veille, le matin et une heure avant.",
       "sections": [
@@ -459,8 +459,8 @@
     "shots": [],
     "schema": { "@type": "SoftwareSourceCode", "programmingLanguage": ["Python", "C++", "JavaScript"], "codeRepository": "https://github.com/Swaksm/Workshop-MELTY" },
     "en": {
-      "title": "MELTY — SENTINEL-X, an IoT surveillance node with AI anomaly detection",
-      "description": "SENTINEL-X (EPSI MELTY workshop): an ESP32 watches a table, an AI model flags anomalies with no fixed threshold, a webcam spots people, with email alerts and a live dashboard.",
+      "title": "MELTY — SENTINEL-X, AI-powered IoT surveillance node",
+      "description": "SENTINEL-X (EPSI MELTY workshop): an ESP32 watches a table, AI flags anomalies with no fixed threshold, a webcam spots people. Email alerts, live dashboard.",
       "kicker": "School workshop · IoT · AI",
       "lead": "SENTINEL-X, a team project for an EPSI workshop: an ESP32 watches a table, an AI learns what normal looks like, a webcam spots people — and the team gets a buzzer, an email and a live dashboard.",
       "sections": [
@@ -485,8 +485,8 @@
       ]
     },
     "fr": {
-      "title": "MELTY — SENTINEL-X, nœud IoT de surveillance avec détection d'anomalies par IA",
-      "description": "SENTINEL-X (workshop MELTY, EPSI) : un ESP32 surveille une table, une IA repère les anomalies sans seuil fixe, une webcam détecte les personnes, avec alertes mail et dashboard en direct.",
+      "title": "MELTY — SENTINEL-X, surveillance IoT avec IA",
+      "description": "SENTINEL-X (workshop MELTY, EPSI) : un ESP32 surveille une table, une IA repère les anomalies sans seuil fixe, une webcam détecte les personnes. Alertes mail.",
       "kicker": "Workshop école · IoT · IA",
       "lead": "SENTINEL-X, un projet d'équipe pour un workshop EPSI : un ESP32 surveille une table, une IA apprend ce qui est normal, une webcam repère les personnes, et l'équipe est prévenue par buzzer, mail et dashboard en direct.",
       "sections": [
@@ -547,7 +547,7 @@
       "codeRepository": "https://github.com/Swaksm/portfolio"
     },
     "en": {
-      "title": "swaks.org — this portfolio, spec-driven and shipped by CI",
+      "title": "swaks.org — a spec-driven portfolio shipped by CI",
       "description": "How this portfolio is built: a written spec first, a static bilingual site with no framework, CI checks and automatic deployment, accessibility by default.",
       "kicker": "This site · Spec-driven · CI/CD",
       "lead": "The site you are reading, and a showcase of how I work: spec first, small tested steps, CI before anything goes live.",
@@ -589,8 +589,8 @@
       ]
     },
     "fr": {
-      "title": "swaks.org — ce portfolio, spec d'abord et mis en ligne par la CI",
-      "description": "Comment ce portfolio est construit : une spec écrite d'abord, un site statique bilingue sans framework, des vérifications en CI et une mise en ligne automatique, accessible par défaut.",
+      "title": "swaks.org — un portfolio piloté par spec, livré en CI",
+      "description": "Comment ce portfolio est construit : spec écrite d'abord, site statique bilingue sans framework, vérifications en CI, mise en ligne automatique, accessible.",
       "kicker": "Ce site · Spec-driven · CI/CD",
       "lead": "Le site que tu lis, et une vitrine de ma façon de travailler : la spec d'abord, des petites étapes testées, la CI avant toute mise en ligne.",
       "sections": [
