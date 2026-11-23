@@ -222,10 +222,12 @@ table.fiche td.lab { width:21%; color:#935683; font-size:26px; letter-spacing:0.
 .st.last { background:#C88ABB; border-color:#C88ABB; }
 
 .cols3 { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
-.fc { background:#F7F3E6; border:1px solid #DDD6C8; border-radius:16px; padding:32px 34px; height:300px; box-sizing:border-box; }
-.fc svg { width:56px; height:56px; display:block; margin:0 0 12px; }
-.fc h3 { font-size:44px; margin:0 0 8px; font-weight:700; }
+.fc { background:#F7F3E6; border:1px solid #DDD6C8; border-radius:16px; padding:28px 34px; height:300px; box-sizing:border-box; }
+.fc { position:relative; }
+.fc svg { width:52px; height:52px; position:absolute; right:30px; top:26px; }
+.fc h3 { font-size:44px; margin:0 0 4px; font-weight:700; }
 .fc p { font-size:28px; line-height:1.3; margin:0 0 10px; color:#3a3530; }
+.fc .ab { font-size:22px; line-height:1.2; color:#6f6557; font-style:italic; margin:0 0 10px; }
 .fc .ex { font-size:26px; color:#935683; font-weight:500; }
 .fc.dk { background:#1c1917; border-color:#1c1917; display:flex; flex-direction:column; justify-content:center; }
 .fc.dk .bg { font-size:96px; font-weight:700; color:#C88ABB; line-height:1; margin:0 0 8px; }
@@ -274,11 +276,11 @@ table.fiche td.lab { width:21%; color:#935683; font-size:26px; letter-spacing:0.
 <p class="eyebrow">Étape 1 · Les flux</p>
 <h2 style="margin-bottom:36px">Cinq flux interconnectés<span>.</span></h2>
 <div class="cols3">
-<div class="fc"><svg viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l12-5 14 5 12-5v28l-12 5-14-5-12 5z"/><path d="M17 7v28M31 12v28"/></svg><h3>SIG</h3><p>Tournées optimisées par GPS</p><p class="ex">John est à 12 km de sa livraison</p></div>
-<div class="fc"><svg viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="17" cy="16" r="6"/><circle cx="34" cy="18" r="5"/><path d="M5 40c0-8 5-12 12-12s12 4 12 12M30 29c7-1 13 3 13 11"/></svg><h3>SIRH</h3><p>Paie et contrats des livreurs</p><p class="ex">John : 8h-18h, 15 colis livrés</p></div>
-<div class="fc"><svg viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="5" width="30" height="38" rx="4"/><path d="M15 13h18M15 22h4M24 22h4M15 30h4M24 30h4M15 37h4M24 37h4"/></svg><h3>SI de Gestion</h3><p>Factures clients, stock de colis</p><p class="ex">John commande 12 colis : stock mis à jour</p></div>
-<div class="fc"><svg viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M32 6a10 10 0 0 0-9 13L6 36l6 6 17-17a10 10 0 0 0 13-9l-6 6-5-1-1-5z"/></svg><h3>GMAO</h3><p>Maintenance des véhicules électriques</p><p class="ex">Entretien tous les 15 000 km</p></div>
-<div class="fc"><svg viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 14l18-8 18 8v20l-18 8-18-8z"/><path d="M6 14l18 8 18-8M24 22v20"/></svg><h3>GPAO</h3><p>Tri et étiquetage des colis sur les quais</p><p class="ex">Retenue : avant le départ des livreurs</p></div>
+<div class="fc"><svg viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l12-5 14 5 12-5v28l-12 5-14-5-12 5z"/><path d="M17 7v28M31 12v28"/></svg><h3>SIG</h3><p class="ab">Système d’information géographique</p><p>Tournées optimisées par GPS</p><p class="ex">John est à 12 km de sa livraison</p></div>
+<div class="fc"><svg viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="17" cy="16" r="6"/><circle cx="34" cy="18" r="5"/><path d="M5 40c0-8 5-12 12-12s12 4 12 12M30 29c7-1 13 3 13 11"/></svg><h3>SIRH</h3><p class="ab">Système d’information RH</p><p>Paie et contrats des livreurs</p><p class="ex">John : 8h-18h, 15 colis livrés</p></div>
+<div class="fc"><svg viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="5" width="30" height="38" rx="4"/><path d="M15 13h18M15 22h4M24 22h4M15 30h4M24 30h4M15 37h4M24 37h4"/></svg><h3>SI de Gestion</h3><p class="ab">Suivi commercial et financier</p><p>Factures clients, stock de colis</p><p class="ex">John commande 12 colis : stock à jour</p></div>
+<div class="fc"><svg viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M32 6a10 10 0 0 0-9 13L6 36l6 6 17-17a10 10 0 0 0 13-9l-6 6-5-1-1-5z"/></svg><h3>GMAO</h3><p class="ab">Gestion de maintenance assistée par ordinateur</p><p>Maintenance des véhicules électriques</p><p class="ex">Entretien tous les 15 000 km</p></div>
+<div class="fc"><svg viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 14l18-8 18 8v20l-18 8-18-8z"/><path d="M6 14l18 8 18-8M24 22v20"/></svg><h3>GPAO</h3><p class="ab">Gestion de production assistée par ordinateur</p><p>Tri et étiquetage des colis sur les quais</p><p class="ex">Retenue : avant le départ des livreurs</p></div>
 <div class="fc dk"><p class="bg">5</p><p>flux reliés entre eux</p></div>
 </div>
 </section>
