@@ -221,7 +221,7 @@ def project_page(p: dict, lang: str, nxt: dict, home_page: str, head_snippet: st
         cls = 'btn primary' if l.get('primary') else 'btn'
         if l['href'].startswith('/'):  # page du site : même onglet, dans la langue de la page
             href = l['href'] if lang == 'en' else fr_url(l['href'])
-            return f'<a class="{cls}" href="{attr(href)}">{text(l["label"][lang])} →</a>'
+            return f'<a class="{cls}" href="{attr(href)}"{event(href)}>{text(l["label"][lang])} →</a>'
         return (f'<a class="{cls}" href="{attr(l["href"])}"{event(l["href"])} target="_blank" rel="noopener">'
                 f'{text(l["label"][lang])} ↗</a>')
     links = '\n      '.join(link(l) for l in p['links'])
@@ -322,7 +322,7 @@ def shell(lang: str, en_path: str, title: str, description: str, og: str, schema
 {json.dumps(schema, ensure_ascii=False, indent=2)}
   </script>
   <script defer src="/assets/site.js"></script>
-  <script defer src="https://cloud.umami.is/script.js" data-website-id="50c62680-6fe2-4654-82fd-813896edce5e"></script>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="50c62680-6fe2-4654-82fd-813896edce5e" data-domains="swaks.org"></script>
 </head>
 <body class="page">
   <header class="topbar">
@@ -445,9 +445,9 @@ def install_page(data: dict, lang: str, home_page: str, head_snippet: str, ui_di
       <span class="i-logo" aria-hidden="true"></span>
       <h1>Kleaner<span class="i-kicker">{text(c['kicker'])}</span></h1>
       <p class="i-tagline">{text(c['tagline'])}</p>
-      <a class="btn primary dl-big" data-dl="setup" href="{rel}"{ev}>{text(d['ui.dl.button'])} ↓</a>
+      <a class="btn primary dl-big" data-dl="setup" href="{rel}"{ev} data-umami-event-variant="setup">{text(d['ui.dl.button'])} ↓</a>
       <p class="dl-meta" data-dl="meta">{text(d['ui.dl.req'])}</p>
-      <a class="dl-alt" data-dl="portable" href="{rel}"{ev}>{text(d['ui.dl.portable'])}</a>
+      <a class="dl-alt" data-dl="portable" href="{rel}"{ev} data-umami-event-variant="portable">{text(d['ui.dl.portable'])}</a>
     </section>
 
     <figure class="shot" style="--i:1"><img src="{shot['src']}"{srcset(shot['src'], 'hero')} alt="{attr(shot['alt'][lang])}" width="1280" height="800" data-tilt /></figure>
@@ -475,7 +475,7 @@ def install_page(data: dict, lang: str, home_page: str, head_snippet: str, ui_di
       <h2>{text(c['feedback_h'])}</h2>
       <p class="i-bye" hidden>{text(c['feedback_bye'])}</p>
       <p class="i-sub">{text(c['feedback_p'])}</p>
-      <form class="i-form" data-formspree="mojzlrke" novalidate>
+      <form class="i-form" data-formspree="mojzlrke" data-track="kleaner-feedback" novalidate>
         <fieldset class="i-types">
           <legend>{text(c['feedback_type'])}</legend>{types}
         </fieldset>
@@ -489,7 +489,7 @@ def install_page(data: dict, lang: str, home_page: str, head_snippet: str, ui_di
         </div>
         <input type="hidden" name="_subject" value="{attr(c['feedback_subject'])}" />
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
-        <button type="submit" class="btn primary" data-umami-event="kleaner-feedback">{text(d['form.send'])}</button>
+        <button type="submit" class="btn primary">{text(d['form.send'])}</button>
       </form>
       <p class="i-github">{github}</p>
     </section>

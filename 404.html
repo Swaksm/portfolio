@@ -51,6 +51,11 @@
       document.getElementById('msg').textContent = "Cette page n'existe pas.";
       document.getElementById('back').textContent = "Retour à l'accueil";
     }
+    // Lien cassé : adresse demandée et page d'origine, pour savoir quoi corriger
+    addEventListener('load', () => {
+      if (window.umami) window.umami.track('404', { path: location.pathname, from: document.referrer || 'direct' });
+    });
   </script>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="50c62680-6fe2-4654-82fd-813896edce5e" data-domains="swaks.org"></script>
 </body>
 </html>

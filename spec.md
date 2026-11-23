@@ -6,7 +6,7 @@ Portfolio de Matthieu Izac (swaks). Site **100 % statique** : on dépose les fic
 
 - Minimaliste, lisible, soigné. Pas de surcharge.
 - Aucune dépendance à installer ; Python 3 seulement pour le build local.
-- Services externes uniquement côté navigateur : Formspree (formulaire), Umami (stats, clics mesurés par `data-umami-event` : `copy-email`, `contact-submit`, `github` / `download` / `visit` avec le projet, `social-*`), API GitHub (stats des projets). Les polices sont hébergées localement (`fonts/`).
+- Services externes uniquement côté navigateur : Formspree (formulaire), Umami (stats limitées au domaine `swaks.org` par `data-domains`, les prévisualisations locales ne comptent pas ; clics mesurés par `data-umami-event` : `copy-email`, `github` / `visit` avec le projet, `download` avec le projet (fichiers seulement : les liens vers la page `/kleaner/` sont des `visit`) et, pour Kleaner, `variant` (setup / portable) et `version`, `social-*` ; formulaires mesurés après la réponse de Formspree : `contact-sent` / `contact-error`, `kleaner-feedback-sent` / `kleaner-feedback-error` ; `404` avec `path` et `from` sur la page d'erreur), API GitHub (stats des projets). Les polices sont hébergées localement (`fonts/`).
 - Chemins absolus (`/fonts/…`, `/img/…`) : le site doit être servi à la racine du domaine.
 
 ## Fichiers

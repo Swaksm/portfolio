@@ -184,16 +184,20 @@
       const btn = box.querySelector('[data-dl="setup"]');
       btn.href = main.url;
       btn.textContent = `${t('ui.dl.button')} ${version} ↓`;
+      // Umami lit ces attributs au moment du clic
+      btn.dataset.umamiEventVariant = main === portable ? 'portable' : 'setup';
+      btn.dataset.umamiEventVersion = version;
     }
     const alt = box.querySelector('[data-dl="portable"]');
-    if (portable && portable !== main) alt.href = portable.url;
+    if (portable && portable !== main) { alt.href = portable.url; alt.dataset.umamiEventVersion = version; }
     else alt.hidden = true;
     box.querySelector('[data-dl="meta"]').textContent = [version, day(latest.date), main && mb(main.size), latest.pre && t('ui.dl.pre'), t('ui.dl.req')]
       .filter(Boolean).join(' · ');
     box.querySelector('[data-dl="list"]').innerHTML = rel.map((r) => {
-      const links = [[setupOf(r), t('ui.dl.setup')], [portableOf(r), t('ui.dl.exe')]]
+      const links = [[setupOf(r), t('ui.dl.setup'), 'setup'], [portableOf(r), t('ui.dl.exe'), 'portable']]
         .filter(([a]) => a)
-        .map(([a, label]) => `<a href="${esc(a.url)}" data-umami-event="download" data-umami-event-project="${esc(project)}">${esc(label)}</a>`)
+        .map(([a, label, variant]) => `<a href="${esc(a.url)}" data-umami-event="download" data-umami-event-project="${esc(project)}"`
+          + ` data-umami-event-variant="${variant}" data-umami-event-version="${esc(r.tag.replace(/^v/, ''))}">${esc(label)}</a>`)
         .join('');
       return `<li><span class="dl-tag">${esc(r.tag)}</span>`
         + (r === latest ? `<span class="dl-badge">${esc(t('ui.dl.latest'))}</span>` : '')
@@ -253,12 +257,16 @@
           body: new FormData(form),
         });
       } catch (err) { /* réseau indisponible : traité comme une erreur */ }
+      // Umami : seulement les envois réellement aboutis (ou échoués), pas les clics sur un formulaire invalide
+      const track = (ev) => { if (form.dataset.track && window.umami) window.umami.track(`${form.dataset.track}-${ev}`); };
       if (res && res.ok) {
         btn.textContent = t('form.sent');
         form.reset();
+        track('sent');
       } else {
         btn.textContent = t('form.error');
         btn.disabled = false;
+        track('error');
       }
     });
   });
