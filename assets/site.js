@@ -130,7 +130,8 @@
     if (withReleases) {
       const rel = await releasesOf(repo).catch(() => []);
       data.downloads = rel.reduce((n, r) => n + r.assets.reduce((m, a) => m + a.count, 0), 0);
-      data.version = rel[0] ? rel[0].tag : '';
+      const last = latestOf(rel);
+      data.version = last ? last.tag : '';
     }
     try { localStorage.setItem(key, JSON.stringify({ at: Date.now(), data })); } catch (e) {}
     return data;
@@ -139,6 +140,8 @@
   /* ---------- Releases GitHub : une seule requête par page, partagée par les stats et le bloc de téléchargement.
      `fresh` (téléchargement) : toujours la liste à jour, le cache ne sert que si GitHub refuse (quota, hors ligne). ---------- */
   const releaseLoads = {};
+  // Dernière version proposée : la plus récente stable ; une préversion seulement s'il n'y a aucune stable.
+  const latestOf = (rel) => rel.find((r) => !r.pre) || rel[0];
   function releasesOf(repo, fresh) {
     const key = 'swaks-rel-' + repo;
     let cached = null;
@@ -168,7 +171,7 @@
   document.querySelectorAll('[data-releases]').forEach(async (box) => {
     let rel;
     try { rel = await releasesOf(box.dataset.releases, true); } catch (e) { return; } // hors ligne ou quota : liens GitHub gardés
-    const latest = rel[0];
+    const latest = latestOf(rel);
     if (!latest) return;
     const project = box.dataset.releases.split('/')[1].toLowerCase();
     const main = setupOf(latest) || portableOf(latest);
@@ -184,13 +187,13 @@
     else alt.hidden = true;
     box.querySelector('[data-dl="meta"]').textContent = [version, day(latest.date), main && mb(main.size), latest.pre && t('ui.dl.pre'), t('ui.dl.req')]
       .filter(Boolean).join(' · ');
-    box.querySelector('[data-dl="list"]').innerHTML = rel.map((r, n) => {
+    box.querySelector('[data-dl="list"]').innerHTML = rel.map((r) => {
       const links = [[setupOf(r), t('ui.dl.setup')], [portableOf(r), t('ui.dl.exe')]]
         .filter(([a]) => a)
         .map(([a, label]) => `<a href="${esc(a.url)}" data-umami-event="download" data-umami-event-project="${esc(project)}">${esc(label)}</a>`)
         .join('');
       return `<li><span class="dl-tag">${esc(r.tag)}</span>`
-        + (n === 0 ? `<span class="dl-badge">${esc(t('ui.dl.latest'))}</span>` : '')
+        + (r === latest ? `<span class="dl-badge">${esc(t('ui.dl.latest'))}</span>` : '')
         + (r.pre ? `<span class="dl-badge pre">${esc(t('ui.dl.pre'))}</span>` : '')
         + `<span class="dl-date">${esc(day(r.date))}</span>`
         + `<span class="dl-count">↓ ${r.assets.reduce((m, a) => m + (a.count || 0), 0).toLocaleString(LANG)} ${esc(t('ui.downloads'))}</span>`
