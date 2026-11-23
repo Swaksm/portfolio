@@ -168,6 +168,70 @@
     }
   },
   {
+    "slug": "popperz",
+    "name": "Popperz",
+    "repo": "Swaksm/Popperz",
+    "releases": false,
+    "chips": ["TypeScript", "WXT", "Manifest V3", "Playwright", "GPL-3.0"],
+    "links": [
+      { "href": "https://github.com/Swaksm/Popperz", "label": { "en": "GitHub", "fr": "GitHub" }, "primary": true }
+    ],
+    "shots": [],
+    "schema": { "@type": "SoftwareApplication", "applicationCategory": "BrowserApplication", "operatingSystem": "Chrome, Opera GX, Edge, Brave", "license": "https://www.gnu.org/licenses/gpl-3.0.html", "codeRepository": "https://github.com/Swaksm/Popperz" },
+    "en": {
+      "title": "Popperz — an anti-pop-under ad blocker for Chrome and Opera GX",
+      "description": "Popperz is an open-source ad blocker for Chrome and Opera GX that also stops pop-unders, surprise tabs and invisible click-stealing layers. TypeScript, Manifest V3.",
+      "kicker": "Browser extension · Ad blocker · TypeScript",
+      "lead": "Regular blockers hide banners but let the worst through: on some sites, every click opens an ad tab. Popperz blocks ads like the others, and stops that too.",
+      "sections": [
+        { "h": "What it does", "ul": [
+          "Network blocking: EasyList, EasyPrivacy and an in-house list of pop-under ad networks, converted at build time into Manifest V3 declarativeNetRequest rules.",
+          "Anti-pop-under in two layers: a guard inside the page intercepts window.open, trapped links and forms; the service worker closes any tab nobody asked for. A real link with target=\"_blank\" still opens normally.",
+          "Anti-overlay: transparent layers that cover the page to catch clicks are neutralised, and neutralised again if the site re-injects them.",
+          "Cosmetic hiding: leftover ad slots are hidden in CSS, so the page has no holes.",
+          "Zapper: hover an element, click, it's gone. The rule is remembered for that site, and can be undone from the popup.",
+          "Popup in French and English: on/off switch for the current site, counters of blocked ads and pop-unders, the site's rules."
+        ] },
+        { "h": "Under the hood", "ul": [
+          "TypeScript 5 and WXT: one Manifest V3 code base for Chrome, Opera GX, Edge and Brave. Plain HTML/CSS/TS popup, no framework.",
+          "Vitest unit tests, and Playwright end-to-end tests on local trapped pages with the extension loaded: the only reliable way to check that no tab opens.",
+          "Spec first, then small tested steps."
+        ] },
+        { "h": "Private by design", "ul": [
+          "No telemetry, no account: browsing data never leaves the machine.",
+          "Filter lists are frozen at build time: no outgoing request to update them.",
+          "GPL-3.0, like the EasyList and EasyPrivacy lists it embeds (credited in the release)."
+        ] }
+      ]
+    },
+    "fr": {
+      "title": "Popperz — bloqueur de pub anti-popunder pour Chrome et Opera GX",
+      "description": "Popperz est un bloqueur de pub open source pour Chrome et Opera GX qui bloque aussi les popunders, les onglets surprise et les calques invisibles qui volent les clics.",
+      "kicker": "Extension navigateur · Bloqueur de pub · TypeScript",
+      "lead": "Les bloqueurs classiques cachent les bannières mais laissent passer le pire : sur certains sites, chaque clic ouvre un onglet de pub. Popperz bloque la pub comme les autres, et ça en plus.",
+      "sections": [
+        { "h": "Ce qu'il fait", "ul": [
+          "Blocage réseau : EasyList, EasyPrivacy et une liste maison des régies popunder, converties au build en règles declarativeNetRequest (Manifest V3).",
+          "Anti-popunder en deux couches : une garde dans la page intercepte window.open, les liens et formulaires piégés ; le service worker ferme tout onglet que personne n'a demandé. Un vrai lien target=\"_blank\" s'ouvre normalement.",
+          "Anti-calque : les calques transparents qui recouvrent la page pour capter les clics sont neutralisés, et de nouveau si le site les réinjecte.",
+          "Masquage cosmétique : les emplacements de pub restants sont masqués en CSS, sans trous dans la page.",
+          "Zappeur : on survole un élément, on clique, il disparaît. La règle est gardée pour ce site, annulable depuis le popup.",
+          "Popup en français et en anglais : interrupteur pour le site courant, compteurs de pubs et de popunders bloqués, règles du site."
+        ] },
+        { "h": "Sous le capot", "ul": [
+          "TypeScript 5 et WXT : une seule base Manifest V3 pour Chrome, Opera GX, Edge et Brave. Popup en HTML/CSS/TS sans framework.",
+          "Tests unitaires Vitest, et tests de bout en bout Playwright sur des pages piégées locales avec l'extension chargée : le seul moyen fiable de vérifier qu'aucun onglet ne s'ouvre.",
+          "Spec d'abord, puis petites étapes testées."
+        ] },
+        { "h": "Respect de la vie privée", "ul": [
+          "Aucune télémétrie, aucun compte : les données de navigation ne quittent jamais la machine.",
+          "Listes de filtres figées au build : aucune requête sortante pour les mettre à jour.",
+          "Sous licence GPL-3.0, comme les listes EasyList et EasyPrivacy embarquées (créditées dans la release)."
+        ] }
+      ]
+    }
+  },
+  {
     "slug": "lion-meme",
     "name": "Lion Meme",
     "repo": "Swaksm/tucroisquetesunlion",
@@ -329,6 +393,120 @@
         ] },
         { "h": "Sous le capot", "p": [
           "Python, Playwright et yt-dlp, sur Windows, macOS et Linux. Les tests tournent sur GitHub Actions (Linux et Windows), qui compile aussi les exécutables Windows. Licence MIT."
+        ] }
+      ]
+    }
+  },
+  {
+    "slug": "timetableur",
+    "name": "Timetableur",
+    "chips": ["Python", "discord.py", "Playwright", "Pillow", "Raspberry Pi"],
+    "links": [],
+    "shots": [],
+    "schema": { "@type": "SoftwareApplication", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Linux (Raspberry Pi)" },
+    "en": {
+      "title": "Timetableur — Discord bot that follows a HyperPlanning timetable",
+      "description": "Timetableur is a Discord bot that follows a HyperPlanning school timetable: evening and morning summaries, a reminder before each class, change alerts. Python, Raspberry Pi.",
+      "kicker": "Discord bot · Timetable · Raspberry Pi",
+      "lead": "No more opening HyperPlanning to know where my next class is: a Discord bot reads my timetable and tells me — the day before, in the morning and an hour before.",
+      "sections": [
+        { "h": "What it does", "ul": [
+          "A single message at the top of the channel, edited in place: an image of the coming week of classes (blue = remote, orange = on site) and the next class with Discord's native live countdown.",
+          "Evening and morning summaries, one line per class; nothing on days off. The morning one replaces the evening one.",
+          "One hour before each class: time, subject, teacher, room or Teams link.",
+          "Change alerts: class added, cancelled or moved, new room, new teacher, switch between on site and remote.",
+          "Every message deletes itself once its class is over, so the channel stays clean.",
+          "Owner-only slash commands: /rappel, /resume_soir, /resume_matin, /intervalle, /salon, /config, /prochain, /semaine."
+        ] },
+        { "h": "Under the hood", "ul": [
+          "Python, discord.py, and Pillow to draw the week image. The timetable is read from HyperPlanning's own exchanges with a headless Chromium (Playwright), whose format I decoded from a real week.",
+          "Runs on a Raspberry Pi as a systemd service; a timer pulls the code every 10 minutes and restarts the bot only when it changed.",
+          "Spec first, then small tested steps (pytest on a fictional week)."
+        ] }
+      ]
+    },
+    "fr": {
+      "title": "Timetableur — bot Discord qui suit un emploi du temps HyperPlanning",
+      "description": "Timetableur est un bot Discord qui suit un emploi du temps HyperPlanning : résumé du soir et du matin, rappel avant chaque cours, alertes de changement. Python, Raspberry Pi.",
+      "kicker": "Bot Discord · Emploi du temps · Raspberry Pi",
+      "lead": "Plus besoin d'ouvrir HyperPlanning pour savoir où est mon prochain cours : un bot Discord lit mon emploi du temps et me prévient, la veille, le matin et une heure avant.",
+      "sections": [
+        { "h": "Ce qu'il fait", "ul": [
+          "Un seul message en haut du salon, édité sur place : l'image de la prochaine semaine de cours (bleu = distanciel, orange = présentiel) et le prochain cours avec le compte à rebours natif de Discord.",
+          "Résumé la veille au soir et le matin, une ligne par cours ; rien les jours sans cours. Celui du matin remplace celui de la veille.",
+          "Une heure avant chaque cours : heure, matière, intervenant, salle ou lien Teams.",
+          "Alertes de changement : cours ajouté, annulé ou déplacé, nouvelle salle, nouvel intervenant, passage présentiel / distanciel.",
+          "Chaque message se supprime tout seul une fois son cours terminé : le salon reste propre.",
+          "Commandes réservées au propriétaire : /rappel, /resume_soir, /resume_matin, /intervalle, /salon, /config, /prochain, /semaine."
+        ] },
+        { "h": "Sous le capot", "ul": [
+          "Python, discord.py, et Pillow pour dessiner l'image de la semaine. L'emploi du temps est lu dans les échanges d'HyperPlanning avec un Chromium sans écran (Playwright), dont j'ai décodé le format sur une vraie semaine.",
+          "Tourne sur un Raspberry Pi en service systemd ; un minuteur récupère le code toutes les 10 minutes et ne redémarre le bot que s'il a changé.",
+          "Spec d'abord, puis petites étapes testées (pytest sur une semaine fictive)."
+        ] }
+      ]
+    }
+  },
+  {
+    "slug": "melty",
+    "name": "MELTY",
+    "repo": "Swaksm/Workshop-MELTY",
+    "releases": false,
+    "chips": ["Python", "FastAPI", "ESP32", "scikit-learn", "YOLOv8", "React", "Docker"],
+    "links": [
+      { "href": "https://github.com/Swaksm/Workshop-MELTY", "label": { "en": "GitHub", "fr": "GitHub" }, "primary": true }
+    ],
+    "shots": [],
+    "schema": { "@type": "SoftwareSourceCode", "programmingLanguage": ["Python", "C++", "JavaScript"], "codeRepository": "https://github.com/Swaksm/Workshop-MELTY" },
+    "en": {
+      "title": "MELTY — SENTINEL-X, an IoT surveillance node with AI anomaly detection",
+      "description": "SENTINEL-X (EPSI MELTY workshop): an ESP32 watches a table, an AI model flags anomalies with no fixed threshold, a webcam spots people, with email alerts and a live dashboard.",
+      "kicker": "School workshop · IoT · AI",
+      "lead": "SENTINEL-X, a team project for an EPSI workshop: an ESP32 watches a table, an AI learns what normal looks like, a webcam spots people — and the team gets a buzzer, an email and a live dashboard.",
+      "sections": [
+        { "h": "The brief", "p": [
+          "An EPSI Bac+4 workshop on a fictional client, AetherCorp. The brief imposed no static thresholds, encrypted flows, a containerised stack and no secret in the code archive. Built as a team of three."
+        ] },
+        { "h": "How it works", "ul": [
+          "An ESP32 (DHT22, MQ-2 gas sensor, PIR, OLED screen, buzzer) sends temperature, humidity and gas over MQTT/TLS to a Mosquitto broker; a FastAPI backend stores them in PostgreSQL.",
+          "No hand-written threshold: a Local Outlier Factor model learns, per table, what a calm period looks like (5 features over the last 30 readings, including temperature and gas trends) and flags what departs from it. On simulated data it caught 100% of spikes with 0.5% false alarms, against 94% and 6.8% for Isolation Forest.",
+          "A second model, a Random Forest, watches only the temperature trend to catch a slow rise.",
+          "A webcam runs YOLOv8 nano: a person must stay in view 3 seconds to trigger an alert; animals are framed but ignored. About 13–15 frames per second on a laptop CPU.",
+          "Alerts sound the buzzer and send at most one email per type every 5 minutes, with a snapshot. The React dashboard shows a red banner, and each alert names the reading most responsible for it."
+        ] },
+        { "h": "Security", "ul": [
+          "Only two ports are reachable from the Wi-Fi, both encrypted: MQTT over mutual TLS for the ESP32, and HTTPS through a Caddy proxy for the dashboard, the API and the video.",
+          "HTTPS only accepts the 5 authorised machines (client certificates), then requires a login (JWT in an HttpOnly cookie, brute-force protection).",
+          "One MQTT account per component, each limited to its own topics."
+        ] },
+        { "h": "Under the hood", "p": [
+          "C++ firmware (Arduino, OTA updates), Python 3.12, FastAPI, SQLAlchemy, scikit-learn, Ultralytics YOLOv8 and OpenCV, React 18 + Vite + Recharts, PostgreSQL 16, all in Docker Compose with cAdvisor for monitoring. pytest and GitHub Actions on every push, images published to GHCR."
+        ] }
+      ]
+    },
+    "fr": {
+      "title": "MELTY — SENTINEL-X, nœud IoT de surveillance avec détection d'anomalies par IA",
+      "description": "SENTINEL-X (workshop MELTY, EPSI) : un ESP32 surveille une table, une IA repère les anomalies sans seuil fixe, une webcam détecte les personnes, avec alertes mail et dashboard en direct.",
+      "kicker": "Workshop école · IoT · IA",
+      "lead": "SENTINEL-X, un projet d'équipe pour un workshop EPSI : un ESP32 surveille une table, une IA apprend ce qui est normal, une webcam repère les personnes, et l'équipe est prévenue par buzzer, mail et dashboard en direct.",
+      "sections": [
+        { "h": "Le sujet", "p": [
+          "Un workshop EPSI Bac+4 sur un client fictif, AetherCorp. Le sujet imposait : pas de seuils statiques, des flux chiffrés, une stack conteneurisée et aucun secret dans l'archive du code. Réalisé en équipe de trois."
+        ] },
+        { "h": "Comment ça marche", "ul": [
+          "Un ESP32 (DHT22, capteur de gaz MQ-2, PIR, écran OLED, buzzer) envoie température, humidité et gaz en MQTT/TLS à un broker Mosquitto ; un backend FastAPI les enregistre dans PostgreSQL.",
+          "Aucun seuil écrit à la main : un modèle Local Outlier Factor apprend, table par table, à quoi ressemble une période calme (5 valeurs sur les 30 dernières mesures, dont la tendance de la température et du gaz) et signale ce qui s'en écarte. Sur données simulées, il détectait 100 % des pics avec 0,5 % de fausses alertes, contre 94 % et 6,8 % pour Isolation Forest.",
+          "Un second modèle, un Random Forest, surveille uniquement la tendance de la température pour repérer une montée lente.",
+          "Une webcam fait tourner YOLOv8 nano : une personne doit rester visible 3 secondes pour déclencher une alerte ; les animaux sont encadrés mais ignorés. Environ 13 à 15 images par seconde sur le processeur d'un portable.",
+          "Les alertes font sonner le buzzer et envoient au plus un mail par type toutes les 5 minutes, avec une capture. Le dashboard React affiche un bandeau rouge, et chaque alerte nomme la mesure la plus responsable."
+        ] },
+        { "h": "Sécurité", "ul": [
+          "Depuis le Wi-Fi, seuls deux ports sont joignables, tous deux chiffrés : MQTT en TLS mutuel pour l'ESP32, et HTTPS via un proxy Caddy pour le dashboard, l'API et la vidéo.",
+          "Le HTTPS n'accepte que les 5 postes autorisés (certificats clients), puis exige une connexion (JWT en cookie HttpOnly, protection contre la force brute).",
+          "Un compte MQTT par composant, limité à ses propres sujets."
+        ] },
+        { "h": "Sous le capot", "p": [
+          "Firmware C++ (Arduino, mises à jour OTA), Python 3.12, FastAPI, SQLAlchemy, scikit-learn, Ultralytics YOLOv8 et OpenCV, React 18 + Vite + Recharts, PostgreSQL 16, le tout en Docker Compose avec cAdvisor pour la supervision. pytest et GitHub Actions à chaque push, images publiées sur GHCR."
         ] }
       ]
     }

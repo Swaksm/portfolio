@@ -84,6 +84,12 @@
   "lm.tag": "Web · Humor · Generator",
   "lm.desc": "A free lion meme generator. It plays on the gap between the image we want to project and reality — a majestic lion photo, and underneath, a far more comical reality. Made in a few clicks.",
   "lm.visit": "Make a meme →",
+  "pz.tag": "Browser extension · Ad blocker · TypeScript",
+  "pz.desc": "An ad blocker for Chrome and Opera GX that also stops what the others let through: pop-unders, ad tabs opened on every click, invisible layers that steal clicks. EasyList + EasyPrivacy blocking, a Zapper to remove any element by hand, an on/off switch per site. No telemetry, no account.",
+  "tt.tag": "Discord bot · Timetable · Raspberry Pi",
+  "tt.desc": "A Discord bot that follows my HyperPlanning school timetable: evening and morning summaries, a reminder an hour before each class (room or Teams link), alerts when a class is added, cancelled or moved, and an image of the coming week with a live countdown to the next class.",
+  "ml.tag": "School workshop · IoT · AI",
+  "ml.desc": "SENTINEL-X, a team project for an EPSI workshop: an ESP32 watches a table (temperature, humidity, gas), an AI model learns what normal looks like and flags anomalies with no fixed threshold, a webcam spots people with YOLOv8, then buzzer, email and live dashboard. Encrypted flows, containerised stack.",
   "cs.desc": "A Discord bot that monitors 9 French retail sites (Carrefour, Auchan, Leclerc, JouéClub...) to spot Pokémon items in stock. Filters are built through an interactive form (no syntax to type), near real-time alerts in dedicated channels, anti-detection (jittered interval, backoff, hard floor). Runs in production on a Raspberry Pi.",
   "vg.tag": "Tool · Downloader · Playwright",
   "vg.desc": "Paste a page URL: the tool detects its videos, you pick, it downloads. Handles cookies, Referer and temporary tokens by downloading from inside the browser session. Regular formats plus HLS / DASH streams. Available as a desktop app, a command-line tool and a Chrome extension.",
@@ -199,6 +205,12 @@
   "lm.tag": "Web · Humour · Générateur",
   "lm.desc": "Générateur de memes lion gratuit. Joue sur le contraste entre l'image que l'on veut projeter et la réalité — une photo de lion majestueux, et en dessous, une réalité plus cocasse. Création en quelques clics.",
   "lm.visit": "Créer un meme →",
+  "pz.tag": "Extension navigateur · Bloqueur de pub · TypeScript",
+  "pz.desc": "Un bloqueur de pub pour Chrome et Opera GX qui bloque aussi ce que les autres laissent passer : popunders, onglets de pub ouverts à chaque clic, calques invisibles qui volent les clics. Blocage EasyList + EasyPrivacy, un Zappeur pour supprimer n'importe quel élément à la main, un interrupteur par site. Aucune télémétrie, aucun compte.",
+  "tt.tag": "Bot Discord · Emploi du temps · Raspberry Pi",
+  "tt.desc": "Un bot Discord qui suit mon emploi du temps HyperPlanning : résumé la veille au soir et le matin, rappel une heure avant chaque cours (salle ou lien Teams), alertes quand un cours est ajouté, annulé ou déplacé, et l'image de la semaine à venir avec un compte à rebours jusqu'au prochain cours.",
+  "ml.tag": "Workshop école · IoT · IA",
+  "ml.desc": "SENTINEL-X, un projet d'équipe pour un workshop EPSI : un ESP32 surveille une table (température, humidité, gaz), une IA apprend ce qui est normal et repère les anomalies sans seuil fixe, une webcam détecte les personnes avec YOLOv8, puis buzzer, mail et dashboard en direct. Flux chiffrés, stack conteneurisée.",
   "cs.desc": "Bot Discord de veille sur 9 sites marchands français (Carrefour, Auchan, Leclerc, JouéClub...) pour repérer les items Pokémon en stock. Filtres créés via un formulaire interactif (aucune syntaxe à taper), alertes en temps quasi réel dans des salons dédiés, anti-détection (intervalle jitté, backoff, plancher dur). Tourne en production sur un Raspberry Pi.",
   "vg.tag": "Outil · Téléchargement · Playwright",
   "vg.desc": "Colle l'URL d'une page : l'outil détecte ses vidéos, tu choisis, il télécharge. Gère cookies, Referer et jetons temporaires en téléchargeant depuis la session du navigateur. Formats classiques et flux HLS / DASH. Disponible en application graphique, en ligne de commande et en extension Chrome.",
@@ -1052,7 +1064,7 @@
     }
   </style>
 
-  <script defer src="/assets/site.js?v=69ce081b25"></script>
+  <script defer src="/assets/site.js?v=f345bd3ffb"></script>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="50c62680-6fe2-4654-82fd-813896edce5e"></script>
 </head>
 <body>
@@ -1197,6 +1209,31 @@
     <div class="card" data-reveal style="--i:3">
       <button class="card-header" type="button" aria-expanded="false">
         <div>
+          <div class="card-title">Popperz</div>
+          <div class="card-tag" data-i18n="pz.tag">Extension navigateur · Bloqueur de pub · TypeScript</div>
+          <span class="gh-stats" data-gh="Swaksm/Popperz"></span>
+        </div>
+        <span class="card-arrow" aria-hidden="true">+</span>
+      </button>
+      <div class="card-body">
+        <div class="card-body-inner">
+          <p data-i18n="pz.desc">Un bloqueur de pub pour Chrome et Opera GX qui bloque aussi ce que les autres laissent passer : popunders, onglets de pub ouverts à chaque clic, calques invisibles qui volent les clics. Blocage EasyList + EasyPrivacy, un Zappeur pour supprimer n'importe quel élément à la main, un interrupteur par site. Aucune télémétrie, aucun compte.</p>
+          <div class="card-meta">
+            <span class="card-chip">TypeScript</span>
+            <span class="card-chip">WXT</span>
+            <span class="card-chip">Manifest V3</span>
+          </div>
+          <div class="card-links">
+            <a class="primary" href="/fr/projects/popperz.html" data-localize="href" data-i18n="ui.more">Voir plus →</a>
+            <a class="secondary" href="https://github.com/Swaksm/Popperz" data-umami-event="github" data-umami-event-project="popperz" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-reveal style="--i:3">
+      <button class="card-header" type="button" aria-expanded="false">
+        <div>
           <div class="card-title">Lion Meme</div>
           <div class="card-tag" data-i18n="lm.tag">Web · Humour · Générateur</div>
           <span class="gh-stats" data-gh="Swaksm/tucroisquetesunlion"></span>
@@ -1265,6 +1302,55 @@
             <a class="primary" href="/fr/projects/video-grabber.html" data-localize="href" data-i18n="ui.more">Voir plus →</a>
             <a class="secondary" href="https://github.com/Swaksm/Video-DWNLDR/releases" data-umami-event="download" data-umami-event-project="video-grabber" target="_blank" rel="noopener" data-i18n="vg.dl">Télécharger ↗</a>
             <a class="secondary" href="https://github.com/Swaksm/Video-DWNLDR" data-umami-event="github" data-umami-event-project="video-grabber" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-reveal style="--i:6">
+      <button class="card-header" type="button" aria-expanded="false">
+        <div>
+          <div class="card-title">Timetableur</div>
+          <div class="card-tag" data-i18n="tt.tag">Bot Discord · Emploi du temps · Raspberry Pi</div>
+        </div>
+        <span class="card-arrow" aria-hidden="true">+</span>
+      </button>
+      <div class="card-body">
+        <div class="card-body-inner">
+          <p data-i18n="tt.desc">Un bot Discord qui suit mon emploi du temps HyperPlanning : résumé la veille au soir et le matin, rappel une heure avant chaque cours (salle ou lien Teams), alertes quand un cours est ajouté, annulé ou déplacé, et l'image de la semaine à venir avec un compte à rebours jusqu'au prochain cours.</p>
+          <div class="card-meta">
+            <span class="card-chip">Python</span>
+            <span class="card-chip">discord.py</span>
+            <span class="card-chip">Raspberry Pi</span>
+          </div>
+          <div class="card-links">
+            <a class="primary" href="/fr/projects/timetableur.html" data-localize="href" data-i18n="ui.more">Voir plus →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-reveal style="--i:6">
+      <button class="card-header" type="button" aria-expanded="false">
+        <div>
+          <div class="card-title">MELTY</div>
+          <div class="card-tag" data-i18n="ml.tag">Workshop école · IoT · IA</div>
+          <span class="gh-stats" data-gh="Swaksm/Workshop-MELTY"></span>
+        </div>
+        <span class="card-arrow" aria-hidden="true">+</span>
+      </button>
+      <div class="card-body">
+        <div class="card-body-inner">
+          <p data-i18n="ml.desc">SENTINEL-X, un projet d'équipe pour un workshop EPSI : un ESP32 surveille une table (température, humidité, gaz), une IA apprend ce qui est normal et repère les anomalies sans seuil fixe, une webcam détecte les personnes avec YOLOv8, puis buzzer, mail et dashboard en direct. Flux chiffrés, stack conteneurisée.</p>
+          <div class="card-meta">
+            <span class="card-chip">Python</span>
+            <span class="card-chip">ESP32</span>
+            <span class="card-chip">YOLOv8</span>
+            <span class="card-chip">Docker</span>
+          </div>
+          <div class="card-links">
+            <a class="primary" href="/fr/projects/melty.html" data-localize="href" data-i18n="ui.more">Voir plus →</a>
+            <a class="secondary" href="https://github.com/Swaksm/Workshop-MELTY" data-umami-event="github" data-umami-event-project="melty" target="_blank" rel="noopener">GitHub ↗</a>
           </div>
         </div>
       </div>

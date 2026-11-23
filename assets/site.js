@@ -16,9 +16,12 @@
   const PROJECTS = [
     ['kleaner', 'Kleaner'],
     ['autosu', 'Autosu'],
+    ['popperz', 'Popperz'],
     ['lion-meme', 'Lion Meme'],
     ['cordesortie', 'CordeSortie'],
     ['video-grabber', 'Video Grabber'],
+    ['timetableur', 'Timetableur'],
+    ['melty', 'MELTY'],
     ['swaks-org', 'swaks.org'],
   ];
 

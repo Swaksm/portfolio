@@ -71,6 +71,20 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/projects/autosu.html" />
   </url>
   <url>
+    <loc>https://swaks.org/projects/popperz.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/projects/popperz.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://swaks.org/fr/projects/popperz.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/projects/popperz.html" />
+  </url>
+  <url>
+    <loc>https://swaks.org/fr/projects/popperz.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/projects/popperz.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://swaks.org/fr/projects/popperz.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/projects/popperz.html" />
+  </url>
+  <url>
     <loc>https://swaks.org/projects/lion-meme.html</loc>
     <lastmod>2026-11-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/projects/lion-meme.html" />
@@ -111,6 +125,34 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/projects/video-grabber.html" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://swaks.org/fr/projects/video-grabber.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/projects/video-grabber.html" />
+  </url>
+  <url>
+    <loc>https://swaks.org/projects/timetableur.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/projects/timetableur.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://swaks.org/fr/projects/timetableur.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/projects/timetableur.html" />
+  </url>
+  <url>
+    <loc>https://swaks.org/fr/projects/timetableur.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/projects/timetableur.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://swaks.org/fr/projects/timetableur.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/projects/timetableur.html" />
+  </url>
+  <url>
+    <loc>https://swaks.org/projects/melty.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/projects/melty.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://swaks.org/fr/projects/melty.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/projects/melty.html" />
+  </url>
+  <url>
+    <loc>https://swaks.org/fr/projects/melty.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/projects/melty.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://swaks.org/fr/projects/melty.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/projects/melty.html" />
   </url>
   <url>
     <loc>https://swaks.org/projects/swaks-org.html</loc>
