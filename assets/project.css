@@ -402,3 +402,22 @@ body.page {
 .st-table td:last-child, .st-table th:last-child { text-align: right; }
 .st-table table + table { margin-top: 1.4rem; }
 @media (max-width: 640px) { .st-kpis { grid-template-columns: repeat(2, 1fr); } }
+
+/* Guides (/guides/) : titres de section lisibles, chemins et commandes en code */
+.guide h1 { font-size: clamp(30px, 5vw, 52px); line-height: 1.08; }
+.guide h2 {
+  padding-bottom: 0; border-bottom: 0;
+  font-family: 'Roboto Condensed', sans-serif; font-weight: 900; font-size: clamp(20px, 2.6vw, 26px);
+  letter-spacing: 0; text-transform: none; color: var(--text);
+}
+.project code {
+  padding: 0.1em 0.35em; border-radius: 4px; background: var(--border);
+  font-family: ui-monospace, Consolas, monospace; font-size: 0.86em; overflow-wrap: anywhere;
+}
+.guide-cta { padding: 1.4rem 1.6rem; border: 1px solid var(--border); border-radius: 14px; }
+.guide-cta .actions { margin: 1rem 0 0; }
+.guide-related ul, .i-guides ul { list-style: none; }
+.guide-related li + li, .i-guides li + li { margin-top: 0.5rem; }
+.guide-related a, .i-guides a { color: var(--mauve-text); text-decoration: none; }
+.guide-related a:hover, .i-guides a:hover { text-decoration: underline; }
+.i-guides { margin-bottom: 3.5rem; }

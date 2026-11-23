@@ -19,7 +19,7 @@ Portfolio de Matthieu Izac (swaks). Site **100 % statique** : on dépose les fic
 | `about.html`, `fr/about.html` | Page « À propos » (parcours, formation, méthode, CV à venir) — **générée** depuis `_build/about.json` |
 | `assets/site.css`, `assets/site.js` | Commun à toutes les pages : palette, polices, thème, langue, curseur, palette de commandes, copie d'email, stats GitHub |
 | `assets/project.css` | Style des pages projets |
-| `_build/` | `build.py`, `projects.json` (contenu des pages projets), `head.html` (script d'en-tête commun), `og.html` (modèle des images d'aperçu). Bloqué en ligne par `.htaccess` |
+| `_build/` | `build.py`, `projects.json` (contenu des pages projets), `guides.json` (guides Windows `/guides/<slug>.html`, liés depuis la page Kleaner), `head.html` (script d'en-tête commun), `og.html` (modèle des images d'aperçu). Bloqué en ligne par `.htaccess` |
 | `404.html`, `mentions-legales.html` | Page d'erreur, mentions légales (FR/EN dans la même page) |
 | `kleaner/privacy/index.html` | Politique de confidentialité de l'appli Kleaner (FR/EN dans la même page), adresse donnée au Microsoft Store |
 | `.htaccess` | Config Apache (OVH) : 404, redirection vers `https://swaks.org` (sans www), compression, cache, en-têtes de sécurité, blocage de `_build/` |

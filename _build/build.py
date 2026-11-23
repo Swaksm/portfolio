@@ -6,6 +6,7 @@
 Sources :
   - index.html            page d'accueil anglaise (source de vérité), textes FR dans <script id="i18n">
   - _build/projects.json  contenu EN/FR des pages projets
+  - _build/guides.json    guides EN/FR (questions Windows courantes, Kleaner en solution)
   - _build/head.html      script d'en-tête commun (thème, textes, redirection de langue)
 Sorties :
   - fr/index.html                           accueil français
@@ -471,6 +472,8 @@ def install_page(data: dict, lang: str, home_page: str, head_snippet: str, ui_di
       <h2>{text(c['faq'])}</h2>{faq}
     </section>
 
+    {guides_list(lang)}
+
     <section class="i-feedback" id="feedback" style="--i:5">
       <h2>{text(c['feedback_h'])}</h2>
       <p class="i-bye" hidden>{text(c['feedback_bye'])}</p>
@@ -559,10 +562,103 @@ def build_install(home_dict: dict) -> None:
 
 
 # ---------------------------------------------------------------------------
+#  Guides : _build/guides.json -> guides/<slug>.html, fr/guides/<slug>.html
+#  (questions que les gens tapent dans Google, avec Kleaner comme solution)
+# ---------------------------------------------------------------------------
+def inline(s: str) -> str:
+    """Texte échappé ; `code` entre accents graves -> <code>."""
+    return re.sub(r'`([^`]+)`', r'<code>\1</code>', text(s))
+
+
+def guides_data() -> dict:
+    return json.loads(read(BUILD / 'guides.json'))
+
+
+def guide_url(slug: str, lang: str) -> str:
+    p = f'/guides/{slug}.html'
+    return p if lang == 'en' else fr_url(p)
+
+
+def guides_list(lang: str) -> str:
+    """Encart « Guides » de la page d'installation de Kleaner (liens internes vers les guides)."""
+    data = guides_data()
+    items = ''.join(f'\n        <li><a href="{guide_url(g["slug"], lang)}">{text(g[lang]["h1"])} →</a></li>' for g in data['guides'])
+    return (f'<section class="i-guides" style="--i:4">\n      <h2>{text(data["ui"][lang]["list_h"])}</h2>'
+            f'\n      <ul>{items}\n      </ul>\n    </section>')
+
+
+def guide_page(g: dict, data: dict, lang: str, home_page: str, head_snippet: str, ui_dict: dict) -> str:
+    c, u = g[lang], data['ui'][lang]
+    en_path = guide_url(g['slug'], 'en')
+    url = SITE + guide_url(g['slug'], lang)
+    kleaner = '/kleaner/' if lang == 'en' else fr_url('/kleaner/')
+    i = iter(range(2, 60))  # ordre d'apparition (animation en cascade)
+    sections = ''
+    for sec in c['sections']:
+        body = ''.join(f'\n      <p>{inline(x)}</p>' for x in sec.get('p', []))
+        if sec.get('ul'):
+            body += '\n      <ul>' + ''.join(f'\n        <li>{inline(x)}</li>' for x in sec['ul']) + '\n      </ul>'
+        sections += f'\n    <section style="--i:{next(i)}">\n      <h2>{text(sec["h"])}</h2>{body}\n    </section>'
+    faq = ''.join(f'\n      <details><summary>{text(x["q"])}</summary><p>{text(x["a"])}</p></details>' for x in c['faq'])
+    others = ''.join(f'\n        <li><a href="{guide_url(o["slug"], lang)}">{text(o[lang]["h1"])} →</a></li>'
+                     for o in data['guides'] if o is not g)
+    main = f'''<main class="project guide">
+    <p class="kicker" style="--i:0">{text(u['kicker'])}</p>
+    <h1 style="--i:0">{text(c['h1'])}</h1>
+    <p class="lead" style="--i:1">{text(c['lead'])}</p>{sections}
+
+    <section class="guide-cta" style="--i:{next(i)}">
+      <h2>{text(u['cta_h'])}</h2>
+      <p>{inline(c['cta'])}</p>
+      <div class="actions"><a class="btn primary" href="{kleaner}" data-umami-event="visit" data-umami-event-project="kleaner" data-umami-event-guide="{g['slug']}">{text(u['cta_btn'])} →</a></div>
+    </section>
+
+    <section class="i-faq" style="--i:{next(i)}">
+      <h2>{text(u['faq'])}</h2>{faq}
+    </section>
+
+    <nav class="guide-related" style="--i:{next(i)}">
+      <h2>{text(u['related'])}</h2>
+      <ul>{others}
+      </ul>
+    </nav>
+  </main>'''
+    author = {'@type': 'Person', 'name': 'Matthieu Izac', 'url': SITE + '/'}
+    schema = {'@context': 'https://schema.org', '@graph': [
+        {'@type': 'Article', 'headline': c['h1'], 'description': c['description'], 'url': url, 'inLanguage': lang,
+         'mainEntityOfPage': url, 'image': f'{SITE}/img/og/kleaner.png', 'author': author, 'publisher': author,
+         'datePublished': data['published'], 'dateModified': data['published']},
+        {'@type': 'FAQPage', 'inLanguage': lang, 'mainEntity': [
+            {'@type': 'Question', 'name': x['q'], 'acceptedAnswer': {'@type': 'Answer', 'text': x['a']}} for x in c['faq']]},
+    ]}
+    return shell(lang, en_path, c['title'], c['description'], f'{SITE}/img/og/kleaner.png', schema, main,
+                 home_page, head_snippet, ui_dict, back=kleaner)
+
+
+def build_guides(home_dict: dict) -> list:
+    data = guides_data()
+    home_page = read(ROOT / 'index.html')
+    head_snippet = read(BUILD / 'head.html').rstrip('\n')
+    keep = lambda k: k.startswith(('ui.', 'nav.')) or k in ('legal', 'theme', 'theme.title')
+    ui_dict = {lang: {k: v for k, v in home_dict[lang].items() if keep(k)} for lang in ('en', 'fr')}
+    for g in data['guides']:
+        for lang in ('en', 'fr'):
+            c = g[lang]
+            # Mêmes limites que les autres pages : titre affiché <= 65 car. avec « · swaks.org », description <= 160
+            assert len(c['title']) <= 53 and len(c['description']) <= 160, (g['slug'], lang, len(c['title']), len(c['description']))
+            page = guide_page(g, data, lang, home_page, head_snippet, ui_dict)
+            if lang == 'fr':
+                page = localize(page, ui_dict['fr'])
+            write(ROOT / guide_url(g['slug'], lang).lstrip('/'), page)
+    return data['guides']
+
+
+# ---------------------------------------------------------------------------
 #  Sitemap et images d'aperçu
 # ---------------------------------------------------------------------------
-def build_sitemap(projects: list) -> None:
-    paths = ['/', '/about.html', '/kleaner/'] + [f'/projects/{p["slug"]}.html' for p in projects]
+def build_sitemap(projects: list, guides: list) -> None:
+    paths = (['/', '/about.html', '/kleaner/'] + [f'/projects/{p["slug"]}.html' for p in projects]
+             + [guide_url(g['slug'], 'en') for g in guides])
     urls = []
     for en in paths:
         alts = ''.join(f'\n    <xhtml:link rel="alternate" hreflang="{h}" href="{SITE}{u}" />'
@@ -587,7 +683,8 @@ def served_pages() -> list:
     return [ROOT / 'index.html', ROOT / 'fr' / 'index.html', ROOT / '404.html', ROOT / 'mentions-legales.html',
             ROOT / 'about.html', ROOT / 'fr' / 'about.html',
             ROOT / 'kleaner' / 'index.html', ROOT / 'fr' / 'kleaner' / 'index.html', ROOT / 'kleaner' / 'privacy' / 'index.html',
-            *sorted((ROOT / 'projects').glob('*.html')), *sorted((ROOT / 'fr' / 'projects').glob('*.html'))]
+            *sorted((ROOT / 'projects').glob('*.html')), *sorted((ROOT / 'fr' / 'projects').glob('*.html')),
+            *sorted((ROOT / 'guides').glob('*.html')), *sorted((ROOT / 'fr' / 'guides').glob('*.html'))]
 
 
 def lf(b: bytes) -> bytes:
@@ -657,7 +754,8 @@ if __name__ == '__main__':
     print('Pages projets'); projects = build_projects(home_dict)
     print('À propos'); build_about(home_dict)
     print('Installation de Kleaner'); build_install(home_dict)
-    print('Sitemap'); build_sitemap(projects)
+    print('Guides'); guides = build_guides(home_dict)
+    print('Sitemap'); build_sitemap(projects, guides)
     print('Cache et CSP'); version_assets(); csp_script_hashes()
     if '--og' in sys.argv:
         print('Images d\'aperçu'); build_og(projects)

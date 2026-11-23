@@ -1,0 +1,280 @@
+{
+  "published": "2026-11-23",
+  "ui": {
+    "en": {
+      "kicker": "Guide · Windows",
+      "related": "Other guides",
+      "cta_h": "Do it with Kleaner",
+      "cta_btn": "Download Kleaner",
+      "faq": "Questions",
+      "list_h": "Guides: free up space on Windows"
+    },
+    "fr": {
+      "kicker": "Guide · Windows",
+      "related": "Autres guides",
+      "cta_h": "Le faire avec Kleaner",
+      "cta_btn": "Télécharger Kleaner",
+      "faq": "Questions",
+      "list_h": "Guides : libérer de l'espace sous Windows"
+    }
+  },
+  "guides": [
+    {
+      "slug": "free-up-space-windows-11",
+      "en": {
+        "title": "Free up disk space on Windows 11 without breaking it",
+        "description": "Your C: drive is full? Find what takes the space, then clean in the right order: safe caches first, then the big items, each with its real cost.",
+        "h1": "Free up disk space on Windows 11 without breaking anything",
+        "lead": "Windows says your drive is almost full. Before deleting things at random, look at what takes the space, then clean in order: what is free and safe first, what has a cost last.",
+        "sections": [
+          { "h": "1. See what takes the space", "p": [
+            "Open Settings › System › Storage: Windows shows the space used by category (apps, temporary files, documents…). It is a good start, but it does not tell you which folder is heavy or whether you can delete it.",
+            "For that you need a scan that lists the largest files and folders. Look first at the top 20: on most PCs, a handful of folders explains most of the space."
+          ] },
+          { "h": "2. Empty the caches that are safe to delete", "p": [
+            "These files are copies or leftovers that programs rebuild on their own. Deleting them frees space without losing anything:"
+          ], "ul": [
+            "Your temporary files: `%TEMP%`, that is `C:\\Users\\<you>\\AppData\\Local\\Temp`.",
+            "Windows' temporary files: `C:\\Windows\\Temp`. Keep the files from the last 24 hours, an installer may still need them.",
+            "Browser caches (Chrome, Edge, Firefox…): only the cache, never cookies, passwords or history.",
+            "Updates already installed: `C:\\Windows\\SoftwareDistribution\\Download` and the Delivery Optimization cache.",
+            "Crash reports and memory dumps, thumbnail cache, shader caches.",
+            "Developer caches if you code: npm, pip, NuGet, Gradle, Cargo."
+          ] },
+          { "h": "3. The big items, each with a cost", "p": [
+            "These can free several gigabytes, but each one takes something away. Create a Windows restore point first, and only do the ones whose cost you accept:"
+          ], "ul": [
+            "`Windows.old`, `$WINDOWS.~BT`, `$WINDOWS.~WS`: the previous version of Windows after a major update. Cost: you can no longer roll back. Windows deletes them by itself after about 10 days.",
+            "Old components in `C:\\Windows\\WinSxS`, through Windows' own command `Dism.exe /Online /Cleanup-Image /StartComponentCleanup`. Cost: installed updates can no longer be uninstalled.",
+            "`hiberfil.sys`, the hibernation file, often several gigabytes: `powercfg /hibernate off`. Cost: no more hibernation or fast startup.",
+            "Old restore points, keeping the most recent one. Cost: you cannot go back further than the latest point.",
+            "CompactOS (`compact /CompactOS:always`): compresses Windows itself, about 2 to 5 GB. Cost: can be slightly slower on an old PC."
+          ] },
+          { "h": "4. Your own files: only you can decide", "ul": [
+            "Installers left in Downloads for months.",
+            "Archives you already extracted, duplicate photos and videos.",
+            "Games you no longer play (uninstall them from their launcher).",
+            "Old code projects: `node_modules`, `.venv`, `target` folders can be rebuilt with one command.",
+            "Send them to the Recycle Bin rather than deleting them for good, and empty it once you are sure."
+          ] },
+          { "h": "What not to do", "ul": [
+            "Delete things by hand in `C:\\Windows`, `WinSxS` or `Program Files`: it breaks updates or programs.",
+            "Use a registry cleaner: it frees nothing useful, and Microsoft does not support them.",
+            "Delete `pagefile.sys`: Windows manages it, and the fix is in the virtual memory settings.",
+            "Run an « optimizer » that ticks everything in advance without telling you what each item is."
+          ] }
+        ],
+        "cta": "Kleaner does these four steps for you. It scans your drives and gives every large file a verdict: what it is, what breaks if you delete it, how to free the space properly. Nothing is ticked in advance, your files only go to the Recycle Bin, and a restore point is created before the heavy cleanups. Free, open source, no account, no telemetry.",
+        "faq": [
+          { "q": "Is it safe to delete temporary files on Windows 11?", "a": "Yes for files that are not in use: Windows and programs recreate what they need. Files in use are locked and simply skipped. To be extra safe, only delete those older than 24 hours." },
+          { "q": "Why is my C: drive full when I have not installed anything?", "a": "Updates, caches and the hibernation file grow on their own. After a major Windows update, the previous version (Windows.old) can also take tens of gigabytes for about 10 days." },
+          { "q": "How much free space does Windows 11 need?", "a": "Microsoft asks for 64 GB of storage to install Windows 11. Day to day, keep at least 10 to 15% of the drive free so updates install and the PC stays fast." }
+        ]
+      },
+      "fr": {
+        "title": "Libérer de l'espace sur Windows 11 sans rien casser",
+        "description": "Disque C: plein ? Trouvez ce qui prend la place, puis nettoyez dans l'ordre : d'abord les caches sans risque, ensuite les gros postes, avec leur vrai coût.",
+        "h1": "Libérer de l'espace disque sur Windows 11 sans rien casser",
+        "lead": "Windows dit que votre disque est presque plein. Avant de supprimer au hasard, regardez ce qui prend la place, puis nettoyez dans l'ordre : d'abord ce qui est gratuit et sans risque, en dernier ce qui a un coût.",
+        "sections": [
+          { "h": "1. Voir ce qui prend la place", "p": [
+            "Ouvrez Paramètres › Système › Stockage : Windows affiche l'espace utilisé par catégorie (applications, fichiers temporaires, documents…). C'est un bon début, mais il ne dit pas quel dossier est lourd ni si on peut le supprimer.",
+            "Pour ça, il faut une analyse qui liste les plus gros fichiers et dossiers. Regardez d'abord les 20 premiers : sur la plupart des PC, une poignée de dossiers explique l'essentiel de l'espace."
+          ] },
+          { "h": "2. Vider les caches qu'on peut supprimer sans risque", "p": [
+            "Ce sont des copies ou des restes que les programmes recréent tout seuls. Les supprimer libère de la place sans rien perdre :"
+          ], "ul": [
+            "Vos fichiers temporaires : `%TEMP%`, c'est-à-dire `C:\\Users\\<vous>\\AppData\\Local\\Temp`.",
+            "Les fichiers temporaires de Windows : `C:\\Windows\\Temp`. Gardez ceux des dernières 24 heures, un installeur peut encore en avoir besoin.",
+            "Le cache des navigateurs (Chrome, Edge, Firefox…) : seulement le cache, jamais les cookies, mots de passe ou l'historique.",
+            "Les mises à jour déjà installées : `C:\\Windows\\SoftwareDistribution\\Download` et le cache d'Optimisation de la distribution.",
+            "Les rapports de plantage et vidages mémoire, le cache des miniatures, les caches de shaders.",
+            "Les caches de développement si vous codez : npm, pip, NuGet, Gradle, Cargo."
+          ] },
+          { "h": "3. Les gros postes, chacun avec un coût", "p": [
+            "Ils peuvent libérer plusieurs gigaoctets, mais chacun enlève quelque chose. Créez d'abord un point de restauration Windows, et ne faites que ceux dont vous acceptez le coût :"
+          ], "ul": [
+            "`Windows.old`, `$WINDOWS.~BT`, `$WINDOWS.~WS` : l'ancienne version de Windows après une grosse mise à jour. Coût : impossible de revenir en arrière. Windows les supprime de lui-même au bout d'environ 10 jours.",
+            "Les anciens composants de `C:\\Windows\\WinSxS`, avec la commande officielle `Dism.exe /Online /Cleanup-Image /StartComponentCleanup`. Coût : les mises à jour installées ne peuvent plus être désinstallées.",
+            "`hiberfil.sys`, le fichier de mise en veille prolongée, souvent plusieurs gigaoctets : `powercfg /hibernate off`. Coût : plus de veille prolongée ni de démarrage rapide.",
+            "Les anciens points de restauration, en gardant le plus récent. Coût : impossible de revenir plus loin que le dernier point.",
+            "CompactOS (`compact /CompactOS:always`) : compresse Windows lui-même, environ 2 à 5 Go. Coût : peut être un peu plus lent sur un vieux PC."
+          ] },
+          { "h": "4. Vos propres fichiers : vous seul pouvez trancher", "ul": [
+            "Les installeurs qui traînent dans Téléchargements depuis des mois.",
+            "Les archives déjà décompressées, les photos et vidéos en double.",
+            "Les jeux auxquels vous ne jouez plus (désinstallez-les depuis leur launcher).",
+            "Les vieux projets de code : les dossiers `node_modules`, `.venv`, `target` se reconstruisent en une commande.",
+            "Envoyez-les à la Corbeille plutôt que de les supprimer définitivement, et videz-la une fois sûr."
+          ] },
+          { "h": "Ce qu'il ne faut pas faire", "ul": [
+            "Supprimer à la main dans `C:\\Windows`, `WinSxS` ou `Program Files` : ça casse les mises à jour ou les programmes.",
+            "Utiliser un nettoyeur de registre : il ne libère rien d'utile, et Microsoft ne les prend pas en charge.",
+            "Supprimer `pagefile.sys` : Windows le gère, et le réglage se fait dans les paramètres de mémoire virtuelle.",
+            "Lancer un « optimiseur » qui coche tout d'avance sans dire ce qu'est chaque élément."
+          ] }
+        ],
+        "cta": "Kleaner fait ces quatre étapes pour vous. Il analyse vos disques et donne un verdict à chaque gros fichier : ce que c'est, ce qui casse si on le supprime, comment libérer la place proprement. Rien n'est coché d'avance, vos fichiers ne vont qu'à la Corbeille, et un point de restauration est créé avant les gros nettoyages. Gratuit, open source, sans compte, sans télémétrie.",
+        "faq": [
+          { "q": "Peut-on supprimer les fichiers temporaires de Windows 11 sans risque ?", "a": "Oui pour ceux qui ne sont pas utilisés : Windows et les programmes recréent ce dont ils ont besoin. Les fichiers en cours d'utilisation sont verrouillés et simplement ignorés. Par prudence, ne supprimez que ceux de plus de 24 heures." },
+          { "q": "Pourquoi mon disque C: est plein alors que je n'ai rien installé ?", "a": "Les mises à jour, les caches et le fichier de mise en veille prolongée grossissent tout seuls. Après une grosse mise à jour de Windows, l'ancienne version (Windows.old) peut aussi occuper des dizaines de gigaoctets pendant une dizaine de jours." },
+          { "q": "Combien d'espace libre faut-il pour Windows 11 ?", "a": "Microsoft demande 64 Go de stockage pour installer Windows 11. Au quotidien, gardez au moins 10 à 15 % du disque libre pour que les mises à jour s'installent et que le PC reste rapide." }
+        ]
+      }
+    },
+    {
+      "slug": "winsxs-temp-windows-bt",
+      "en": {
+        "title": "WinSxS, Temp, $WINDOWS.~BT: what can you delete?",
+        "description": "WinSxS, Temp, $WINDOWS.~BT, Windows.old, SoftwareDistribution, hiberfil.sys: what each big Windows folder is, and how to free its space the right way.",
+        "h1": "WinSxS, Temp, $WINDOWS.~BT: what can you delete?",
+        "lead": "A few Windows folders take tens of gigabytes. Some can be emptied freely, others only with the right tool, and some must never be touched by hand. Folder by folder.",
+        "sections": [
+          { "h": "WinSxS: never by hand, only with DISM", "p": [
+            "`C:\\Windows\\WinSxS` is the component store: Windows keeps the files of its components there, including older versions replaced by updates. It is what lets Windows repair itself and uninstall an update.",
+            "Explorer shows it bigger than it really is: many files are hard links shared with the rest of Windows and counted twice. To see its real size, run `Dism.exe /Online /Cleanup-Image /AnalyzeComponentStore` in an administrator terminal.",
+            "Never delete it or its contents by hand: Windows can stop updating or starting. The right way is Windows' own cleanup, `Dism.exe /Online /Cleanup-Image /StartComponentCleanup`, which removes old versions. Windows already runs it on a schedule. Adding `/ResetBase` frees a bit more, but no installed update can be uninstalled afterwards."
+          ] },
+          { "h": "Temp: yes, the old files", "p": [
+            "There are two: yours (`%TEMP%`, in `C:\\Users\\<you>\\AppData\\Local\\Temp`) and Windows' (`C:\\Windows\\Temp`). They hold files that programs and installers create while they work.",
+            "You can empty them. Files still in use are locked and Windows refuses to delete them, which is fine. To be safe, close your programs first and keep the files from the last 24 hours."
+          ] },
+          { "h": "$WINDOWS.~BT, $WINDOWS.~WS and Windows.old: yes, if you will not roll back", "p": [
+            "These hidden folders at the root of `C:` come from a Windows upgrade: installation files, and the copy of the previous version used to roll back. Windows.old alone can weigh tens of gigabytes.",
+            "If no upgrade is in progress and you do not want to go back to the previous version, you can delete them. Windows removes them on its own after about 10 days. Deleting them by hand often fails because of their permissions: go through Settings › System › Storage › Temporary files › « Previous Windows installation(s) », or Disk Cleanup (`cleanmgr`) in « Clean up system files » mode."
+          ] },
+          { "h": "The other heavy ones", "ul": [
+            "`C:\\Windows\\SoftwareDistribution\\Download`: updates already downloaded. Can be emptied once they are installed, ideally with the Windows Update service stopped.",
+            "`hiberfil.sys`: the hibernation file. Remove it with `powercfg /hibernate off` if you do not use hibernation (fast startup is turned off too). Never delete it by hand.",
+            "`pagefile.sys`: virtual memory. Do not delete it; Windows manages its size.",
+            "`C:\\Windows\\Prefetch`: small, and Windows rebuilds it. Emptying it only makes the next launches slower.",
+            "`C:\\Windows\\Installer`: needed to repair and uninstall your programs. Do not touch."
+          ] }
+        ],
+        "cta": "Kleaner knows these folders. It shows their real size, says what each one is and what you lose if you clean it, and uses Windows' own commands (DISM for WinSxS, the official cleanups for the previous version of Windows) after creating a restore point. Free, open source.",
+        "faq": [
+          { "q": "Can I delete the WinSxS folder?", "a": "No. Deleting it by hand can stop Windows from updating or starting. To reduce it, use Dism.exe /Online /Cleanup-Image /StartComponentCleanup, Windows' own cleanup." },
+          { "q": "Can I delete $WINDOWS.~BT?", "a": "Yes, if no Windows upgrade is in progress and you do not want to roll back to the previous version. Go through Settings › Storage › Temporary files or Disk Cleanup, which handle its permissions." },
+          { "q": "Is Windows.old deleted automatically?", "a": "Yes. Windows removes it after about 10 days, the period during which you can roll back to the previous version. You can delete it earlier from Settings › Storage › Temporary files." }
+        ]
+      },
+      "fr": {
+        "title": "WinSxS, Temp, $WINDOWS.~BT : que peut-on supprimer ?",
+        "description": "WinSxS, Temp, $WINDOWS.~BT, Windows.old, SoftwareDistribution, hiberfil.sys : ce qu'est chaque gros dossier de Windows et comment libérer sa place proprement.",
+        "h1": "WinSxS, Temp, $WINDOWS.~BT : que peut-on supprimer ?",
+        "lead": "Quelques dossiers de Windows pèsent des dizaines de gigaoctets. Certains se vident librement, d'autres seulement avec le bon outil, et certains ne se touchent jamais à la main. Dossier par dossier.",
+        "sections": [
+          { "h": "WinSxS : jamais à la main, seulement avec DISM", "p": [
+            "`C:\\Windows\\WinSxS` est le magasin de composants : Windows y garde les fichiers de ses composants, y compris les anciennes versions remplacées par des mises à jour. C'est ce qui lui permet de se réparer et de désinstaller une mise à jour.",
+            "L'Explorateur l'affiche plus gros qu'il n'est : beaucoup de fichiers sont des liens physiques partagés avec le reste de Windows, comptés deux fois. Pour voir sa vraie taille, lancez `Dism.exe /Online /Cleanup-Image /AnalyzeComponentStore` dans un terminal administrateur.",
+            "Ne le supprimez jamais à la main, ni son contenu : Windows peut ne plus se mettre à jour, voire ne plus démarrer. La bonne méthode est le nettoyage officiel, `Dism.exe /Online /Cleanup-Image /StartComponentCleanup`, qui retire les anciennes versions. Windows le lance déjà régulièrement. Ajouter `/ResetBase` libère un peu plus, mais plus aucune mise à jour installée ne pourra être désinstallée."
+          ] },
+          { "h": "Temp : oui, les vieux fichiers", "p": [
+            "Il y en a deux : le vôtre (`%TEMP%`, dans `C:\\Users\\<vous>\\AppData\\Local\\Temp`) et celui de Windows (`C:\\Windows\\Temp`). Ils contiennent les fichiers que les programmes et installeurs créent pendant qu'ils travaillent.",
+            "On peut les vider. Les fichiers encore utilisés sont verrouillés et Windows refuse de les supprimer, c'est normal. Par prudence, fermez vos programmes avant et gardez les fichiers des dernières 24 heures."
+          ] },
+          { "h": "$WINDOWS.~BT, $WINDOWS.~WS et Windows.old : oui, si vous ne reviendrez pas en arrière", "p": [
+            "Ces dossiers cachés à la racine de `C:` viennent d'une mise à niveau de Windows : fichiers d'installation, et copie de l'ancienne version qui sert à revenir en arrière. Windows.old peut peser à lui seul des dizaines de gigaoctets.",
+            "Si aucune mise à jour n'est en cours et que vous ne voulez pas revenir à la version précédente, vous pouvez les supprimer. Windows le fait de lui-même au bout d'environ 10 jours. La suppression à la main échoue souvent à cause de leurs autorisations : passez par Paramètres › Système › Stockage › Fichiers temporaires › « Installation(s) précédente(s) de Windows », ou par le Nettoyage de disque (`cleanmgr`) en mode « Nettoyer les fichiers système »."
+          ] },
+          { "h": "Les autres gros", "ul": [
+            "`C:\\Windows\\SoftwareDistribution\\Download` : les mises à jour déjà téléchargées. Se vide une fois qu'elles sont installées, idéalement service Windows Update arrêté.",
+            "`hiberfil.sys` : le fichier de mise en veille prolongée. Se retire avec `powercfg /hibernate off` si vous ne l'utilisez pas (le démarrage rapide est aussi désactivé). Jamais à la main.",
+            "`pagefile.sys` : la mémoire virtuelle. Ne le supprimez pas, Windows gère sa taille.",
+            "`C:\\Windows\\Prefetch` : petit, et Windows le reconstruit. Le vider rend seulement les prochains lancements plus lents.",
+            "`C:\\Windows\\Installer` : nécessaire pour réparer et désinstaller vos programmes. À ne pas toucher."
+          ] }
+        ],
+        "cta": "Kleaner connaît ces dossiers. Il affiche leur vraie taille, dit ce qu'est chacun et ce que vous perdez en le nettoyant, et passe par les commandes officielles de Windows (DISM pour WinSxS, le nettoyage officiel pour l'ancienne version de Windows) après avoir créé un point de restauration. Gratuit, open source.",
+        "faq": [
+          { "q": "Peut-on supprimer le dossier WinSxS ?", "a": "Non. Le supprimer à la main peut empêcher Windows de se mettre à jour ou de démarrer. Pour le réduire, utilisez Dism.exe /Online /Cleanup-Image /StartComponentCleanup, le nettoyage officiel de Windows." },
+          { "q": "Peut-on supprimer $WINDOWS.~BT ?", "a": "Oui, si aucune mise à niveau de Windows n'est en cours et que vous ne voulez pas revenir à la version précédente. Passez par Paramètres › Stockage › Fichiers temporaires ou par le Nettoyage de disque, qui gèrent ses autorisations." },
+          { "q": "Windows.old se supprime-t-il tout seul ?", "a": "Oui. Windows le retire au bout d'environ 10 jours, la période pendant laquelle on peut revenir à la version précédente. Vous pouvez le supprimer avant depuis Paramètres › Stockage › Fichiers temporaires." }
+        ]
+      }
+    },
+    {
+      "slug": "ccleaner-alternative",
+      "en": {
+        "title": "Free, open-source CCleaner alternative",
+        "description": "A free CCleaner alternative: Kleaner is open source, explains every file before deleting it, ticks nothing in advance and never touches the registry.",
+        "h1": "A free, open-source alternative to CCleaner",
+        "lead": "CCleaner is the best-known Windows cleaner, but it is a commercial product with a paid Pro version and a registry cleaner. If you want a tool that is free, open and explains what it deletes, here are the options.",
+        "sections": [
+          { "h": "Why look for an alternative", "ul": [
+            "CCleaner is a commercial product (Gen Digital, the group behind Avast and Norton): the free version is limited and regularly offers the paid version.",
+            "It includes a registry cleaner. Microsoft does not support registry cleaning tools, and they free nothing that matters.",
+            "You often do not know why an item is offered for cleaning, or what you lose if you clean it."
+          ] },
+          { "h": "What Kleaner does differently", "ul": [
+            "It explains: every large file gets a verdict (safe, clean with its own tool, uninstall, breaks something, your files, system, unknown), with what happens if you delete it. With no rule, it says « unknown » rather than guessing.",
+            "Nothing is ticked in advance, and you can preview the exact list of files before anything is deleted.",
+            "Your personal files only go to the Recycle Bin. Permanent deletion is limited to a public list of caches.",
+            "It never cleans the registry, never touches passwords, cookies, sessions or history.",
+            "No account, no ads, no telemetry, no network connection (the update check is optional and off by default).",
+            "Free and open source (MIT): the code is on GitHub, and the exe is built from it by GitHub Actions."
+          ] },
+          { "h": "What CCleaner does and Kleaner does not", "p": [
+            "To be fair: Kleaner runs on Windows 10 and 11 only, it does not clean the registry (on purpose), and it has no automatic scheduled cleaning. Its exe is not signed yet, so Windows shows a SmartScreen warning the first time. If you need one of those, CCleaner or the tools below may suit you better."
+          ] },
+          { "h": "Other free options", "ul": [
+            "Storage Sense, built into Windows (Settings › System › Storage): automatic cleaning of temporary files and the Recycle Bin. Simple, but it explains little.",
+            "BleachBit: open source, Windows and Linux, many cleaners. Powerful, aimed at people who know what they are ticking.",
+            "Kleaner: for those who want to understand what takes the space before deleting it, including developer, gamer and AI folders (node_modules, Docker, Steam, Ollama models…)."
+          ] },
+          { "h": "Switching from CCleaner", "ul": [
+            "Download Kleaner (installer or portable version) and run a scan: you see your drives and what can be freed.",
+            "Clean the « safe » items first, then decide on the others one by one.",
+            "Uninstall CCleaner from Settings › Apps if you no longer need it."
+          ] }
+        ],
+        "cta": "Kleaner is free, open source (MIT) and runs on Windows 10 and 11. It explains every large file, ticks nothing in advance and keeps your personal files in the Recycle Bin.",
+        "faq": [
+          { "q": "Is Kleaner really free?", "a": "Yes. Kleaner is free and open source under the MIT license, with no paid version, no ads and no account." },
+          { "q": "Does Kleaner clean the registry?", "a": "No, on purpose. Cleaning the registry frees nothing useful and can break programs; Microsoft does not support registry cleaners. Kleaner only writes to the registry when you ask it to turn off a startup item or remove a dead program entry, and saves it first." },
+          { "q": "Why does Windows warn me when I launch Kleaner?", "a": "The exe is not signed with a paid certificate yet, so SmartScreen shows « Windows protected your PC ». Click More info then Run anyway. The code is public and the exe is built from it by GitHub Actions; its SHA-256 hash lets you check you got that build." }
+        ]
+      },
+      "fr": {
+        "title": "Alternative gratuite et open source à CCleaner",
+        "description": "Alternative gratuite à CCleaner : Kleaner est open source, explique chaque fichier avant suppression, ne coche rien d'avance et ne touche pas au registre.",
+        "h1": "Une alternative gratuite et open source à CCleaner",
+        "lead": "CCleaner est le nettoyeur Windows le plus connu, mais c'est un produit commercial, avec une version Pro payante et un nettoyeur de registre. Si vous voulez un outil gratuit, ouvert, et qui explique ce qu'il supprime, voici les options.",
+        "sections": [
+          { "h": "Pourquoi chercher une alternative", "ul": [
+            "CCleaner est un produit commercial (Gen Digital, le groupe d'Avast et Norton) : la version gratuite est limitée et propose régulièrement la version payante.",
+            "Il comprend un nettoyeur de registre. Microsoft ne prend pas en charge les outils de nettoyage du registre, et ils ne libèrent rien qui compte.",
+            "On ne sait souvent pas pourquoi un élément est proposé au nettoyage, ni ce qu'on perd en le nettoyant."
+          ] },
+          { "h": "Ce que Kleaner fait autrement", "ul": [
+            "Il explique : chaque gros fichier reçoit un verdict (sans risque, à nettoyer avec son outil, à désinstaller, casse quelque chose, vos fichiers, système, inconnu), avec ce qui se passe si on le supprime. Sans règle, il dit « inconnu » plutôt que de deviner.",
+            "Rien n'est coché d'avance, et on peut voir la liste exacte des fichiers avant toute suppression.",
+            "Vos fichiers personnels ne vont qu'à la Corbeille. La suppression définitive est limitée à une liste publique de caches.",
+            "Il ne nettoie jamais le registre, ne touche jamais aux mots de passe, cookies, sessions ou à l'historique.",
+            "Pas de compte, pas de pub, pas de télémétrie, pas de connexion réseau (la recherche de mises à jour est facultative et désactivée par défaut).",
+            "Gratuit et open source (MIT) : le code est sur GitHub, et l'exe en est compilé par GitHub Actions."
+          ] },
+          { "h": "Ce que CCleaner fait et pas Kleaner", "p": [
+            "Pour être honnête : Kleaner ne tourne que sur Windows 10 et 11, il ne nettoie pas le registre (volontairement) et n'a pas de nettoyage automatique programmé. Son exe n'est pas encore signé, donc Windows affiche un avertissement SmartScreen la première fois. Si vous avez besoin de l'un de ces points, CCleaner ou les outils ci-dessous peuvent mieux vous convenir."
+          ] },
+          { "h": "Les autres options gratuites", "ul": [
+            "L'Assistant de stockage, intégré à Windows (Paramètres › Système › Stockage) : nettoyage automatique des fichiers temporaires et de la Corbeille. Simple, mais il explique peu.",
+            "BleachBit : open source, Windows et Linux, beaucoup de nettoyages. Puissant, pour ceux qui savent ce qu'ils cochent.",
+            "Kleaner : pour comprendre ce qui prend la place avant de supprimer, y compris les dossiers de développeurs, de joueurs et d'IA (node_modules, Docker, Steam, modèles Ollama…)."
+          ] },
+          { "h": "Passer de CCleaner à Kleaner", "ul": [
+            "Téléchargez Kleaner (installeur ou version portable) et lancez une analyse : vous voyez vos disques et ce qui peut être libéré.",
+            "Nettoyez d'abord les éléments « sans risque », puis décidez des autres un par un.",
+            "Désinstallez CCleaner depuis Paramètres › Applications si vous n'en avez plus besoin."
+          ] }
+        ],
+        "cta": "Kleaner est gratuit, open source (MIT) et tourne sur Windows 10 et 11. Il explique chaque gros fichier, ne coche rien d'avance et garde vos fichiers personnels dans la Corbeille.",
+        "faq": [
+          { "q": "Kleaner est-il vraiment gratuit ?", "a": "Oui. Kleaner est gratuit et open source sous licence MIT, sans version payante, sans pub et sans compte." },
+          { "q": "Kleaner nettoie-t-il le registre ?", "a": "Non, volontairement. Nettoyer le registre ne libère rien d'utile et peut casser des programmes ; Microsoft ne prend pas en charge les nettoyeurs de registre. Kleaner n'écrit dans le registre que si vous lui demandez de désactiver un programme au démarrage ou de retirer une entrée de programme morte, et il la sauvegarde avant." },
+          { "q": "Pourquoi Windows m'avertit quand je lance Kleaner ?", "a": "L'exe n'est pas encore signé avec un certificat payant, donc SmartScreen affiche « Windows a protégé votre ordinateur ». Cliquez sur Informations complémentaires puis Exécuter quand même. Le code est public et l'exe en est compilé par GitHub Actions ; son empreinte SHA-256 permet de vérifier que vous avez bien cette version." }
+        ]
+      }
+    }
+  ]
+}
