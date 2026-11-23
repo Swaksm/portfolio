@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CityLogistics – Architecture et risques du SI</title>
+<link rel="icon" href="../favicon.svg">
+<style>
+@font-face { font-family:'Outfit'; font-weight:100 900; font-display:swap; src:url(/fonts/outfit-latin.woff2) format('woff2'); }
+@font-face { font-family:'Roboto Condensed'; font-weight:900; font-display:swap; src:url(/fonts/roboto-condensed-900-latin.woff2) format('woff2'); }
+html, body { margin:0; height:100%; background:#1c1917; overflow:hidden; }
+#stage { position:absolute; left:50%; top:50%; width:1920px; height:1080px; transform-origin:center center; }
+#stage section { position:absolute; left:0; top:0; width:1920px; height:1080px; box-sizing:border-box; display:none; overflow:hidden; }
+#stage section.on { display:block; }
+#bar { position:fixed; left:0; bottom:0; height:4px; background:#C88ABB; transition:width .3s; }
+
+body { font-family: 'Inter', Arial, sans-serif; }
+section { padding:128px 128px 160px; background:#F1EEE7; color:#1c1917; counter-increment:page; }
+section::after { content:counter(page); position:absolute; left:1664px; bottom:64px; width:128px; text-align:right; font-size:24px; color:#6f6557; }
+.dark { background:#1c1917; color:#F1EEE7; }
+.dark::after { color:#a89d8f; }
+.cover::after { content:""; }
+.cover { padding-top:300px; }
+.eyebrow { font-size:28px; font-weight:600; color:#935683; margin:0 0 20px; }
+.dark .eyebrow { color:#D49DC8; }
+h1 { font-size:128px; font-weight:700; line-height:1.05; letter-spacing:-2px; margin:0 0 36px; }
+h2 { font-size:72px; font-weight:700; line-height:1.1; letter-spacing:-1px; margin:0 0 48px; }
+.sub { font-size:40px; line-height:1.35; color:#a89d8f; margin:0; }
+.lead { font-size:36px; line-height:1.4; color:#6f6557; margin:0 0 48px; }
+.row { display:flex; gap:32px; margin:0 0 32px; }
+.card { flex:1; background:#F7F3E6; border-radius:24px; border:1px solid #DDD6C8; padding:48px; }
+.card h3 { font-size:38px; font-weight:600; line-height:1.15; margin:0 0 14px; }
+.card p { font-size:28px; line-height:1.4; color:#6f6557; margin:0; }
+.ic { height:56px; margin:0 0 24px; }
+.ic x-icon { width:56px; height:56px; color:#935683; }
+.big { font-size:88px; font-weight:700; line-height:1; color:#935683; margin:0 0 16px; }
+.note { font-size:26px; line-height:1.4; color:#6f6557; margin:28px 0 0; }
+.info { font-size:32px; line-height:1.4; margin:0 0 16px; }
+.info b { color:#935683; }
+table { font-size:26px; color:#1c1917; }
+table.lg { font-size:30px; }
+th { color:#6f6557; }
+td, th { padding:14px 20px; }
+.l-crit { color:#C4001A; }
+.l-high { color:#B35C00; }
+.l-mid { color:#7A5F00; }
+.l-low { color:#1B7A3A; }
+ul.big-list { font-size:36px; line-height:1.4; margin:0; }
+ul.big-list li { margin:0 0 18px; }
+.dark ol { font-size:40px; line-height:1.4; margin:0; }
+.dark ol li { margin:0 0 20px; }
+.risk-body { display:flex; gap:64px; }
+.risk-text { flex:1; display:flex; flex-direction:column; gap:32px; }
+.blk h3 { font-size:24px; font-weight:600; color:#935683; margin:0 0 8px; }
+.blk p { font-size:30px; line-height:1.4; margin:0; }
+.score { flex:none; width:480px; box-sizing:border-box; background:#1c1917; color:#F1EEE7; border-radius:24px; padding:56px; display:flex; flex-direction:column; gap:8px; }
+.score .lab { font-size:24px; color:#a89d8f; margin:0; }
+.score .val { font-size:64px; font-weight:700; line-height:1.1; margin:0 0 20px; }
+.score .tot { font-size:112px; font-weight:700; line-height:1.05; margin:0; }
+.score .lvl { font-size:40px; font-weight:600; margin:0; }
+.d-crit { color:#FF453A; }
+.d-high { color:#FF9F0A; }
+.d-mid { color:#FFD60A; }
+.tags { font-size:26px; color:#6f6557; margin:0 0 28px; }
+.col h3 { font-size:44px; font-weight:700; margin:0 0 6px; color:#1c1917; }
+.col .when { font-size:26px; font-weight:600; color:#935683; margin:0 0 28px; }
+.col ul { font-size:27px; line-height:1.35; margin:0; }
+.col ul li { margin:0 0 14px; }
+
+table { font-size:34px; }
+table.lg { font-size:38px; }
+table.sm { font-size:30px; }
+table.sm td, table.sm th { padding:10px 20px; }
+.card h3 { font-size:44px; }
+.card p { font-size:34px; }
+.info { font-size:36px; }
+.blk h3 { font-size:28px; }
+.blk p { font-size:42px; line-height:1.3; }
+ul.big-list { font-size:46px; line-height:1.4; }
+ul.big-list li { margin:0 0 28px; }
+.col ul { font-size:30px; line-height:1.3; }
+.col ul li { margin:0 0 24px; }
+.dark ol { font-size:48px; line-height:1.4; }
+
+body { font-family:'Outfit', Arial, sans-serif; }
+section { background:#F1EEE7; color:#3a3530; }
+.dark { background:#1c1917; color:#ece6dc; }
+.dark::after { color:#a39888; }
+.card { background:#F7F3E6; border:1px solid #DDD6C8; border-radius:12px; }
+.dark .eyebrow { color:#D49DC8; }
+.eyebrow { font-size:26px; font-weight:400; letter-spacing:0.14em; text-transform:uppercase; color:#756b5d; }
+h1, h2 { font-family:'Roboto Condensed', 'Arial Narrow', sans-serif; font-weight:900; letter-spacing:-0.01em; line-height:0.95; }
+h1 { font-size:176px; }
+h2 { font-size:112px; margin:0 0 56px; }
+h1 span, h2 span { color:#C88ABB; }
+.dark h1 span { color:#D49DC8; }
+.sub { color:#a89d8f; font-weight:300; }
+.lead, .note { color:#6f6557; }
+.card h3 { font-weight:700; }
+.card p, .blk p { color:#3a3530; }
+.card p { color:#6f6557; }
+.blk h3 { color:#935683; letter-spacing:0.14em; text-transform:uppercase; font-size:26px; font-weight:400; }
+th { color:#756b5d; font-weight:400; letter-spacing:0.1em; text-transform:uppercase; font-size:24px; }
+.col .when { color:#935683; }
+.score { background:#1c1917; color:#ece6dc; border:none; border-radius:12px; }
+.score .lab { color:#a89d8f; }
+.d-crit { color:#E27D7D; } .d-high { color:#E8A86A; } .d-mid { color:#E2C86A; }
+.l-crit { color:#A8321F; } .l-high { color:#9A5200; } .l-mid { color:#6E5800; } .l-low { color:#2E6B3E; }
+
+/* matrice */
+.mx { display:flex; gap:64px; }
+.mx-grid { flex:none; width:1100px; }
+.mx-lab { font-size:26px; letter-spacing:0.1em; text-transform:uppercase; color:#756b5d; margin:0 0 12px 68px; }
+.mx-lab-x { text-align:right; margin:12px 0 0; }
+.mx-row { display:flex; gap:12px; margin:0 0 12px; }
+.mx-n { width:56px; flex:none; font-size:32px; color:#756b5d; display:flex; align-items:center; justify-content:center; }
+.mx-c { flex:1; height:100px; box-sizing:border-box; border-radius:12px; display:flex; flex-wrap:wrap; align-content:center; justify-content:center; gap:8px; padding:8px; }
+.mx-x { flex:1; font-size:32px; color:#756b5d; text-align:center; }
+.c1 { background:#DDE6D2; } .c2 { background:#EFE3B5; } .c3 { background:#F0CFA6; } .c4 { background:#E6A99F; }
+.chip-t { background:#3a3530; color:#F1EEE7; }
+.chip-o { background:#F7F3E6; color:#3a3530; border:2px solid #3a3530; }
+.mx-leg { flex:1; padding-top:48px; }
+.lg-row { display:flex; gap:20px; align-items:center; margin:0 0 20px; }
+.lg-gap { margin-top:40px; }
+.sw { width:48px; height:48px; border-radius:10px; flex:none; }
+.lg-t { font-size:32px; margin:0; color:#3a3530; }
+
+/* watermark */
+section::before { content:"swaks.org"; position:absolute; left:128px; bottom:64px; font-size:24px; letter-spacing:0.08em; color:#756b5d; }
+.dark::before { color:#a39888; }
+
+section::before { font-size:18px; opacity:0.8; }
+#nav { position:fixed; left:50%; bottom:14px; transform:translateX(-50%); display:flex; gap:12px; z-index:20; }
+#nav button { width:44px; height:44px; border-radius:50%; border:1px solid #DDD6C8; background:rgba(247,243,230,.92); color:#3a3530; font:600 20px/1 'Outfit', Arial, sans-serif; cursor:pointer; opacity:.7; transition:opacity .15s, background .15s; }
+#nav button:hover { opacity:1; background:#C88ABB; color:#F1EEE7; border-color:#C88ABB; }
+#nav button:disabled { opacity:.25; cursor:default; background:rgba(247,243,230,.92); color:#3a3530; border-color:#DDD6C8; }
+table { width:100%; border-collapse:collapse; } th { text-align:left; } td, th { border-bottom:1px solid #DDD6C8; }
+
+h2.s { font-size:88px; margin:0 0 40px; }
+.card .big { font-size:120px; font-weight:700; line-height:1; color:#935683; margin:0 0 16px; }
+table.fiche { font-size:32px; }
+table.fiche td { padding:10px 20px; vertical-align:top; }
+table.fiche td.lab { width:21%; color:#935683; font-size:26px; letter-spacing:0.1em; text-transform:uppercase; }
+
+.flow { display:flex; align-items:stretch; gap:24px; margin:0 0 28px; }
+.node { flex:1; border-radius:16px; background:#F7F3E6; border:1px solid #DDD6C8; padding:28px 32px; min-height:240px; box-sizing:border-box; }
+.node .t { font-size:24px; letter-spacing:.14em; text-transform:uppercase; color:#935683; margin:0 0 12px; font-weight:500; }
+.node .v { font-size:40px; line-height:1.2; margin:0; font-weight:500; color:#3a3530; }
+.node.main { background:#1c1917; border-color:#1c1917; }
+.node.main .t { color:#D49DC8; } .node.main .v { color:#F1EEE7; }
+.arr { flex:none; width:64px; height:64px; align-self:center; }
+.pair { display:flex; gap:24px; margin:0 0 28px; }
+.chip { flex:1; border-radius:16px; padding:22px 32px; font-size:34px; line-height:1.25; display:flex; gap:20px; align-items:center; }
+.chip i { flex:none; width:52px; height:52px; border-radius:50%; font-style:normal; font-size:34px; font-weight:700; display:flex; align-items:center; justify-content:center; color:#fff; }
+.chip.ok { background:#E4EEDD; color:#2d4a26; } .chip.ok i { background:#3C8A3A; }
+.chip.ko { background:#F6E3CC; color:#6b3d00; } .chip.ko i { background:#C9690A; }
+.reco { border-radius:16px; background:#C88ABB; color:#1c1917; padding:26px 36px; display:flex; gap:28px; align-items:center; }
+.reco svg { flex:none; width:64px; height:64px; }
+.reco .t { font-size:24px; letter-spacing:.14em; text-transform:uppercase; margin:0 0 6px; font-weight:600; }
+.reco .v { font-size:38px; line-height:1.2; margin:0; font-weight:500; }
+.head { display:flex; align-items:center; gap:36px; margin:0 0 36px; }
+.head h2 { margin:0; }
+.head .ico { flex:none; width:128px; height:128px; border-radius:28px; background:#1c1917; display:flex; align-items:center; justify-content:center; }
+.head .ico svg { width:84px; height:84px; }
+.pill { display:inline-block; font-size:26px; padding:6px 22px; border-radius:99px; font-weight:600; }
+.pill.h { background:#F6E3CC; color:#9a4f00; } .pill.m { background:#F3EBB8; color:#6b5400; }
+.grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+.rc { background:#F7F3E6; border:1px solid #DDD6C8; border-radius:16px; padding:36px; height:300px; box-sizing:border-box; position:relative; }
+.rc.h { border-top:8px solid #C9690A; } .rc.m { border-top:8px solid #D8B400; }
+.rc .n { position:absolute; right:32px; top:20px; font-size:80px; font-weight:700; color:#DDD6C8; }
+.rc svg { width:72px; height:72px; margin:0 0 18px; display:block; }
+.rc h3 { font-size:40px; line-height:1.15; margin:0 0 14px; font-weight:600; }
+.tl { position:relative; margin:40px 0 0; }
+.tl .line { position:absolute; left:0; right:0; top:34px; height:8px; background:#C88ABB; border-radius:4px; }
+.tl .cols { display:flex; gap:32px; position:relative; }
+.tl .c { flex:1; }
+.tl .dot { width:76px; height:76px; border-radius:50%; background:#1c1917; color:#F1EEE7; font-size:34px; font-weight:700; display:flex; align-items:center; justify-content:center; margin:0 0 28px; box-shadow:0 0 0 10px #F1EEE7; }
+.tl .box { background:#F7F3E6; border:1px solid #DDD6C8; border-radius:16px; padding:32px 36px; min-height:480px; box-sizing:border-box; }
+.tl .box h3 { font-size:48px; margin:0 0 4px; font-weight:700; }
+.tl .box .when { font-size:26px; color:#935683; font-weight:600; margin:0 0 24px; }
+.tl .box li { font-size:32px; line-height:1.3; margin:0 0 20px; }
+.tl .box ul { padding-left:34px; margin:0; }
+.dgrid { display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+.dc { background:#292524; border-radius:20px; padding:44px 48px; display:flex; gap:36px; align-items:center; min-height:230px; box-sizing:border-box; }
+.dc b { flex:none; width:104px; height:104px; border-radius:50%; background:#C88ABB; color:#1c1917; font-size:60px; display:flex; align-items:center; justify-content:center; font-weight:700; }
+.dc span { font-size:44px; line-height:1.2; font-weight:500; }
+.two { display:flex; gap:40px; align-items:stretch; }
+.two .p { flex:1; border-radius:20px; padding:48px; box-sizing:border-box; }
+.two .now { background:#292524; } .two .tgt { background:#C88ABB; color:#1c1917; }
+.two h3 { font-size:30px; letter-spacing:.14em; text-transform:uppercase; margin:0 0 28px; font-weight:500; }
+.two .now h3 { color:#a89d8f; }
+.si { border-radius:14px; text-align:center; font-size:44px; font-weight:700; padding:26px; margin:0 0 20px; }
+.now .si { background:#44403c; } .tgt .si { background:#F1EEE7; }
+.pil { display:flex; gap:20px; }
+.pil div { flex:1; text-align:center; font-size:34px; padding:34px 10px; border-radius:14px; }
+.now .pil div { background:#C88ABB; color:#1c1917; } .now .pil div.x { background:transparent; border:3px dashed #6f6557; color:#a89d8f; }
+.tgt .pil div { background:#1c1917; color:#F1EEE7; } .tgt .pil div.ppl { background:#F7F3E6; color:#1c1917; }
+.bars { display:flex; align-items:flex-end; gap:48px; height:520px; }
+.bar { width:200px; background:#C88ABB; border-radius:12px 12px 0 0; text-align:center; font-size:60px; font-weight:700; padding-top:14px; box-sizing:border-box; color:#1c1917; }
+.dots { display:flex; flex-wrap:wrap; gap:14px; width:560px; }
+.dots i { width:60px; height:60px; border-radius:50%; background:#935683; }
+.dots i.ext { background:transparent; border:5px solid #935683; box-sizing:border-box; }
+.org { display:flex; flex-direction:column; align-items:center; gap:0; }
+.ob { box-sizing:border-box; border-radius:16px; padding:22px 30px; text-align:center; font-size:34px; font-weight:600; background:#F7F3E6; border:1px solid #DDD6C8; }
+.ob small { display:block; font-size:26px; font-weight:400; color:#6f6557; margin-top:4px; }
+.ob.top { background:#1c1917; color:#F1EEE7; border-color:#1c1917; } .ob.top small { color:#a89d8f; }
+.ob.us { background:#C88ABB; border-color:#C88ABB; } .ob.us small { color:#3a3530; }
+.vl { width:4px; height:36px; background:#935683; }
+.hl { height:4px; background:#935683; width:844px; }
+.cols2 { display:flex; gap:80px; align-items:flex-start; }
+.team { background:#F7F3E6; border:1px solid #DDD6C8; border-radius:16px; padding:28px 36px; width:780px; box-sizing:border-box; }
+.team h4 { font-size:28px; letter-spacing:.12em; text-transform:uppercase; color:#935683; margin:0 0 12px; font-weight:500; }
+.team p { font-size:30px; line-height:1.45; margin:0; }
+.brick { flex:1; background:#F7F3E6; border:1px solid #DDD6C8; border-radius:16px; padding:36px; box-sizing:border-box; }
+.brick svg { width:64px; height:64px; display:block; margin:0 0 18px; }
+.brick h3 { font-size:42px; margin:0 0 10px; font-weight:700; }
+.brick p { font-size:30px; line-height:1.35; margin:0 0 16px; color:#6f6557; }
+.tag { display:inline-block; font-size:24px; padding:4px 16px; border-radius:99px; background:#E8E0D0; color:#3a3530; margin:0 8px 8px 0; font-weight:500; }
+.tag.cl { background:#D9E6F2; color:#1d3f5e; }
+.steps { display:flex; align-items:stretch; gap:16px; }
+.st { flex:1; background:#F7F3E6; border:1px solid #DDD6C8; border-radius:14px; padding:44px 14px; text-align:center; font-size:30px; font-weight:600; }
+.st.last { background:#C88ABB; border-color:#C88ABB; }
+
+.cols3 { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+.fc { background:#F7F3E6; border:1px solid #DDD6C8; border-radius:16px; padding:32px 34px; height:300px; box-sizing:border-box; }
+.fc svg { width:56px; height:56px; display:block; margin:0 0 12px; }
+.fc h3 { font-size:44px; margin:0 0 8px; font-weight:700; }
+.fc p { font-size:28px; line-height:1.3; margin:0 0 10px; color:#3a3530; }
+.fc .ex { font-size:26px; color:#935683; font-weight:500; }
+.fc.dk { background:#1c1917; border-color:#1c1917; display:flex; flex-direction:column; justify-content:center; }
+.fc.dk .bg { font-size:96px; font-weight:700; color:#C88ABB; line-height:1; margin:0 0 8px; }
+.fc.dk p { color:#F1EEE7; }
+.lst { list-style:none; margin:0; padding:0; }
+.lst li { font-size:40px; line-height:1.25; margin:0 0 22px; padding-left:56px; position:relative; }
+.lst li::before { content:"✓"; position:absolute; left:0; top:0; width:40px; height:40px; border-radius:50%; background:#1c1917; color:#C88ABB; font-size:26px; font-weight:700; text-align:center; line-height:40px; top:6px; }
+.two .tgt .lst li::before { background:#1c1917; color:#F1EEE7; }
+.two .mut { color:#a89d8f; font-size:36px; line-height:1.3; margin:0; }
+.lv { display:flex; gap:20px; align-items:stretch; }
+.lv .lab { flex:none; width:250px; border-radius:14px; background:#1c1917; color:#F1EEE7; padding:20px 24px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; }
+.lv .lab b { font-size:26px; letter-spacing:.12em; text-transform:uppercase; color:#D49DC8; font-weight:500; }
+.lv .lab span { font-size:32px; font-weight:600; margin-top:4px; }
+.lv .bx { flex:1; border-radius:14px; background:#F7F3E6; border:1px solid #DDD6C8; padding:34px 12px; display:flex; align-items:center; justify-content:center; text-align:center; font-size:29px; font-weight:600; line-height:1.2; box-sizing:border-box; }
+.lv .bx small { display:block; font-size:23px; font-weight:400; color:#6f6557; margin-top:4px; }
+.lv .bx.sec { background:#C88ABB; border-color:#C88ABB; }
+.lv .bx.db { border-radius:14px 14px 40px 40px; }
+.apiw { display:flex; justify-content:center; align-items:center; height:84px; }
+.apiw i { width:4px; height:44px; background:#935683; display:block; }
+.apiw b { background:#935683; color:#F1EEE7; border-radius:99px; padding:6px 28px; font-size:28px; font-weight:600; }
+.act { background:#F7F3E6; border:1px solid #DDD6C8; border-radius:14px; padding:22px 30px; display:flex; justify-content:space-between; align-items:center; gap:20px; }
+.act span.n { font-size:34px; font-weight:600; }
+.act .tg { flex:none; text-align:right; }
+.agrid { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+</style>
+</head>
+<body>
+<div id="stage">
+<section id="cover" class="dark cover">
+<p class="eyebrow">Fondamentaux et architecture des SI · Étapes 1 à 3</p>
+<h1>CityLogistics<span>.</span></h1>
+<p class="sub">Restructurer le système d’information</p>
+</section>
+<section id="contexte">
+<p class="eyebrow">Contexte</p>
+<h2 style="margin-bottom:28px">CityLogistics<span>.</span></h2>
+<p class="lead" style="margin-bottom:44px">Startup de livraison de colis. Livreurs, véhicules électriques, petite équipe.</p>
+<div class="cols3">
+<div class="fc" style="height:260px"><p class="ex" style="margin:0 0 6px">Existence</p><h3 style="font-size:84px;margin:0">2 ans</h3></div>
+<div class="fc" style="height:260px"><p class="ex" style="margin:0 0 6px">Activité</p><h3 style="font-size:84px;margin:0">Colis</h3></div>
+<div class="fc" style="height:260px"><p class="ex" style="margin:0 0 6px">Flotte</p><h3 style="font-size:84px;margin:0">Électrique</h3></div>
+</div>
+<div style="background:#1c1917;color:#F1EEE7;border-radius:16px;padding:34px 44px;margin-top:36px;font-size:40px;line-height:1.25"><b style="color:#D49DC8">Mission :</b> découper le SI en flux, choisir une architecture, maîtriser les risques.</div>
+</section>
+<section id="flux">
+<p class="eyebrow">Étape 1 · Les flux</p>
+<h2 style="margin-bottom:36px">Cinq flux interconnectés<span>.</span></h2>
+<div class="cols3">
+<div class="fc"><svg viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l12-5 14 5 12-5v28l-12 5-14-5-12 5z"/><path d="M17 7v28M31 12v28"/></svg><h3>SIG</h3><p>Tournées optimisées par GPS</p><p class="ex">John est à 12 km de sa livraison</p></div>
+<div class="fc"><svg viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="17" cy="16" r="6"/><circle cx="34" cy="18" r="5"/><path d="M5 40c0-8 5-12 12-12s12 4 12 12M30 29c7-1 13 3 13 11"/></svg><h3>SIRH</h3><p>Paie et contrats des livreurs</p><p class="ex">John : 8h-18h, 15 colis livrés</p></div>
+<div class="fc"><svg viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="5" width="30" height="38" rx="4"/><path d="M15 13h18M15 22h4M24 22h4M15 30h4M24 30h4M15 37h4M24 37h4"/></svg><h3>SI de Gestion</h3><p>Factures clients, stock de colis</p><p class="ex">John commande 12 colis : stock mis à jour</p></div>
+<div class="fc"><svg viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M32 6a10 10 0 0 0-9 13L6 36l6 6 17-17a10 10 0 0 0 13-9l-6 6-5-1-1-5z"/></svg><h3>GMAO</h3><p>Maintenance des véhicules électriques</p><p class="ex">Entretien tous les 15 000 km</p></div>
+<div class="fc"><svg viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 14l18-8 18 8v20l-18 8-18-8z"/><path d="M6 14l18 8 18-8M24 22v20"/></svg><h3>GPAO</h3><p>Tri et étiquetage des colis sur les quais</p><p class="ex">Retenue : avant le départ des livreurs</p></div>
+<div class="fc dk"><p class="bg">5</p><p>flux reliés entre eux</p></div>
+</div>
+</section>
+<section id="monolithe">
+<p class="eyebrow">Étape 2 · Choix d’architecture</p>
+<h2 style="margin-bottom:40px">Un monolithe à 3 niveaux<span>.</span></h2>
+<div class="two">
+<div class="p tgt" style="flex:1.3"><h3>Monolithe · choisi</h3>
+<ul class="lst"><li>Petite équipe</li><li>Un seul déploiement</li><li>Coût réduit</li><li>Évolutif dans le temps</li></ul></div>
+<div class="p now"><h3>Microservices · plus tard</h3><p class="mut">Modèle à privilégier à long terme, mais trop lourd pour une startup de 2 ans.</p></div>
+</div>
+<div style="background:#1c1917;color:#F1EEE7;border-radius:16px;padding:30px 44px;margin-top:32px;font-size:40px"><b style="color:#D49DC8">Réaliste ?</b> Oui, et il pourra évoluer si la charge augmente.</div>
+</section>
+<section id="archi">
+<p class="eyebrow">Étape 2 · Architecture</p>
+<h2 style="margin-bottom:26px">Les trois niveaux<span>.</span></h2>
+<div class="lv"><div class="lab"><b>Niveau 1</b><span>Front-end</span></div><div class="bx"><div>App livreur<small>mobile</small></div></div><div class="bx"><div>Portail RH<small>web</small></div></div><div class="bx"><div>Portail B2B<small>web</small></div></div><div class="bx"><div>Portail livreur<small>web</small></div></div></div>
+<div class="apiw"><b>↓ &nbsp;API unique · REST / JSON&nbsp; ↓</b></div>
+<div class="lv"><div class="lab"><b>Niveau 2</b><span>Back-end · Nginx</span></div><div class="bx"><div>Tournées</div></div><div class="bx"><div>GPS<small>asynchrone</small></div></div><div class="bx"><div>Facturation<small>stock</small></div></div><div class="bx"><div>RH / paie</div></div><div class="bx"><div>GMAO</div></div><div class="bx sec"><div>Sécurité<small>droits par rôle</small></div></div></div>
+<div class="apiw"><b style="background:#6f6557">↓ &nbsp;Lecture / écriture&nbsp; ↓</b></div>
+<div class="lv"><div class="lab"><b>Niveau 3</b><span>Données</span></div><div class="bx db"><div>PostgreSQL<small>factures, paie</small></div></div><div class="bx db"><div>PostGIS<small>positions GPS</small></div></div><div class="bx db"><div>Stockage cloud<small>photos, signatures</small></div></div><div class="bx db"><div>Stripe<small>paiements</small></div></div><div class="bx db"><div>Veeam<small>sauvegardes</small></div></div></div>
+</section>
+<section id="gps">
+<p class="eyebrow">Étape 2 · Données GPS</p>
+<h2 style="margin-bottom:44px">Traitement asynchrone<span>.</span></h2>
+<div class="flow">
+<div class="node"><p class="t">Livreur</p><p class="v">Envoie sa position</p></div><svg class="arr" style="width:44px;height:44px" viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 24h30M26 12l12 12-12 12"/></svg>
+<div class="node main"><p class="t">File de messages</p><p class="v">Absorbe le flux</p></div><svg class="arr" style="width:44px;height:44px" viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 24h30M26 12l12 12-12 12"/></svg>
+<div class="node"><p class="t">Module GPS</p><p class="v">Traite à son rythme</p></div><svg class="arr" style="width:44px;height:44px" viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 24h30M26 12l12 12-12 12"/></svg>
+<div class="node"><p class="t">PostGIS</p><p class="v">Stocke les positions</p></div>
+</div>
+<div style="background:#C88ABB;color:#1c1917;border-radius:16px;padding:30px 44px;margin-top:20px;font-size:40px;line-height:1.25"><b>Pourquoi :</b> dans un monolithe, un flux massif de positions ne doit pas ralentir l’application.</div>
+</section>
+<section id="sirh">
+<p class="eyebrow">Étape 2 · Échanges entre flux</p>
+<h2 style="margin-bottom:30px">SIRH ↔ SI de Gestion<span>.</span></h2>
+<svg viewBox="0 0 1664 600" style="width:100%;height:auto;display:block">
+<g font-family="Outfit,Arial,sans-serif" font-size="30">
+<rect x="130" y="0" width="420" height="80" rx="14" fill="#1c1917"/><text x="340" y="52" text-anchor="middle" fill="#F1EEE7" font-weight="700" font-size="34">SI de Gestion</text>
+<rect x="1114" y="0" width="420" height="80" rx="14" fill="#C88ABB"/><text x="1324" y="52" text-anchor="middle" fill="#1c1917" font-weight="700" font-size="34">SIRH</text>
+<line x1="340" y1="80" x2="340" y2="590" stroke="#DDD6C8" stroke-width="4" stroke-dasharray="10 8"/>
+<line x1="1324" y1="80" x2="1324" y2="590" stroke="#DDD6C8" stroke-width="4" stroke-dasharray="10 8"/>
+<defs><marker id="ah" markerUnits="userSpaceOnUse" markerWidth="22" markerHeight="22" refX="20" refY="11" orient="auto"><path d="M3 3L20 11L3 19" fill="none" stroke="#935683" stroke-width="3.5"/></marker></defs>
+<text x="832" y="150" text-anchor="middle" fill="#3a3530" font-weight="600">1 · Colis livrés par livreur (fin de mois)</text>
+<line x1="344" y1="170" x2="1316" y2="170" stroke="#935683" stroke-width="4" marker-end="url(#ah)"/>
+<path d="M1328 236h80v70h-76" fill="none" stroke="#935683" stroke-width="4" marker-end="url(#ah)"/>
+<text x="1290" y="262" text-anchor="end" fill="#3a3530" font-weight="600">2 · Calcul de la paie</text>
+<text x="1290" y="304" text-anchor="end" fill="#6f6557" font-size="26">heures + colis</text>
+<text x="832" y="390" text-anchor="middle" fill="#3a3530" font-weight="600">3 · Salaires, primes, charges</text>
+<line x1="1320" y1="410" x2="348" y2="410" stroke="#935683" stroke-width="4" marker-end="url(#ah)"/>
+<path d="M336 476h-80v70h76" fill="none" stroke="#935683" stroke-width="4" marker-end="url(#ah)"/>
+<text x="380" y="520" fill="#3a3530" font-weight="600">4 · Écritures comptables</text>
+</g></svg>
+<p class="note" style="margin-top:8px">Échanges par API REST.</p>
+</section>
+<section id="risques">
+<p class="eyebrow">Étape 3 · Risques</p>
+<h2 style="margin-bottom:40px">Trois risques majeurs<span>.</span></h2>
+<div class="cols3" style="gap:28px"><div class="rc h"><span class="n">1</span><svg viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4l16 6v12c0 11-7 18-16 22C15 40 8 33 8 22V10z"/><path d="M16 24l6 6 11-12"/></svg><h3>Fuite des adresses clients</h3><span class="pill h">Élevée</span></div><div class="rc h"><span class="n">2</span><svg viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6L4 42h40z"/><path d="M24 19v10M24 35v1"/></svg><h3>Application de suivi indisponible</h3><span class="pill h">Élevée</span></div><div class="rc m"><span class="n">3</span><svg viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="5" width="30" height="38" rx="4"/><path d="M15 13h18M15 22h4M24 22h4M15 30h4M24 30h4M15 37h4M24 37h4"/></svg><h3>Perte des données de paie</h3><span class="pill m">Moyenne</span></div></div>
+<p class="note" style="margin-top:36px">Criticité : probabilité × impact.</p>
+</section>
+<section id="r1">
+<p class="eyebrow">Risque 1 · SIG</p>
+<div class="head"><div class="ico"><svg viewBox="0 0 48 48" fill="none" stroke="#D49DC8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4l16 6v12c0 11-7 18-16 22C15 40 8 33 8 22V10z"/><path d="M16 24l6 6 11-12"/></svg></div><h2 class="s">Fuite des adresses clients<span>.</span></h2></div>
+<div class="flow">
+<div class="node"><p class="t">Scénario</p><p class="v">Téléphone du livreur volé ou perdu, compte piraté</p></div><svg class="arr" viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 24h30M26 12l12 12-12 12"/></svg>
+<div class="node main"><p class="t">Risque</p><p class="v">Adresses clients exposées</p></div><svg class="arr" viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 24h30M26 12l12 12-12 12"/></svg>
+<div class="node"><p class="t">Impact</p><p class="v">Amende RGPD, perte de confiance</p></div>
+</div>
+<p class="note" style="margin:0 0 14px">Mesures de contrôle</p>
+<div class="pair"><div class="chip ok"><i>✓</i><span>Chiffrement AES-256</span></div><div class="chip ok"><i>✓</i><span>Droits par compte : le livreur ne voit que ses tournées</span></div></div>
+<div class="reco"><svg viewBox="0 0 48 48" fill="none" stroke="#1c1917" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6L4 42h40z"/><path d="M24 19v10M24 35v1"/></svg><div><p class="t">Criticité</p><p class="v">Élevée</p></div></div>
+</section>
+<section id="r2">
+<p class="eyebrow">Risque 2 · SLA</p>
+<div class="head"><div class="ico"><svg viewBox="0 0 48 48" fill="none" stroke="#D49DC8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6L4 42h40z"/><path d="M24 19v10M24 35v1"/></svg></div><h2 class="s">Application de suivi indisponible<span>.</span></h2></div>
+<div class="flow">
+<div class="node"><p class="t">Scénario</p><p class="v">Pic de commandes au Black Friday, l’app plante</p></div><svg class="arr" viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 24h30M26 12l12 12-12 12"/></svg>
+<div class="node main"><p class="t">Risque</p><p class="v">Service de suivi à l’arrêt</p></div><svg class="arr" viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 24h30M26 12l12 12-12 12"/></svg>
+<div class="node"><p class="t">Impact</p><p class="v">Livraisons bloquées, retards, pénalités</p></div>
+</div>
+<p class="note" style="margin:0 0 14px">Mesures de contrôle</p>
+<div class="pair"><div class="chip ok"><i>✓</i><span>Serveur de secours, supervision et alertes</span></div><div class="chip ok"><i>✓</i><span>Mode dégradé : app livreur disponible hors ligne</span></div></div>
+<div class="reco"><svg viewBox="0 0 48 48" fill="none" stroke="#1c1917" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6L4 42h40z"/><path d="M24 19v10M24 35v1"/></svg><div><p class="t">Criticité</p><p class="v">Élevée</p></div></div>
+</section>
+<section id="r3">
+<p class="eyebrow">Risque 3 · SIRH</p>
+<div class="head"><div class="ico"><svg viewBox="0 0 48 48" fill="none" stroke="#D49DC8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="5" width="30" height="38" rx="4"/><path d="M15 13h18M15 22h4M24 22h4M15 30h4M24 30h4M15 37h4M24 37h4"/></svg></div><h2 class="s">Perte des données de paie<span>.</span></h2></div>
+<div class="flow">
+<div class="node"><p class="t">Scénario</p><p class="v">Ransomware ou suppression humaine</p></div><svg class="arr" viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 24h30M26 12l12 12-12 12"/></svg>
+<div class="node main"><p class="t">Risque</p><p class="v">Données de paie perdues</p></div><svg class="arr" viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 24h30M26 12l12 12-12 12"/></svg>
+<div class="node"><p class="t">Impact</p><p class="v">Impossible de payer les employés</p></div>
+</div>
+<p class="note" style="margin:0 0 14px">Mesures de contrôle</p>
+<div class="pair"><div class="chip ok"><i>✓</i><span>Sauvegarde automatique (Veeam)</span></div></div>
+<div class="reco"><svg viewBox="0 0 48 48" fill="none" stroke="#1c1917" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6L4 42h40z"/><path d="M24 19v10M24 35v1"/></svg><div><p class="t">Criticité</p><p class="v">Moyenne : rare, mais impact majeur</p></div></div>
+</section>
+<section id="itil">
+<p class="eyebrow">Étape 3 · Gestion d’incident (ITIL)</p>
+<h2 class="s" style="margin-bottom:34px">Serveur de facturation inaccessible<span>.</span></h2>
+<div class="flow">
+<div class="node"><p class="t">Niveau 1 · Helpdesk</p><p class="v">Ticket : qui est touché, depuis quand</p></div><svg class="arr" viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 24h30M26 12l12 12-12 12"/></svg>
+<div class="node"><p class="t">Niveau 2 · Support</p><p class="v">Logs, état des services, redémarrage</p></div><svg class="arr" viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 24h30M26 12l12 12-12 12"/></svg>
+<div class="node main"><p class="t">Niveau 3 · Développeur</p><p class="v">Serveur de secours ou restauration</p></div>
+</div>
+<div class="pair"><div class="chip ok"><i>✓</i><span>Mode dégradé : commandes en attente, factures envoyées après rétablissement</span></div></div>
+<div class="reco"><svg viewBox="0 0 48 48" fill="none" stroke="#1c1917" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M38 18a15 15 0 0 0-27-4M10 30a15 15 0 0 0 27 4"/><path d="M38 6v12H26M10 42V30h12"/></svg><div><p class="t">Ensuite</p><p class="v">Analyse de cause racine pour éviter la répétition</p></div></div>
+</section>
+<section id="actions">
+<p class="eyebrow">Étape 3 · Synthèse</p>
+<h2 style="margin-bottom:34px">Actions, risques, normes<span>.</span></h2>
+<div class="agrid"><div class="act"><span class="n">Chiffrement AES-256</span><span class="tg"><span class="tag">R1</span><span class="tag">ISO 27001</span></span></div><div class="act"><span class="n">MFA + droits par rôle</span><span class="tg"><span class="tag">R1, R3</span><span class="tag">ISO 27001</span></span></div><div class="act"><span class="n">Serveur de secours + supervision</span><span class="tg"><span class="tag">R2</span><span class="tag">ISO 27001</span></span></div><div class="act"><span class="n">Mode dégradé (PCA)</span><span class="tg"><span class="tag">R2</span><span class="tag cl">ITIL</span></span></div><div class="act"><span class="n">Backup automatique</span><span class="tg"><span class="tag">R3, incident</span><span class="tag">ISO 27001</span></span></div><div class="act"><span class="n">Procédure N1 / N2 / N3</span><span class="tg"><span class="tag">Incident</span><span class="tag cl">ITIL</span></span></div><div class="act"><span class="n">Analyse de cause racine</span><span class="tg"><span class="tag">Incident</span><span class="tag cl">ITIL</span></span></div><div class="act" style="background:transparent;border-style:dashed"><span class="n" style="font-size:28px;color:#6f6557;font-weight:400"><span class="tag">ISO 27001</span> sécurité · <span class="tag cl">ITIL</span> exploitation</span></div></div>
+</section>
+<section id="synthese">
+<p class="eyebrow">Synthèse globale</p>
+<h2 style="margin-bottom:36px">En résumé<span>.</span></h2>
+<div class="cols3">
+<div class="fc" style="height:280px"><h3>5 flux</h3><p>SIG, SIRH, SI de Gestion, GMAO, GPAO</p></div>
+<div class="fc" style="height:280px"><h3>Monolithe</h3><p>3 niveaux, Nginx, API REST unique, PostgreSQL + PostGIS</p></div>
+<div class="fc" style="height:280px"><h3>ISO 27001 + ITIL</h3><p>Chiffrement, double facteur, sauvegardes, N1 / N2 / N3</p></div>
+</div>
+<p class="note" style="margin:36px 0 16px">Évolution prévue</p>
+<div class="steps"><div class="st">Aujourd’hui · monolithe</div><svg class="arr" style="width:44px;height:44px;align-self:center" viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 24h30M26 12l12 12-12 12"/></svg><div class="st">Croissance, charge qui monte</div><svg class="arr" style="width:44px;height:44px;align-self:center" viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 24h30M26 12l12 12-12 12"/></svg><div class="st last">Demain · microservices</div></div>
+</section>
+<section id="fin" class="dark cover">
+<h1>Merci<span>.</span></h1>
+<p class="sub">Questions ?</p>
+</section>
+</div>
+<div id="bar"></div>
+<nav id="nav" aria-label="Navigation"><button id="prev" type="button" aria-label="Slide précédente">&#8592;</button><button id="next" type="button" aria-label="Slide suivante">&#8594;</button></nav>
+<script src="si-citylogistics.js?v=d4c3eeb658"></script>
+</body>
+</html>
