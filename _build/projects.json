@@ -238,7 +238,7 @@
     "releases": false,
     "chips": ["React", "TypeScript", "Vite", "Canvas"],
     "links": [
-      { "href": "https://swaks.org/lion-meme/", "label": { "en": "Make a meme", "fr": "Créer un meme" }, "primary": true },
+      { "href": { "en": "https://swaks.org/lion-meme/en/", "fr": "https://swaks.org/lion-meme/" }, "label": { "en": "Make a meme", "fr": "Créer un meme" }, "primary": true },
       { "href": "https://github.com/Swaksm/tucroisquetesunlion", "label": { "en": "GitHub", "fr": "GitHub" } }
     ],
     "shots": [

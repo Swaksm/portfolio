@@ -213,5 +213,15 @@
   <url>
     <loc>https://swaks.org/lion-meme/</loc>
     <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://swaks.org/lion-meme/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/lion-meme/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/lion-meme/" />
+  </url>
+  <url>
+    <loc>https://swaks.org/lion-meme/en/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://swaks.org/lion-meme/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://swaks.org/lion-meme/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://swaks.org/lion-meme/" />
   </url>
 </urlset>

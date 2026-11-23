@@ -220,6 +220,8 @@ def project_page(p: dict, lang: str, nxt: dict, home_page: str, head_snippet: st
         return f' data-umami-event="{ev}" data-umami-event-project="{slug}"'
     def link(l):
         cls = 'btn primary' if l.get('primary') else 'btn'
+        if isinstance(l['href'], dict):  # adresse différente par langue (ex. Lion Meme : /lion-meme/en/ et /lion-meme/)
+            l = {**l, 'href': l['href'][lang]}
         if l['href'].startswith('/'):  # page du site : même onglet, dans la langue de la page
             href = l['href'] if lang == 'en' else fr_url(l['href'])
             return f'<a class="{cls}" href="{attr(href)}"{event(href)}>{text(l["label"][lang])} →</a>'
@@ -665,12 +667,14 @@ def build_sitemap(projects: list, guides: list) -> None:
                        for h, u in (('en', en), ('fr', fr_url(en)), ('x-default', en)))
         for u in (en, fr_url(en)):
             urls.append(f'  <url>\n    <loc>{SITE}{u}</loc>\n    <lastmod>{TODAY.isoformat()}</lastmod>{alts}\n  </url>')
+    # Générateur Lion Meme, FR (/lion-meme/) et EN (/lion-meme/en/) ; sources : dépôt tucroisquetesunlion
+    lion = (('fr', '/lion-meme/'), ('en', '/lion-meme/en/'), ('x-default', '/lion-meme/'))
+    alts = ''.join(f'\n    <xhtml:link rel="alternate" hreflang="{h}" href="{SITE}{u}" />' for h, u in lion)
+    for _, u in lion[:2]:
+        urls.append(f'  <url>\n    <loc>{SITE}{u}</loc>\n    <lastmod>{TODAY.isoformat()}</lastmod>{alts}\n  </url>')
     write(ROOT / 'sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n'
           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
-          + '\n'.join(urls) + '\n'
-          # Générateur Lion Meme (appli en français seulement, sources : dépôt tucroisquetesunlion)
-          f'  <url>\n    <loc>{SITE}/lion-meme/</loc>\n    <lastmod>{TODAY.isoformat()}</lastmod>\n  </url>\n'
-          '</urlset>\n')
+          + '\n'.join(urls) + '\n</urlset>\n')
 
 
 # ---------------------------------------------------------------------------
