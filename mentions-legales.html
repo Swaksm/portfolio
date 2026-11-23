@@ -20,6 +20,18 @@
       // Retour vers l'accueil dans la bonne langue
       document.addEventListener('DOMContentLoaded', function () {
         if (lang === 'fr') document.querySelectorAll('a.back').forEach(function (b) { b.href = '/fr/'; });
+        // Refus de la mesure d'audience : Umami n'envoie rien quand « umami.disabled » existe dans ce navigateur
+        const KEY = 'umami.disabled';
+        const buttons = document.querySelectorAll('button.optout');
+        const off = function () { try { return !!localStorage.getItem(KEY); } catch (e) { return false; } };
+        const render = function () { buttons.forEach(function (b) { b.textContent = off() ? b.dataset.on : b.dataset.off; }); };
+        buttons.forEach(function (b) {
+          b.addEventListener('click', function () {
+            try { if (off()) localStorage.removeItem(KEY); else localStorage.setItem(KEY, '1'); } catch (e) {}
+            render();
+          });
+        });
+        render();
       });
     })();
   </script>
@@ -48,7 +60,7 @@
     strong { color: var(--text); font-weight: 400; }
     @media (pointer: fine) {
       html { cursor: url(/assets/cursor.svg) 6 6, auto; }
-      a[href] { cursor: url(/assets/cursor-hover.svg) 14 14, pointer; }
+      a[href], .optout { cursor: url(/assets/cursor-hover.svg) 14 14, pointer; }
     }
     a { color: var(--mauve-text); text-decoration: none; }
     a:hover { text-decoration: underline; }
@@ -57,6 +69,8 @@
       text-transform: uppercase; color: var(--taupe-text);
     }
     .back:hover { color: var(--mauve); text-decoration: none; }
+    .optout { display: block; margin-top: 0.3rem; font: inherit; color: var(--mauve-text); background: none; border: 0; padding: 0; text-align: left; cursor: pointer; }
+    .optout:hover, .optout:focus-visible { text-decoration: underline; }
     html:not([lang="fr"]) [lang="fr"], html[lang="fr"] [lang="en"] { display: none; }
   </style>
 </head>
@@ -75,8 +89,9 @@
       <h2>Données personnelles</h2>
       <ul>
         <li><strong>Formulaire de contact</strong> — le nom, l'email et le message sont transmis via Formspree (Formspree, Inc., États-Unis) et servent uniquement à répondre. Ils ne sont ni revendus ni réutilisés.</li>
-        <li><strong>Statistiques</strong> — mesure d'audience avec Umami, sans cookie et sans donnée personnelle.</li>
-        <li><strong>Préférences</strong> — la langue, le thème et le meilleur score du mini-jeu sont enregistrés uniquement dans votre navigateur. Rien n'est envoyé.</li>
+        <li><strong>Statistiques</strong> — mesure d'audience avec Umami, sans cookie, données anonymisées : votre adresse IP n'est pas conservée et vous n'êtes pas suivi d'un site à l'autre.
+          <button class="optout" type="button" data-off="Ne pas me compter dans les statistiques" data-on="Vous n'êtes plus compté dans les statistiques sur ce navigateur. Me compter à nouveau">Ne pas me compter dans les statistiques</button></li>
+        <li><strong>Préférences</strong> — la langue, le thème, le refus des statistiques et le meilleur score du mini-jeu sont enregistrés uniquement dans votre navigateur. Rien n'est envoyé.</li>
         <li><strong>Polices</strong> — hébergées sur ce site, aucun appel à un service tiers.</li>
       </ul>
       <p>Pour toute demande d'accès ou de suppression : <a href="mailto:swks.pro@gmail.com">swks.pro@gmail.com</a></p>
@@ -100,8 +115,9 @@
       <h2>Personal data</h2>
       <ul>
         <li><strong>Contact form</strong> — your name, email and message are sent through Formspree (Formspree, Inc., USA) and only used to reply. They are never sold or reused.</li>
-        <li><strong>Analytics</strong> — audience measurement with Umami, without cookies or personal data.</li>
-        <li><strong>Preferences</strong> — language, theme and the mini-game best score are stored only in your browser. Nothing is sent.</li>
+        <li><strong>Analytics</strong> — audience measurement with Umami, without cookies, anonymised data: your IP address is not stored and you are not tracked across sites.
+          <button class="optout" type="button" data-off="Don't count me in the statistics" data-on="You are no longer counted in the statistics on this browser. Count me again">Don't count me in the statistics</button></li>
+        <li><strong>Preferences</strong> — language, theme, analytics opt-out and the mini-game best score are stored only in your browser. Nothing is sent.</li>
         <li><strong>Fonts</strong> — hosted on this site, no third-party request.</li>
       </ul>
       <p>For any access or deletion request: <a href="mailto:swks.pro@gmail.com">swks.pro@gmail.com</a></p>
