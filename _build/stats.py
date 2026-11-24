@@ -56,9 +56,14 @@ def main() -> None:
     try:
         stars = star_dates()
     except RuntimeError as e:
-        # Les étoiles ne doivent pas faire perdre l'instantané des téléchargements du jour (perdu pour de bon sinon)
-        print('Étoiles non lues, dernières connues gardées :', e, file=sys.stderr)
-        stars = data.get('star_dates', [])
+        # Le jeton de l'Action ne peut pas lister les étoiles d'un autre dépôt (HTTP 403), mais lit leur nombre.
+        # shortcut: une nouvelle étoile est datée du jour du relevé (au jour près, la date exacte demande un jeton personnel)
+        print('Liste des étoiles illisible, nombre lu sur le dépôt :', e, file=sys.stderr)
+        stars = sorted(data.get('star_dates', []))
+        count = json.loads(subprocess.run(['gh', 'api', f'repos/{REPO}'], check=True, capture_output=True,
+                                          text=True, encoding='utf-8').stdout)['stargazers_count']
+        now = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+        stars = stars[:count] + [now] * (count - len(stars))  # étoiles retirées : on enlève les plus récentes
     data['days'] = [d for d in data['days'] if d['date'] != day]
     data['days'].append({'date': day, 'total': sum(versions.values()), 'stars': len(stars), 'versions': versions})
     data['launch'] = min(v['date'] for v in info.values())
