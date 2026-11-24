@@ -443,6 +443,12 @@ def install_page(data: dict, lang: str, home_page: str, head_snippet: str, ui_di
     github = text(c['feedback_github']).replace('{bug}', gh('bug.yml', 'feedback_github_bug')).replace('{idea}', gh('idea.yml', 'feedback_github_idea'))
     types = ''.join(f'\n          <label><input type="radio" name="type" value="{attr(x)}"{" checked" if n == 0 else ""} /><span>{text(x)}</span></label>'
                     for n, x in enumerate(c['feedback_types']))
+    # Autres captures : celles de la page projet (projects.json), sauf celle déjà en tête de page
+    shots = [s for s in next(p for p in json.loads(read(BUILD / 'projects.json')) if p['slug'] == 'kleaner')['shots']
+             if s['src'] != shot['src']]
+    size = lambda n: 'hero' if len(shots) % 2 and n == len(shots) - 1 else 'half'  # impair : la dernière en pleine largeur
+    gallery = '\n      '.join(f'<img src="{s["src"]}"{srcset(s["src"], size(n))} alt="{attr(s["alt"][lang])}" width="1280" height="800" loading="lazy" decoding="async" data-tilt />'
+                               for n, s in enumerate(shots))
     main = f'''<main class="install" data-releases="{data['repo']}">
     <section class="i-hero" style="--i:0">
       <span class="i-logo" aria-hidden="true"></span>
@@ -457,6 +463,10 @@ def install_page(data: dict, lang: str, home_page: str, head_snippet: str, ui_di
 
     <section class="i-points" style="--i:2">{points}
     </section>
+
+    <div class="gallery" style="--i:2">
+      {gallery}
+    </div>
 
     <section class="i-cleans" style="--i:3">
       <h2>{text(c['cleans_h'])}</h2>
@@ -535,10 +545,16 @@ def install_page(data: dict, lang: str, home_page: str, head_snippet: str, ui_di
     </section>
   </main>'''
     url = SITE + (en_path if lang == 'en' else fr_url(en_path))
+    # Dernière version stable, lue dans l'instantané quotidien des releases (data/, mis à jour par stats.yml qui relance ce build)
+    rels = json.loads(read(ROOT / 'data' / 'kleaner-downloads.json'))['releases']
+    tag, latest = max(((t, r) for t, r in rels.items() if not r['pre']), key=lambda x: x[1]['date'])
     # Logiciel + questions fréquentes : Google peut afficher les questions directement dans ses résultats
     schema = {'@context': 'https://schema.org', '@graph': [
         {'@type': 'SoftwareApplication', 'name': 'Kleaner', 'description': c['description'], 'url': url,
          'applicationCategory': 'UtilitiesApplication', 'operatingSystem': 'Windows 10, Windows 11',
+         'softwareVersion': tag.lstrip('v'), 'dateModified': latest['date'][:10],
+         'softwareRequirements': 'Windows 10 or 11, 64-bit', 'license': 'https://opensource.org/licenses/MIT',
+         'screenshot': [SITE + shot['src']] + [SITE + s['src'] for s in shots],
          'keywords': ', '.join(data['keywords'][lang]), 'image': SITE + shot['src'],
          'downloadUrl': rel, 'inLanguage': lang, 'isAccessibleForFree': True,
          'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': 'EUR'},

@@ -275,6 +275,331 @@
           { "q": "Pourquoi Windows m'avertit quand je lance Kleaner ?", "a": "L'exe n'est pas encore signé avec un certificat payant, donc SmartScreen affiche « Windows a protégé votre ordinateur ». Cliquez sur Informations complémentaires puis Exécuter quand même. Le code est public et l'exe en est compilé par GitHub Actions ; son empreinte SHA-256 permet de vérifier que vous avez bien cette version." }
         ]
       }
+    },
+    {
+      "slug": "delete-windows-old",
+      "en": {
+        "title": "How to delete Windows.old safely",
+        "description": "Windows.old can take tens of gigabytes after an update. What it is, when you can delete it, and the right way to do it, since deleting it by hand fails.",
+        "h1": "How to delete Windows.old safely",
+        "lead": "After a major Windows update, a Windows.old folder appears at the root of C: and can weigh tens of gigabytes. You can delete it, but not by hand, and not if you might want to roll back.",
+        "sections": [
+          {
+            "h": "What Windows.old is",
+            "p": [
+              "`C:\\Windows.old` holds your previous version of Windows: its system files, programs and settings. Windows keeps it so you can go back to that version if the update causes trouble (Settings › System › Recovery › Go back).",
+              "It often comes with `$WINDOWS.~BT` and `$WINDOWS.~WS`, hidden folders used by the update itself."
+            ]
+          },
+          {
+            "h": "Can you delete it?",
+            "ul": [
+              "Yes, if the update went well and you do not want to go back to the previous version.",
+              "No, if you are still testing the new version or something does not work yet: once Windows.old is gone, rolling back is impossible.",
+              "Windows deletes it by itself after about 10 days, the length of the rollback period. Deleting it earlier only frees the space sooner."
+            ]
+          },
+          {
+            "h": "Why deleting it by hand fails",
+            "p": [
+              "Its files belong to TrustedInstaller, the Windows account that protects system files. Explorer refuses, or deletes part of it and stops. Do not take ownership of the folder to force it: going through Windows' own tools is simpler and safe."
+            ]
+          },
+          {
+            "h": "The right way",
+            "ul": [
+              "Settings › System › Storage › Temporary files, tick « Previous Windows installation(s) », then Remove files.",
+              "Or Disk Cleanup (`cleanmgr`), « Clean up system files » button, then « Previous Windows installation(s) ».",
+              "Both also handle `$WINDOWS.~BT` and `$WINDOWS.~WS`."
+            ]
+          }
+        ],
+        "cta": "Kleaner shows how much Windows.old takes, tells you what you lose by deleting it (the rollback), and removes it along with $WINDOWS.~BT and $WINDOWS.~WS after creating a restore point. Free, open source.",
+        "faq": [
+          {
+            "q": "Is it safe to delete Windows.old?",
+            "a": "Yes, as long as you do not want to go back to the previous version of Windows. Your current Windows, programs and files are not affected."
+          },
+          {
+            "q": "How long does Windows keep Windows.old?",
+            "a": "About 10 days after a major update, the rollback period. After that, Windows deletes it on its own."
+          },
+          {
+            "q": "Why can't I delete Windows.old?",
+            "a": "Its files belong to TrustedInstaller, which protects system files. Use Settings › Storage › Temporary files or Disk Cleanup instead of Explorer."
+          }
+        ]
+      },
+      "fr": {
+        "title": "Supprimer Windows.old sans risque",
+        "description": "Windows.old peut occuper des dizaines de gigaoctets après une mise à jour. Ce que c'est, quand le supprimer, et la bonne méthode, car à la main ça échoue.",
+        "h1": "Supprimer Windows.old sans risque",
+        "lead": "Après une grosse mise à jour de Windows, un dossier Windows.old apparaît à la racine de C: et peut peser des dizaines de gigaoctets. On peut le supprimer, mais pas à la main, et pas si l'on risque de vouloir revenir en arrière.",
+        "sections": [
+          {
+            "h": "Ce qu'est Windows.old",
+            "p": [
+              "`C:\\Windows.old` contient votre ancienne version de Windows : fichiers système, programmes et réglages. Windows le garde pour pouvoir revenir à cette version si la mise à jour pose problème (Paramètres › Système › Récupération › Revenir en arrière).",
+              "Il est souvent accompagné de `$WINDOWS.~BT` et `$WINDOWS.~WS`, des dossiers cachés utilisés par la mise à jour elle-même."
+            ]
+          },
+          {
+            "h": "Peut-on le supprimer ?",
+            "ul": [
+              "Oui, si la mise à jour s'est bien passée et que vous ne voulez pas revenir à la version précédente.",
+              "Non, si vous testez encore la nouvelle version ou si quelque chose ne marche pas : une fois Windows.old supprimé, impossible de revenir en arrière.",
+              "Windows le supprime de lui-même au bout d'environ 10 jours, la durée de la période de retour. Le supprimer avant libère seulement la place plus tôt."
+            ]
+          },
+          {
+            "h": "Pourquoi la suppression à la main échoue",
+            "p": [
+              "Ses fichiers appartiennent à TrustedInstaller, le compte de Windows qui protège les fichiers système. L'Explorateur refuse, ou en supprime une partie puis s'arrête. Ne vous appropriez pas le dossier pour forcer : passer par les outils de Windows est plus simple et sans risque."
+            ]
+          },
+          {
+            "h": "La bonne méthode",
+            "ul": [
+              "Paramètres › Système › Stockage › Fichiers temporaires, cochez « Installation(s) précédente(s) de Windows », puis Supprimer les fichiers.",
+              "Ou le Nettoyage de disque (`cleanmgr`), bouton « Nettoyer les fichiers système », puis « Installation(s) précédente(s) de Windows ».",
+              "Les deux s'occupent aussi de `$WINDOWS.~BT` et `$WINDOWS.~WS`."
+            ]
+          }
+        ],
+        "cta": "Kleaner affiche la place prise par Windows.old, dit ce que vous perdez en le supprimant (le retour en arrière), et le supprime avec $WINDOWS.~BT et $WINDOWS.~WS après avoir créé un point de restauration. Gratuit, open source.",
+        "faq": [
+          {
+            "q": "Peut-on supprimer Windows.old sans risque ?",
+            "a": "Oui, tant que vous ne voulez pas revenir à la version précédente de Windows. Votre Windows actuel, vos programmes et vos fichiers ne sont pas touchés."
+          },
+          {
+            "q": "Combien de temps Windows garde-t-il Windows.old ?",
+            "a": "Environ 10 jours après une grosse mise à jour, la durée pendant laquelle on peut revenir en arrière. Ensuite, Windows le supprime tout seul."
+          },
+          {
+            "q": "Pourquoi je n'arrive pas à supprimer Windows.old ?",
+            "a": "Ses fichiers appartiennent à TrustedInstaller, qui protège les fichiers système. Passez par Paramètres › Stockage › Fichiers temporaires ou par le Nettoyage de disque plutôt que par l'Explorateur."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "hiberfil-sys",
+      "en": {
+        "title": "hiberfil.sys: what it is, how to remove it",
+        "description": "hiberfil.sys is the hibernation file at the root of C:, often several gigabytes. What it does, what you lose by removing it, and the one command to use.",
+        "h1": "hiberfil.sys: what it is and how to remove it",
+        "lead": "At the root of C: there is a hidden hiberfil.sys file, often several gigabytes. It is the hibernation file. You can remove it with one command, but you lose hibernation and fast startup.",
+        "sections": [
+          {
+            "h": "What hiberfil.sys is for",
+            "p": [
+              "When the PC hibernates, Windows writes the content of the memory (RAM) to `C:\\hiberfil.sys`, turns off, and reads it back on start-up to resume where you were.",
+              "It also serves fast startup, turned on by default: on shutdown, Windows saves part of its state there so the next start is quicker. Its size depends on the amount of RAM."
+            ]
+          },
+          {
+            "h": "Should you remove it?",
+            "ul": [
+              "Yes, if you never use hibernation and the space matters more than a slightly faster start, typically on a small SSD.",
+              "No, if you hibernate your laptop to keep your work open without battery drain.",
+              "Middle ground: `powercfg /hibernate /type reduced` keeps fast startup with a smaller file, but removes the Hibernate option."
+            ]
+          },
+          {
+            "h": "How to remove it",
+            "p": [
+              "Never delete it by hand: Windows uses it and refuses. Open a terminal as administrator and run `powercfg /hibernate off`. The file disappears at once, along with hibernation and fast startup.",
+              "To bring it back: `powercfg /hibernate on`."
+            ]
+          },
+          {
+            "h": "Not to be confused with",
+            "ul": [
+              "`pagefile.sys`: virtual memory. Do not remove it; Windows manages its size.",
+              "`swapfile.sys`: used by Store apps. Small, managed by Windows, leave it."
+            ]
+          }
+        ],
+        "cta": "Kleaner shows the real size of hiberfil.sys, explains what it is used for, and turns hibernation off with the official command if you choose to, after creating a restore point. Free, open source.",
+        "faq": [
+          {
+            "q": "Can I delete hiberfil.sys?",
+            "a": "Not by hand: Windows uses it. Run powercfg /hibernate off in an administrator terminal; the file is removed, along with hibernation and fast startup."
+          },
+          {
+            "q": "Does removing hiberfil.sys slow down my PC?",
+            "a": "It does not slow Windows down once started. Without fast startup, starting from a full shutdown can take a few seconds longer."
+          },
+          {
+            "q": "How do I get hibernation back?",
+            "a": "Run powercfg /hibernate on in an administrator terminal. The file is recreated and hibernation and fast startup come back."
+          }
+        ]
+      },
+      "fr": {
+        "title": "hiberfil.sys : à quoi il sert, comment le retirer",
+        "description": "hiberfil.sys, le fichier de veille prolongée à la racine de C:, pèse souvent plusieurs gigaoctets. Son rôle, ce qu'on perd sans lui, la commande à utiliser.",
+        "h1": "hiberfil.sys : à quoi il sert et comment le retirer",
+        "lead": "À la racine de C: se trouve un fichier caché hiberfil.sys, souvent de plusieurs gigaoctets. C'est le fichier de mise en veille prolongée. Une commande suffit pour le retirer, mais on perd la veille prolongée et le démarrage rapide.",
+        "sections": [
+          {
+            "h": "À quoi sert hiberfil.sys",
+            "p": [
+              "Quand le PC passe en veille prolongée, Windows écrit le contenu de la mémoire vive (RAM) dans `C:\\hiberfil.sys`, s'éteint, puis le relit au démarrage pour reprendre là où vous en étiez.",
+              "Il sert aussi au démarrage rapide, activé par défaut : à l'arrêt, Windows y garde une partie de son état pour redémarrer plus vite. Sa taille dépend de la quantité de RAM."
+            ]
+          },
+          {
+            "h": "Faut-il le retirer ?",
+            "ul": [
+              "Oui, si vous n'utilisez jamais la veille prolongée et que la place compte plus qu'un démarrage un peu plus rapide, typiquement sur un petit SSD.",
+              "Non, si vous mettez votre portable en veille prolongée pour garder votre travail ouvert sans vider la batterie.",
+              "Entre les deux : `powercfg /hibernate /type reduced` garde le démarrage rapide avec un fichier plus petit, mais retire l'option Mettre en veille prolongée."
+            ]
+          },
+          {
+            "h": "Comment le retirer",
+            "p": [
+              "Ne le supprimez jamais à la main : Windows l'utilise et refuse. Ouvrez un terminal en administrateur et lancez `powercfg /hibernate off`. Le fichier disparaît aussitôt, avec la veille prolongée et le démarrage rapide.",
+              "Pour le remettre : `powercfg /hibernate on`."
+            ]
+          },
+          {
+            "h": "À ne pas confondre avec",
+            "ul": [
+              "`pagefile.sys` : la mémoire virtuelle. Ne le retirez pas, Windows gère sa taille.",
+              "`swapfile.sys` : utilisé par les applications du Store. Petit, géré par Windows, à laisser."
+            ]
+          }
+        ],
+        "cta": "Kleaner affiche la vraie taille de hiberfil.sys, explique à quoi il sert, et désactive la veille prolongée avec la commande officielle si vous le choisissez, après avoir créé un point de restauration. Gratuit, open source.",
+        "faq": [
+          {
+            "q": "Peut-on supprimer hiberfil.sys ?",
+            "a": "Pas à la main : Windows l'utilise. Lancez powercfg /hibernate off dans un terminal administrateur ; le fichier est retiré, avec la veille prolongée et le démarrage rapide."
+          },
+          {
+            "q": "Retirer hiberfil.sys ralentit-il le PC ?",
+            "a": "Windows n'est pas plus lent une fois démarré. Sans démarrage rapide, le démarrage après un arrêt complet peut prendre quelques secondes de plus."
+          },
+          {
+            "q": "Comment retrouver la veille prolongée ?",
+            "a": "Lancez powercfg /hibernate on dans un terminal administrateur. Le fichier est recréé, et la veille prolongée et le démarrage rapide reviennent."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "appdata-too-big",
+      "en": {
+        "title": "AppData folder too big: what you can delete",
+        "description": "AppData takes tens of gigabytes? What is inside, the caches you can empty safely, and what you must never delete: passwords, settings, saves.",
+        "h1": "AppData folder too big: what you can delete",
+        "lead": "The hidden AppData folder of your account can grow to tens of gigabytes. Part of it is cache you can empty; the rest is your apps' settings, logins and saves. The trick is telling them apart.",
+        "sections": [
+          {
+            "h": "What AppData contains",
+            "p": [
+              "`C:\\Users\\<you>\\AppData` holds the data of your programs, in three folders: `Roaming` (settings that follow your account), `Local` (data tied to this PC, including most caches) and `LocalLow` (apps with restricted rights). It is hidden by default; type `%LOCALAPPDATA%` or `%APPDATA%` in Explorer's address bar to open it."
+            ]
+          },
+          {
+            "h": "What you can usually empty",
+            "ul": [
+              "`Local\\Temp`: temporary files. Keep those from the last 24 hours.",
+              "Browser caches (Chrome, Edge, Brave…): only the Cache folders, never the whole profile.",
+              "Discord, Teams, Slack and VS Code caches: rebuilt on next launch, you may have to sign in again. Quit the app completely first.",
+              "Developer caches: npm, pip, NuGet, Gradle, Cargo. Packages are downloaded again when needed.",
+              "`Local\\CrashDumps` and the crash report folders."
+            ]
+          },
+          {
+            "h": "What you must not delete",
+            "ul": [
+              "A whole browser profile (`Google\\Chrome\\User Data`, `Mozilla\\Firefox\\Profiles`…): passwords, history, cookies and extensions go with it.",
+              "Spotify's data folder by hand: it also contains your offline downloads. Use Spotify › Settings › Storage › Clear cache.",
+              "Game saves, app settings, mailboxes (`.ost`, `.pst` for Outlook).",
+              "The folder of an app you still use: it may lose its settings or logins. Use its own « clear cache » option, or uninstall it if you no longer use it."
+            ]
+          },
+          {
+            "h": "Leftovers of uninstalled programs",
+            "p": [
+              "Many uninstallers leave their folder in AppData. If the program is gone for good, that folder can be deleted; send it to the Recycle Bin rather than deleting it permanently, in case it belonged to something else."
+            ]
+          }
+        ],
+        "cta": "Kleaner opens AppData for you: each large folder gets a verdict (cache safe to empty, app data that breaks, leftover of an uninstalled program), and only known caches are cleaned. Your passwords, cookies and history are never touched. Free, open source.",
+        "faq": [
+          {
+            "q": "Can I delete the AppData folder?",
+            "a": "No. It holds the settings, logins and data of your programs. Only certain folders inside it, mainly caches and temporary files, can be emptied."
+          },
+          {
+            "q": "Why is AppData so big?",
+            "a": "Browser, Discord or Teams caches, developer package caches, Spotify offline songs and leftovers of uninstalled programs add up. A scan shows which folder is responsible."
+          },
+          {
+            "q": "Is it safe to empty AppData\\Local\\Temp?",
+            "a": "Yes for files that are not in use: programs recreate what they need. Close your programs first and keep the files from the last 24 hours."
+          }
+        ]
+      },
+      "fr": {
+        "title": "Dossier AppData trop gros : que supprimer ?",
+        "description": "AppData occupe des dizaines de gigaoctets ? Ce qu'il contient, les caches à vider sans risque, et ce qu'il ne faut jamais supprimer : mots de passe, réglages.",
+        "h1": "Dossier AppData trop gros : que peut-on supprimer ?",
+        "lead": "Le dossier caché AppData de votre compte peut grossir jusqu'à des dizaines de gigaoctets. Une partie est du cache qu'on peut vider ; le reste, ce sont les réglages, connexions et sauvegardes de vos applications. Tout l'enjeu est de les distinguer.",
+        "sections": [
+          {
+            "h": "Ce que contient AppData",
+            "p": [
+              "`C:\\Users\\<vous>\\AppData` contient les données de vos programmes, dans trois dossiers : `Roaming` (réglages qui suivent votre compte), `Local` (données propres à ce PC, dont la plupart des caches) et `LocalLow` (applications aux droits restreints). Il est caché par défaut ; tapez `%LOCALAPPDATA%` ou `%APPDATA%` dans la barre d'adresse de l'Explorateur pour l'ouvrir."
+            ]
+          },
+          {
+            "h": "Ce qu'on peut généralement vider",
+            "ul": [
+              "`Local\\Temp` : les fichiers temporaires. Gardez ceux des dernières 24 heures.",
+              "Le cache des navigateurs (Chrome, Edge, Brave…) : seulement les dossiers Cache, jamais le profil entier.",
+              "Les caches de Discord, Teams, Slack et VS Code : recréés au prochain lancement, il faudra parfois se reconnecter. Quittez complètement l'application avant.",
+              "Les caches de développement : npm, pip, NuGet, Gradle, Cargo. Les paquets sont retéléchargés au besoin.",
+              "`Local\\CrashDumps` et les dossiers de rapports de plantage."
+            ]
+          },
+          {
+            "h": "Ce qu'il ne faut pas supprimer",
+            "ul": [
+              "Un profil de navigateur entier (`Google\\Chrome\\User Data`, `Mozilla\\Firefox\\Profiles`…) : mots de passe, historique, cookies et extensions partent avec.",
+              "Le dossier de données de Spotify à la main : il contient aussi vos téléchargements hors ligne. Passez par Spotify › Paramètres › Stockage › Vider le cache.",
+              "Les sauvegardes de jeux, les réglages des applications, les boîtes mail (`.ost`, `.pst` d'Outlook).",
+              "Le dossier d'une application que vous utilisez encore : elle peut perdre ses réglages ou connexions. Utilisez son option « vider le cache », ou désinstallez-la si vous ne vous en servez plus."
+            ]
+          },
+          {
+            "h": "Les restes de programmes désinstallés",
+            "p": [
+              "Beaucoup de désinstalleurs laissent leur dossier dans AppData. Si le programme est parti pour de bon, ce dossier peut être supprimé ; envoyez-le à la Corbeille plutôt que de le supprimer définitivement, au cas où il appartiendrait à autre chose."
+            ]
+          }
+        ],
+        "cta": "Kleaner ouvre AppData pour vous : chaque gros dossier reçoit un verdict (cache à vider sans risque, données d'application qui cassent, reste d'un programme désinstallé), et seuls les caches connus sont nettoyés. Vos mots de passe, cookies et historique ne sont jamais touchés. Gratuit, open source.",
+        "faq": [
+          {
+            "q": "Peut-on supprimer le dossier AppData ?",
+            "a": "Non. Il contient les réglages, connexions et données de vos programmes. Seuls certains dossiers à l'intérieur, surtout des caches et fichiers temporaires, peuvent être vidés."
+          },
+          {
+            "q": "Pourquoi AppData est-il si gros ?",
+            "a": "Les caches des navigateurs, de Discord ou de Teams, les caches de paquets de développement, les titres Spotify hors ligne et les restes de programmes désinstallés s'additionnent. Une analyse montre quel dossier en est responsable."
+          },
+          {
+            "q": "Peut-on vider AppData\\Local\\Temp sans risque ?",
+            "a": "Oui pour les fichiers qui ne sont pas utilisés : les programmes recréent ce dont ils ont besoin. Fermez vos programmes avant et gardez les fichiers des dernières 24 heures."
+          }
+        ]
+      }
     }
   ]
 }
