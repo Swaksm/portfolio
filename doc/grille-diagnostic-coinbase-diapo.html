@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grille de diagnostic – Coinbase</title>
+<link rel="icon" href="../favicon.svg">
+<style>
+@font-face { font-family:'Outfit'; font-weight:100 900; font-display:swap; src:url(/fonts/outfit-latin.woff2) format('woff2'); }
+@font-face { font-family:'Roboto Condensed'; font-weight:900; font-display:swap; src:url(/fonts/roboto-condensed-900-latin.woff2) format('woff2'); }
+html, body { margin:0; height:100%; background:#1c1917; overflow:hidden; }
+#stage { position:absolute; left:50%; top:50%; width:1920px; height:1080px; transform-origin:center center; }
+#stage section { position:absolute; left:0; top:0; width:1920px; height:1080px; box-sizing:border-box; display:none; overflow:hidden; }
+#stage section.on { display:block; }
+#bar { position:fixed; left:0; bottom:0; height:4px; background:#C88ABB; transition:width .3s; }
+
+body { font-family: 'Inter', Arial, sans-serif; }
+section { padding:128px 128px 160px; background:#F1EEE7; color:#1c1917; counter-increment:page; }
+section::after { content:counter(page); position:absolute; left:1664px; bottom:64px; width:128px; text-align:right; font-size:24px; color:#6f6557; }
+.dark { background:#1c1917; color:#F1EEE7; }
+.dark::after { color:#a89d8f; }
+.cover::after { content:""; }
+.cover { padding-top:300px; }
+.eyebrow { font-size:28px; font-weight:600; color:#935683; margin:0 0 20px; }
+.dark .eyebrow { color:#D49DC8; }
+h1 { font-size:128px; font-weight:700; line-height:1.05; letter-spacing:-2px; margin:0 0 36px; }
+h2 { font-size:72px; font-weight:700; line-height:1.1; letter-spacing:-1px; margin:0 0 48px; }
+.sub { font-size:40px; line-height:1.35; color:#a89d8f; margin:0; }
+.lead { font-size:36px; line-height:1.4; color:#6f6557; margin:0 0 48px; }
+.row { display:flex; gap:32px; margin:0 0 32px; }
+.card { flex:1; background:#F7F3E6; border-radius:24px; border:1px solid #DDD6C8; padding:48px; }
+.card h3 { font-size:38px; font-weight:600; line-height:1.15; margin:0 0 14px; }
+.card p { font-size:28px; line-height:1.4; color:#6f6557; margin:0; }
+.ic { height:56px; margin:0 0 24px; }
+.ic x-icon { width:56px; height:56px; color:#935683; }
+.big { font-size:88px; font-weight:700; line-height:1; color:#935683; margin:0 0 16px; }
+.note { font-size:26px; line-height:1.4; color:#6f6557; margin:28px 0 0; }
+.info { font-size:32px; line-height:1.4; margin:0 0 16px; }
+.info b { color:#935683; }
+table { font-size:26px; color:#1c1917; }
+table.lg { font-size:30px; }
+th { color:#6f6557; }
+td, th { padding:14px 20px; }
+.l-crit { color:#C4001A; }
+.l-high { color:#B35C00; }
+.l-mid { color:#7A5F00; }
+.l-low { color:#1B7A3A; }
+ul.big-list { font-size:36px; line-height:1.4; margin:0; }
+ul.big-list li { margin:0 0 18px; }
+.dark ol { font-size:40px; line-height:1.4; margin:0; }
+.dark ol li { margin:0 0 20px; }
+.risk-body { display:flex; gap:64px; }
+.risk-text { flex:1; display:flex; flex-direction:column; gap:32px; }
+.blk h3 { font-size:24px; font-weight:600; color:#935683; margin:0 0 8px; }
+.blk p { font-size:30px; line-height:1.4; margin:0; }
+.score { flex:none; width:480px; box-sizing:border-box; background:#1c1917; color:#F1EEE7; border-radius:24px; padding:56px; display:flex; flex-direction:column; gap:8px; }
+.score .lab { font-size:24px; color:#a89d8f; margin:0; }
+.score .val { font-size:64px; font-weight:700; line-height:1.1; margin:0 0 20px; }
+.score .tot { font-size:112px; font-weight:700; line-height:1.05; margin:0; }
+.score .lvl { font-size:40px; font-weight:600; margin:0; }
+.d-crit { color:#FF453A; }
+.d-high { color:#FF9F0A; }
+.d-mid { color:#FFD60A; }
+.tags { font-size:26px; color:#6f6557; margin:0 0 28px; }
+.col h3 { font-size:44px; font-weight:700; margin:0 0 6px; color:#1c1917; }
+.col .when { font-size:26px; font-weight:600; color:#935683; margin:0 0 28px; }
+.col ul { font-size:27px; line-height:1.35; margin:0; }
+.col ul li { margin:0 0 14px; }
+
+table { font-size:34px; }
+table.lg { font-size:38px; }
+table.sm { font-size:30px; }
+table.sm td, table.sm th { padding:10px 20px; }
+.card h3 { font-size:44px; }
+.card p { font-size:34px; }
+.info { font-size:36px; }
+.blk h3 { font-size:28px; }
+.blk p { font-size:42px; line-height:1.3; }
+ul.big-list { font-size:46px; line-height:1.4; }
+ul.big-list li { margin:0 0 28px; }
+.col ul { font-size:30px; line-height:1.3; }
+.col ul li { margin:0 0 24px; }
+.dark ol { font-size:48px; line-height:1.4; }
+
+body { font-family:'Outfit', Arial, sans-serif; }
+section { background:#F1EEE7; color:#3a3530; }
+.dark { background:#1c1917; color:#ece6dc; }
+.dark::after { color:#a39888; }
+.card { background:#F7F3E6; border:1px solid #DDD6C8; border-radius:12px; }
+.dark .eyebrow { color:#D49DC8; }
+.eyebrow { font-size:26px; font-weight:400; letter-spacing:0.14em; text-transform:uppercase; color:#756b5d; }
+h1, h2 { font-family:'Roboto Condensed', 'Arial Narrow', sans-serif; font-weight:900; letter-spacing:-0.01em; line-height:0.95; }
+h1 { font-size:176px; }
+h2 { font-size:112px; margin:0 0 56px; }
+h1 span, h2 span { color:#C88ABB; }
+.dark h1 span { color:#D49DC8; }
+.sub { color:#a89d8f; font-weight:300; }
+.lead, .note { color:#6f6557; }
+.card h3 { font-weight:700; }
+.card p, .blk p { color:#3a3530; }
+.card p { color:#6f6557; }
+.blk h3 { color:#935683; letter-spacing:0.14em; text-transform:uppercase; font-size:26px; font-weight:400; }
+th { color:#756b5d; font-weight:400; letter-spacing:0.1em; text-transform:uppercase; font-size:24px; }
+.col .when { color:#935683; }
+.score { background:#1c1917; color:#ece6dc; border:none; border-radius:12px; }
+.score .lab { color:#a89d8f; }
+.d-crit { color:#E27D7D; } .d-high { color:#E8A86A; } .d-mid { color:#E2C86A; }
+.l-crit { color:#A8321F; } .l-high { color:#9A5200; } .l-mid { color:#6E5800; } .l-low { color:#2E6B3E; }
+
+/* matrice */
+.mx { display:flex; gap:64px; }
+.mx-grid { flex:none; width:1100px; }
+.mx-lab { font-size:26px; letter-spacing:0.1em; text-transform:uppercase; color:#756b5d; margin:0 0 12px 68px; }
+.mx-lab-x { text-align:right; margin:12px 0 0; }
+.mx-row { display:flex; gap:12px; margin:0 0 12px; }
+.mx-n { width:56px; flex:none; font-size:32px; color:#756b5d; display:flex; align-items:center; justify-content:center; }
+.mx-c { flex:1; height:100px; box-sizing:border-box; border-radius:12px; display:flex; flex-wrap:wrap; align-content:center; justify-content:center; gap:8px; padding:8px; }
+.mx-x { flex:1; font-size:32px; color:#756b5d; text-align:center; }
+.c1 { background:#DDE6D2; } .c2 { background:#EFE3B5; } .c3 { background:#F0CFA6; } .c4 { background:#E6A99F; }
+.chip-t { background:#3a3530; color:#F1EEE7; }
+.chip-o { background:#F7F3E6; color:#3a3530; border:2px solid #3a3530; }
+.mx-leg { flex:1; padding-top:48px; }
+.lg-row { display:flex; gap:20px; align-items:center; margin:0 0 20px; }
+.lg-gap { margin-top:40px; }
+.sw { width:48px; height:48px; border-radius:10px; flex:none; }
+.lg-t { font-size:32px; margin:0; color:#3a3530; }
+
+/* watermark */
+section::before { content:"swaks.org"; position:absolute; left:128px; bottom:64px; font-size:24px; letter-spacing:0.08em; color:#756b5d; }
+.dark::before { color:#a39888; }
+
+section::before { font-size:18px; opacity:0.8; }
+#nav { position:fixed; left:50%; bottom:14px; transform:translateX(-50%); display:flex; gap:12px; z-index:20; }
+#nav button { width:44px; height:44px; border-radius:50%; border:1px solid #DDD6C8; background:rgba(247,243,230,.92); color:#3a3530; font:600 20px/1 'Outfit', Arial, sans-serif; cursor:pointer; opacity:.7; transition:opacity .15s, background .15s; }
+#nav button:hover { opacity:1; background:#C88ABB; color:#F1EEE7; border-color:#C88ABB; }
+#nav button:disabled { opacity:.25; cursor:default; background:rgba(247,243,230,.92); color:#3a3530; border-color:#DDD6C8; }
+table { width:100%; border-collapse:collapse; } th { text-align:left; } td, th { border-bottom:1px solid #DDD6C8; }
+
+h2.s { font-size:88px; margin:0 0 40px; }
+.card .big { font-size:120px; font-weight:700; line-height:1; color:#935683; margin:0 0 16px; }
+table.fiche { font-size:32px; }
+table.fiche td { padding:10px 20px; vertical-align:top; }
+table.fiche td.lab { width:21%; color:#935683; font-size:26px; letter-spacing:0.1em; text-transform:uppercase; }
+
+.flow { display:flex; align-items:stretch; gap:24px; margin:0 0 28px; }
+.node { flex:1; border-radius:16px; background:#F7F3E6; border:1px solid #DDD6C8; padding:28px 32px; min-height:240px; box-sizing:border-box; }
+.node .t { font-size:24px; letter-spacing:.14em; text-transform:uppercase; color:#935683; margin:0 0 12px; font-weight:500; }
+.node .v { font-size:40px; line-height:1.2; margin:0; font-weight:500; color:#3a3530; }
+.node.main { background:#1c1917; border-color:#1c1917; }
+.node.main .t { color:#D49DC8; } .node.main .v { color:#F1EEE7; }
+.arr { flex:none; width:64px; height:64px; align-self:center; }
+.pair { display:flex; gap:24px; margin:0 0 28px; }
+.chip { flex:1; border-radius:16px; padding:22px 32px; font-size:34px; line-height:1.25; display:flex; gap:20px; align-items:center; }
+.chip i { flex:none; width:52px; height:52px; border-radius:50%; font-style:normal; font-size:34px; font-weight:700; display:flex; align-items:center; justify-content:center; color:#fff; }
+.chip.ok { background:#E4EEDD; color:#2d4a26; } .chip.ok i { background:#3C8A3A; }
+.chip.ko { background:#F6E3CC; color:#6b3d00; } .chip.ko i { background:#C9690A; }
+.reco { border-radius:16px; background:#C88ABB; color:#1c1917; padding:26px 36px; display:flex; gap:28px; align-items:center; }
+.reco svg { flex:none; width:64px; height:64px; }
+.reco .t { font-size:24px; letter-spacing:.14em; text-transform:uppercase; margin:0 0 6px; font-weight:600; }
+.reco .v { font-size:38px; line-height:1.2; margin:0; font-weight:500; }
+.head { display:flex; align-items:center; gap:36px; margin:0 0 36px; }
+.head h2 { margin:0; }
+.head .ico { flex:none; width:128px; height:128px; border-radius:28px; background:#1c1917; display:flex; align-items:center; justify-content:center; }
+.head .ico svg { width:84px; height:84px; }
+.pill { display:inline-block; font-size:26px; padding:6px 22px; border-radius:99px; font-weight:600; }
+.pill.h { background:#F6E3CC; color:#9a4f00; } .pill.m { background:#F3EBB8; color:#6b5400; }
+.grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+.rc { background:#F7F3E6; border:1px solid #DDD6C8; border-radius:16px; padding:36px; height:300px; box-sizing:border-box; position:relative; }
+.rc.h { border-top:8px solid #C9690A; } .rc.m { border-top:8px solid #D8B400; }
+.rc .n { position:absolute; right:32px; top:20px; font-size:80px; font-weight:700; color:#DDD6C8; }
+.rc svg { width:72px; height:72px; margin:0 0 18px; display:block; }
+.rc h3 { font-size:40px; line-height:1.15; margin:0 0 14px; font-weight:600; }
+.tl { position:relative; margin:40px 0 0; }
+.tl .line { position:absolute; left:0; right:0; top:34px; height:8px; background:#C88ABB; border-radius:4px; }
+.tl .cols { display:flex; gap:32px; position:relative; }
+.tl .c { flex:1; }
+.tl .dot { width:76px; height:76px; border-radius:50%; background:#1c1917; color:#F1EEE7; font-size:34px; font-weight:700; display:flex; align-items:center; justify-content:center; margin:0 0 28px; box-shadow:0 0 0 10px #F1EEE7; }
+.tl .box { background:#F7F3E6; border:1px solid #DDD6C8; border-radius:16px; padding:32px 36px; min-height:480px; box-sizing:border-box; }
+.tl .box h3 { font-size:48px; margin:0 0 4px; font-weight:700; }
+.tl .box .when { font-size:26px; color:#935683; font-weight:600; margin:0 0 24px; }
+.tl .box li { font-size:32px; line-height:1.3; margin:0 0 20px; }
+.tl .box ul { padding-left:34px; margin:0; }
+.dgrid { display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+.dc { background:#292524; border-radius:20px; padding:44px 48px; display:flex; gap:36px; align-items:center; min-height:230px; box-sizing:border-box; }
+.dc b { flex:none; width:104px; height:104px; border-radius:50%; background:#C88ABB; color:#1c1917; font-size:60px; display:flex; align-items:center; justify-content:center; font-weight:700; }
+.dc span { font-size:44px; line-height:1.2; font-weight:500; }
+.two { display:flex; gap:40px; align-items:stretch; }
+.two .p { flex:1; border-radius:20px; padding:48px; box-sizing:border-box; }
+.two .now { background:#292524; } .two .tgt { background:#C88ABB; color:#1c1917; }
+.two h3 { font-size:30px; letter-spacing:.14em; text-transform:uppercase; margin:0 0 28px; font-weight:500; }
+.two .now h3 { color:#a89d8f; }
+.si { border-radius:14px; text-align:center; font-size:44px; font-weight:700; padding:26px; margin:0 0 20px; }
+.now .si { background:#44403c; } .tgt .si { background:#F1EEE7; }
+.pil { display:flex; gap:20px; }
+.pil div { flex:1; text-align:center; font-size:34px; padding:34px 10px; border-radius:14px; }
+.now .pil div { background:#C88ABB; color:#1c1917; } .now .pil div.x { background:transparent; border:3px dashed #6f6557; color:#a89d8f; }
+.tgt .pil div { background:#1c1917; color:#F1EEE7; } .tgt .pil div.ppl { background:#F7F3E6; color:#1c1917; }
+.bars { display:flex; align-items:flex-end; gap:48px; height:520px; }
+.bar { width:200px; background:#C88ABB; border-radius:12px 12px 0 0; text-align:center; font-size:60px; font-weight:700; padding-top:14px; box-sizing:border-box; color:#1c1917; }
+.dots { display:flex; flex-wrap:wrap; gap:14px; width:560px; }
+.dots i { width:60px; height:60px; border-radius:50%; background:#935683; }
+.dots i.ext { background:transparent; border:5px solid #935683; box-sizing:border-box; }
+.org { display:flex; flex-direction:column; align-items:center; gap:0; }
+.ob { box-sizing:border-box; border-radius:16px; padding:22px 30px; text-align:center; font-size:34px; font-weight:600; background:#F7F3E6; border:1px solid #DDD6C8; }
+.ob small { display:block; font-size:26px; font-weight:400; color:#6f6557; margin-top:4px; }
+.ob.top { background:#1c1917; color:#F1EEE7; border-color:#1c1917; } .ob.top small { color:#a89d8f; }
+.ob.us { background:#C88ABB; border-color:#C88ABB; } .ob.us small { color:#3a3530; }
+.vl { width:4px; height:36px; background:#935683; }
+.hl { height:4px; background:#935683; width:844px; }
+.cols2 { display:flex; gap:80px; align-items:flex-start; }
+.team { background:#F7F3E6; border:1px solid #DDD6C8; border-radius:16px; padding:28px 36px; width:780px; box-sizing:border-box; }
+.team h4 { font-size:28px; letter-spacing:.12em; text-transform:uppercase; color:#935683; margin:0 0 12px; font-weight:500; }
+.team p { font-size:30px; line-height:1.45; margin:0; }
+.brick { flex:1; background:#F7F3E6; border:1px solid #DDD6C8; border-radius:16px; padding:36px; box-sizing:border-box; }
+.brick svg { width:64px; height:64px; display:block; margin:0 0 18px; }
+.brick h3 { font-size:42px; margin:0 0 10px; font-weight:700; }
+.brick p { font-size:30px; line-height:1.35; margin:0 0 16px; color:#6f6557; }
+.tag { display:inline-block; font-size:24px; padding:4px 16px; border-radius:99px; background:#E8E0D0; color:#3a3530; margin:0 8px 8px 0; font-weight:500; }
+.tag.cl { background:#D9E6F2; color:#1d3f5e; }
+.steps { display:flex; align-items:stretch; gap:16px; }
+.st { flex:1; background:#F7F3E6; border:1px solid #DDD6C8; border-radius:14px; padding:44px 14px; text-align:center; font-size:30px; font-weight:600; }
+.st.last { background:#C88ABB; border-color:#C88ABB; }
+
+.cols3 { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+.fc { background:#F7F3E6; border:1px solid #DDD6C8; border-radius:16px; padding:28px 34px; height:300px; box-sizing:border-box; }
+.fc { position:relative; }
+.fc svg { width:52px; height:52px; position:absolute; right:30px; top:26px; }
+.fc h3 { font-size:44px; margin:0 0 4px; font-weight:700; }
+.fc p { font-size:28px; line-height:1.3; margin:0 0 10px; color:#3a3530; }
+.fc .ab { font-size:22px; line-height:1.2; color:#6f6557; font-style:italic; margin:0 0 10px; }
+.fc .ex { font-size:26px; color:#935683; font-weight:500; }
+.fc.dk { background:#1c1917; border-color:#1c1917; display:flex; flex-direction:column; justify-content:center; }
+.fc.dk .bg { font-size:96px; font-weight:700; color:#C88ABB; line-height:1; margin:0 0 8px; }
+.fc.dk p { color:#F1EEE7; }
+.lst { list-style:none; margin:0; padding:0; }
+.lst li { font-size:40px; line-height:1.25; margin:0 0 22px; padding-left:56px; position:relative; }
+.lst li::before { content:"✓"; position:absolute; left:0; top:0; width:40px; height:40px; border-radius:50%; background:#1c1917; color:#C88ABB; font-size:26px; font-weight:700; text-align:center; line-height:40px; top:6px; }
+.two .tgt .lst li::before { background:#1c1917; color:#F1EEE7; }
+.two .mut { color:#a89d8f; font-size:36px; line-height:1.3; margin:0; }
+.lv { display:flex; gap:20px; align-items:stretch; }
+.lv .lab { flex:none; width:250px; border-radius:14px; background:#1c1917; color:#F1EEE7; padding:20px 24px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; }
+.lv .lab b { font-size:26px; letter-spacing:.12em; text-transform:uppercase; color:#D49DC8; font-weight:500; }
+.lv .lab span { font-size:32px; font-weight:600; margin-top:4px; }
+.lv .bx { flex:1; border-radius:14px; background:#F7F3E6; border:1px solid #DDD6C8; padding:34px 12px; display:flex; align-items:center; justify-content:center; text-align:center; font-size:29px; font-weight:600; line-height:1.2; box-sizing:border-box; }
+.lv .bx small { display:block; font-size:23px; font-weight:400; color:#6f6557; margin-top:4px; }
+.lv .bx.sec { background:#C88ABB; border-color:#C88ABB; }
+.lv .bx.db { border-radius:14px 14px 40px 40px; }
+.apiw { display:flex; justify-content:center; align-items:center; height:84px; }
+.apiw i { width:4px; height:44px; background:#935683; display:block; }
+.apiw b { background:#935683; color:#F1EEE7; border-radius:99px; padding:6px 28px; font-size:28px; font-weight:600; }
+.act { background:#F7F3E6; border:1px solid #DDD6C8; border-radius:14px; padding:22px 30px; display:flex; justify-content:space-between; align-items:center; gap:20px; }
+.act span.n { font-size:34px; font-weight:600; }
+.act .tg { flex:none; text-align:right; }
+.agrid { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+
+.tag.cr { background:#F6D5D0; color:#7a1f14; } .tag.el { background:#F6E3CC; color:#6b3d00; } .tag.mo { background:#F3EBB8; color:#6b5400; }
+.cols4 { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+.cols4 .fc { height:290px; padding:26px 28px; }
+.cols4 .fc h3 { font-size:38px; } .cols4 .fc p { font-size:26px; }
+.act.s .n { font-size:28px; }
+.act.s .tg .tag { font-size:22px; }
+.two .now .lst li { color:#F1EEE7; } .two .now .lst li::before { background:#C88ABB; color:#1c1917; }
+.flow.c { margin:0 0 16px; } .flow.c .node { min-height:150px; padding:18px 28px; } .flow.c .node .v { font-size:30px; } .flow.c .node .t { font-size:20px; margin-bottom:6px; } .flow.c .arr { width:44px; height:44px; }
+.flow.c5 .node { min-height:210px; padding:22px 22px; } .flow.c5 .node .v { font-size:28px; } .flow.c5 .node .t { font-size:22px; } .flow.c5 .arr { width:40px; height:40px; }
+.al { display:flex; gap:32px; }
+.al .p { flex:1; border-radius:20px; padding:44px 48px; box-sizing:border-box; }
+.al .p h3 { font-size:30px; letter-spacing:.14em; text-transform:uppercase; margin:0 0 12px; font-weight:600; }
+.al .p .t { font-size:130px; font-weight:700; line-height:1; margin:0 0 16px; }
+.al .p p { font-size:34px; line-height:1.3; margin:0 0 10px; }
+.cols3 .fc h3 { padding-right:64px; }
+.rule { background:#F7F3E6; border:1px solid #DDD6C8; border-radius:16px; padding:28px 32px; height:268px; box-sizing:border-box; position:relative; }
+.rule .k { font-size:22px; letter-spacing:.12em; text-transform:uppercase; color:#935683; font-weight:600; margin:0 0 8px; }
+.rule h3 { font-size:34px; line-height:1.2; margin:0 0 10px; font-weight:600; }
+.rule .s { position:absolute; left:32px; bottom:22px; font-size:76px; font-weight:700; color:#935683; line-height:1; }
+.rule .j { position:absolute; right:32px; bottom:30px; font-size:24px; color:#6f6557; text-align:right; max-width:230px; }
+</style>
+</head>
+<body>
+<div id="stage">
+<section id="cover" class="dark cover">
+<p class="eyebrow">Livrable · Partie I · Coinbase</p>
+<h1>Grille de diagnostic<span>.</span></h1>
+<p class="sub">Transactions et contrôles AML / KYC</p>
+</section>
+<section id="livrable">
+<p class="eyebrow">Le livrable demandé</p>
+<h2 style="margin-bottom:36px">Cinq colonnes<span>.</span></h2>
+<div class="flow c5">
+<div class="node"><p class="t">1</p><p class="v">Anomalie</p></div><svg class="arr" viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 24h30M26 12l12 12-12 12"/></svg>
+<div class="node"><p class="t">2</p><p class="v">Dimension concernée</p></div><svg class="arr" viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 24h30M26 12l12 12-12 12"/></svg>
+<div class="node"><p class="t">3</p><p class="v">Niveau de criticité</p></div><svg class="arr" viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 24h30M26 12l12 12-12 12"/></svg>
+<div class="node"><p class="t">4</p><p class="v">Impact potentiel</p></div><svg class="arr" viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 24h30M26 12l12 12-12 12"/></svg>
+<div class="node main"><p class="t">5</p><p class="v">Degré de certitude</p></div>
+</div>
+<div style="background:#1c1917;color:#F1EEE7;border-radius:16px;padding:34px 44px;margin-top:36px;font-size:38px;line-height:1.3"><b style="color:#D49DC8">10 anomalies</b> classées, pour décider quoi corriger en premier.</div>
+</section>
+<section id="dimension">
+<p class="eyebrow">Colonne 2</p>
+<h2 style="margin-bottom:36px">C’est quoi une dimension ?</h2>
+<div class="cols4"><div class="fc"><h3>Exactitude</h3><p>Valeur vraie ?</p></div><div class="fc"><h3>Fiabilité</h3><p>Source et traçabilité sûres ?</p></div><div class="fc"><h3>Complétude</h3><p>Rien ne manque ?</p></div><div class="fc"><h3>Cohérence</h3><p>Aucune contradiction ?</p></div><div class="fc"><h3>Actualité</h3><p>Donnée à jour ?</p></div><div class="fc"><h3>Unicité</h3><p>Pas de doublon ?</p></div><div class="fc"><h3>Conformité</h3><p>Suffisante pour décider ?</p></div><div class="fc dk" style="height:290px"><p class="bg" style="font-size:44px">Dimension</p><p>Le type de défaut de la donnée.</p></div></div>
+</section>
+<section id="grille">
+<p class="eyebrow">Le tableau</p>
+<h2 style="margin-bottom:6px">La grille complète<span>.</span></h2>
+<div style="display:grid;grid-template-columns:560px 200px 160px 470px 180px;gap:0 12px;padding:0 20px 8px;font-size:20px;letter-spacing:.1em;text-transform:uppercase;color:#935683;font-weight:700"><div>Anomalie</div><div>Dimension</div><div>Criticité</div><div>Impact</div><div>Certitude</div></div><div style="display:grid;grid-template-columns:560px 200px 160px 470px 180px;gap:0 12px;align-items:center;background:#F7F3E6;border:1px solid #DDD6C8;border-radius:12px;padding:0 20px;height:54px;margin-bottom:5px;font-size:23px"><b>Transaction sans KYC validé</b><span style="display:flex;align-items:center;margin-top:4px"><span class="tag">Complétude</span></span><span style="display:flex;align-items:center;margin-top:4px"><span class="tag cr">Critique</span></span><span style="color:#4a443c;font-size:22px">Sanctions réglementaires</span><span style="font-weight:700;color:#3a3530">Certaine</span></div><div style="display:grid;grid-template-columns:560px 200px 160px 470px 180px;gap:0 12px;align-items:center;background:#F7F3E6;border:1px solid #DDD6C8;border-radius:12px;padding:0 20px;height:54px;margin-bottom:5px;font-size:23px"><b>KYC expiré, compte actif</b><span style="display:flex;align-items:center;margin-top:4px"><span class="tag">Actualité</span></span><span style="display:flex;align-items:center;margin-top:4px"><span class="tag cr">Critique</span></span><span style="color:#4a443c;font-size:22px">Client non revérifié</span><span style="font-weight:700;color:#3a3530">Certaine</span></div><div style="display:grid;grid-template-columns:560px 200px 160px 470px 180px;gap:0 12px;align-items:center;background:#F7F3E6;border:1px solid #DDD6C8;border-radius:12px;padding:0 20px;height:54px;margin-bottom:5px;font-size:23px"><b>Screening plus ancien que 24 h</b><span style="display:flex;align-items:center;margin-top:4px"><span class="tag">Actualité</span></span><span style="display:flex;align-items:center;margin-top:4px"><span class="tag cr">Critique</span></span><span style="color:#4a443c;font-size:22px">Entité sanctionnée non détectée</span><span style="font-weight:700;color:#3a3530">Certaine</span></div><div style="display:grid;grid-template-columns:560px 200px 160px 470px 180px;gap:0 12px;align-items:center;background:#F7F3E6;border:1px solid #DDD6C8;border-radius:12px;padding:0 20px;height:54px;margin-bottom:5px;font-size:23px"><b>Compte bloqué avec transactions</b><span style="display:flex;align-items:center;margin-top:4px"><span class="tag">Cohérence</span></span><span style="display:flex;align-items:center;margin-top:4px"><span class="tag cr">Critique</span></span><span style="color:#4a443c;font-size:22px">Fraude, blocage contourné</span><span style="font-weight:700;color:#3a3530">Certaine</span></div><div style="display:grid;grid-template-columns:560px 200px 160px 470px 180px;gap:0 12px;align-items:center;background:#F7F3E6;border:1px solid #DDD6C8;border-radius:12px;padding:0 20px;height:54px;margin-bottom:5px;font-size:23px"><b>Score AML sans version du modèle</b><span style="display:flex;align-items:center;margin-top:4px"><span class="tag">Fiabilité</span></span><span style="display:flex;align-items:center;margin-top:4px"><span class="tag el">Élevée</span></span><span style="color:#4a443c;font-size:22px">Score non auditable</span><span style="font-weight:700;color:#3a3530">Certaine</span></div><div style="display:grid;grid-template-columns:560px 200px 160px 470px 180px;gap:0 12px;align-items:center;background:#F7F3E6;border:1px solid #DDD6C8;border-radius:12px;padding:0 20px;height:54px;margin-bottom:5px;font-size:23px"><b>Alerte AML sans décision de revue</b><span style="display:flex;align-items:center;margin-top:4px"><span class="tag">Conformité</span></span><span style="display:flex;align-items:center;margin-top:4px"><span class="tag el">Élevée</span></span><span style="color:#4a443c;font-size:22px">Décision non justifiée</span><span style="font-weight:700;color:#3a3530">Certaine</span></div><div style="display:grid;grid-template-columns:560px 200px 160px 470px 180px;gap:0 12px;align-items:center;background:#F7F3E6;border:1px solid #DDD6C8;border-radius:12px;padding:0 20px;height:54px;margin-bottom:5px;font-size:23px"><b>Même client sous deux identifiants</b><span style="display:flex;align-items:center;margin-top:4px"><span class="tag">Unicité</span></span><span style="display:flex;align-items:center;margin-top:4px"><span class="tag el">Élevée</span></span><span style="color:#4a443c;font-size:22px">Risque AML sous-estimé</span><span style="font-weight:700;color:#935683">Suspecte</span></div><div style="display:grid;grid-template-columns:560px 200px 160px 470px 180px;gap:0 12px;align-items:center;background:#F7F3E6;border:1px solid #DDD6C8;border-radius:12px;padding:0 20px;height:54px;margin-bottom:5px;font-size:23px"><b>Revue datée avant l’alerte</b><span style="display:flex;align-items:center;margin-top:4px"><span class="tag">Cohérence</span></span><span style="display:flex;align-items:center;margin-top:4px"><span class="tag mo">Moyenne</span></span><span style="color:#4a443c;font-size:22px">Historique peu fiable</span><span style="font-weight:700;color:#3a3530">Certaine</span></div><div style="display:grid;grid-template-columns:560px 200px 160px 470px 180px;gap:0 12px;align-items:center;background:#F7F3E6;border:1px solid #DDD6C8;border-radius:12px;padding:0 20px;height:54px;margin-bottom:5px;font-size:23px"><b>Montant négatif ou devise inconnue</b><span style="display:flex;align-items:center;margin-top:4px"><span class="tag">Exactitude</span></span><span style="display:flex;align-items:center;margin-top:4px"><span class="tag mo">Moyenne</span></span><span style="color:#4a443c;font-size:22px">Seuils AML faussés</span><span style="font-weight:700;color:#3a3530">Certaine</span></div><div style="display:grid;grid-template-columns:560px 200px 160px 470px 180px;gap:0 12px;align-items:center;background:#F7F3E6;border:1px solid #DDD6C8;border-radius:12px;padding:0 20px;height:54px;margin-bottom:5px;font-size:23px"><b>Pays KYC ≠ pays de la transaction</b><span style="display:flex;align-items:center;margin-top:4px"><span class="tag">Exactitude</span></span><span style="display:flex;align-items:center;margin-top:4px"><span class="tag mo">Moyenne</span></span><span style="color:#4a443c;font-size:22px">Fausse alerte possible</span><span style="font-weight:700;color:#935683">Suspecte</span></div>
+</section>
+<section id="criticite">
+<p class="eyebrow">Colonne 3</p>
+<h2 style="margin-bottom:40px">Trois niveaux de criticité<span>.</span></h2>
+<div class="al" style="gap:28px">
+<div class="p" style="background:#F6D5D0;color:#3a1410"><h3>Critique</h3><p class="t">4</p><p>Risque légal ou fraude.</p><p><b>À traiter en premier.</b></p></div>
+<div class="p" style="background:#F6E3CC;color:#3a2400"><h3>Élevée</h3><p class="t">3</p><p>Décision non fiable ou non traçable.</p></div>
+<div class="p" style="background:#F3EBB8;color:#3a3530"><h3>Moyenne</h3><p class="t">3</p><p>Erreur de qualité, faux positifs.</p></div>
+</div>
+</section>
+<section id="certitude">
+<p class="eyebrow">Colonne 5</p>
+<h2 style="margin-bottom:40px">Certaine ou suspecte ?<span>.</span></h2>
+<div class="two">
+<div class="p now"><h3>Certaine · 8</h3><ul class="lst"><li>Erreur objective</li><li>Vérifiable sans interprétation</li><li>Ex. : KYC manquant</li></ul></div>
+<div class="p tgt"><h3>Suspecte · 2</h3><ul class="lst"><li>À confirmer</li><li>Rapprochement ou règle métier</li><li>Ex. : doublon probable</li></ul></div>
+</div>
+</section>
+<section id="retenir">
+<p class="eyebrow">À retenir</p>
+<h2 style="margin-bottom:36px">Trois priorités<span>.</span></h2>
+<div class="cols3">
+<div class="fc" style="height:400px"><svg viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="17" cy="16" r="6"/><circle cx="34" cy="18" r="5"/><path d="M5 40c0-8 5-12 12-12s12 4 12 12M30 29c7-1 13 3 13 11"/></svg><h3>Transaction sans KYC</h3><p>Non-conformité, sanctions.</p></div>
+<div class="fc" style="height:400px"><svg viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="18"/><path d="M24 12v13l9 6"/></svg><h3>Screening périmé</h3><p>Entité sanctionnée non détectée.</p></div>
+<div class="fc" style="height:400px"><svg viewBox="0 0 48 48" fill="none" stroke="#935683" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6L4 42h40z"/><path d="M24 19v10M24 35v1"/></svg><h3>Compte bloqué qui transacte</h3><p>Fraude, blocage contourné.</p></div>
+</div>
+<p class="note" style="margin-top:28px">Anomalies typiques AML / KYC, à vérifier sur le jeu de données.</p>
+</section>
+<section id="fin" class="dark cover">
+<h1>Merci<span>.</span></h1>
+<p class="sub">Questions ?</p>
+</section>
+</div>
+<div id="bar"></div>
+<nav id="nav" aria-label="Navigation"><button id="prev" type="button" aria-label="Slide précédente">&#8592;</button><button id="next" type="button" aria-label="Slide suivante">&#8594;</button></nav>
+<script src="grille-diagnostic-coinbase-diapo.js?v=d4c3eeb658"></script>
+</body>
+</html>
