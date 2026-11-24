@@ -171,7 +171,7 @@
     })();
   </script>
   <link rel="stylesheet" href="/assets/site.css?v=7d3578a8ef" />
-  <link rel="stylesheet" href="/assets/project.css?v=313756388d" />
+  <link rel="stylesheet" href="/assets/project.css?v=5af0ec317b" />
 
   <script type="application/ld+json">
 {
@@ -421,6 +421,16 @@
         <summary>Voir les données en tableau</summary>
         <div data-st="tables"></div>
       </details>
+    </section>
+
+    <section class="i-signing" id="code-signing-policy" style="--i:7">
+      <h2>Politique de signature du code</h2>
+      <ul>
+        <li>Chaque fichier de release (kleaner.exe, kleaner-setup.exe) est construit par GitHub Actions à partir du code source tagué du dépôt public, avec son empreinte SHA-256 publiée à côté. Rien n'est construit ni envoyé à la main. <a href="https://github.com/Swaksm/Kleaner/blob/main/.github/workflows/release.yml" target="_blank" rel="noopener">Workflow de release ↗</a></li>
+        <li>Rôles : committer et relecteur, Matthieu Izac (Swaksm), seul mainteneur ; les changements d'autres contributeurs passent par une pull request qu'il relit. Approbateur : Matthieu Izac, qui approuve chaque release.</li>
+        <li>Ce programme ne transmet aucune information à d'autres systèmes en réseau, sauf demande expresse de l'utilisateur ou de la personne qui l'installe ou l'utilise. Son seul accès réseau est la vérification de mise à jour facultative (désactivée par défaut), qui lit la liste publique des versions sur GitHub. <a href="/kleaner/privacy/">Politique de confidentialité (en anglais)</a></li>
+        <li>Les releases ne sont pas encore signées : Windows SmartScreen affiche donc un avertissement la première fois.</li>
+      </ul>
     </section>
 
     <section class="i-versions" style="--i:7">

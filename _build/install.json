@@ -98,6 +98,15 @@
         "a": "Windows Settings → Apps → Kleaner → Uninstall. Or, in Kleaner: Settings → Remove Kleaner."
       }
     ],
+    "signing": {
+      "h": "Code signing policy",
+      "build": "Every release file (kleaner.exe, kleaner-setup.exe) is built by GitHub Actions from the tagged source code of the public repository, with its SHA-256 hash published next to it. Nothing is built or uploaded by hand.",
+      "workflow": "Release workflow",
+      "roles": "Roles: committer and reviewer, Matthieu Izac (Swaksm), the only maintainer; changes from other contributors go through a pull request he reviews. Approver: Matthieu Izac, who approves each release.",
+      "privacy": "This program will not transfer any information to other networked systems unless specifically requested by the user or the person installing or operating it. Its only network access is the optional update check (off by default), which reads the public list of releases on GitHub.",
+      "privacy_link": "Privacy policy",
+      "status": "Releases are not code-signed yet, so Windows SmartScreen shows a warning the first time."
+    },
     "versions": "Previous versions",
     "more": "How Kleaner is built →",
     "feedback_h": "A bug? An idea?",
@@ -218,6 +227,15 @@
         "a": "Paramètres Windows → Applications → Kleaner → Désinstaller. Ou, dans Kleaner : Paramètres → Retirer Kleaner."
       }
     ],
+    "signing": {
+      "h": "Politique de signature du code",
+      "build": "Chaque fichier de release (kleaner.exe, kleaner-setup.exe) est construit par GitHub Actions à partir du code source tagué du dépôt public, avec son empreinte SHA-256 publiée à côté. Rien n'est construit ni envoyé à la main.",
+      "workflow": "Workflow de release",
+      "roles": "Rôles : committer et relecteur, Matthieu Izac (Swaksm), seul mainteneur ; les changements d'autres contributeurs passent par une pull request qu'il relit. Approbateur : Matthieu Izac, qui approuve chaque release.",
+      "privacy": "Ce programme ne transmet aucune information à d'autres systèmes en réseau, sauf demande expresse de l'utilisateur ou de la personne qui l'installe ou l'utilise. Son seul accès réseau est la vérification de mise à jour facultative (désactivée par défaut), qui lit la liste publique des versions sur GitHub.",
+      "privacy_link": "Politique de confidentialité (en anglais)",
+      "status": "Les releases ne sont pas encore signées : Windows SmartScreen affiche donc un avertissement la première fois."
+    },
     "versions": "Versions précédentes",
     "more": "Comment Kleaner est fait →",
     "feedback_h": "Un bug ? Une idée ?",

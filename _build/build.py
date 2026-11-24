@@ -536,6 +536,16 @@ def install_page(data: dict, lang: str, home_page: str, head_snippet: str, ui_di
       </details>
     </section>
 
+    <section class="i-signing" id="code-signing-policy" style="--i:7">
+      <h2>{text(c['signing']['h'])}</h2>
+      <ul>
+        <li>{text(c['signing']['build'])} <a href="https://github.com/{data['repo']}/blob/main/.github/workflows/release.yml" target="_blank" rel="noopener">{text(c['signing']['workflow'])} ↗</a></li>
+        <li>{text(c['signing']['roles'])}</li>
+        <li>{text(c['signing']['privacy'])} <a href="/kleaner/privacy/">{text(c['signing']['privacy_link'])}</a></li>
+        <li>{text(c['signing']['status'])}</li>
+      </ul>
+    </section>
+
     <section class="i-versions" style="--i:7">
       <details>
         <summary>{text(c['versions'])}</summary>

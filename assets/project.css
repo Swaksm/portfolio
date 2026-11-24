@@ -421,3 +421,10 @@ body.page {
 .guide-related a, .i-guides a { color: var(--mauve-text); text-decoration: none; }
 .guide-related a:hover, .i-guides a:hover { text-decoration: underline; }
 .i-guides { margin-bottom: 3.5rem; }
+
+/* Politique de signature du code (page /kleaner/) */
+.i-signing { margin-bottom: 3.5rem; }
+.i-signing ul { list-style: disc; padding-left: 1.2rem; color: var(--muted); font-size: 0.95rem; line-height: 1.65; }
+.i-signing li + li { margin-top: 0.6rem; }
+.i-signing a { color: var(--mauve-text); text-decoration: none; }
+.i-signing a:hover { text-decoration: underline; }

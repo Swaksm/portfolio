@@ -171,7 +171,7 @@
     })();
   </script>
   <link rel="stylesheet" href="/assets/site.css?v=7d3578a8ef" />
-  <link rel="stylesheet" href="/assets/project.css?v=313756388d" />
+  <link rel="stylesheet" href="/assets/project.css?v=5af0ec317b" />
 
   <script type="application/ld+json">
 {
@@ -421,6 +421,16 @@
         <summary>Show the data as a table</summary>
         <div data-st="tables"></div>
       </details>
+    </section>
+
+    <section class="i-signing" id="code-signing-policy" style="--i:7">
+      <h2>Code signing policy</h2>
+      <ul>
+        <li>Every release file (kleaner.exe, kleaner-setup.exe) is built by GitHub Actions from the tagged source code of the public repository, with its SHA-256 hash published next to it. Nothing is built or uploaded by hand. <a href="https://github.com/Swaksm/Kleaner/blob/main/.github/workflows/release.yml" target="_blank" rel="noopener">Release workflow ↗</a></li>
+        <li>Roles: committer and reviewer, Matthieu Izac (Swaksm), the only maintainer; changes from other contributors go through a pull request he reviews. Approver: Matthieu Izac, who approves each release.</li>
+        <li>This program will not transfer any information to other networked systems unless specifically requested by the user or the person installing or operating it. Its only network access is the optional update check (off by default), which reads the public list of releases on GitHub. <a href="/kleaner/privacy/">Privacy policy</a></li>
+        <li>Releases are not code-signed yet, so Windows SmartScreen shows a warning the first time.</li>
+      </ul>
     </section>
 
     <section class="i-versions" style="--i:7">
