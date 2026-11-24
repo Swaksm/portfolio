@@ -8,6 +8,7 @@ Téléchargements du jour = total d'aujourd'hui moins total de la veille.
 import datetime
 import json
 import subprocess
+import sys
 from pathlib import Path
 
 REPO = 'Swaksm/Kleaner'
@@ -18,7 +19,10 @@ def pages(path: str, *headers: str) -> list:
     cmd = ['gh', 'api', '--paginate']
     for h in headers:
         cmd += ['-H', h]
-    raw = subprocess.run(cmd + [path], check=True, capture_output=True, text=True).stdout
+    res = subprocess.run(cmd + [path], capture_output=True, text=True, encoding='utf-8')
+    if res.returncode:  # message de gh dans le journal de l'Action (sinon l'erreur reste muette)
+        raise RuntimeError(f'gh api {path} : {res.stderr.strip()}')
+    raw = res.stdout
     # --paginate concatène les pages : [..][..]
     dec, i, out = json.JSONDecoder(), 0, []
     while i < len(raw):
@@ -47,9 +51,14 @@ def main() -> None:
             continue
         versions[r['tag_name']] = sum(a.get('download_count', 0) for a in r['assets'])
         info[r['tag_name']] = {'date': r['published_at'], 'pre': bool(r['prerelease'])}
-    stars = star_dates()
     day = datetime.datetime.now(datetime.timezone.utc).date().isoformat()
     data = json.loads(OUT.read_text('utf-8')) if OUT.exists() else {'repo': REPO, 'days': []}
+    try:
+        stars = star_dates()
+    except RuntimeError as e:
+        # Les étoiles ne doivent pas faire perdre l'instantané des téléchargements du jour (perdu pour de bon sinon)
+        print('Étoiles non lues, dernières connues gardées :', e, file=sys.stderr)
+        stars = data.get('star_dates', [])
     data['days'] = [d for d in data['days'] if d['date'] != day]
     data['days'].append({'date': day, 'total': sum(versions.values()), 'stars': len(stars), 'versions': versions})
     data['launch'] = min(v['date'] for v in info.values())
